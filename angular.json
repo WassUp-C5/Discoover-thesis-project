@@ -24,7 +24,11 @@
               "src/assets"
             ],
             "styles": [
+<<<<<<< HEAD
               "src/custom-theme.scss",
+=======
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+>>>>>>> fixing last commit
               "src/styles.css"
             ],
             "scripts": []
@@ -89,6 +93,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -122,8 +127,12 @@
       }
     }
   },
+<<<<<<< HEAD
   "defaultProject": "DiscooverIn",
   "cli": {
     "analytics": false
   }
+=======
+  "defaultProject": "DiscooverIn"
+>>>>>>> fixing last commit
 }
