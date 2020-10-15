@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-guide-nav-bar',
+  selector: 'app-guide-navbar',
   templateUrl: './guide-navbar.component.html',
   styleUrls: ['./guide-navbar.component.css']
 })
