@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "DiscooverIn"
+    }
+  },
+  "defaultProject": "DiscooverIn",
+  "cli": {
+    "analytics": false
+  }
 }
