@@ -1,12 +1,19 @@
 <!-- Default form register -->
-<form
-  class="text-center border border-light p-5"
-  #myform="ngForm"
-  (ngSubmit)="onSubmit(myform)"
->
+<form class="text-center border border-light p-5">
   <p class="h4 mb-4">Sign up</p>
 
   <div class="form-row mb-4">
+    <div class="col">
+      <!-- User name -->
+      <input
+        type="text"
+        id="defaultRegisterFormUserName"
+        class="form-control"
+        placeholder="User Name"
+        [(ngModel)]="user.user_name"
+        name="userName"
+      />
+    </div>
     <div class="col">
       <!-- First name -->
       <input
@@ -14,38 +21,42 @@
         id="defaultRegisterFormFirstName"
         class="form-control"
         placeholder="First Name"
-        ngModel
+        [(ngModel)]="user.first_name"
+        name="firstName"
       />
     </div>
     <div class="col">
       <!-- Last name -->
       <input
+        name="lastName"
         type="text"
         id="defaultRegisterFormLastName"
         class="form-control"
         placeholder="Last name"
-        ngModel
+        [(ngModel)]="user.last_name"
       />
     </div>
   </div>
 
   <!-- E-mail -->
   <input
+    name="email"
     type="email"
     id="defaultRegisterFormEmail"
     class="form-control mb-4"
     placeholder="E-mail"
-    ngModel
+    [(ngModel)]="user.email"
   />
 
   <!-- Password -->
   <input
+    name="password"
     type="password"
     id="defaultRegisterFormPassword"
     class="form-control"
     placeholder="Password"
     aria-describedby="defaultRegisterFormPasswordHelpBlock"
-    ngModel
+    [(ngModel)]="user.password"
   />
   <small
     id="defaultRegisterFormPasswordHelpBlock"
@@ -56,12 +67,13 @@
 
   <!-- Phone number -->
   <input
+    name="phoneNumber"
     type="text"
     id="defaultRegisterPhonePassword"
     class="form-control"
     placeholder="Phone number"
     aria-describedby="defaultRegisterFormPhoneHelpBlock"
-    ngModel
+    [(ngModel)]="user.phone_number"
   />
   <small
     id="defaultRegisterFormPhoneHelpBlock"
@@ -71,7 +83,13 @@
   </small>
 
   <!-- Sign up button -->
-  <button color="info" class="my-4" type="submit" class="landing-btn">
+  <button
+    color="info"
+    class="my-4"
+    type="submit"
+    class="landing-btn"
+    (click)="onSubmit()"
+  >
     Sign Up
   </button>
 
