@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { VisitorNavbarComponent } from './visitor-navbar/visitor-navbar.component';
@@ -16,6 +16,7 @@ import { GuideNavBarComponent } from './guide-navbar/guide-navbar.component';
 import {MatMenuModule} from '@angular/material/menu';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { OrganizerProfileComponent } from './organizer-profile/organizer-profile.component';
+import { SignupComponent } from './signup/signup.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { OrganizerProfileComponent } from './organizer-profile/organizer-profile
 
     GuideNavBarComponent,
     OrganizerProfileComponent,
+    SignupComponent,
 
   ],
   imports: [
@@ -39,7 +41,7 @@ import { OrganizerProfileComponent } from './organizer-profile/organizer-profile
     MatButtonModule,
     MatMenuModule,
     BrowserAnimationsModule,
-
+    FormsModule 
   ],
   providers: [],
   bootstrap: [AppComponent]
