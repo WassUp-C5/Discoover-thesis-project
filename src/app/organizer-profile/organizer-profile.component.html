@@ -1,0 +1,49 @@
+<div class="avatar">
+  <img src="../../assets/photo.jpg">
+  <p> Bob Marley</p>
+</div>
+<div class="profile">
+  <div class="personalInfo">
+    <p> Personal Details </p>
+    <p> First Name</p>
+    <input matInput value="Bob">
+    <p> Last Name</p>
+    <input matInput value="Marley">
+    <p> Gender </p>
+    <select>
+      <option>Male</option>
+      <option>Female</option>
+      <option>Uncertain</option>
+    </select>
+    <p> Date of Birth</p>
+    <input type="date">
+    <p>Country</p>
+    <input matInput value="Somewhere">
+    <p>Phone </p>
+    <input type="tel" placeholder="+216">
+  </div>
+</div>
+
+
+<div id="description">
+  <form>
+    <label>Trip description:</label>
+    <br>
+    <textarea name="description" rows="10" cols="50">
+  At w3schools.com you will learn how to make a website. They offer free tutorials in all web development technologies.
+  </textarea>
+  </form>
+  <button class="signInBtn" mat-flat-button color="warn">Save</button>
+</div>
+
+<!-- <mat-form-field>
+  <mat-label>Choose a date</mat-label>
+  <input matInput [matDatepicker]="myDatepicker">
+  <mat-datepicker-toggle [for]="myDatepicker" matSuffix></mat-datepicker-toggle>
+  <mat-datepicker #myDatepicker></mat-datepicker>
+</mat-form-field> -->
+
+<!-- <mat-form-field>
+  <input matInput type="datetime-local" placeholder="debut" formControlName="debut" value="2019-06-08T00:00" #debut />
+  <mat-datepicker #dateFrom></mat-datepicker>
+</mat-form-field> -->
