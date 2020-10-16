@@ -1,0 +1,48 @@
+.avatar {
+  width: 20%;
+  margin-left: 35%;
+  height: 40%;
+  font-size: 200%;
+  font-weight: bold;
+  /* border-bottom: 5px groove gray; */
+  text-align: center;
+  padding-bottom: 10%;
+  float: right;
+}
+img {
+  position: relative;
+  margin-top: 10%;
+  margin-right: 20%;
+  margin-left: 20%;
+  margin-bottom: 10%;
+  height: 60%;
+  width: 60%;
+  border-radius: 50%;
+}
+.profile {
+  float: left;
+  border-right: 2px solid red;
+  border-left: 2px solid red;
+  border-top: 2px solid red;
+  border-bottom: 2px solid red;
+  width: 20%;
+  height: 100%;
+  /* box-shadow: 8px 0px 10px gray; */
+}
+.personalInfo {
+  padding-left: 5%;
+}
+
+#description {
+  border-right: 2px solid red;
+  border-left: 2px solid red;
+  border-top: 2px solid red;
+  border-bottom: 2px solid red;
+  margin-left: 30%;
+  margin-right: 40%;
+  margin-top: 5%;
+  margin-bottom: 20%;
+}
+textarea {
+  position: relative;
+}
