@@ -24,11 +24,7 @@
               "src/assets"
             ],
             "styles": [
-<<<<<<< HEAD
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-=======
-              "src/custom-theme.scss",
->>>>>>> 0ef44098b62b8a1d02881bfec1c049551f941a0b
               "src/styles.css"
             ],
             "scripts": []
@@ -127,12 +123,8 @@
       }
     }
   },
-<<<<<<< HEAD
-  "defaultProject": "DiscooverIn"
-=======
   "defaultProject": "DiscooverIn",
   "cli": {
     "analytics": false
   }
->>>>>>> 0ef44098b62b8a1d02881bfec1c049551f941a0b
 }
