@@ -10,7 +10,7 @@ export class SigninComponent implements OnInit {
   constructor() { }
   useer = {
 
-    email: '',
+    username: '',
     password: '',
     
 
