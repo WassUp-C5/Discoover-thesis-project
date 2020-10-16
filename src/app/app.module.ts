@@ -44,6 +44,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { SearchTripComponent } from './search-trip/search-trip.component';
 import { OrganizeATripComponent } from './organize-a-trip/organize-a-trip.component';
 import { GuideATripComponent } from './guide-a-trip/guide-a-trip.component';
+import { SigninComponent } from './signin/signin.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { GuideATripComponent } from './guide-a-trip/guide-a-trip.component';
     LandingPageComponent,
     SearchTripComponent,
     OrganizeATripComponent,
-    GuideATripComponent
+    GuideATripComponent,
+    SigninComponent
   ],
   imports: [
 
