@@ -8,8 +8,20 @@ import { Component, OnInit } from '@angular/core';
 export class SigninComponent implements OnInit {
 
   constructor() { }
+  useer = {
 
+    username: '',
+    password: '',
+    
+
+  }
   ngOnInit(): void {
+  
+  }
+      signIn() {
+
+      console.log('Your form data : ', this.useer);
+
   }
 
 }

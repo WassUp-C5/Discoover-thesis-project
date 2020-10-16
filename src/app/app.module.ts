@@ -1,4 +1,3 @@
-
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -28,11 +27,11 @@ import { OrganizerProfileComponent } from './organizer-profile/organizer-profile
     SearchTripComponent,
     OrganizeATripComponent,
     GuideATripComponent,
-    SigninComponent,
-    SignupComponent,
-    GuideProfileComponent,
     GuideNavBarComponent,
     OrganizerProfileComponent,
+    GuideProfileComponent,
+    SignupComponent,
+    SigninComponent,
 
   ],
   imports: [
