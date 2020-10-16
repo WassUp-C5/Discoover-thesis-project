@@ -1,0 +1,18 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+.nav {
+  background: transparent;
+}
+
+.avatar-img {
+  width: 30px;
+}
+
+.signInBtn {
+  margin-right: 10px;
+  background-color: red;
+}
+span {
+  margin-right: 10px;
+}
