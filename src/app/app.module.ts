@@ -46,6 +46,9 @@ import { OrganizeATripComponent } from './organize-a-trip/organize-a-trip.compon
 import { GuideATripComponent } from './guide-a-trip/guide-a-trip.component';
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
+/* Angular material */
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AngularMaterialModule } from './angular-material.module';
 
 @NgModule({
   declarations: [
@@ -55,7 +58,9 @@ import { SignupComponent } from './signup/signup.component';
     OrganizeATripComponent,
     GuideATripComponent,
     SigninComponent,
-    SignupComponent
+    SignupComponent,
+    BrowserAnimationsModule,
+    AngularMaterialModule,
   ],
   imports: [
 
