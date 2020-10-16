@@ -5,8 +5,8 @@
     "ng": "ng",
     "server-dev": "nodemon server/server.js",
     "start": "ng serve",
-    "build": "ng build",
-    "build-dev": "ng build --watch",
+    "build": "ng build --w",
+    "build-dev": "ng build --w",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

@@ -1,1 +1,83 @@
-<p>signup works!</p>
+
+
+
+<!-- Default form register -->
+<form
+  class="text-center border border-light p-5"
+  #myform="ngForm"
+  (ngSubmit)="onSubmit(myform)"
+>
+  <p class="h4 mb-4">Sign up</p>
+
+  <div class="form-row mb-4">
+    <div class="col">
+      <!-- First name -->
+      <input
+        type="text"
+        id="defaultRegisterFormFirstName"
+        class="form-control"
+        placeholder="First Name"
+        ngModel
+      />
+    </div>
+    <div class="col">
+      <!-- Last name -->
+      <input
+        type="text"
+        id="defaultRegisterFormLastName"
+        class="form-control"
+        placeholder="Last name"
+        ngModel
+      />
+    </div>
+  </div>
+
+  <!-- E-mail -->
+  <input
+    type="email"
+    id="defaultRegisterFormEmail"
+    class="form-control mb-4"
+    placeholder="E-mail"
+    ngModel
+  />
+
+  <!-- Password -->
+  <input
+    type="password"
+    id="defaultRegisterFormPassword"
+    class="form-control"
+    placeholder="Password"
+    aria-describedby="defaultRegisterFormPasswordHelpBlock"
+    ngModel
+  />
+  <small
+    id="defaultRegisterFormPasswordHelpBlock"
+    class="form-text text-muted mb-4"
+  >
+    At least 8 characters and 1 digit
+  </small>
+
+  <!-- Phone number -->
+  <input
+    type="text"
+    id="defaultRegisterPhonePassword"
+    class="form-control"
+    placeholder="Phone number"
+    aria-describedby="defaultRegisterFormPhoneHelpBlock"
+    ngModel
+  />
+  <small
+    id="defaultRegisterFormPhoneHelpBlock"
+    class="form-text text-muted mb-4"
+  >
+    Optional - for two-step authentication
+  </small>
+
+  <!-- Sign up button -->
+  <button color="info" class="my-4" type="submit" class="landing-btn">
+    Sign Up
+  </button>
+
+  <hr />
+</form>
+<!-- Default form register -->
