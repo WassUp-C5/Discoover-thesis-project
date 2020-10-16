@@ -123,8 +123,13 @@
       }
     }
   },
+
   "defaultProject": "DiscooverIn",
   "cli": {
     "analytics": false
   }
+
+
 }
+
+
