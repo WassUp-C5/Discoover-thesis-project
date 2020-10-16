@@ -23,22 +23,23 @@ const MongoUser = mongoose.model("User", usersSchema);
 class User extends MongoUser {
   constructor(data) {
     super();
-    this.first_name = data.first_name;
-    this.last_name = data.last_name;
-    this.username = data.username;
-    this.password = data.password;
-    this.imageUrl = data.imageUrl;
-    this.email = data.email;
-    this.birthday = data.birthday;
-    this.gender = data.gender;
-    this.roles = data.roles;
+    if (data) {
+      this.first_name = data.first_name;
+      this.last_name = data.last_name;
+      this.username = data.username;
+      this.password = data.password;
+      this.imageUrl = data.imageUrl;
+      this.email = data.email;
+      this.birthday = data.birthday;
+      this.gender = data.gender;
+      this.roles = data.roles;
+    }
   }
 
   save() {
     return new Promise((resolve, reject) => {
-      console.log("password ===> ",this.password);
+      console.log("password ===> ", this.password);
       this.password = bcrypt.hashSync(this.password, 10);
-
       super.save(
         {
           first_name: this.first_name,
