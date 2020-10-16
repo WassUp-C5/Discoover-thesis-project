@@ -105,6 +105,12 @@ body{
   width: auto;
   border-radius: 3px;
 }
+
+#profileImg {
+  width: 50%;
+  height: 50%;
+  margin-bottom: 10%;
+}
 @media (min-width: 768px) {
   .timeline .time-show {
       margin-right: -69px;
@@ -249,3 +255,12 @@ body{
 svg {
   margin-right: 2%;
 }
+
+.addLanguageHere {
+  width: 90%;
+}
+
+.addLanguageArea {
+  display: flex;
+}
+
