@@ -15,9 +15,7 @@ const routes: Routes = [
   {path :'searchTrip', component:SearchTripComponent},
   {path :'OrganizeTrip',component:OrganizeATripComponent},
   {path :'GuideTrip', component :GuideATripComponent},
-  { path: 'login', component: SigninComponent },
-
-
+  { path: 'signin', component: SigninComponent },
   {path : 'signup',component:SignupComponent}
 ];
 
