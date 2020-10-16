@@ -33,7 +33,7 @@ body,
 .landing-btn {
   position: absolute;
   bottom: 100px;
-  left: 35%;
+  left: 26%;
 }
 
 .landing-btn:hover ~ .landing-img {
@@ -41,7 +41,7 @@ body,
   -webkit-filter: blur(0);
 }
 .landing-btn {
-  background-color: red; /* Green */
+  background-color: red;
   border: none;
   color: white;
   text-align: center;
