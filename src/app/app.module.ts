@@ -10,6 +10,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { GuideNavBarComponent } from './guide-navbar/guide-navbar.component';
 import {MatMenuModule} from '@angular/material/menu';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { OrganizerProfileComponent } from './organizer-profile/organizer-profile.component';
 
 
 @NgModule({
@@ -17,6 +18,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppComponent,
     VisitorNavbarComponent,
     GuideNavBarComponent,
+    OrganizerProfileComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -25,7 +28,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatIconModule,
     MatButtonModule,
     MatMenuModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
 
   ],
   providers: [],
