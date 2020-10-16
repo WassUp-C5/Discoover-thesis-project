@@ -33,12 +33,24 @@ body,
 .landing-btn {
   position: absolute;
   bottom: 100px;
-  left: 50%;
+  left: 35%;
 }
 
 .landing-btn:hover ~ .landing-img {
   filter: blur(0);
   -webkit-filter: blur(0);
+}
+.landing-btn {
+  background-color: red; /* Green */
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  padding: 12px 28px;
 }
 /* 
 .landing-btn:hover > .landing-img {
