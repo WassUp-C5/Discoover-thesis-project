@@ -51,6 +51,9 @@ body,
   margin: 4px 2px;
   cursor: pointer;
   padding: 12px 28px;
+  font-size: 30px;
+  border-radius: 5px;
+  font-weight: bold;
 }
 /* 
 .landing-btn:hover > .landing-img {
