@@ -1,0 +1,19 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+.nav {
+  background: #cf0008;
+}
+
+.avatar-img {
+  width: 40px;
+  border-radius: 50%;
+}
+.avatar-img:hover {
+  cursor: pointer;
+}
+
+span {
+  color: white;
+  margin-right: 10px;
+}
