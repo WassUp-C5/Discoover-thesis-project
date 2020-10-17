@@ -17,6 +17,7 @@ import { AngularMaterialModule } from './angular-material.module';
 import { GuideNavBarComponent } from './guide-navbar/guide-navbar.component';
 import { OrganizerProfileComponent } from './organizer-profile/organizer-profile.component';
 
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { OrganizerProfileComponent } from './organizer-profile/organizer-profile
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     AngularMaterialModule,
