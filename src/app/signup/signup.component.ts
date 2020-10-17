@@ -9,13 +9,22 @@ import {NgForm} from '@angular/forms';
 export class SignupComponent implements OnInit {
 
   constructor() { }
+   user = {
+    user_name : '',
+    first_name: '',
+    last_name: '',
+    email: '',
+    password: '',
+    phone_number: '',
+
+  }
 
 
- 
   ngOnInit(): void {
   }
-    onSubmit(form: NgForm) {
-      console.log('Your form data : ', form.value);
+    onSubmit() {
+
+      console.log('Your form data : ', this.user);
   }
 
 

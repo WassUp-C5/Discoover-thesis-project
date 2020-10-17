@@ -12,12 +12,11 @@ import { SigninComponent } from './signin/signin.component';
 const routes: Routes = [
   {path: '', component:LandingPageComponent},
   {path :'searchTrip', component:SearchTripComponent},
-  {path :'OrganizeTrip',component:OrganizeATripComponent},
-  {path :'GuideTrip', component :GuideATripComponent},
-  { path: 'login', component: SigninComponent },
+  {path :'organizeTrip',component:OrganizeATripComponent},
+  {path :'guideTrip', component :GuideATripComponent},
+  {path : 'signup',component:SignupComponent},
+  {path : 'signin',component:SigninComponent}
 
-
-  {path : 'signup',component:SignupComponent}
 ];
 
 @NgModule({

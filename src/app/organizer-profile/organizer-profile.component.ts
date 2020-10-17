@@ -7,9 +7,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrganizerProfileComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+   }
+   organizer = {
+     firstName : 'Amine',
+     lastName : 'Louati',
+     gender : '',
+     location : 'Tunis',
+     email : 'amine@louati.io',
+     password : '',
+     bio : 'Hello world I\'m Amine and I\'m awesome'
+    };
+    fullName = this.organizer.firstName + ' ' + this.organizer.lastName;
 
   ngOnInit(): void {
+  }
+  onClick(){
+    console.log('organizer profile updated with ==>', this.organizer)
+
   }
 
 }
