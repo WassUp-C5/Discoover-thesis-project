@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,23 +8,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrganizerProfileComponent implements OnInit {
 
-  constructor() {
+  constructor(private http: HttpClient) {
+
    }
+   selectedGender = '';
    organizer = {
-     firstName : 'Amine',
-     lastName : 'Louati',
-     gender : '',
-     location : 'Tunis',
-     email : 'amine@louati.io',
+     first_name : 'Slim',
+     last_name : 'Kasraoui',
+     gender : this.selectedGender,
+     location : 'RBK',
+     email : 'slim@wassup.io',
      password : '',
-     bio : 'Hello world I\'m Amine and I\'m awesome'
+     bio : 'Hello world I\'m Slim and I\'m supposed to describe myself here',
+     phone_number : '22222222'
     };
-    fullName = this.organizer.firstName + ' ' + this.organizer.lastName;
+    fullName = this.organizer.first_name + ' ' + this.organizer.last_name;
 
   ngOnInit(): void {
   }
   onClick(){
-    console.log('organizer profile updated with ==>', this.organizer)
+    console.log('organizer profile updated with ==>', this.organizer);
+    this.http.post('/api/user/edit',this.organizer)
+    .subscribe((res)=>{
+      console.log(res)
+    })
+
 
   }
 

@@ -37,8 +37,12 @@
   <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
     At least 8 characters and 1 digit
   </small>
+  <input name="repeatPassword" type="password" id="repeatPassword" class="form-control" placeholder="Confirm password"
+    [(ngModel)]="repeatPassword" />
 
-
+  <!-- Phone number -->
+  <input name="phoneNumber" type="text" id="defaultRegisterPhonePassword" class="form-control"
+    placeholder="Phone number" aria-describedby="defaultRegisterFormPhoneHelpBlock" [(ngModel)]="user.phone_number" />
 
   <!-- Sign up button -->
   <button color="info" class="my-4" type="submit" class="landing-btn" (click)="onSubmit()">

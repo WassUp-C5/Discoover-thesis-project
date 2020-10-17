@@ -58,8 +58,8 @@
           </p>
           <p class="text-muted mb-2 font-13"><strong>Full Name :</strong> <span class="ml-2">{{fullName}}</span></p>
 
-          <p class="text-muted mb-2 font-13"><strong>Mobile :</strong><span class="ml-2">+216
-              123 1234</span></p>
+          <p class="text-muted mb-2 font-13"><strong>Mobile :</strong><span class="ml-2">+216{{organizer.phone_number}}
+            </span></p>
 
           <p class="text-muted mb-2 font-13"><strong>Email :</strong> <span class="ml-2 ">{{organizer.email}}</span></p>
 
@@ -132,21 +132,21 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="firstname">First Name</label>
-                    <input type="text" class="form-control" id="firstname" placeholder={{organizer.firstName}}
-                      [(ngModel)]="organizer.firstName" name="first">
+                    <input type="text" class="form-control" id="firstname" placeholder={{organizer.first_name}}
+                      [(ngModel)]="organizer.first_name" name="first">
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="lastname">Last Name</label>
-                    <input type="text" class="form-control" id="lastname" placeholder={{organizer.lastName}}
-                      [(ngModel)]="organizer.lastName" name="last">
+                    <input type="text" class="form-control" id="lastname" placeholder={{organizer.last_name}}
+                      [(ngModel)]="organizer.last_name" name="last">
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="sel1">Gender:</label>
-                    <select class="form-control" id="sel1">
+                    <select class="form-control" id="sel1" [(ngModel)]="selectedGender" name="gender">
                       <option>--</option>
                       <option>Female</option>
                       <option>Male</option>
@@ -165,6 +165,13 @@
                       [(ngModel)]="organizer.email" name="email">
                     <span class="form-text text-muted"><small>If you want to change email please <a
                           href="javascript: void(0);">click</a> here.</small></span>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="lastname">Phone number</label>
+                    <input type="text" class="form-control" id="phone" placeholder={{organizer.phone_number}}
+                      [(ngModel)]="organizer.phone_number" name="phone">
                   </div>
                 </div>
                 <div class="col-md-6">
