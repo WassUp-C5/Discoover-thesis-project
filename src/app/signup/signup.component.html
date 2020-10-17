@@ -1,6 +1,3 @@
-
-
-
 <!-- Default form register -->
 <form class="text-center border border-light p-5">
   <p class="h4 mb-4">Sign up</p>
@@ -67,6 +64,14 @@
   >
     At least 8 characters and 1 digit
   </small>
+  <input
+    name="repeatPassword"
+    type="password"
+    id="repeatPassword"
+    class="form-control"
+    placeholder="Confirm password"
+    [(ngModel)]="repeatPassword"
+  />
 
   <!-- Phone number -->
   <input
@@ -78,12 +83,6 @@
     aria-describedby="defaultRegisterFormPhoneHelpBlock"
     [(ngModel)]="user.phone_number"
   />
-  <small
-    id="defaultRegisterFormPhoneHelpBlock"
-    class="form-text text-muted mb-4"
-  >
-    Optional - for two-step authentication
-  </small>
 
   <!-- Sign up button -->
   <button
