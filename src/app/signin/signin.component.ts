@@ -12,11 +12,11 @@ export class SigninComponent implements OnInit {
 
     username: '',
     password: '',
-    
+
 
   }
   ngOnInit(): void {
-  
+
   }
       signIn() {
 

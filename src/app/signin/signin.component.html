@@ -2,36 +2,16 @@
   <p class="h4 mb-4">Sign in</p>
   <div class="form-row mb-4">
     <!-- E-mail -->
-    <input
-      name="userName"
-      type="text"
-      id="defaultRegisterFormEmail"
-      class="form-control mb-4"
-      placeholder="user Name"
-      [(ngModel)]="useer.username"
-    />
+    <input name="userName" type="text" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="user Name"
+      [(ngModel)]="useer.username" />
     <!-- Password -->
-    <input
-      name="password"
-      type="password"
-      id="defaultRegisterFormPassword"
-      class="form-control"
-      placeholder="Password"
-      aria-describedby="defaultRegisterFormPasswordHelpBlock"
-      [(ngModel)]="useer.password"
-    />
+    <input name="password" type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password"
+      aria-describedby="defaultRegisterFormPasswordHelpBlock" [(ngModel)]="useer.password" />
     <!-- Sign in button -->
-    <button
-      color="info"
-      class="my-4"
-      type="submit"
-      class="landing-btn"
-      (click)="signIn()"
-    >
+    <button color="info" class="my-4" type="submit" class="landing-btn" (click)="signIn()">
       Sign In
     </button>
 
     <hr />
   </div>
 </form>
-
