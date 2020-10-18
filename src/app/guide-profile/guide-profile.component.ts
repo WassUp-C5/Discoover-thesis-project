@@ -33,6 +33,12 @@ export class GuideProfileComponent implements OnInit {
     console.log('the lenguage level ===>', this.selectedLevel);
   }
 
+  saveData() {
+    this.http.post<any>("/api/users/guide/profile/edit", , httpOptions)
+    .pipe(
+      catchError(this.handleError('addHero', hero))
+    );
+  }
 //   addLanguage() {
 //     let row = document.createElement('div');
 //     row.className = "row";
