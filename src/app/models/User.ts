@@ -10,4 +10,5 @@ export class User {
   gender:string;
   phone_number:string;
   roles:[];
+  qualifications:[];
 }

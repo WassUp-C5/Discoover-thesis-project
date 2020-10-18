@@ -1,31 +1,37 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { RouterLinkWithHref } from '@angular/router';
-import { HttpService } from '../http.service'
+
+import { User } from './../models/User';
 
 @Component({
   selector: 'app-guide-profile',
   templateUrl: './guide-profile.component.html',
-  styleUrls: ['./guide-profile.component.css']
+  styleUrls: ['./guide-profile.component.css'],
 })
 export class GuideProfileComponent implements OnInit {
   // spokenL = [{language:'arabic',
   // level: "Native"},];
+  guideUser: User;
+  userQualificationType:string;
   userData: Array<any>;
-  language: string ='';
+  language: string = '';
   selectedLevel: string = '';
 
-  constructor(private http: HttpService) { }
+  constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.http.getUserData('id from db').subscribe(data => {
-      console.log('data is response',data)
-      this.userData = data;
-    } )
+    this.http
+      .get<User>('/api/user/5f8af2f5d7ebfa75d4997522')
+      .subscribe((user) => {
+        console.log(user);
+        this.guideUser = user;
+      });
   }
 
   changeLanguageHandler(event: any) {
     this.language = event.target.value;
-    console.log('the lenguage ===>', this.language)
+    console.log('the lenguage ===>', this.language);
   }
 
   changeLevelHandler(event: any) {
@@ -34,32 +40,40 @@ export class GuideProfileComponent implements OnInit {
   }
 
   saveData() {
-    this.http.post<any>("/api/users/guide/profile/edit", , httpOptions)
-    .pipe(
-      catchError(this.handleError('addHero', hero))
-    );
+    this.http.post<any>("/api/users/guide/profile/edit",this.guideUser )
+    .subscribe(data => {
+      console.log(data);
+      })
   }
-//   addLanguage() {
-//     let row = document.createElement('div');
-//     row.className = "row";
-//     row.innerHTML = `
-//     <div class="col-md-6">
-//         <div class="form-group">
-//             <input type="text" class="form-control" placeholder="spokenL[0].">
-//         </div>
-//     </div>
-//     <div class="col-md-6">
-//         <div class="form-group">
-//           <select class="form-control form-control-sm" id="levelList">
-//             <option>Native</option>
-//             <option>Fluent</option>
-//             <option>Proficient</option>
-//             <option>Moderate</option>
-//             <option>Basic</option>
-//           </select>
-//         </div>
-//     </div>
-// </div>`;
-//     document.querySelector('.addLanguageHere').append(row);
-//   }
+
+  addLanguageList() {
+    let row = document.createElement('div');
+    row.className = 'row';
+    row.innerHTML = `
+    `;
+    document.querySelector('.addLanguageHere').append(row);
+  }
+  //   addLanguage() {
+  //     let row = document.createElement('div');
+  //     row.className = "row";
+  //     row.innerHTML = `
+  //     <div class="col-md-6">
+  //         <div class="form-group">
+  //             <input type="text" class="form-control" placeholder="spokenL[0].">
+  //         </div>
+  //     </div>
+  //     <div class="col-md-6">
+  //         <div class="form-group">
+  //           <select class="form-control form-control-sm" id="levelList">
+  //             <option>Native</option>
+  //             <option>Fluent</option>
+  //             <option>Proficient</option>
+  //             <option>Moderate</option>
+  //             <option>Basic</option>
+  //           </select>
+  //         </div>
+  //     </div>
+  // </div>`;
+  //     document.querySelector('.addLanguageHere').append(row);
+  //   }
 }
