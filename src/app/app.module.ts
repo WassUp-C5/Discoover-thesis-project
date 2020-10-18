@@ -15,6 +15,8 @@
   import { SigninComponent } from './signin/signin.component';
   import { AngularMaterialModule } from './angular-material.module';
   import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+  import { HttpClientModule } from '@angular/common/http';
+import { LanguageListComponent } from './guide-profile/language-list/language-list.component';
 
 @NgModule({
 declarations: [
@@ -29,6 +31,7 @@ declarations: [
   GuideProfileComponent,
   SignupComponent,
   SigninComponent,
+  LanguageListComponent,
 ],
 imports: [
   BrowserModule,
@@ -37,7 +40,7 @@ imports: [
   BrowserAnimationsModule,
   FormsModule,
   AngularMaterialModule,
-
+  HttpClientModule,
 ],
 providers: [],
 bootstrap: [AppComponent]
