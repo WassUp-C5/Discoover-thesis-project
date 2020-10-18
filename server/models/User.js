@@ -12,6 +12,8 @@ const usersSchema = new mongoose.Schema(
     email: String,
     birthday: Date,
     gender: String,
+    phone_number: String,
+    bio: String,
     roles: [],
   },
   {
@@ -32,6 +34,7 @@ class User extends MongoUser {
       this.email = data.email;
       this.birthday = data.birthday;
       this.gender = data.gender;
+      this.phone_number = data.phone_number;
       this.roles = data.roles;
     }
   }
@@ -64,6 +67,12 @@ class User extends MongoUser {
     });
   }
 
-  compare(currentPassword) {}
+  hasRole(role) {
+    return this.roles.includes(role);
+  }
+
+  compare(currentPassword, savedPassword) {
+    return bcrypt.compare(currentPassword, savedPassword);
+  }
 }
 module.exports = User;
