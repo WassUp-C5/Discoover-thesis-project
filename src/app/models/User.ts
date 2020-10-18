@@ -10,5 +10,6 @@ export class User {
   bio:string;
   gender:string;
   phone_number:string;
-  roles:string[] = ["user"];
+  roles:[];
+  qualifications:[];
 }

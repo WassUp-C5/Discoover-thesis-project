@@ -21,11 +21,11 @@ export class SignupComponent implements OnInit {
   }
   onSubmit() {
     console.log(this.user);
-    this.user.roles.push(this.route.snapshot.paramMap.get('role'));
-    this.http
-      .post<any>('/api/auth/signup', this.user)
-      .subscribe((result) => {
-        this.router.navigate(['/']);
-      });
+    // this.user.roles.push(this.route.snapshot.paramMap.get('role'));
+    // this.http
+    //   .post<any>('/api/auth/signup', this.user)
+    //   .subscribe((result) => {
+    //     this.router.navigate(['/']);
+    //   });
   }
 }
