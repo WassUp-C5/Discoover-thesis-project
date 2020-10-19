@@ -7,18 +7,18 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./signup.component.css'],
 })
 export class SignupComponent implements OnInit {
-  registerForm: FormGroup;
+  useer: FormGroup;
   submitted = false;
 
   constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit() {
-    this.registerForm = this.formBuilder.group({
-      userName: ['', Validators.required],
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
+    this.useer = this.formBuilder.group({
+      username: ['', Validators.required],
+      first_name: ['', Validators.required],
+      last_name: ['', Validators.required],
       // validates date format yyyy-mm-dd
-      dob: [
+      birthday: [
         '',
         [
           Validators.required,
@@ -27,8 +27,8 @@ export class SignupComponent implements OnInit {
           ),
         ],
       ],
-      phoneNumber: ['', [Validators.required, Validators.minLength(8)]],
-      region: ['', [Validators.required]],
+      phone_number: ['', [Validators.required, Validators.minLength(8)]],
+      location: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required],
@@ -36,21 +36,21 @@ export class SignupComponent implements OnInit {
   }
 
   get f() {
-    return this.registerForm.controls;
+    return this.useer.controls;
   }
 
   onSubmit() {
     this.submitted = true;
 
-    if (this.registerForm.invalid) {
+    if (this.useer.invalid) {
       return;
     }
 
-    console.log(this.registerForm.value);
+    console.log(this.useer.value);
   }
 
   onReset() {
     this.submitted = false;
-    this.registerForm.reset();
+    this.useer.reset();
   }
 }
