@@ -1,19 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
+
+import { HttpClient } from '@angular/common/http';
+import { User } from './../models/User';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css'],
 })
 export class SignupComponent implements OnInit {
-  useer: FormGroup;
+  user: FormGroup;
   submitted = false;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, private http: HttpClient, private route: ActivatedRoute,private router: Router) {}
 
   ngOnInit() {
-    this.useer = this.formBuilder.group({
+    this.user = this.formBuilder.group({
       username: ['', Validators.required],
       first_name: ['', Validators.required],
       last_name: ['', Validators.required],
@@ -36,21 +40,29 @@ export class SignupComponent implements OnInit {
   }
 
   get f() {
-    return this.useer.controls;
+    return this.user.controls;
   }
 
   onSubmit() {
     this.submitted = true;
 
-    if (this.useer.invalid) {
+    if (this.user.invalid) {
       return;
     }
 
-    console.log(this.useer.value);
+    console.log(this.user);
+    this.user.roles.push(this.route.snapshot.paramMap.get('role'));
+    this.http
+      .post<any>('/api/auth/signup', this.user)
+      .subscribe((result) => {
+        this.router.navigate(['/']);
+      });
   }
+
 
   onReset() {
     this.submitted = false;
-    this.useer.reset();
+    this.user.reset();
   }
+ 
 }
