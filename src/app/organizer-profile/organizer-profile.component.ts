@@ -7,23 +7,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./organizer-profile.component.css'],
 })
 export class OrganizerProfileComponent implements OnInit {
+
+
   constructor(private http: HttpClient) {}
-  selectedGender = '';
-  organizer = {
-    first_name: '',
-    last_name: '',
-    gender: '',
-    location: '',
-    email: '',
-    password: '',
-    bio: '',
-    phone_number: '',
-  };
-  fullName = '';
+
+   selectedGender = '';
+   organizer = {
+     username : '',
+     first_name : '',
+     last_name : '',
+     gender : '',
+     location : '',
+     email : '',
+     password : '',
+     bio : '',
+     phone_number : ''
+    };
+    fullName = '';
 
   ngOnInit(): void {
-    this.http.get('api/user/5f8af2f5d7ebfa75d4997522').subscribe((res: any) => {
-      console.log(res);
+    this.http.get('api/user/organizer/5f8af2f5d7ebfa75d4997522')
+    .subscribe((res : any)=>{
+      console.log(res)
       this.organizer = res;
       this.fullName =
         this.organizer.first_name + ' ' + this.organizer.last_name;
@@ -36,7 +41,9 @@ export class OrganizerProfileComponent implements OnInit {
   onClick() {
     window.location.reload();
     console.log('organizer profile updated with ==>', this.organizer);
-    this.http.put('/api/user/edit', this.organizer).subscribe((res) => {
+
+    this.http.put('/api/user/organizer/edit',this.organizer)
+    .subscribe((res)=>{
       console.log(res);
     });
   }

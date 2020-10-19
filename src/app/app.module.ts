@@ -11,6 +11,8 @@ import { GuideATripComponent } from './guide-a-trip/guide-a-trip.component';
 import { GuideProfileComponent } from './guide-profile/guide-profile.component';
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
+import { EntryComponent } from './guide-profile/entry-list/entry.component';
+
 /* Angular material */
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './angular-material.module';
@@ -36,6 +38,8 @@ import { OrganizerNavbarComponent } from './organizer-navbar/organizer-navbar.co
     SignupComponent,
     SigninComponent,
 
+    EntryComponent,
+    OrganizerNavbarComponent,
     OrganizerMyTripsComponent,
 
     OrganizerNavbarComponent,
@@ -52,4 +56,5 @@ import { OrganizerNavbarComponent } from './organizer-navbar/organizer-navbar.co
   providers: [],
   bootstrap: [AppComponent],
 })
+
 export class AppModule {}
