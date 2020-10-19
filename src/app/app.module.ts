@@ -1,4 +1,3 @@
-
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -10,21 +9,17 @@ import { SearchTripComponent } from './search-trip/search-trip.component';
 import { OrganizeATripComponent } from './organize-a-trip/organize-a-trip.component';
 import { GuideATripComponent } from './guide-a-trip/guide-a-trip.component';
 import { GuideProfileComponent } from './guide-profile/guide-profile.component';
-
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
+import { EntryComponent } from './guide-profile/entry-list/entry.component';
+import { GuideNavBarComponent } from './guide-navbar/guide-navbar.component';
+import { OrganizerProfileComponent } from './organizer-profile/organizer-profile.component';
+
 /* Angular material */
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './angular-material.module';
 
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
-import { GuideNavBarComponent } from './guide-navbar/guide-navbar.component';
-import {MatMenuModule} from '@angular/material/menu';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { OrganizerProfileComponent } from './organizer-profile/organizer-profile.component';
-import { SignupComponent } from './signup/signup.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -35,34 +30,22 @@ import { SignupComponent } from './signup/signup.component';
     SearchTripComponent,
     OrganizeATripComponent,
     GuideATripComponent,
-    SigninComponent,
-    SignupComponent,
-    BrowserAnimationsModule,
-    AngularMaterialModule,
-        GuideProfileComponent,
-
-
-
     GuideNavBarComponent,
     OrganizerProfileComponent,
-
+    GuideProfileComponent,
+    SignupComponent,
+    SigninComponent,
+    EntryComponent,
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatButtonModule,
-    MatMenuModule,
     BrowserAnimationsModule,
-    FormsModule 
+    AngularMaterialModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-
-
-
-
-

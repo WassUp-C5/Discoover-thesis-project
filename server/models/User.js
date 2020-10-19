@@ -1,10 +1,12 @@
 const mongoose = require("mongoose");
 const db = require("./../../db/config.js");
 var bcrypt = require("bcryptjs");
+const Qualifications = require("./qualifications.js");
 
 const usersSchema = new mongoose.Schema(
   {
     first_name: String,
+    qualifications: [],
     last_name: String,
     username: String,
     password: String,
@@ -12,6 +14,8 @@ const usersSchema = new mongoose.Schema(
     email: String,
     birthday: Date,
     gender: String,
+    phone_number: String,
+    bio: String,
     roles: [],
   },
   {
@@ -23,22 +27,38 @@ const MongoUser = mongoose.model("User", usersSchema);
 class User extends MongoUser {
   constructor(data) {
     super();
-    this.first_name = data.first_name;
-    this.last_name = data.last_name;
-    this.username = data.username;
-    this.password = data.password;
-    this.imageUrl = data.imageUrl;
-    this.email = data.email;
-    this.birthday = data.birthday;
-    this.gender = data.gender;
-    this.roles = data.roles;
+    if (data) {
+      this.first_name = data.first_name;
+      this.last_name = data.last_name;
+      this.username = data.username;
+      this.password = data.password;
+      this.imageUrl = data.imageUrl;
+      this.email = data.email;
+      this.birthday = data.birthday;
+      this.gender = data.gender;
+      this.phone_number = data.phone_number;
+      this.roles = data.roles;
+      this.qualifications = data.qualifications;
+    }
+  }
+
+  getQualifications() {
+    return new Promise((resolve, reject) => {
+      Qualifications.find({ _id: { $in: this.qualifications } }, (err, data) => {
+       console.log( this);
+        if (err) {
+          reject(err);
+          return;
+        }
+        resolve(data);
+      });
+    });
   }
 
   save() {
     return new Promise((resolve, reject) => {
-      console.log("password ===> ",this.password);
+      console.log("password ===> ", this.password);
       this.password = bcrypt.hashSync(this.password, 10);
-
       super.save(
         {
           first_name: this.first_name,
@@ -63,6 +83,12 @@ class User extends MongoUser {
     });
   }
 
-  compare(currentPassword) {}
+  hasRole(role) {
+    return this.roles.includes(role);
+  }
+
+  compare(currentPassword, savedPassword) {
+    return bcrypt.compare(currentPassword, savedPassword);
+  }
 }
 module.exports = User;
