@@ -19,7 +19,7 @@ import { OrganizerProfileComponent } from './organizer-profile/organizer-profile
 
 import { HttpClientModule } from '@angular/common/http';
 
-
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +33,6 @@ import { HttpClientModule } from '@angular/common/http';
     GuideProfileComponent,
     SignupComponent,
     SigninComponent,
-
   ],
   imports: [
     BrowserModule,
@@ -41,14 +40,10 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     BrowserAnimationsModule,
     AngularMaterialModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
-
-
-
-
-
+export class AppModule {}
