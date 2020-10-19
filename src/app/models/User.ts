@@ -1,4 +1,5 @@
 export class User {
+
   id:string;
   bio: string;
   location: string;
@@ -9,8 +10,10 @@ export class User {
   imageUrl:string;
   email:string;
   birthday:Date;
+  bio:string;
   gender:string;
+  location: string;
   phone_number:string;
-  roles:[];
   qualifications:[];
+  roles:string[] = ["user"];
 }

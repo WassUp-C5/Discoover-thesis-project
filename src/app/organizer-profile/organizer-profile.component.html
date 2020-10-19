@@ -35,7 +35,7 @@
   </form>
   <button class="signInBtn" mat-flat-button color="warn">Save</button>
 </div> -->
-
+<app-organizer-navbar></app-organizer-navbar>
 <link rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css"
   integrity="sha256-NAxhqDvtY0l4xn+YVa6WjAcmd94NNfttjNsDmNatFVc=" crossorigin="anonymous" />
@@ -146,10 +146,10 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="sel1">Gender:</label>
-                    <select class="form-control" id="sel1" [(ngModel)]="selectedGender" name="gender">
-                      <option>--</option>
-                      <option>Female</option>
-                      <option>Male</option>
+                    <select class="form-control" id="sel1" (change)="genderHandler($event)">
+                      <option [(ngModel)]="organizer.gender" name="gender">{{organizer.gender}}</option>
+                      <option value="Female">Female</option>
+                      <option value="Male">Male</option>
                     </select>
                   </div>
                 </div>

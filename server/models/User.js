@@ -16,6 +16,8 @@ const usersSchema = new mongoose.Schema(
     gender: String,
     phone_number: String,
     bio: String,
+    location: String,
+    trips: [],
     roles: [],
   },
   {
