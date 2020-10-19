@@ -11,13 +11,14 @@ import { GuideATripComponent } from './guide-a-trip/guide-a-trip.component';
 import { GuideProfileComponent } from './guide-profile/guide-profile.component';
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
+import { GuideNavBarComponent } from './guide-navbar/guide-navbar.component';
+import { OrganizerProfileComponent } from './organizer-profile/organizer-profile.component';
 /* Angular material */
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './angular-material.module';
-import { GuideNavBarComponent } from './guide-navbar/guide-navbar.component';
-import { OrganizerProfileComponent } from './organizer-profile/organizer-profile.component';
 
 import { HttpClientModule } from '@angular/common/http';
+import { OrganizerNavbarComponent } from './organizer-navbar/organizer-navbar.component';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { HttpClientModule } from '@angular/common/http';
     GuideProfileComponent,
     SignupComponent,
     SigninComponent,
+    OrganizerNavbarComponent,
 
   ],
   imports: [
