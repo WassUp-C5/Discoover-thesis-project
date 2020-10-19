@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LanguageListComponent } from './language-list.component';
+import { EntryComponent } from './entry.component';
 
 describe('LanguageListComponent', () => {
-  let component: LanguageListComponent;
-  let fixture: ComponentFixture<LanguageListComponent>;
+  let component: EntryComponent;
+  let fixture: ComponentFixture<EntryComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LanguageListComponent ]
+      declarations: [ EntryComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LanguageListComponent);
+    fixture = TestBed.createComponent(EntryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,11 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-language-list',
-  templateUrl: './language-list.component.html',
-  styleUrls: ['./language-list.component.css']
+  selector: 'app-entry',
+  templateUrl: './entry.component.html',
+  styleUrls: ['./entry.component.css']
 })
-export class LanguageListComponent implements OnInit {
+export class EntryComponent implements OnInit {
 
   // language = "arabic";
   // languageLevel = "native";

@@ -1,5 +1,7 @@
 export class User {
   id:string;
+  bio: string;
+  location: string;
   first_name:string;
   last_name:string;
   username:string;

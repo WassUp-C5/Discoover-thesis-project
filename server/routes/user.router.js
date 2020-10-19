@@ -31,7 +31,8 @@ userRouter.get("/:id", (req, res) => {
     .catch((err) => console.log(err));
 });
 
-userRouter.put("/api/users/guide/profile/edit", (req, res) =>{
+userRouter.put("/guide/profile/edit", (req, res) =>{
+  let user = req.body;
 
 })
 

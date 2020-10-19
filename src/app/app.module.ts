@@ -11,7 +11,7 @@ import { GuideATripComponent } from './guide-a-trip/guide-a-trip.component';
 import { GuideProfileComponent } from './guide-profile/guide-profile.component';
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
-import { LanguageListComponent } from './guide-profile/language-list/language-list.component';
+import { EntryComponent } from './guide-profile/entry-list/entry.component';
 import { GuideNavBarComponent } from './guide-navbar/guide-navbar.component';
 import { OrganizerProfileComponent } from './organizer-profile/organizer-profile.component';
 
@@ -35,7 +35,7 @@ import { HttpClientModule } from '@angular/common/http';
     GuideProfileComponent,
     SignupComponent,
     SigninComponent,
-    LanguageListComponent
+    EntryComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { RouterLinkWithHref } from '@angular/router';
 
 import { User } from './../models/User';
@@ -13,10 +13,13 @@ export class GuideProfileComponent implements OnInit {
   // spokenL = [{language:'arabic',
   // level: "Native"},];
   guideUser: User;
-  userQualificationType:string;
+  userQualifications: Array<any>;
   userData: Array<any>;
   language: string = '';
   selectedLevel: string = '';
+  @Input() qualification;
+  @Input() type;
+
 
   constructor(private http: HttpClient) {}
 
@@ -26,6 +29,8 @@ export class GuideProfileComponent implements OnInit {
       .subscribe((user) => {
         console.log(user);
         this.guideUser = user;
+        this.userQualifications = user.qualifications;
+        console.log('user qualification ==>', this.userQualifications)
       });
   }
 
@@ -46,13 +51,7 @@ export class GuideProfileComponent implements OnInit {
       })
   }
 
-  addLanguageList() {
-    let row = document.createElement('div');
-    row.className = 'row';
-    row.innerHTML = `
-    `;
-    document.querySelector('.addLanguageHere').append(row);
-  }
+
   //   addLanguage() {
   //     let row = document.createElement('div');
   //     row.className = "row";
