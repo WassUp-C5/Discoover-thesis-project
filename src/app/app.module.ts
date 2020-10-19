@@ -13,13 +13,12 @@ import { GuideNavBarComponent } from './guide-navbar/guide-navbar.component';
 import { OrganizerProfileComponent } from './organizer-profile/organizer-profile.component';
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
-import { GuideNavBarComponent } from './guide-navbar/guide-navbar.component';
-import { OrganizerProfileComponent } from './organizer-profile/organizer-profile.component';
 /* Angular material */
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './angular-material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { OrganizerNavbarComponent } from './organizer-navbar/organizer-navbar.component';
+import { OrganizerMyTripsComponent } from './organizer-my-trips/organizer-my-trips.component';
 
 
 @NgModule({
@@ -36,6 +35,7 @@ import { OrganizerNavbarComponent } from './organizer-navbar/organizer-navbar.co
     SignupComponent,
     SigninComponent,
     OrganizerNavbarComponent,
+    OrganizerMyTripsComponent,
 
   ],
   imports: [

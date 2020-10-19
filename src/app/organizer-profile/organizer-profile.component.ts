@@ -26,13 +26,14 @@ export class OrganizerProfileComponent implements OnInit {
      bio : '',
      phone_number : ''
     };
-    fullName = this.organizer.first_name + ' ' + this.organizer.last_name;
+    fullName = '';
 
   ngOnInit(): void {
     this.http.get('api/user/5f8af2f5d7ebfa75d4997522')
     .subscribe((res : any)=>{
       console.log(res)
-      this.organizer = res
+      this.organizer = res;
+      this.fullName = this.organizer.first_name + ' ' + this.organizer.last_name;
     })
   }
   genderHandler(event: any){
@@ -40,12 +41,11 @@ export class OrganizerProfileComponent implements OnInit {
     console.log(this.organizer.gender)
   }
   onClick(){
+    window.location.reload();
     console.log('organizer profile updated with ==>', this.organizer);
     this.http.put('/api/user/edit',this.organizer)
     .subscribe((res)=>{
-      console.log(res)
+      console.log(res);
     })
-
   }
-
 }
