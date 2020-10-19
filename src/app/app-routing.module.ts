@@ -11,10 +11,11 @@ import {SignupComponent} from './signup/signup.component';
 
 const routes: Routes = [
   {path: '', component:LandingPageComponent},
-  {path :'searchTrip', component:SearchTripComponent},
+  {path :'search', component:SearchTripComponent},
   {path :'organizeTrip',component:OrganizeATripComponent},
   {path :'guideTrip', component :GuideATripComponent},
   {path : 'signup',component:SignupComponent},
+  {path : 'signup/:role',component:SignupComponent},
   {path : 'signin',component:SigninComponent}
 
 ];
