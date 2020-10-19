@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
-
 import { HttpClient } from '@angular/common/http';
 import { User } from './../models/User';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -14,7 +13,12 @@ export class SignupComponent implements OnInit {
   user: FormGroup;
   submitted = false;
 
-  constructor(private formBuilder: FormBuilder, private http: HttpClient, private route: ActivatedRoute,private router: Router) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private http: HttpClient,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.user = this.formBuilder.group({
@@ -50,19 +54,17 @@ export class SignupComponent implements OnInit {
       return;
     }
 
-    console.log(this.user);
-    this.user.roles.push(this.route.snapshot.paramMap.get('role'));
+    console.log(this.user.value);
+    // this.user.roles.push(this.route.snapshot.paramMap.get('role'));
     this.http
-      .post<any>('/api/auth/signup', this.user)
+      .post<any>('/api/auth/signup', this.user.value)
       .subscribe((result) => {
         this.router.navigate(['/']);
       });
   }
 
-
   onReset() {
     this.submitted = false;
     this.user.reset();
   }
- 
 }
