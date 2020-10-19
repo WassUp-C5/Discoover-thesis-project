@@ -3,7 +3,7 @@ const Trip = require("../models/Trips");
 const User = require("../models/User");
 
 
-tripsRouter.post("trip/add", async (req, res) => {
+tripsRouter.post("/add", async (req, res) => {
   try {
     console.log(req.body);
     var trip = new Trip(req.body);
@@ -12,6 +12,7 @@ tripsRouter.post("trip/add", async (req, res) => {
       User.findById(req.body.userId)
         .then(user => {
           user.trips.push(result._id)
+          user.save()
         })
       res.send(result);
     });
