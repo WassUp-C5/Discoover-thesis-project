@@ -33,6 +33,12 @@ import { ReactiveFormsModule } from '@angular/forms';
     GuideProfileComponent,
     SignupComponent,
     SigninComponent,
+<<<<<<< HEAD
+=======
+
+    OrganizerNavbarComponent,
+
+>>>>>>> 3f1ab8e4dec78cc37d0a4e1f26a3e61962927654
   ],
   imports: [
     BrowserModule,
