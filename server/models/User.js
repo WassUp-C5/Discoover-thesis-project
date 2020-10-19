@@ -13,6 +13,7 @@ const usersSchema = new mongoose.Schema(
     birthday: Date,
     gender: String,
     phone_number: String,
+    bio: String,
     roles: [],
   },
   {
@@ -66,7 +67,7 @@ class User extends MongoUser {
     });
   }
 
-  hasRole(role){
+  hasRole(role) {
     return this.roles.includes(role);
   }
 
