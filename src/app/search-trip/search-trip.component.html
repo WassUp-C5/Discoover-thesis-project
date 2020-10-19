@@ -12,3 +12,25 @@
 </div> -->
 
 <h1>Pick a trip</h1>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <td>Title</td>
+      <td>location</td>
+      <td>date</td>
+      <td>price</td>
+      <td>description</td>
+      <td>max travelers</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let trip of trips">
+      <td>{{ trip.title }}</td>
+      <td>{{ trip.location }}</td>
+      <td>{{ trip.date }}</td>
+      <td>{{ trip.price }}</td>
+      <td>{{ trip.description }}</td>
+      <td>{{ trip.maxTravelers }}</td>
+    </tr>
+  </tbody>
+</table>
