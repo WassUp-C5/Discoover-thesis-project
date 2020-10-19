@@ -1,29 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+
+import { AuthService } from './../services/auth.service';
 
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.css'],
-<<<<<<< HEAD
-})
-export class SigninComponent implements OnInit {
-  constructor() {}
-  useer = {
-    username: '',
-    password: '',
-  };
-  ngOnInit(): void {}
-  signIn() {
-    console.log('Your form data : ', this.useer);
-=======
 
   encapsulation: ViewEncapsulation.None,
 })
 export class SigninComponent implements OnInit, OnDestroy {
-  constructor(
-    private router: Router,
-    private authService: AuthService
-  ) {}
+  constructor(private router: Router, private authService: AuthService) {}
   credentials = {
     username: '',
     password: '',
@@ -37,6 +25,5 @@ export class SigninComponent implements OnInit, OnDestroy {
   }
   onSubmit() {
     console.log('Your form data : ', this.credentials);
->>>>>>> 3f1ab8e4dec78cc37d0a4e1f26a3e61962927654
   }
 }
