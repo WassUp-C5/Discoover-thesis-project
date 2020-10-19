@@ -1,4 +1,5 @@
 export class User {
+
   id:string;
   first_name:string;
   last_name:string;
@@ -9,6 +10,7 @@ export class User {
   birthday:Date;
   bio:string;
   gender:string;
+  location: string;
   phone_number:string;
   roles:string[] = ["user"];
 }
