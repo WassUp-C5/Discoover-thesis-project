@@ -18,7 +18,7 @@ export class AuthService {
 
   // login(username: string, password: string) {
   //   return this.http
-  //     .post<any>(`api/users/authenticate`, {
+  //     .post<any>(`api/auth/signin`, {
   //       username,
   //       password,
   //     })

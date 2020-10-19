@@ -35,6 +35,7 @@ authRouter.post("/signin", async (req, res) => {
       title: "Authentication successful",
       token: token,
       id: user.id,
+      roles: user.roles
     });
     console.log(user);
   } catch (error) {
