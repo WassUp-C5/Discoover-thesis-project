@@ -3,7 +3,7 @@ const User = require("../models/User");
 var bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-authRouter.post("/signup/:role", async (req, res) => {
+authRouter.post("/signup", async (req, res) => {
   try {
     console.log(req.body);
     var user = new User(req.body);

@@ -50,10 +50,10 @@ export class SignupComponent implements OnInit {
       return;
     }
 
-    console.log(this.user);
-    this.user.roles.push(this.route.snapshot.paramMap.get('role'));
+    console.log(this.user.value);
+    // this.user.roles.push(this.route.snapshot.paramMap.get('role'));
     this.http
-      .post<any>('/api/auth/signup', this.user)
+      .post<any>('/api/auth/signup', this.user.value)
       .subscribe((result) => {
         this.router.navigate(['/']);
       });
@@ -64,5 +64,5 @@ export class SignupComponent implements OnInit {
     this.submitted = false;
     this.user.reset();
   }
- 
+
 }
