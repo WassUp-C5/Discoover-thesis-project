@@ -1,0 +1,15 @@
+<div class="row" *ngIf="qualification.type === type">
+  <div class="col-md-6">
+    <div class="form-group">
+        <input let type="text" class="form-control" [value]="qualification.title">
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="form-group">
+      <select class="form-control">
+        <option *ngFor="let level of qualification.levels" value="level">{{level}}</option>
+      </select>
+    </div>
+  </div>
+</div>
+
