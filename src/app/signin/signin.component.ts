@@ -7,6 +7,7 @@ import { AuthService } from './../services/auth.service';
   selector: 'app-signin',
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.css'],
+
   encapsulation: ViewEncapsulation.None,
 })
 export class SigninComponent implements OnInit, OnDestroy {

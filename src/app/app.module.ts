@@ -20,7 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { OrganizerNavbarComponent } from './organizer-navbar/organizer-navbar.component';
 import { OrganizerMyTripsComponent } from './organizer-my-trips/organizer-my-trips.component';
 
-
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,6 +34,7 @@ import { OrganizerMyTripsComponent } from './organizer-my-trips/organizer-my-tri
     GuideProfileComponent,
     SignupComponent,
     SigninComponent,
+
     OrganizerNavbarComponent,
     OrganizerMyTripsComponent,
 
@@ -44,14 +45,10 @@ import { OrganizerMyTripsComponent } from './organizer-my-trips/organizer-my-tri
     AppRoutingModule,
     BrowserAnimationsModule,
     AngularMaterialModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
-
-
-
-
-
+export class AppModule {}

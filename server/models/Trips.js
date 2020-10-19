@@ -16,4 +16,4 @@ const tripsSchema = new mongoose.Schema(
   }
 );
 
-const MongoTrip = mongoose.model("Trip", tripsSchema);
+const Trip = mongoose.model("Trip", tripsSchema);
