@@ -1,40 +1,3 @@
-<!-- <div class="avatar">
-  <img src="../../assets/photo.jpg">
-  <p> Bob Marley</p>
-</div>
-<div class="profile">
-  <div class="personalInfo">
-    <p> Personal Details </p>
-    <p> First Name</p>
-    <input matInput value="Bob">
-    <p> Last Name</p>
-    <input matInput value="Marley">
-    <p> Gender </p>
-    <select>
-      <option>Male</option>
-      <option>Female</option>
-      <option>Uncertain</option>
-    </select>
-    <p> Date of Birth</p>
-    <input type="date">
-    <p>Country</p>
-    <input matInput value="Somewhere">
-    <p>Phone </p>
-    <input type="tel" placeholder="+216">
-  </div>
-</div>
-
-
-<div id="description">
-  <form>
-    <label>Trip description:</label>
-    <br>
-    <textarea name="description" rows="10" cols="50">
-  At w3schools.com you will learn how to make a website. They offer free tutorials in all web development technologies.
-  </textarea>
-  </form>
-  <button class="signInBtn" mat-flat-button color="warn">Save</button>
-</div> -->
 <app-organizer-navbar></app-organizer-navbar>
 <link rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css"
@@ -111,7 +74,7 @@
           <div class="tab-pane show active" id="about-me">
 
             <h5 class="mb-4 text-uppercase"><i class="mdi mdi-briefcase mr-1"></i>
-              Bio</h5>
+              My Biography</h5>
 
 
             <p class="text-muted mt-2">{{organizer.bio}}</p>
@@ -129,6 +92,12 @@
               </h5>
 
               <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="email" class="form-control" id="username" placeholder={{organizer.username}} />
+                  </div>
+                </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="firstname">First Name</label>

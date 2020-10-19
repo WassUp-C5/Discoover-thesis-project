@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, Input } from '@angular/core';
-import { RouterLinkWithHref } from '@angular/router';
 
 import { User } from './../models/User';
 
@@ -10,33 +9,52 @@ import { User } from './../models/User';
   styleUrls: ['./guide-profile.component.css'],
 })
 export class GuideProfileComponent implements OnInit {
-  // spokenL = [{language:'arabic',
-  // level: "Native"},];
-  guideUser: User;
-  userQualifications: Array<any>;
-  userData: Array<any>;
-  language: string = '';
-  selectedLevel: string = '';
-  @Input() qualification;
-  @Input() type;
-
 
   constructor(private http: HttpClient) {}
 
+  guide = {
+     username : '',
+     first_name : '',
+     last_name : '',
+     gender : '',
+     location : '',
+     email : '',
+     password : '',
+     bio : '',
+     phone_number : '',
+     qualifications : []
+  }
+  // guideUser: User;
+  // userQualifications: Array<any>;
+  // userData: Array<any>;
+  language: string = '';
+  selectedLevel: string = '';
+  fullName = '';
+  // @Input() qualification;
+  // @Input() type;
+
+
+
   ngOnInit(): void {
     this.http
-      .get<User>('/api/user/5f8af2f5d7ebfa75d4997522')
-      .subscribe((user) => {
-        console.log(user);
-        this.guideUser = user;
-        this.userQualifications = user.qualifications;
-        console.log('user qualification ==>', this.userQualifications)
+      .get('/api/user/guide/5f8af2f5d7ebfa75d4997522')
+      .subscribe((res : any) => {
+        console.log('on init guide infos',res);
+        this.guide = res;
+        this.fullName = this.guide.first_name + ' ' + this.guide.last_name;
+        this.guide.qualifications = res.qualifications;
+        console.log('user qualification ==>', this.guide.qualifications)
       });
+  }
+
+  genderHandler(event: any){
+    this.guide.gender = event.target.value;
+    console.log(this.guide.gender)
   }
 
   changeLanguageHandler(event: any) {
     this.language = event.target.value;
-    console.log('the lenguage ===>', this.language);
+    console.log('the language ===>', this.language);
   }
 
   changeLevelHandler(event: any) {
@@ -45,7 +63,10 @@ export class GuideProfileComponent implements OnInit {
   }
 
   saveData() {
-    this.http.post<any>("/api/users/guide/profile/edit",this.guideUser )
+    // window.location.reload();
+    this.guide.qualifications.push({language : this.language, level : this.selectedLevel})
+    console.log('guide profile updated with ==>', this.guide)
+    this.http.put<any>("/api/user/guide/edit",this.guide )
     .subscribe(data => {
       console.log(data);
       })

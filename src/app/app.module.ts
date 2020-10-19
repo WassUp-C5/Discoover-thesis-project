@@ -14,8 +14,6 @@ import { OrganizerProfileComponent } from './organizer-profile/organizer-profile
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
 import { EntryComponent } from './guide-profile/entry-list/entry.component';
-import { GuideNavBarComponent } from './guide-navbar/guide-navbar.component';
-import { OrganizerProfileComponent } from './organizer-profile/organizer-profile.component';
 
 /* Angular material */
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -39,8 +37,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     SignupComponent,
     SigninComponent,
     EntryComponent,
-
-
     OrganizerNavbarComponent,
     OrganizerMyTripsComponent,
 
