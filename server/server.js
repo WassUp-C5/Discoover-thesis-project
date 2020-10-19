@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
-const db = require('../db/config')
+const db = require('../db/config');
+const path = require("path");
 const authRouter = require("./routes/auth.router");
 const userRouter = require("./routes/user.router");
 
@@ -13,6 +14,13 @@ app.use(express.static(__dirname + "./../dist/DiscooverIn/"));
 app.use("/api/auth", authRouter);
 app.use("/api/user", userRouter)
 
-app.listen(port, () => {
-  console.log(`Server is running on port: ${port}`);
+
+
+
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "/../dist/DiscooverIn/index.html"));
+});
+app.listen(port, ()=>{
+    console.log(`Server is running on port: ${port}`);
 })

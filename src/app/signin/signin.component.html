@@ -1,17 +1,32 @@
-<form class="text-center border border-light p-5">
-  <p class="h4 mb-4">Sign in</p>
-  <div class="form-row mb-4">
+<form class="form-signin">
+  <div class="form-signin-container">
+    <h1>Sign in</h1>
     <!-- E-mail -->
-    <input name="userName" type="text" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="user Name"
-      [(ngModel)]="useer.username" />
+    <input
+      name="userName"
+      type="text"
+      id="defaultRegisterFormEmail"
+      class="form-control mb-4 form-control-lg"
+      placeholder="Username"
+      [(ngModel)]="credentials.username"
+    />
     <!-- Password -->
-    <input name="password" type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password"
-      aria-describedby="defaultRegisterFormPasswordHelpBlock" [(ngModel)]="useer.password" />
+    <input
+      name="password"
+      type="password"
+      id="defaultRegisterFormPassword"
+      class="form-control mb-4 form-control-lg"
+      placeholder="Password"
+      aria-describedby="defaultRegisterFormPasswordHelpBlock"
+      [(ngModel)]="credentials.password"
+    />
     <!-- Sign in button -->
-    <button color="info" class="my-4" type="submit" class="landing-btn" (click)="signIn()">
-      Sign In
+    <button type="submit" class="btn btn-danger btn-signin" (click)="onSubmit()">
+      Sign in
     </button>
-
-    <hr />
+    <br />
+    <p class="lead">
+      You already have an account? <a [routerLink]="['/signup']">sign up.</a>
+    </p>
   </div>
 </form>

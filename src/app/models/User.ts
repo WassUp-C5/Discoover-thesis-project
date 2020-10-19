@@ -7,7 +7,8 @@ export class User {
   imageUrl:string;
   email:string;
   birthday:Date;
+  bio:string;
   gender:string;
   phone_number:string;
-  roles:[];
+  roles:string[] = ["user"];
 }

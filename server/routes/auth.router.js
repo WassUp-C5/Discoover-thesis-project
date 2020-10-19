@@ -30,11 +30,12 @@ authRouter.post("/signin", async (req, res) => {
         .status(401)
         .json({ title: "log in failed", error: "invalid data" });
     }
-    let token = jwt.sign({ userId: user._id }, "Between Us Nigga");
+    let token = jwt.sign({ userId: user._id });
     res.status(200).json({
       title: "Authentication successful",
       token: token,
       id: user.id,
+      roles: user.roles
     });
     console.log(user);
   } catch (error) {
