@@ -15,6 +15,7 @@ const usersSchema = new mongoose.Schema(
     phone_number: String,
     bio: String,
     location: String,
+    trips: [],
     roles: [],
   },
   {

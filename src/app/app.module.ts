@@ -18,6 +18,8 @@ import { GuideNavBarComponent } from './guide-navbar/guide-navbar.component';
 import { OrganizerProfileComponent } from './organizer-profile/organizer-profile.component';
 
 import { HttpClientModule } from '@angular/common/http';
+import { OrganizerNavbarComponent } from './organizer-navbar/organizer-navbar.component';
+import { OrganizerMyTripsComponent } from './organizer-my-trips/organizer-my-trips.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
@@ -33,8 +35,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     GuideProfileComponent,
     SignupComponent,
     SigninComponent,
-
-    OrganizeATripComponent,
+    OrganizerNavbarComponent,
+    OrganizerMyTripsComponent,
   ],
   imports: [
     BrowserModule,
