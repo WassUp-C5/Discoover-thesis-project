@@ -45,6 +45,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     OrganizerMyTripsComponent,
 
     OrganizerNavbarComponent,
+
   ],
   imports: [
     BrowserModule,
