@@ -11,7 +11,7 @@
   </div>
 </div> -->
 
-<h1>Pick a trip</h1>
+<!-- <h1>Pick a trip</h1>
 <table class="table table-hover">
   <thead>
     <tr>
@@ -33,23 +33,29 @@
       <td>{{ trip.maxTravelers }}</td>
     </tr>
   </tbody>
-</table>
+</table> -->
+<div class="container">
 <div class="card mt-5 border-5 pt-2 active pb-0 px-3">
-  <div class="card-body ">
+  <div class="card-body">
       <div class="row">
-          <div class="col-12 " *ngFor="let trip of trips">
-              <h4 class="card-title "><b>{{ trip.title}}</b></h4>
-          </div>
-          <div class="col">
-              <h6 class="card-subtitle mb-2 text-muted">
-                  <p class="card-text text-muted small "> <img src="https://img.icons8.com/metro/26/000000/star.png" class="mr-1 " width="19" height="19" id="star"> <span class="vl mr-2 ml-0"></span> Created by <span class="font-weight-bold"> BBBootstrap Team</span> on 1 Nov , 2018</p>
-              </h6>
+        <ul class="list-inline">
+          <li class="list-inline-item"> <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1573035860/Pra/Hadie-profile-pic-circle-1.png" alt="DP" class=" rounded-circle img-fluid " width="70" height="70"> </li>
+        </ul>
+          <div class="col-3" id="titleTag">
+              <h4 class="card-title "><b>Organizer Name</b></h4><h4 id="priceTag"><b>Price :</b></h4>
+              <br>
+              <h4 class="card-title "><b>Trip Title</b></h4>
+              <br>
+              <h4 class="card-title "><b>Trip Description :</b></h4>
+              <br>
+              <h4 class="card-title "><b>Date :</b></h4>
+              <br>
           </div>
       </div>
   </div>
   <div class="card-footer bg-white px-0 ">
       <div class="row">
-          <div class=" col-md-auto "> <a href="#" class="btn btn-outlined btn-black text-muted bg-transparent" data-wow-delay="0.7s"><img src="https://img.icons8.com/ios/50/000000/settings.png" width="19" height="19"> <small>SETTINGS</small></a> <i class="mdi mdi-settings-outline"></i> <a href="#" class=" btn-outlined btn-black text-muted"><img src="https://img.icons8.com/metro/26/000000/link.png" width="17" height="17" id="plus"> <small>PROGRAM LINK</small> </a> <a href="#" class="btn btn-outlined btn-black text-muted "><img src="https://img.icons8.com/metro/26/000000/more.png" width="20" height="20" class="mr-2 more"><small>MORE</small></a> <span class="vl ml-3"></span> </div>
+          <div class=" col-md-auto "> <a href="#" class="btn btn-outlined btn-black text-muted bg-transparent" data-wow-delay="0.7s"><img src="https://img.icons8.com/ios/50/000000/settings.png" width="19" height="19"> <small><strong>Edit</strong></small></a> <i class="mdi mdi-settings-outline"></i> <a href="#" class=" btn-outlined btn-black text-muted"><img src="https://img.icons8.com/metro/26/000000/link.png" width="17" height="17" id="plus"> <small>Cancel</small> </a><span class="vl ml-3"></span> </div>
           <div class="col-md-auto ">
               <ul class="list-inline">
                   <li class="list-inline-item"> <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1573035860/Pra/Hadie-profile-pic-circle-1.png" alt="DP" class=" rounded-circle img-fluid " width="35" height="35"> </li>
@@ -58,4 +64,5 @@
           </div>
       </div>
   </div>
+</div>
 </div>

@@ -1,7 +1,58 @@
-.main_div {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  min-height: 100vh;
+body {
+  font-family: 'Rubik', sans-serif;
+  height: 100% !important;
+  background-color: #3F51B5 !important
 }
 
+.more {
+  opacity: 0.5 !important
+}
+
+.btn:hover {
+  color: black !important
+}
+
+.vl {
+  margin: 8px !important;
+  width: 2px;
+  border-right: 1px solid #aaaaaa;
+  height: 25px
+}
+
+#plus {
+  opacity: 0.8
+}
+
+.card {
+  border-radius: 10px !important
+}
+
+a:hover {
+  background-color: #ccc !important
+}
+
+.btn-outlined:active {
+  color: #FFF;
+  border-color: #fff !important
+}
+
+img {
+  cursor: pointer;
+  overflow: visible;
+}
+
+.btn:focus,
+.btn:active {
+  outline: none !important;
+  box-shadow: none !important
+}
+
+#titleTag {
+  margin-top: 1%;
+  margin-left: 1%;
+}
+
+#priceTag {
+  position: relative;
+  float: right;
+}
