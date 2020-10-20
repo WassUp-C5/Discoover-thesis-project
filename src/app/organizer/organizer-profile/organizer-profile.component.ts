@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { TokenStorageService } from './../../services/token-storage.service';
 
 @Component({
   selector: 'app-organizer-profile',
@@ -7,26 +8,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./organizer-profile.component.css'],
 })
 export class OrganizerProfileComponent implements OnInit {
+  currentUser: any;
+  selectedGender = '';
+  organizer = {
+    first_name: '',
+    username: '',
+    last_name: '',
+    gender: '',
+    location: '',
+    email: '',
+    password: '',
+    bio: '',
+    phone_number: '',
+  };
+  fullName = '';
 
 
-  constructor(private http: HttpClient) {}
-
-   selectedGender = '';
-   organizer = {
-     username : '',
-     first_name : '',
-     last_name : '',
-     gender : '',
-     location : '',
-     email : '',
-     password : '',
-     bio : '',
-     phone_number : ''
-    };
-    fullName = '';
+  constructor(private http: HttpClient ,private token: TokenStorageService) {}
 
   ngOnInit(): void {
-    this.http.get('api/user/organizer/5f8af2f5d7ebfa75d4997522')
+    this.currentUser = this.token.getUser();
+    this.http.get(`/api/user/organizer/${this.currentUser.id}`)
     .subscribe((res : any)=>{
       console.log(res)
       this.organizer = res;
