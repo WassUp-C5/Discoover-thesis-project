@@ -7,8 +7,8 @@
   </div>
   <div class="col-md-6">
     <div class="form-group">
-      <select class="form-control">
-        <option [(ngModel)]="qualification.level" name="language" (change)="changeEntryLevelHandler($event)">
+      <select class="form-control" (change)="changeEntryLevelHandler($event)">
+        <option [(ngModel)]="qualification.level" name="language">
           {{qualification.level}}</option>
         <option value="Native">Native</option>
         <option value="Average">Average</option>

@@ -63,7 +63,7 @@ export class GuideProfileComponent implements OnInit {
   }
 
   saveData() {
-    // window.location.reload();
+    window.location.reload();
     this.guide.qualifications.push({language : this.language, level : this.selectedLevel})
     console.log('guide profile updated with ==>', this.guide)
     this.http.put<any>("/api/user/guide/edit",this.guide )
