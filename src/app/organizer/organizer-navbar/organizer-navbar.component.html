@@ -5,18 +5,13 @@
   <span> | </span>
   <span> Help</span>
   <!-- <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu"> -->
-  <img
-    class="avatar-img"
-    src="../../assets/photo.jpg"
-    mat-button
-    [matMenuTriggerFor]="beforeMenu"
-  />
+  <img class="avatar-img" src="../../assets/photo.jpg" mat-button [matMenuTriggerFor]="beforeMenu" />
   <!-- </button> -->
   <!-- <button mat-button [matMenuTriggerFor]="beforeMenu">Before</button> -->
   <mat-menu #beforeMenu="matMenu" xPosition="before">
-    <button mat-menu-item>My profile</button>
-    <button mat-menu-item>My trips</button>
-    <button mat-menu-item>---</button>
-    <button mat-menu-item>Sign out</button>
+    <button routerLink="/organizer/profile" mat-menu-item>My profile</button>
+    <button routerLink="/organizer/trips" mat-menu-item>My trips</button>
+    <button routerLink="/organizer/trip/add" mat-menu-item>Add a trip</button>
+    <button routerLink="/" mat-menu-item>Sign out</button>
   </mat-menu>
 </mat-toolbar>
