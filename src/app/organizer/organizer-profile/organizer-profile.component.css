@@ -59,8 +59,8 @@ body {
   border-radius: 0.25rem;
 }
 .avatar-xl {
-  height: 6rem;
-  width: 6rem;
+  height: 20rem;
+  /* width: 6rem; */
 }
 .rounded-circle {
   border-radius: 50% !important;
