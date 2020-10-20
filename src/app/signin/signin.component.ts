@@ -37,7 +37,7 @@ export class SigninComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy() {
     // remove the class form body tag
-    document.body.classList.add('background-img');
+    document.body.classList.remove('background-img');
   }
   onSubmit() {
     console.log('Your form data : ', this.credentials);
@@ -50,7 +50,8 @@ export class SigninComponent implements OnInit, OnDestroy {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getUser().roles;
-        this.reloadPage();
+        // this.reloadPage();
+        this.router.navigate([`/${this.roles[1]}/profile`]);
       },
       (err) => {
         this.errorMessage = err.error.message;
