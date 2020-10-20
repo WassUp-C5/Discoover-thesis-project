@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const db = require("./../../db/config.js");
 var bcrypt = require("bcryptjs");
-const Qualifications = require("./qualifications.js");
 
 const usersSchema = new mongoose.Schema(
   {
@@ -44,18 +43,18 @@ class User extends MongoUser {
     }
   }
 
-  getQualifications() {
-    return new Promise((resolve, reject) => {
-      Qualifications.find({ _id: { $in: this.qualifications } }, (err, data) => {
-       console.log( this);
-        if (err) {
-          reject(err);
-          return;
-        }
-        resolve(data);
-      });
-    });
-  }
+  // getQualifications() {
+  //   return new Promise((resolve, reject) => {
+  //     Qualifications.find({ _id: { $in: this.qualifications } }, (err, data) => {
+  //      console.log( this);
+  //       if (err) {
+  //         reject(err);
+  //         return;
+  //       }
+  //       resolve(data);
+  //     });
+  //   });
+  // }
 
   save() {
     return new Promise((resolve, reject) => {
