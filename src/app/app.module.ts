@@ -43,6 +43,7 @@ import { OrganizerNavbarComponent } from './organizer/organizer-navbar/organizer
     OrganizerMyTripsComponent,
 
     OrganizerNavbarComponent,
+
   ],
   imports: [
     BrowserModule,
