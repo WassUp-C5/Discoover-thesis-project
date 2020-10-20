@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-group">
+      <input let type="text" class="form-control" [value]="qualification.language"
+        (change)="changeEntryLanguageHandler($event)">
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="form-group">
+      <select class="form-control" (change)="changeEntryLevelHandler($event)">
+        <option [(ngModel)]="qualification.level" name="language">
+          {{qualification.level}}</option>
+        <option value="Native">Native</option>
+        <option value="Average">Average</option>
+        <option value="Advanced">Advanced</option>
+      </select>
+    </div>
+  </div>
+</div>

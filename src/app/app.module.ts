@@ -3,24 +3,29 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { VisitorNavbarComponent } from './visitor-navbar/visitor-navbar.component';
+import { VisitorNavbarComponent } from './landing-page/visitor-navbar/visitor-navbar.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { SearchTripComponent } from './search-trip/search-trip.component';
-import { OrganizeATripComponent } from './organize-a-trip/organize-a-trip.component';
-import { GuideATripComponent } from './guide-a-trip/guide-a-trip.component';
-import { GuideProfileComponent } from './guide-profile/guide-profile.component';
-import { GuideNavBarComponent } from './guide-navbar/guide-navbar.component';
-import { OrganizerProfileComponent } from './organizer-profile/organizer-profile.component';
+import { OrganizeATripComponent } from './organizer/organize-a-trip/organize-a-trip.component';
+import { GuideATripComponent } from './guide/guide-a-trip/guide-a-trip.component';
+import { GuideProfileComponent } from './guide/guide-profile/guide-profile.component';
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
+import { EntryComponent } from './guide/guide-profile/entry-list/entry.component';
+import { OrganizerNavbarComponent } from './organizer/organizer-navbar/organizer-navbar.component';
+import { OrganizerMyTripsComponent } from './organizer/organizer-my-trips/organizer-my-trips.component';
+
 /* Angular material */
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './angular-material.module';
 
-
 import { HttpClientModule } from '@angular/common/http';
+import { authInterceptorProviders } from './_helpers/auth.interceptor';
 
+import { GuideNavBarComponent } from './guide/guide-navbar/guide-navbar.component';
+import { OrganizerProfileComponent } from './organizer/organizer-profile/organizer-profile.component';
 
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,6 +40,11 @@ import { HttpClientModule } from '@angular/common/http';
     SignupComponent,
     SigninComponent,
 
+    EntryComponent,
+    OrganizerNavbarComponent,
+    OrganizerMyTripsComponent,
+
+    OrganizerNavbarComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,14 +52,11 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     BrowserAnimationsModule,
     AngularMaterialModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [authInterceptorProviders],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
 
-
-
-
-
+export class AppModule {}

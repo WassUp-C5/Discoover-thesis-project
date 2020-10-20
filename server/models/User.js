@@ -5,6 +5,7 @@ var bcrypt = require("bcryptjs");
 const usersSchema = new mongoose.Schema(
   {
     first_name: String,
+    qualifications: [],
     last_name: String,
     username: String,
     password: String,
@@ -14,6 +15,8 @@ const usersSchema = new mongoose.Schema(
     gender: String,
     phone_number: String,
     bio: String,
+    location: String,
+    trips: [],
     roles: [],
   },
   {
@@ -36,8 +39,22 @@ class User extends MongoUser {
       this.gender = data.gender;
       this.phone_number = data.phone_number;
       this.roles = data.roles;
+      this.qualifications = data.qualifications;
     }
   }
+
+  // getQualifications() {
+  //   return new Promise((resolve, reject) => {
+  //     Qualifications.find({ _id: { $in: this.qualifications } }, (err, data) => {
+  //      console.log( this);
+  //       if (err) {
+  //         reject(err);
+  //         return;
+  //       }
+  //       resolve(data);
+  //     });
+  //   });
+  // }
 
   save() {
     return new Promise((resolve, reject) => {
