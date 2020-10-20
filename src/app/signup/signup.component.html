@@ -53,7 +53,7 @@
         <!-- <div class="form-group col-5">
           <label>Phone Number</label>
           <input type="text" formControlName="phone_number" class="form-control"
-            [ngClass]="{ 'is-invalid': submitted && f.phone_number.errors }" />
+            [ngClass]="{ 'is-invalid': submitted && f.phone_number.errors }" placeholder="(+216)" pattern="[0-9]{2}-[0-9]{3}-[0-9]{3}"/>
           <div *ngIf="submitted && f.phone_number.errors" class="invalid-feedback">
             <div *ngIf="f.phone_number.errors.required">
               Phone Number is required
@@ -126,66 +126,118 @@
 <!------ Include the above in your HEAD tag ---------->
 
 <div class="container">
-    <div class="row">
-        <div class="board">
-            <div class="header">
-              <p><b>Already have an Account ? <a href="#">Log in</a></b></p>
-        </div>
-        <div class="tab-content">
-            <div role="tabpanel" class="tab-pane active" id="step-1">
-                <div class="col-md-12">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="control-label">First ame</label>
-                            <input  maxlength="100" type="text" required="required" class="form-control" placeholder="Enter Name"  />
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="control-label">Last name </label>
-                            <input  maxlength="100" type="text" required="required" class="form-control" placeholder="Lastname"  />
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="control-label">Email</label>
-                            <input maxlength="100" type="text"  class="form-control" placeholder="Email" />
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Password</label>
-                            <input maxlength="50" type="text"  class="form-control" placeholder="Password" type="password"/>
-                        </div>
-                        <div class="form-group">
-                          <label class="control-label"> Confirm Password</label>
-                          <input maxlength="50" type="text"  class="form-control" placeholder="Confirm Password" type="password"/>
+  <div class="row">
+    <div class="board">
+      <div class="header">
+        <p><b>Already have an Account ? <a href="#">Log in</a></b></p>
+      </div>
+      <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+        <div class="col-md-12">
+          <div class="col-md-6">
+            <!-- First Name -->
+            <div class="form-group">
+              <label class="control-label">First name</label>
+                <input type="text" formControlName="first_name" class="form-control"
+                  [ngClass]="{ 'is-invalid': submitted && f.first_name.errors }" placeholder="Firstname"/>
+                    <div *ngIf="submitted && f.first_name.errors" class="invalid-feedback">
+                      <div *ngIf="f.first_name.errors.required">
+                        First Name is required
                       </div>
-                        <div class="form-group">
-                            <label class="control-label">Phone Number</label>
-                            <input maxlength="20" type="tel"  class="form-control" placeholder="(+216)" pattern="[0-9]{2}-[0-9]{3}-[0-9]{3}"/>
-                        </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="control-label">Country</label>
-                            <input  maxlength="100" type="text" required="required" class="form-control" placeholder="Enter Country"  />
-                        </div>
-                      </div>
-                          <div class="col-md-6">
-                              <div class="form-group">
-                                  <label class="control-label">State</label>
-                                  <input  maxlength="2" type="text" required="required" class="form-control" placeholder="Enter State"  />
-                              </div>
-                          </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="control-label">City</label>
-                            <input  maxlength="40" type="text" required="required" class="form-control" placeholder="Enter City"  />
-                        </div>
-                    </div>
-                    <button id="step-1-next" class="btn btn-lg btn-success pull-right">Sign up</button>
-                </div>
             </div>
+            <!-- Email -->
+            <div class="form-group">
+              <label class="control-label">Email</label>
+                <input type="text" formControlName="email" class="form-control"
+                  [ngClass]="{ 'is-invalid': submitted && f.email.errors }" placeholder="Enter Email"/>
+                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                      <div *ngIf="f.email.errors.required">Email is required</div>
+                        <div *ngIf="f.email.errors.email">
+                          Email must be a valid email address
+                        </div>
+                    </div>
+            </div>
+            <!-- Password -->
+            <div class="form-group">
+              <label class="control-label">Password</label>
+                <input type="password" formControlName="password" class="form-control"
+                  [ngClass]="{ 'is-invalid': submitted && f.password.errors }" placeholder="Password"/>
+                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                      <div *ngIf="f.password.errors.required">Password is required</div>
+                        <div *ngIf="f.password.errors.minlength">
+                          Password must be at least 6 characters
+                        </div>
+                    </div>
+            </div>
+            <!-- Phone Number -->
+            <div class="form-group">
+              <label class="control-label">Phone Number</label>
+                <input type="text" formControlName="phone_number" class="form-control"
+                  [ngClass]="{ 'is-invalid': submitted && f.phone_number.errors }" placeholder="Phone Number"/>
+                    <div *ngIf="submitted && f.phone_number.errors" class="invalid-feedback">
+                      <div *ngIf="f.phone_number.errors.required">
+                        Phone Number is required
+                      </div>
+                    </div>
+            </div>
+            <!-- Date of Birth -->
+            <div class="form-group">
+              <label class="control-label">Date Of Birth</label>
+                <label>Date of Birth</label>
+                  <input type="date" formControlName="birthday" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.birthday.errors }" />
+                      <div *ngIf="submitted && f.birthday.errors" class="invalid-feedback">
+                        <div *ngIf="f.birthday.errors.required">
+                          Date of Birth is required
+                        </div>
+                      </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+          <!-- Last Name -->
+          <div class="form-group">
+            <label class="control-label">Last name </label>
+              <input type="text" formControlName="last_name" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f.last_name.errors }" placeholder="Lastname"/>
+                  <div *ngIf="submitted && f.last_name.errors" class="invalid-feedback">
+                    <div *ngIf="f.last_name.errors.required">Last Name is required</div>
+                  </div>
+          </div>
+          <!-- User Name  -->
+          <div class="form-group">
+            <label class="control-label">Username</label>
+              <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" placeholder="Choose a username"/>
+                <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                  <div *ngIf="f.username.errors.required">User Name is required</div>
+                </div>
+          </div>
+          <!-- Confirm Password -->
+          <div class="form-group">
+            <label class="control-label"> Confirm Password</label>
+              <input type="password" formControlName="confirmPassword" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" placeholder="Confirm Password"/>
+                  <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+                    <div *ngIf="f.confirmPassword.errors.required">
+                      Confirm Password is required
+                    </div>
+                    <div *ngIf="f.confirmPassword.errors.mustMatch">
+                      Passwords must match
+                    </div>
+                  </div>
+          </div>
+          <!-- Region -->
+          <div class="form-group">
+            <label class="control-label">Region</label>
+              <input type="text" formControlName="location" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f.location.errors }" placeholder="Enter Region"/>
+                  <div *ngIf="submitted && f.location.errors" class="invalid-feedback">
+                    <div *ngIf="f.location.errors.required">Region is required</div>
+                  </div>
+          </div>
+            <button id="signupBtn" class="btn btn-lg btn-success pull-right">Sign up</button>
+          </div>
         </div>
+      </form>
     </div>
-</div>
+  </div>
 </div>
