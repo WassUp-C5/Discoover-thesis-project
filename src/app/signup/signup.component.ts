@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-
+import { AuthService } from '../services/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { User } from './../models/User';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -10,18 +10,21 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./signup.component.css'],
 })
 export class SignupComponent implements OnInit {
-  user: FormGroup;
+  signupForm: FormGroup;
+  user = new User();
   submitted = false;
+  errorMessage = '';
 
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
-    this.user = this.formBuilder.group({
+    this.signupForm = this.formBuilder.group({
       username: ['', Validators.required],
       first_name: ['', Validators.required],
       last_name: ['', Validators.required],
@@ -39,32 +42,39 @@ export class SignupComponent implements OnInit {
       location: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', Validators.required],
+      confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
 
   get f() {
-    return this.user.controls;
+    return this.signupForm.controls;
   }
 
   onSubmit() {
     this.submitted = true;
 
-    if (this.user.invalid) {
+    if (this.signupForm.invalid) {
       return;
     }
 
-    console.log(this.user.value);
-    // this.user.roles.push(this.route.snapshot.paramMap.get('role'));
-    this.http
-      .post<any>('/api/auth/signup', this.user.value)
-      .subscribe((result) => {
+    console.log(this.signupForm.value);
+    this.user = new User(this.signupForm.value);
+    console.log('User ===>', this.user);
+    this.user.roles.push(this.route.snapshot.paramMap.get('role'));
+
+    this.authService.register(this.user).subscribe(
+      (data) => {
+        console.log(data);
         this.router.navigate(['/']);
-      });
+      },
+      (err) => {
+        this.errorMessage = err.error.message;
+      }
+    );
   }
 
   onReset() {
     this.submitted = false;
-    this.user.reset();
+    this.signupForm.reset();
   }
 }

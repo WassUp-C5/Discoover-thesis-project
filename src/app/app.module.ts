@@ -12,18 +12,20 @@ import { GuideProfileComponent } from './guide/guide-profile/guide-profile.compo
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
 import { EntryComponent } from './guide/guide-profile/entry-list/entry.component';
+import { OrganizerNavbarComponent } from './organizer/organizer-navbar/organizer-navbar.component';
+import { OrganizerMyTripsComponent } from './organizer/organizer-my-trips/organizer-my-trips.component';
 
 /* Angular material */
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './angular-material.module';
+
+import { HttpClientModule } from '@angular/common/http';
+import { authInterceptorProviders } from './_helpers/auth.interceptor';
+
 import { GuideNavBarComponent } from './guide/guide-navbar/guide-navbar.component';
 import { OrganizerProfileComponent } from './organizer/organizer-profile/organizer-profile.component';
 
-import { HttpClientModule } from '@angular/common/http';
-import { OrganizerMyTripsComponent } from './organizer/organizer-my-trips/organizer-my-trips.component';
-
 import { ReactiveFormsModule } from '@angular/forms';
-import { OrganizerNavbarComponent } from './organizer/organizer-navbar/organizer-navbar.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,7 +56,7 @@ import { OrganizerNavbarComponent } from './organizer/organizer-navbar/organizer
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [authInterceptorProviders],
   bootstrap: [AppComponent],
 })
 
