@@ -1,38 +1,46 @@
+
+
 const userRouter = require("express").Router();
 const User = require("../models/User");
-const Organizer = require("../models/Organizer");
 
 
-userRouter.put("/edit", (req, res) => {
+userRouter.put("/organizer/edit", (req, res) => {
   let user = req.body;
-  User.updateOne({ username: user.username }, user)
+  console.log('router section organizer log ==>', user);
+  User.updateOne({ username: 'bjsaber' }, user)
+    .then((result) => {
+      res.send(result)
+    })
+    .catch(err => console.log(err))
+})
+
+userRouter.get('/organizer/:id', (req, res) => {
+  User.findOne({ _id: req.params.id })
     .then((result) => {
       res.send(result);
     })
     .catch((err) => console.log(err));
 });
 
-userRouter.get("/:id", (req, res) => {
+userRouter.get("/guide/:id", (req, res) => {
 
   User.findOne({ _id: req.params.id })
-    .then((user) => {
-
-      user.getQualifications().then(qualifications =>{
-        console.log(qualifications)
-        user.qualifications = qualifications;
-        res.send(user);
-      })
-      .catch(err => {
-        console.log(err);
-      })
-      console.log(user);
-
+    .then((result) => {
+      res.send(result);
     })
-    .catch((err) => console.log(err));
+    .catch(err => {
+      console.log(err);
+    })
 });
 
-userRouter.put("/guide/profile/edit", (req, res) =>{
+userRouter.put("/guide/edit", (req, res) => {
   let user = req.body;
+  console.log('router section guide log ==>', user);
+  User.updateOne({ username: 'bjsaber' }, user)
+    .then((result) => {
+      res.send(result)
+    })
+    .catch(err => console.log(err))
 
 })
 

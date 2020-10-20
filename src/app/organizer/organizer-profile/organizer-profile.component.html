@@ -1,41 +1,4 @@
-<!-- <div class="avatar">
-  <img src="../../assets/photo.jpg">
-  <p> Bob Marley</p>
-</div>
-<div class="profile">
-  <div class="personalInfo">
-    <p> Personal Details </p>
-    <p> First Name</p>
-    <input matInput value="Bob">
-    <p> Last Name</p>
-    <input matInput value="Marley">
-    <p> Gender </p>
-    <select>
-      <option>Male</option>
-      <option>Female</option>
-      <option>Uncertain</option>
-    </select>
-    <p> Date of Birth</p>
-    <input type="date">
-    <p>Country</p>
-    <input matInput value="Somewhere">
-    <p>Phone </p>
-    <input type="tel" placeholder="+216">
-  </div>
-</div>
-
-
-<div id="description">
-  <form>
-    <label>Trip description:</label>
-    <br>
-    <textarea name="description" rows="10" cols="50">
-  At w3schools.com you will learn how to make a website. They offer free tutorials in all web development technologies.
-  </textarea>
-  </form>
-  <button class="signInBtn" mat-flat-button color="warn">Save</button>
-</div> -->
-
+<app-organizer-navbar></app-organizer-navbar>
 <link rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css"
   integrity="sha256-NAxhqDvtY0l4xn+YVa6WjAcmd94NNfttjNsDmNatFVc=" crossorigin="anonymous" />
@@ -111,7 +74,7 @@
           <div class="tab-pane show active" id="about-me">
 
             <h5 class="mb-4 text-uppercase"><i class="mdi mdi-briefcase mr-1"></i>
-              Bio</h5>
+              My Biography</h5>
 
 
             <p class="text-muted mt-2">{{organizer.bio}}</p>
@@ -131,6 +94,12 @@
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="email" class="form-control" id="username" placeholder={{organizer.username}} />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
                     <label for="firstname">First Name</label>
                     <input type="text" class="form-control" id="firstname" placeholder={{organizer.first_name}}
                       [(ngModel)]="organizer.first_name" name="first">
@@ -146,10 +115,10 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="sel1">Gender:</label>
-                    <select class="form-control" id="sel1" [(ngModel)]="selectedGender" name="gender">
-                      <option>--</option>
-                      <option>Female</option>
-                      <option>Male</option>
+                    <select class="form-control" id="sel1" (change)="genderHandler($event)">
+                      <option [(ngModel)]="organizer.gender" name="gender">{{organizer.gender}}</option>
+                      <option value="Female">Female</option>
+                      <option value="Male">Male</option>
                     </select>
                   </div>
                 </div>
@@ -192,11 +161,9 @@
                 <!-- <div class="col-md-6">
                   <div class="form-group">
                     <div>
-
                       <dp-day-calendar theme="dp-material" [(ngModel)]="selectedDate" [config]="config">
                       </dp-day-calendar>
                     </div>
-
                   </div>
                 </div> end col -->
               </div> <!-- end row -->
