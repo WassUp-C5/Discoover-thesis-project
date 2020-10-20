@@ -7,9 +7,9 @@ const tripsSchema = new mongoose.Schema(
     date: Date,
     price: String,
     description: String,
-    activities: [],
+    // activities: [],
     maxTravelers: String,
-    travelers: []
+    // travelers: []
   },
   {
     timestamps: true,
@@ -19,4 +19,3 @@ const tripsSchema = new mongoose.Schema(
 const Trip = mongoose.model("Trip", tripsSchema);
 
 module.exports = Trip;
-
