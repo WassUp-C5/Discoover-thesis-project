@@ -1,17 +1,21 @@
 <mat-toolbar class="nav">
-
-  <img src="../../assets/Discoover red logo.PNG">
+  <img src="../../assets/Discoover red logo.PNG" />
   <span class="example-spacer"></span>
   <span>Our Social Impact </span>
   <span> | </span>
   <span> Help</span>
   <!-- <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu"> -->
-  <img class="avatar-img" src='../../assets/photo.jpg' mat-button [matMenuTriggerFor]="beforeMenu" />
+  <img
+    class="avatar-img"
+    src="../../assets/photo.jpg"
+    mat-button
+    [matMenuTriggerFor]="beforeMenu"
+  />
   <!-- </button> -->
   <!-- <button mat-button [matMenuTriggerFor]="beforeMenu">Before</button> -->
   <mat-menu #beforeMenu="matMenu" xPosition="before">
     <button mat-menu-item>My profile</button>
-    <button mat-menu-item>---</button>
+    <button mat-menu-item>My trips</button>
     <button mat-menu-item>---</button>
     <button mat-menu-item>Sign out</button>
   </mat-menu>
