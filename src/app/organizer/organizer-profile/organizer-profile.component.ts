@@ -21,7 +21,7 @@ export class OrganizerProfileComponent implements OnInit {
     bio: '',
     phone_number: '',
   };
-  fullName = '';
+
 
 
   constructor(private http: HttpClient ,private token: TokenStorageService) {}
@@ -32,8 +32,6 @@ export class OrganizerProfileComponent implements OnInit {
     .subscribe((res : any)=>{
       console.log(res)
       this.organizer = res;
-      this.fullName =
-        this.organizer.first_name + ' ' + this.organizer.last_name;
     });
   }
   genderHandler(event: any) {
