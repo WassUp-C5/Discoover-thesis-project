@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
+
 @Component({
   selector: 'app-organize-a-trip',
   templateUrl: './organize-a-trip.component.html',
@@ -54,7 +55,7 @@ export class OrganizeATripComponent implements OnInit {
         userId: '5f8af2f5d7ebfa75d4997522',
       })
       .subscribe((result) => {
-        this.router.navigate(['/']);
+        this.router.navigate(['/organizer/trips']);
       });
   }
 }
