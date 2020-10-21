@@ -29,7 +29,7 @@ export class GuideProfileComponent implements OnInit {
   // userData: Array<any>;
   language: string = '';
   selectedLevel: string = '';
-  fullName = '';
+
   // @Input() qualification;
   // @Input() type;
 
@@ -41,7 +41,6 @@ export class GuideProfileComponent implements OnInit {
       .subscribe((res : any) => {
         console.log('on init guide infos',res);
         this.guide = res;
-        this.fullName = this.guide.first_name + ' ' + this.guide.last_name;
         this.guide.qualifications = res.qualifications;
         console.log('user qualification ==>', this.guide.qualifications)
       });

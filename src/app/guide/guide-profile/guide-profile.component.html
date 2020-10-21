@@ -1,9 +1,9 @@
 <app-guide-navbar></app-guide-navbar>
-<link rel="stylesheet"
+<!-- <link rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css"
   integrity="sha256-NAxhqDvtY0l4xn+YVa6WjAcmd94NNfttjNsDmNatFVc=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
-  integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
+  integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" /> -->
 <div class="container">
   <div class="row">
     <div class="col-lg-4 col-xl-4">
@@ -11,7 +11,7 @@
         <img src="../../assets/photo.jpg" class="rounded-circle avatar-xl img-thumbnail" id="profileImg"
           alt="profile-image" />
 
-        <h4 class="mb-0">{{fullName}}</h4>
+        <h4 class="mb-0">{{this.guide.first_name + ' ' + this.guide.last_name }}</h4>
         <button type="button" class="btn btn-success btn-xs waves-effect mb-2 waves-light">Update Photo</button>
 
 
@@ -19,7 +19,7 @@
           <h4 class="font-13 text-uppercase">About Me :</h4>
           <p class="text-muted font-13 mb-3">{{guide.bio}}</p>
           <p class="text-muted mb-2 font-13">
-            <strong>Full Name :</strong> <span class="ml-2">{{fullName}}</span>
+            <strong>Full Name :</strong> <span class="ml-2">{{this.guide.first_name + ' ' + this.guide.last_name}}</span>
           </p>
 
           <p class="text-muted mb-2 font-13">
