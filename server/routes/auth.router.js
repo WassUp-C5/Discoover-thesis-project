@@ -2,7 +2,7 @@ const authRouter = require("express").Router();
 const User = require("../models/User");
 var bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-
+/*****************Create a new user **************************** */
 authRouter.post("/signup", async (req, res) => {
   try {
     console.log(req.body);
@@ -16,9 +16,9 @@ authRouter.post("/signup", async (req, res) => {
     res.status(400).send("error");
   }
 });
-
+/********************Sign In******************************************** */
 authRouter.post("/signin", async (req, res) => {
-  console.log(req.body)
+  console.log(req.body);
   try {
     var user = await User.findOne({ username: req.body.username });
     if (!user) {
@@ -34,7 +34,7 @@ authRouter.post("/signin", async (req, res) => {
     let token = jwt.sign({ userId: user._id }, "it's a secret");
     res.status(200).json({
       token: token,
-      user: { id: user._id, roles: user.roles}
+      user: { id: user._id, roles: user.roles },
     });
     console.log(user);
   } catch (error) {
