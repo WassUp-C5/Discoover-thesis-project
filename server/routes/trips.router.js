@@ -29,4 +29,21 @@ tripsRouter.get("/", (req, res) => {
   });
 });
 
+/***********************Get trip by id***************************/
+tripsRouter.get("/:id", (req, res) => {
+  Trip.findOne({ _id: req.params.id }, function (err, trip) {
+    if (err) throw err;
+    res.send(trip);
+    console.log("trip ===> ", trip);
+  });
+});
+
+/***********************Delete trip by id***************************/
+tripsRouter.delete("/:id", (req, res) => {
+  Trip.deleteOne({ _id: req.params.id }, function (err) {
+    if (err) throw err;
+    // res.send('trip deleted');
+    console.log("trip deleted");
+  });
+});
 module.exports = tripsRouter;
