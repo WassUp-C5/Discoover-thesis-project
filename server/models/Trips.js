@@ -10,6 +10,7 @@ const tripsSchema = new mongoose.Schema(
     // activities: [],
     maxTravelers: String,
     // travelers: []
+    guide: []
   },
   {
     timestamps: true,
