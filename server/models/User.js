@@ -38,6 +38,7 @@ class User extends MongoUser {
       this.birthday = data.birthday;
       this.gender = data.gender;
       this.phone_number = data.phone_number;
+      this.location = data.location;
       this.roles = data.roles;
       this.qualifications = data.qualifications;
     }
