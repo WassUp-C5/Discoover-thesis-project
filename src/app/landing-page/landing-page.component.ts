@@ -23,6 +23,9 @@ export class LandingPageComponent implements OnInit {
       } else if (userRole === 'guide') {
         this.router.navigate(['/organizer/trips']);
       }
+      else {
+        this.router.navigate(['/searchTrip']);
+      }
     } else {
       this.router.navigate(['/signup/' + userRole]);
     }
