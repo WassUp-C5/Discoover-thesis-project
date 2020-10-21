@@ -55,7 +55,7 @@ export class OrganizeATripComponent implements OnInit {
         userId: '5f8af2f5d7ebfa75d4997522',
       })
       .subscribe((result) => {
-        this.router.navigate(['/myTrips']);
+        this.router.navigate(['/organizer/trips']);
       });
   }
 }

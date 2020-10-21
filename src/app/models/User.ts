@@ -25,7 +25,7 @@ export class User {
       this.email = values.email;
       this.birthday = values.birthday;
       this.gender = values.gender;
-      this.phone_number = values.id;
+      this.phone_number = values.phone_number;
     }
   }
 
