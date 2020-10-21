@@ -16,7 +16,7 @@
             <div class="col-md-4 col-md-offset-1">
               <div class="home-design-info">
                 <figure>
-                  <img class="img-circle img-thumbnail" src="https://bootdey.com/img/Content/avatar/avatar7.png">
+                  <img class="img-circle img-thumbnail" src="https://placeimg.com/380/230/nature">
                   <p>organizer name</p>
                 </figure>
               </div>
@@ -24,41 +24,22 @@
             <div class="col-md-6">
               <div class="deets">
 
-                <h3 class="text-primary"><span class="glyphicon glyphicon-arrow-right"></span> organizer name
+                <h3 class="text-primary"><span class="glyphicon glyphicon-arrow-right"></span> {{trip[0].title}}
                 </h3>
                 <div>
-                  date : 22/12/2021
+                  date : {{trip[0].date}}
                 </div>
                 <div>
-                  price : 20$
+                  Location : {{trip[0].location}}
                 </div>
                 <div>
-                  <p>Trip description : <br>Hello, this is my personal description
-                    I am writing texts that come out of my mind
-                    in order not to lorem ipsum
-                    the following will say that bootdey is a gallery of snippets for bootstrap
-                    I am writing texts that come out of my mind
-                    in order not to lorem ipsum
-                    the following will say that bootdey is a gallery of snippets for bootstrap
-                    I am writing texts that come out of my mind
-                    in order not to lorem ipsum
-                    the following will say that bootdey is a gallery of snippets for bootstrap
-                    I am writing texts that come out of my mind
-                    in order not to lorem ipsum
-                    the following will say that bootdey is a gallery of snippets for bootstrap
-                    I am writing texts that come out of my mind
-                    in order not to lorem ipsum
-                    the following will say that bootdey is a gallery of snippets for bootstrap
-                    I am writing texts that come out of my mind
-                    in order not to lorem ipsum
-                    the following will say that bootdey is a gallery of snippets for bootstrap
-                    I am writing texts that come out of my mind
-                    in order not to lorem ipsum
-                    the following will say that bootdey is a gallery of snippets for bootstrap
-                    I am writing texts that come out of my mind
-                    in order not to lorem ipsum
-                    the following will say that bootdey is a gallery of snippets for bootstrap
-                    Csss Js HTML codes.</p>
+                  price : {{trip[0].price}}
+                </div>
+                <div>
+                  Max travelers : {{trip[0].maxTravelers}}
+                </div>
+                <div>
+                  <p>Trip description : <br>{{trip[0].description}}</p>
                 </div>
 
 
@@ -67,7 +48,7 @@
           </div> <!-- /row -->
 
         </article>
-        <button class="cancel" mat-flat-button color="warn">
+        <button (click)="cancel()" class="cancel" mat-flat-button color="warn">
           Cancel
         </button>
         <button class="addGuide" mat-flat-button color="warn">

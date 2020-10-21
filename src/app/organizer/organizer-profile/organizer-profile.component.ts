@@ -1,4 +1,5 @@
 import { HttpClient } from '@angular/common/http';
+import { Router } from "@angular/router";
 import { Component, OnInit } from '@angular/core';
 import { TokenStorageService } from './../../services/token-storage.service';
 import { Trip } from '../../../../server/models/Trips';
@@ -22,7 +23,7 @@ export class OrganizerProfileComponent implements OnInit {
     phone_number: '',
   };
 
-  constructor(private http: HttpClient, private token: TokenStorageService) {}
+  constructor(private http: HttpClient, private token: TokenStorageService, private router: Router) {}
   trips: Trip[];
 
   ngOnInit(): void {
@@ -38,6 +39,19 @@ export class OrganizerProfileComponent implements OnInit {
       .subscribe((data: Trip[]) => {
         this.trips = data;
       });
+  }
+
+  getTrip(tripId){
+    console.log("click is working")
+    this.router.navigate(['/organizer/trip/details/'+tripId])
+  }
+
+  addTrip(){
+    console.log("click is working trip add")
+    this.currentUser = this.token.getUser();
+    console.log('current user ====>',this.currentUser.id);
+
+    this.router.navigate(['/organizer/trip/add/'+this.currentUser.id])
   }
 
   genderHandler(event: any) {
