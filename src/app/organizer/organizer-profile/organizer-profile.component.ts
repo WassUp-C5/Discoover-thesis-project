@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { TokenStorageService } from './../../services/token-storage.service';
-
+import { Trip } from '../../../../server/models/Trips';
 @Component({
   selector: 'app-organizer-profile',
   templateUrl: './organizer-profile.component.html',
@@ -22,18 +22,24 @@ export class OrganizerProfileComponent implements OnInit {
     phone_number: '',
   };
 
-
-
-  constructor(private http: HttpClient ,private token: TokenStorageService) {}
+  constructor(private http: HttpClient, private token: TokenStorageService) {}
+  trips: Trip[];
 
   ngOnInit(): void {
     this.currentUser = this.token.getUser();
-    this.http.get(`/api/user/organizer/${this.currentUser.id}`)
-    .subscribe((res : any)=>{
-      console.log(res)
-      this.organizer = res;
-    });
+    this.http
+      .get(`/api/user/organizer/${this.currentUser.id}`)
+      .subscribe((res: any) => {
+        console.log(res);
+        this.organizer = res;
+      });
+    this.http
+      .get(`/api/user/organizer/trips/${this.currentUser.id}`)
+      .subscribe((data: Trip[]) => {
+        this.trips = data;
+      });
   }
+
   genderHandler(event: any) {
     this.organizer.gender = event.target.value;
     console.log(this.organizer.gender);
@@ -42,9 +48,10 @@ export class OrganizerProfileComponent implements OnInit {
     window.location.reload();
     console.log('organizer profile updated with ==>', this.organizer);
 
-    this.http.put('/api/user/organizer/edit',this.organizer)
-    .subscribe((res)=>{
-      console.log(res);
-    });
+    this.http
+      .put('/api/user/organizer/edit', this.organizer)
+      .subscribe((res) => {
+        console.log(res);
+      });
   }
 }
