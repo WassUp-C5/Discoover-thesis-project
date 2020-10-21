@@ -38,10 +38,12 @@ p {
 
 .card .card-body{
   padding: .9375rem 1.875rem;
+
 }
 
 .card-description{
   color: #999;
+  height: 80px;
 }
 
 .card.card-profile{
