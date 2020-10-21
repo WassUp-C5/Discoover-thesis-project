@@ -21,6 +21,14 @@ userRouter.get('/organizer/:id', (req, res) => {
     })
     .catch((err) => console.log(err));
 });
+userRouter.get('/guide', (req, res) => {
+  User.find({ roles: "guide" })
+    .then((result) => {
+      res.send(result);
+      console.log('result ===>', result);
+    })
+    .catch((err) => console.log(err));
+});
 
 userRouter.get("/guide/:id", (req, res) => {
 
