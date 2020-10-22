@@ -10,6 +10,7 @@ export class EditGuideProfileComponent implements OnInit {
 
   @Input() guide;
 
+
   language: string = '';
   selectedLevel: string = '';
 
@@ -19,11 +20,11 @@ export class EditGuideProfileComponent implements OnInit {
   }
 
   saveData() {
-    window.location.reload();
-    this.guide.qualifications.push({
-      language: this.language,
-      level: this.selectedLevel,
-    });
+    // window.location.reload();
+    // this.guide.qualifications.push({
+    //   language: this.language,
+    //   level: this.selectedLevel,
+    // });
     console.log('guide profile updated with ==>', this.guide);
     this.http.put<any>('/api/user/guide/edit', this.guide).subscribe((data) => {
       console.log(data);
