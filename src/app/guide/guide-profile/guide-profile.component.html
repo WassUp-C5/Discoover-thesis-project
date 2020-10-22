@@ -1,37 +1,52 @@
 <app-guide-navbar></app-guide-navbar>
-<link rel="stylesheet"
+<!-- <link rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css"
   integrity="sha256-NAxhqDvtY0l4xn+YVa6WjAcmd94NNfttjNsDmNatFVc=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
-  integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
-<div class="container">
+  integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" /> -->
+<div class="container guide-profile">
   <div class="row">
     <div class="col-lg-4 col-xl-4">
       <div class="card-box text-center">
-        <img src="../../assets/photo.jpg" class="rounded-circle avatar-xl img-thumbnail" id="profileImg"
-          alt="profile-image" />
+        <img
+          src="../../assets/photo.jpg"
+          class="rounded-circle avatar-xl img-thumbnail"
+          id="profileImg"
+          alt="profile-image"
+        />
 
-        <h4 class="mb-0">{{fullName}}</h4>
-        <button type="button" class="btn btn-success btn-xs waves-effect mb-2 waves-light">Update Photo</button>
-
+        <h4 class="mb-0">
+          {{ this.guide.first_name + " " + this.guide.last_name }}
+        </h4>
+        <button
+          type="button"
+          class="btn btn-success btn-xs waves-effect mb-2 waves-light"
+        >
+          Update Photo
+        </button>
 
         <div class="text-left mt-3">
           <h4 class="font-13 text-uppercase">About Me :</h4>
-          <p class="text-muted font-13 mb-3">{{guide.bio}}</p>
+          <p class="text-muted font-13 mb-3">{{ guide.bio }}</p>
           <p class="text-muted mb-2 font-13">
-            <strong>Full Name :</strong> <span class="ml-2">{{fullName}}</span>
+            <strong>Full Name :</strong>
+            <span class="ml-2">{{
+              this.guide.first_name + " " + this.guide.last_name
+            }}</span>
           </p>
 
           <p class="text-muted mb-2 font-13">
-            <strong>Mobile :</strong><span class="ml-2">+216{{guide.phone_number}}</span>
+            <strong>Mobile :</strong
+            ><span class="ml-2">+216{{ guide.phone_number }}</span>
           </p>
 
           <p class="text-muted mb-2 font-13">
-            <strong>Email :</strong> <span class="ml-2">{{guide.email}}</span>
+            <strong>Email :</strong> <span class="ml-2">{{ guide.email }}</span>
           </p>
 
           <p class="text-muted mb-1 font-13">
-            <strong>Location :</strong> <span class="ml-2">{{guide.location}}</span>
+            <strong>Location :</strong>
+            <span class="ml-2">{{ guide.location }}</span>
           </p>
         </div>
 
@@ -62,12 +77,22 @@
       <div class="card-box">
         <ul class="nav nav-pills navtab-bg">
           <li class="nav-item">
-            <a href="#about-me" data-toggle="tab" aria-expanded="true" class="nav-link ml-0 active">
+            <a
+              href="#about-me"
+              data-toggle="tab"
+              aria-expanded="true"
+              class="nav-link ml-0 active"
+            >
               <i class="mdi mdi-face-profile mr-1"></i>About Me
             </a>
           </li>
-          <li class="nav-item">
-            <a href="#settings" data-toggle="tab" aria-expanded="false" class="nav-link">
+          <li class="nav-item" ng-if="">
+            <a
+              href="#settings"
+              data-toggle="tab"
+              aria-expanded="false"
+              class="nav-link"
+            >
               <i class="mdi mdi-settings-outline mr-1"></i>Settings
             </a>
           </li>
@@ -77,14 +102,15 @@
           <div class="tab-pane show active" id="about-me">
             <h5>My Biography</h5>
             <p>
-              {{guide.bio}}
+              {{ guide.bio }}
             </p>
             <hr />
             <h4>My Languages And Skills</h4>
             <h5>My Languages</h5>
             <ul>
-              <li *ngFor="let qualification of guide.qualifications">{{qualification.language}}:
-                {{qualification.level}}</li>
+              <li *ngFor="let qualification of guide.qualifications">
+                {{ qualification.language }}: {{ qualification.level }}
+              </li>
             </ul>
             <!-- <hr />
             <h5>My Skills</h5>
@@ -96,278 +122,10 @@
           </div>
           <!-- end timeline content-->
           <div class="tab-pane" id="settings">
-            <form>
-              <h5 class="mb-3 text-uppercase bg-light p-2">
-                <i class="mdi mdi-account-circle mr-1"></i> Personal Info
-              </h5>
-              <div class="row">
-
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="firstname">First Name</label>
-                    <input type="text" class="form-control" id="firstname" placeholder={{guide.first_name}}
-                      [(ngModel)]="guide.first_name" name="first">
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="lastname">Last Name</label>
-                    <input type="text" class="form-control" id="lastname" placeholder={{guide.last_name}}
-                      [(ngModel)]="guide.last_name" name="last">
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="sel1">Gender:</label>
-                    <select class="form-control" id="sel1" (change)="genderHandler($event)">
-                      <option [(ngModel)]="guide.gender" name="gender">{{guide.gender}}</option>
-                      <option value="Female">Female</option>
-                      <option value="Male">Male</option>
-                    </select>
-                  </div>
-                </div>
-
-                <!-- end col -->
-              </div>
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="email" class="form-control" id="username" placeholder={{guide.username}} />
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="useremail">Email Address</label>
-                    <input type="email" class="form-control" id="useremail" placeholder="Enter email" />
-                    <span class="form-text text-muted"><small>If you want to change email please
-                        <a href="javascript: void(0);">click</a>
-                        here.</small></span>
-                  </div>
-                </div>
-
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="userpassword">Password</label>
-                    <input type="password" class="form-control" id="userpassword" placeholder="Enter password" />
-                    <span class="form-text text-muted"><small>If you want to change password please
-                        <a href="javascript: void(0);">click</a>
-                        here.</small></span>
-                  </div>
-                </div>
-                <!-- end col -->
-              </div>
-              <!-- end row -->
-              <div>
-
-                <h5 class="mb-3 text-uppercase bg-light p-2"><i class="mdi mdi-office-building mr-1"></i> Languages And
-                  Skills</h5>
-                <div class="row">
-                  <div class="col-md-12">
-                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chat-square-quote-fill"
-                      fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                      <path fill-rule="evenodd"
-                        d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.5a1 1 0 0 0-.8.4l-1.9 2.533a1 1 0 0 1-1.6 0L5.3 12.4a1 1 0 0 0-.8-.4H2a2 2 0 0 1-2-2V2zm7.194 2.766c.087.124.163.26.227.401.428.948.393 2.377-.942 3.706a.446.446 0 0 1-.612.01.405.405 0 0 1-.011-.59c.419-.416.672-.831.809-1.22-.269.165-.588.26-.93.26C4.775 7.333 4 6.587 4 5.667 4 4.747 4.776 4 5.734 4c.271 0 .528.06.756.166l.008.004c.169.07.327.182.469.324.085.083.161.174.227.272zM11 7.073c-.269.165-.588.26-.93.26-.958 0-1.735-.746-1.735-1.666 0-.92.777-1.667 1.734-1.667.271 0 .528.06.756.166l.008.004c.17.07.327.182.469.324.085.083.161.174.227.272.087.124.164.26.228.401.428.948.392 2.377-.942 3.706a.446.446 0 0 1-.613.01.405.405 0 0 1-.011-.59c.42-.416.672-.831.81-1.22z" />
-                    </svg><label for="languageInput">Languages</label>
-                  </div>
-                </div>
-                <app-entry *ngFor="let qualification of guide.qualifications" [qualification]="qualification">
-                </app-entry>
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <input let type="text" class="form-control" placeholder="I speak ..."
-                        (change)="changeLanguageHandler($event)" name="language">
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <select (change)="changeLevelHandler($event)" class="form-control">
-                        <option value="--------">--------</option>
-                        <option value="Native">Native</option>
-                        <option value="Average">Average</option>
-                        <option value="Advanced">Advanced</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-                <div class="addLanguageArea">
-                  <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus-circle-fill" fill="currentColor"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                      d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
-                  </svg>
-                  <p>Add Language</p>
-                </div>
-                <br />
-                <!-- <div class="row">
-                  <div class="col-md-12">
-                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-bullseye" fill="currentColor"
-                      xmlns="http://www.w3.org/2000/svg">
-                      <path fill-rule="evenodd"
-                        d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                      <path fill-rule="evenodd"
-                        d="M8 13A5 5 0 1 0 8 3a5 5 0 0 0 0 10zm0 1A6 6 0 1 0 8 2a6 6 0 0 0 0 12z" />
-                      <path fill-rule="evenodd"
-                        d="M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" />
-                      <path d="M9.5 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
-                    </svg><label for="languageInput">Skills</label>
-                  </div>
-                </div>
-                <app-entry *ngFor="let qualification of guideUser.qualifications" [qualification]="qualification"
-                  [type]="qualification.type"></app-entry>
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <input let type="text" class="form-control" placeholder="I am Skilled At ...">
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <select class="form-control">
-                        <option value="--------">--------</option>
-                        <option value="Native">Master</option>
-                        <option value="Average">Advanced</option>
-                        <option value="Advanced">Moderate</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-                <div class="addSkillHere"></div>
-                <div class="addLanguageArea">
-                  <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus-circle-fill" fill="currentColor"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                      d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
-                  </svg>
-                  <p>Add Skill</p>
-                </div>
-                <br /> -->
-                <!-- end col -->
-              </div>
-              <!-- <h5 class="mb-3 text-uppercase bg-light p-2"><i class="mdi mdi mr-1"></i><svg width="1em" height="1em"
-                  viewBox="0 0 16 16" class="bi bi-briefcase-fill" fill="currentColor"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd"
-                    d="M0 12.5A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5V6.85L8.129 8.947a.5.5 0 0 1-.258 0L0 6.85v5.65z" />
-                  <path fill-rule="evenodd"
-                    d="M0 4.5A1.5 1.5 0 0 1 1.5 3h13A1.5 1.5 0 0 1 16 4.5v1.384l-7.614 2.03a1.5 1.5 0 0 1-.772 0L0 5.884V4.5zm5-2A1.5 1.5 0 0 1 6.5 1h3A1.5 1.5 0 0 1 11 2.5V3h-1v-.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5V3H5v-.5z" />
-                </svg> Experience</h5>
-              <div class="row">
-                <div class="col-md-6">
-                  <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-bar-chart-line-fill"
-                    fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                      d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1V2z" />
-                  </svg><label for="experienceInput">Experience</label>
-                </div>
-              </div>
-              <app-entry *ngFor="let qualification of guideUser.qualifications" [qualification]="qualification"
-                [type]="qualification.type"></app-entry>
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <input let type="text" class="form-control" placeholder="I have experience at ...">
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <select class="form-control">
-                      <option value="--------">--------</option>
-                      <option value="Native">Less Than 1 year</option>
-                      <option value="Average">1 to 5 years</option>
-                      <option value="Advanced">Over 5 years</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <div class="addExperienceHere"></div>
-              <div class="addLanguageArea">
-
-                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus-circle-fill" fill="currentColor"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd"
-                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
-                </svg>
-                <p>Add Experience</p>
-              </div>
-              <br /> -->
-              <!-- end col -->
-              <!-- end row -->
-              <h5 class="mb-3 text-uppercase bg-light p-2">
-                <i class="mdi mdi-earth mr-1"></i> Social
-              </h5>
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="social-fb">Facebook</label>
-                    <div class="input-group">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fab fa-facebook-square"></i></span>
-                      </div>
-                      <input type="text" class="form-control" id="social-fb" placeholder="Url" />
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="social-tw">Twitter</label>
-                    <div class="input-group">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fab fa-twitter"></i></span>
-                      </div>
-                      <input type="text" class="form-control" id="social-tw" placeholder="Username" />
-                    </div>
-                  </div>
-                </div>
-                <!-- end col -->
-              </div>
-              <!-- end row -->
-
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="social-insta">Instagram</label>
-                    <div class="input-group">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fab fa-instagram"></i></span>
-                      </div>
-                      <input type="text" class="form-control" id="social-insta" placeholder="Url" />
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="social-lin">Linkedin</label>
-                    <div class="input-group">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fab fa-linkedin"></i></span>
-                      </div>
-                      <input type="text" class="form-control" id="social-lin" placeholder="Url" />
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="social-gh">Github</label>
-                    <div class="input-group">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fab fa-github"></i></span>
-                      </div>
-                      <input type="text" class="form-control" id="social-gh" placeholder="Username" />
-                    </div>
-                  </div>
-                </div>
-                <!-- end col -->
-              </div>
-              <!-- end row -->
-
-              <div class="text-right">
-                <button type="submit" class="btn btn-success waves-effect waves-light mt-2" (click)="saveData()">
-                  <i class="mdi mdi-content-save"></i> Save
-                </button>
-              </div>
-
-              <!-- end col -->
+            <app-edit-guide-profile [guide]="guide"></app-edit-guide-profile>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
