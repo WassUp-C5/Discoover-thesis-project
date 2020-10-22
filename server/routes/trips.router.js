@@ -88,6 +88,16 @@ tripsRouter.get("/date/:date", (req, res) => {
     res.send(trip);
   });
 });
+/****************Update trip  ******************** */
+tripsRouter.put("/:id/edit", (req, res) => {
+  let id = req.params.id;
+  console.log("router section organizer log ==>", req.body);
+  Trip.updateOne({ _id: id }, req.body)
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => console.log(err));
+});
 
 /***********************Delete trip by id***************************/
 tripsRouter.delete("/:id", (req, res) => {
