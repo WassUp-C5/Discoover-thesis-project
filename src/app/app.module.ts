@@ -26,6 +26,7 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
 
 import { GuideNavBarComponent } from './guide/guide-navbar/guide-navbar.component';
 import { OrganizerProfileComponent } from './organizer/organizer-profile/organizer-profile.component';
+import { EditTripComponent } from './organizer/edit-trip-component/edit-trip.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
@@ -47,6 +48,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     OrganizerMyTripsComponent,
 
     OrganizerNavbarComponent,
+    EditTripComponent
 
   ],
   imports: [
