@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
   selector: 'app-guide-list-item',
@@ -7,10 +8,19 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class GuideListItemComponent implements OnInit {
   @Input() guide;
-  constructor() { }
+  constructor(private router: Router, private activatedRoute : ActivatedRoute) { }
 
   ngOnInit(): void {
 
   }
+
+  getGuideInfo(){
+    this.activatedRoute.params.subscribe(params => {
+      let id = params['id'];
+
+    this.router.navigate(['/guide/profile/'+id+'/'+this.guide._id])
+  })
+}
+
 
 }

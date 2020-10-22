@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute, Router } from "@angular/router";
+
 
 // import { User } from './../models/User';
 
@@ -10,7 +12,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class GuideProfileComponent implements OnInit {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private activatedRoute : ActivatedRoute, private router: Router) {}
 
   guide = {
      username : '',
@@ -36,8 +38,11 @@ export class GuideProfileComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.activatedRoute.params.subscribe(params => {
+      let id = params['guideId'];
+
     this.http
-      .get('/api/user/guide/5f8af2f5d7ebfa75d4997522')
+      .get('/api/user/guide/'+id)
       .subscribe((res : any) => {
         console.log('on init guide infos',res);
         this.guide = res;
@@ -45,6 +50,7 @@ export class GuideProfileComponent implements OnInit {
         this.guide.qualifications = res.qualifications;
         console.log('user qualification ==>', this.guide.qualifications)
       });
+    })
   }
 
   genderHandler(event: any){
@@ -71,7 +77,21 @@ export class GuideProfileComponent implements OnInit {
       console.log(data);
       })
   }
+  hire(){
+    this.activatedRoute.params.subscribe(params => {
+      let tripId = params['tripId'];
+      let guideId = params['guideId'];
+      console.log('trip id ====>', tripId);
+      console.log('guide id ====>', `/api/trips/${tripId}/edit`);
+      this.http.put(`/api/trips/${tripId}/edit`,{guide : guideId})
 
+      .subscribe(result=>{
+        console.log(result);
+
+      })
+
+    })
+  }
 
   //   addLanguage() {
   //     let row = document.createElement('div');
