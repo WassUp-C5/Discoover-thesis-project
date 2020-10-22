@@ -52,7 +52,11 @@ import { TripItemComponent } from './search-trip/trip-list/trip-item/trip-item.c
     OrganizerNavbarComponent,
 
     OrganizerNavbarComponent,
+<<<<<<< HEAD
     EditTripComponent,
+=======
+    EditTripComponent
+>>>>>>> fixing last commit
 
     GuideListComponent,
 
