@@ -67,5 +67,5 @@ userRouter.get('/guides', (req, res) => {
       console.log('result ===>', result);
     })
     .catch((err) => console.log(err));
-
+  });
 module.exports = userRouter;
