@@ -1,7 +1,6 @@
-
 <div class="card card-profile">
   <div class="card-avatar">
-    <a href="#">
+    <a>
       <img class="img" src="../../assets/photo.jpg" />
     </a>
   </div>
@@ -13,6 +12,6 @@
     <p class="card-description">
       {{ (guide.bio |  slice:0:100) + "..." }}
     </p>
-    <a href="#" class="btn btn-danger btn-round" routerLink="guide/profile">More Info</a>
+    <a (click)="getGuideInfo()" class="btn btn-danger btn-round" routerLink="guide/profile">More Info</a>
   </div>
 </div>

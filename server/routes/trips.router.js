@@ -37,10 +37,11 @@ tripsRouter.get("/:id", (req, res) => {
     console.log("trip ===> ", trip);
   });
 });
-/****************Update trip  ******************** */
+/****************Update trip  ************** To be edited so it send a proposal to the guide before updating DB****** */
 tripsRouter.put("/:id/edit", (req, res) => {
   let id = req.params.id;
-  console.log("router section organizer log ==>", req.body);
+  let guideId = req.body.guide
+  console.log("logging guide id and trip id ==>", id, guideId);
   Trip.updateOne({ _id: id }, req.body)
     .then((result) => {
       res.send(result);

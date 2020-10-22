@@ -13,7 +13,6 @@ import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
 import { EntryComponent } from './guide/guide-profile/entry-list/entry.component';
 import { OrganizerNavbarComponent } from './organizer/organizer-navbar/organizer-navbar.component';
-import { OrganizerMyTripsComponent } from './organizer/organizer-my-trips/organizer-my-trips.component';
 import { TripDetailsComponent } from './organizer/trip-details/trip-details.component';
 
 import { EditGuideProfileComponent } from './guide/guide-profile/edit-guide-profile/edit-guide-profile.component';
@@ -49,7 +48,6 @@ import { GuideListItemComponent } from './organizer/guide-list/guide-list-item/g
     EditGuideProfileComponent,
     EntryComponent,
     OrganizerNavbarComponent,
-    OrganizerMyTripsComponent,
 
     OrganizerNavbarComponent,
     EditTripComponent,
