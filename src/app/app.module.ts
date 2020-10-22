@@ -14,6 +14,7 @@ import { SignupComponent } from './signup/signup.component';
 import { EntryComponent } from './guide/guide-profile/entry-list/entry.component';
 import { OrganizerNavbarComponent } from './organizer/organizer-navbar/organizer-navbar.component';
 import { OrganizerMyTripsComponent } from './organizer/organizer-my-trips/organizer-my-trips.component';
+import { EditGuideProfileComponent } from './guide/guide-profile/edit-guide-profile/edit-guide-profile.component';
 
 /* Angular material */
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -39,7 +40,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     GuideProfileComponent,
     SignupComponent,
     SigninComponent,
-
+    EditGuideProfileComponent,
     EntryComponent,
     OrganizerNavbarComponent,
     OrganizerMyTripsComponent,
