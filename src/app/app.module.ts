@@ -28,6 +28,8 @@ import { GuideNavBarComponent } from './guide/guide-navbar/guide-navbar.componen
 import { OrganizerProfileComponent } from './organizer/organizer-profile/organizer-profile.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
+import { GuideListComponent } from './organizer/guide-list/guide-list.component';
+import { GuideListItemComponent } from './organizer/guide-list/guide-list-item/guide-list-item.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,6 +49,11 @@ import { ReactiveFormsModule } from '@angular/forms';
     OrganizerMyTripsComponent,
 
     OrganizerNavbarComponent,
+
+    GuideListComponent,
+
+    GuideListItemComponent,
+
 
   ],
   imports: [
