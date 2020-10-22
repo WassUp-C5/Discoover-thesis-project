@@ -21,6 +21,7 @@ const routes: Routes = [
   { path: 'organizer/trip/edit/:id', component: EditTripComponent },
   { path: 'organizer/trip/details/:id', component: TripDetailsComponent },
   { path: 'organizer/trip/details/guides/:id', component: GuideListComponent },
+  { path: 'guide/profile', component: GuideProfileComponent },
   { path: 'guide/profile/:tripId/:guideId', component: GuideProfileComponent },
   { path: 'guideTrip', component: GuideATripComponent },
   { path: 'signup', component: SignupComponent },
