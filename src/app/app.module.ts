@@ -16,6 +16,7 @@ import { OrganizerNavbarComponent } from './organizer/organizer-navbar/organizer
 import { OrganizerMyTripsComponent } from './organizer/organizer-my-trips/organizer-my-trips.component';
 import { TripDetailsComponent } from './organizer/trip-details/trip-details.component';
 
+import { EditGuideProfileComponent } from './guide/guide-profile/edit-guide-profile/edit-guide-profile.component';
 
 /* Angular material */
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -45,6 +46,7 @@ import { GuideListItemComponent } from './organizer/guide-list/guide-list-item/g
     SignupComponent,
     SigninComponent,
     TripDetailsComponent,
+    EditGuideProfileComponent,
     EntryComponent,
     OrganizerNavbarComponent,
     OrganizerMyTripsComponent,

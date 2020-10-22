@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { TokenStorageService } from 'src/app/services/token-storage.service';
 
 // import { User } from './../models/User';
 
@@ -9,68 +10,51 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./guide-profile.component.css'],
 })
 export class GuideProfileComponent implements OnInit {
-
-  constructor(private http: HttpClient) {}
-
   guide = {
-     username : '',
-     first_name : '',
-     last_name : '',
-     gender : '',
-     location : '',
-     email : '',
-     password : '',
-     bio : '',
-     phone_number : '',
-     qualifications : []
-  }
-  // guideUser: User;
-  // userQualifications: Array<any>;
-  // userData: Array<any>;
-  language: string = '';
-  selectedLevel: string = '';
-  fullName = '';
-  // @Input() qualification;
-  // @Input() type;
+    username: '',
+    first_name: '',
+    last_name: '',
+    gender: '',
+    location: '',
+    email: '',
+    password: '',
+    bio: '',
+    phone_number: '',
+    qualifications: [],
+  };
+  currentUser = this.tokenStorage.getUser();
 
 
+  constructor(private http: HttpClient, private tokenStorage: TokenStorageService) {}
 
   ngOnInit(): void {
     this.http
-      .get('/api/user/guide/5f8af2f5d7ebfa75d4997522')
-      .subscribe((res : any) => {
-        console.log('on init guide infos',res);
+      .get(`/api/user/guide/${this.currentUser.id}`)
+      .subscribe((res: any) => {
+        console.log('on init guide infos', res);
         this.guide = res;
-        this.fullName = this.guide.first_name + ' ' + this.guide.last_name;
+        this.guide.gender = 'Male';
+        console.log( this.guide);
         this.guide.qualifications = res.qualifications;
-        console.log('user qualification ==>', this.guide.qualifications)
+        console.log('user qualification ==>', this.guide.qualifications);
       });
   }
 
-  genderHandler(event: any){
-    this.guide.gender = event.target.value;
-    console.log(this.guide.gender)
-  }
+  // genderHandler(event: any) {
+  //   this.guide.gender = event.target.value;
+  //   console.log(this.guide.gender);
+  // }
 
-  changeLanguageHandler(event: any) {
-    this.language = event.target.value;
-    console.log('the language ===>', this.language);
-  }
+  // changeLanguageHandler(event: any) {
+  //   this.language = event.target.value;
+  //   console.log('the language ===>', this.language);
+  // }
 
-  changeLevelHandler(event: any) {
-    this.selectedLevel = event.target.value;
-    console.log('the lenguage level ===>', this.selectedLevel);
-  }
+  // changeLevelHandler(event: any) {
+  //   this.selectedLevel = event.target.value;
+  //   console.log('the lenguage level ===>', this.selectedLevel);
+  // }
 
-  saveData() {
-    window.location.reload();
-    this.guide.qualifications.push({language : this.language, level : this.selectedLevel})
-    console.log('guide profile updated with ==>', this.guide)
-    this.http.put<any>("/api/user/guide/edit",this.guide )
-    .subscribe(data => {
-      console.log(data);
-      })
-  }
 
 
   //   addLanguage() {
