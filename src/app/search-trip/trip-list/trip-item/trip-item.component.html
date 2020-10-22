@@ -1,14 +1,16 @@
-<div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="../../assets/photo.jpg" alt="Destination Image">
-  <div class="card-body">
-    <h5 class="card-title">{{ trip.title | titlecase}}</h5>
-    <p class="card-text">{{ trip.description }}</p>
-  </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">Location :{{ trip.location }}</li>
-    <li class="list-group-item">Price: {{ trip.price }}</li>
-    <li class="list-group-item">Date :{{ trip.date }}</li>
-    <li class="list-group-item">Seats :{{ trip.maxTravelers }}</li>
-  </ul>
-  <button type="button" class="btn btn-info">More Details</button>
-</div>
+
+        <div class="card-content">
+          <div class="card-img">
+            <img src="https://placeimg.com/380/230/nature" alt="Location Picture" />
+            <span>
+              <h4>{{ trip.price }}</h4>
+            </span>
+          </div>
+          <div class="card-desc">
+            <h3>{{ trip.title }}</h3>
+            <p>
+              {{ trip.description }}
+            </p>
+            <a class="btn-card">Show more</a>
+          </div>
+        </div>
