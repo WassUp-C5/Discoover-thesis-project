@@ -50,7 +50,7 @@ import { GuideListItemComponent } from './organizer/guide-list/guide-list-item/g
     OrganizerMyTripsComponent,
 
     OrganizerNavbarComponent,
-    EditTripComponent
+    EditTripComponent,
 
     GuideListComponent,
 

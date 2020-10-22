@@ -60,12 +60,13 @@ userRouter.put("/guide/edit", (req, res) => {
 });
 
 /************************Get the guides list***************/
-userRouter.get('/guides', (req, res) => {
+userRouter.get('/guide', (req, res) => {
   User.find({ roles: "guide" })
     .then((result) => {
       res.send(result);
       console.log('result ===>', result);
     })
     .catch((err) => console.log(err));
+})
 
 module.exports = userRouter;
