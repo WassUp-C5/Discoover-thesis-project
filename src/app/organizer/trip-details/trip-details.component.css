@@ -1,0 +1,30 @@
+body {
+  background: #eee;
+  margin-top: 50px;
+}
+.home-design-info figure img,
+.home-dev-info figure img {
+  margin-top: -50px;
+  width: 200px;
+  height: 200px;
+}
+
+#principal-content {
+  margin-top: 175px;
+  background: none repeat scroll 0 0 #fff;
+  padding: 0;
+  position: relative;
+  z-index: 980;
+}
+
+#principal-content #develop {
+  margin: 1em 0;
+  text-align: center;
+}
+
+.addGuide,
+.cancel,
+.edit {
+  margin-left: 20px;
+  float: right;
+}

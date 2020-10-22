@@ -19,11 +19,18 @@ export class LandingPageComponent implements OnInit {
     console.log('clicked');
     if (this.tokenStorage.getToken()) {
       if (userRole === 'organizer') {
-        this.router.navigate(['/organizer/trips']);
+        if (this.tokenStorage.getUser().roles[1] === 'organizer') {
+          this.router.navigate(['/organizer/trips']);
+        } else {
+          this.router.navigate(['/signup/' + userRole]);
+        }
       } else if (userRole === 'guide') {
-        this.router.navigate(['/organizer/trips']);
-      }
-      else {
+        if (this.tokenStorage.getUser().roles[1] === 'guide') {
+          this.router.navigate(['/guide/profile']);
+        } else {
+          this.router.navigate(['/signup/' + userRole]);
+        }
+      } else {
         this.router.navigate(['/searchTrip']);
       }
     } else {
