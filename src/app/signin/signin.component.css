@@ -15,7 +15,6 @@
 .form-signin-container {
   margin: 0px auto;
 }
-
 .btn-signin {
   background-color: red;
   border: none;
@@ -29,7 +28,6 @@
   border-radius: 5px;
   width: 100%;
 }
-
 @media only screen and (max-width: 600px) {
   .form-signin {
     background-color: white;

@@ -2,8 +2,8 @@ const authRouter = require("express").Router();
 const User = require("../models/User");
 var bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-
-authRouter.post("/signup/:role", async (req, res) => {
+/*****************Create a new user **************************** */
+authRouter.post("/signup", async (req, res) => {
   try {
     console.log(req.body);
     var user = new User(req.body);
@@ -16,8 +16,9 @@ authRouter.post("/signup/:role", async (req, res) => {
     res.status(400).send("error");
   }
 });
-
+/********************Sign In******************************************** */
 authRouter.post("/signin", async (req, res) => {
+  console.log(req.body);
   try {
     var user = await User.findOne({ username: req.body.username });
     if (!user) {
@@ -30,11 +31,10 @@ authRouter.post("/signin", async (req, res) => {
         .status(401)
         .json({ title: "log in failed", error: "invalid data" });
     }
-    let token = jwt.sign({ userId: user._id });
+    let token = jwt.sign({ userId: user._id }, "it's a secret");
     res.status(200).json({
-      title: "Authentication successful",
       token: token,
-      id: user.id,
+      user: { id: user._id, roles: user.roles },
     });
     console.log(user);
   } catch (error) {

@@ -1,0 +1,63 @@
+<app-organizer-navbar></app-organizer-navbar>
+
+
+<!--  -->
+<section id="principal-content">
+  <div class="container bootstrap snippets bootdey">
+    <div class="row">
+      <div class="col-md-12">
+        <article>
+          <header>
+            <h2 class="text-primary text-center">
+
+            </h2>
+          </header>
+          <div class="row" id="design">
+            <div class="col-md-4 col-md-offset-1">
+              <div class="home-design-info">
+                <figure>
+                  <img class="img-circle img-thumbnail" src="https://placeimg.com/380/230/nature">
+                  <p>organizer name</p>
+                </figure>
+              </div>
+            </div> <!-- 4 -->
+            <div class="col-md-6">
+              <div class="deets">
+
+                <h3 class="text-primary"><span class="glyphicon glyphicon-arrow-right"></span> {{trip[0].title}}
+                </h3>
+                <div>
+                  date : {{trip[0].date}}
+                </div>
+                <div>
+                  Location : {{trip[0].location}}
+                </div>
+                <div>
+                  price : {{trip[0].price}}
+                </div>
+                <div>
+                  Max travelers : {{trip[0].maxTravelers}}
+                </div>
+                <div>
+                  <p>Trip description : <br>{{trip[0].description}}</p>
+                </div>
+
+
+              </div>
+            </div>
+          </div> <!-- /row -->
+
+        </article>
+        <button (click)="cancel()" class="cancel" mat-flat-button color="warn">
+          Cancel
+        </button>
+        <button class="addGuide" mat-flat-button color="warn">
+          Add a Local Guide
+        </button>
+        <button (click)="goEdit()" class="edit" mat-flat-button color="warn">
+          Edit
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,46 @@
+<app-organizer-navbar></app-organizer-navbar>
+<h1>Edit a trip</h1>
+<form class="text-center border border-light p-5">
+  <p class="h4 mb-4">organize a trip</p>
+
+  <!-- Title -->
+
+  <label>Title</label>
+  <input type="text" id="defaultContactFormName" class="form-control mb-4" value={{toEdit[0].title}} name="title"
+    [(ngModel)]="toEdit[0].title" />
+
+  <!-- Location -->
+  <label>location</label>
+  <select name="location" value={{toEdit[0].location}} id="cars" [(ngModel)]="toEdit[0].location"
+    class="form-control mb-4">
+    <option value="Ghar El melah">Ghar El melah</option>
+    <option value="Rafraf">Rafraf</option>
+    <option value="Rimel">Rimel</option>
+
+  </select>
+
+
+  <label>Price</label>
+  <input type="text" name="price" id="defaultContactFormEmail" class="form-control mb-4" value={{toEdit[0].price}}
+    [(ngModel)]="toEdit[0].price" />
+
+
+  <!-- Date of trips -->
+  <label>Date of trips</label>
+  <input type="date" name="date" class="form-control" value={{toEdit[0].date}} [(ngModel)]="toEdit[0].date" />
+
+  <!-- Description -->
+  <label>Description</label>
+  <div class="form-group">
+    <textarea class="form-control rounded-0" name="description" id="exampleFormControlTextarea2" rows="3"
+      value={{toEdit[0].description}} [(ngModel)]="toEdit[0].description"></textarea>
+  </div>
+
+  <label>Max Travelers</label>
+  <input type="location" id="defaultContactFormEmail" name="maxTravelers" class="form-control mb-4"
+    value={{toEdit[0].maxTravelers}} [(ngModel)]="toEdit[0].maxTravelers" />
+
+
+  <!-- Send button -->
+  <button (click)="onSubmit()" class="btn btn-info btn-block">Send</button>
+</form>
