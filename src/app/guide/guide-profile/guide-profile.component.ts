@@ -31,6 +31,8 @@ export class GuideProfileComponent implements OnInit {
     phone_number: '',
     qualifications: [],
   };
+  proposals = [];
+  trips = [];
   currentUser = this.tokenStorage.getUser();
   userRole = this.currentUser.roles[1];
   condition = this.currentUser.roles[1] !== 'guide';
@@ -48,10 +50,20 @@ export class GuideProfileComponent implements OnInit {
         this.guide.qualifications = res.qualifications;
         console.log('user qualification ==>', this.guide.qualifications);
       });
+      /*************Get all the proposal by guide ID******************* */
       this.http
         .get(`/api/proposal/proposals/${userId}`)
         .subscribe((res: any) => {
-          console.log('on init guide proposals', res);
+          this.proposals = res;
+          console.log('on init guide proposals', this.proposals);
+          this.proposals.forEach((proposal) => {
+            let tripId = proposal.tripId;
+            this.http.get(`/api/trips/${tripId}`).subscribe((res) => {
+              console.log('tripiya wa7da ', res);
+              this.trips.push(res);
+            });
+          });
+          console.log('this.trips ======>', this.trips);
         });
     });
   }
@@ -90,8 +102,12 @@ export class GuideProfileComponent implements OnInit {
           console.log(result);
         });
     });
+
     this.router.navigate(['/organizer/profile']);
   }
+  /************We are here for the button of the accept and decline************************ */
+  accept() {}
+  decline() {}
 
   //   addLanguage() {
   //     let row = document.createElement('div');

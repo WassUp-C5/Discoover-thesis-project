@@ -8,13 +8,20 @@
   <div class="row">
     <div class="col-lg-4 col-xl-4">
       <div class="card-box text-center">
-        <img src="../../assets/photo.jpg" class="rounded-circle avatar-xl img-thumbnail" id="profileImg"
-          alt="profile-image" />
+        <img
+          src="../../assets/photo.jpg"
+          class="rounded-circle avatar-xl img-thumbnail"
+          id="profileImg"
+          alt="profile-image"
+        />
 
         <h4 class="mb-0">
           {{ this.guide.first_name + " " + this.guide.last_name }}
         </h4>
-        <button type="button" class="btn btn-success btn-xs waves-effect mb-2 waves-light">
+        <button
+          type="button"
+          class="btn btn-success btn-xs waves-effect mb-2 waves-light"
+        >
           Update Photo
         </button>
 
@@ -29,7 +36,8 @@
           </p>
 
           <p class="text-muted mb-2 font-13">
-            <strong>Mobile :</strong><span class="ml-2">+216{{ guide.phone_number }}</span>
+            <strong>Mobile :</strong
+            ><span class="ml-2">+216{{ guide.phone_number }}</span>
           </p>
 
           <p class="text-muted mb-2 font-13">
@@ -69,13 +77,33 @@
       <div class="card-box">
         <ul class="nav nav-pills navtab-bg">
           <li class="nav-item">
-            <a href="#about-me" data-toggle="tab" aria-expanded="true" class="nav-link ml-0 active">
+            <a
+              href="#about-me"
+              data-toggle="tab"
+              aria-expanded="true"
+              class="nav-link ml-0 active"
+            >
               <i class="mdi mdi-face-profile mr-1"></i>About Me
             </a>
           </li>
           <li class="nav-item" ng-if="">
-            <a href="#settings" data-toggle="tab" aria-expanded="false" class="nav-link">
+            <a
+              href="#settings"
+              data-toggle="tab"
+              aria-expanded="false"
+              class="nav-link"
+            >
               <i class="mdi mdi-settings-outline mr-1"></i>Settings
+            </a>
+          </li>
+          <li class="nav-item" ng-if="">
+            <a
+              href="#proposals"
+              data-toggle="tab"
+              aria-expanded="false"
+              class="nav-link"
+            >
+              <i class="mdi mdi-settings-outline mr-1"></i>proposals
             </a>
           </li>
         </ul>
@@ -101,11 +129,58 @@
               <li>Guitar Moderate</li>
               <li>Golf Passif</li>
             </ul> -->
-            <button type="submit" (click)="hire()" class="btn btn-danger btn-signin">Hire Me</button>
+            <button
+              type="submit"
+              (click)="hire()"
+              class="btn btn-danger btn-signin"
+            >
+              Hire Me
+            </button>
           </div>
           <!-- end timeline content-->
           <div class="tab-pane" id="settings">
             <app-edit-guide-profile [guide]="guide"></app-edit-guide-profile>
+          </div>
+
+          <div class="tab-pane" id="proposals">
+            <h5>My PROPOSALS</h5>
+
+            <ul>
+              <li *ngFor="let trip of trips">
+                <h3 class="text-primary">
+                  <span class="glyphicon glyphicon-arrow-right"></span>
+                  {{ trip.title }}
+                </h3>
+                <div>date : {{ trip.date }}</div>
+                <div>Location : {{ trip.location }}</div>
+                <div>price : {{ trip.price }}</div>
+                <div>Max travelers : {{ trip.maxTravelers }}</div>
+                <div>
+                  <p>Trip description : <br />{{ trip.description }}</p>
+                </div>
+                <button
+                  type="submit"
+                  (click)="accept()"
+                  class="btn btn-secondary btn-signin"
+                >
+                  Accept
+                </button>
+                <button
+                  type="submit"
+                  (click)="decline()"
+                  class="btn btn-danger btn-signin"
+                >
+                  Decline
+                </button>
+              </li>
+            </ul>
+            <!-- <hr />
+              <h5>My Skills</h5>
+              <ul>
+                <li>Soccer Moderate</li>
+                <li>Guitar Moderate</li>
+                <li>Golf Passif</li>
+              </ul> -->
           </div>
         </div>
       </div>
