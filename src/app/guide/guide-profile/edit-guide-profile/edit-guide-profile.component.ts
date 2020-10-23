@@ -84,5 +84,4 @@ export class EditGuideProfileComponent implements OnInit {
       this.showSuccessMessage = false;
     }, 5000);
   }
-
 }
