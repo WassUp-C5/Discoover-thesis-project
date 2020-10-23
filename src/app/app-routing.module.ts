@@ -20,7 +20,7 @@ const routes: Routes = [
   { path: 'organizer/trip/edit/:id', component: EditTripComponent },
   { path: 'organizer/trips', component: OrganizerMyTripsComponent },
   { path: 'organizer/trip/details/:id', component: TripDetailsComponent },
-  { path: 'guide/profile', component: GuideProfileComponent },
+  { path: 'guide/:id/profile', component: GuideProfileComponent },
   { path: 'guideTrip', component: GuideATripComponent },
   { path: 'signup', component: SignupComponent },
   {path : 'signup/:role',component:SignupComponent},
