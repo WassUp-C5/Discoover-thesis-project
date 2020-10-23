@@ -10,8 +10,8 @@ import { element } from 'protractor';
 })
 export class SearchTripComponent implements OnInit {
   trips: Trip[];
-  pickedDate: "";
-  searchLocation = "";
+  pickedDate: any;
+  searchLocation = '';
   constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {
@@ -29,16 +29,45 @@ export class SearchTripComponent implements OnInit {
 
   searchLocationHandler(event: any) {
     this.searchLocation = event.target.value;
+    if(this.searchLocation === "" && this.pickedDate === undefined) {
+    this.reload()
     console.log('this is the location ==>', this.searchLocation);
-
+    }
   }
   searchDateHandler(event: any) {
     this.pickedDate = event.target.value;
     console.log('this is the date ==>', this.pickedDate);
-
   }
+
   getLocationTrips() {
-    this.trips = this.trips.filter(trip => trip.location === this.searchLocation);
+    console.log('pickDate is ==>', new Date(this.pickedDate));
+    console.log('LOCATION ==>', this.searchLocation);
+    console.log(this.trips);
 
-  }
+    if (this.searchLocation !== '' && this.pickedDate === undefined) {
+      this.trips = this.trips.filter(
+        (trip) => trip.location === this.searchLocation
+      );
+    } else if (this.searchLocation === '' && this.pickedDate !== undefined) {
+      this.trips = this.trips.filter(
+        (trip) =>
+          new Date(trip.date).toLocaleDateString() ===
+          new Date(this.pickedDate).toLocaleDateString()
+      );
+    } else if (this.searchLocation !== '' && this.pickedDate !== undefined) {
+      this.trips = this.trips.filter(
+        (trip) =>
+          trip.location === this.searchLocation && trip.date === this.pickedDate
+      );
+    }
+    else if(this.searchLocation === "" && this.pickedDate === undefined){
+     this.reload();
+    }
+ }
+
+ reload() {
+    this.http.get('/api/trips').subscribe((data: Trip[]) => {
+      this.trips = data;
+    });
+ }
 }
