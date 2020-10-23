@@ -58,7 +58,7 @@ userRouter.put("/guide/edit", (req, res) => {
 });
 
 /************************Get the guides list***************/
-userRouter.get("/guide", (req, res) => {
+userRouter.get("/guides", (req, res) => {
   User.find({ roles: "guide" })
     .then((result) => {
       res.send(result);
