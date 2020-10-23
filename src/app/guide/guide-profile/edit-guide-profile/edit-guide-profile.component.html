@@ -96,11 +96,12 @@
         <div class="form-group">
           <label for="userpassword"> Old password</label>
           <input
+          name="currentPassword"
             type="password"
             class="form-control"
             id="userpassword"
             placeholder="Enter password"
-            [value]="oldPassword"
+            [(ngModel)]="currentPassword"
           />
         </div>
       </div>
@@ -108,11 +109,12 @@
         <div class="form-group">
           <label for="userpassword">New password</label>
           <input
+          name="newPassword"
             type="password"
             class="form-control"
             id="userpassword"
             placeholder="Enter password"
-            [value]="newPassword"
+            [(ngModel)]="newPassword"
           />
         </div>
       </div>
