@@ -16,16 +16,9 @@ import { SignupComponent } from './signup/signup.component';
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
   { path: 'searchTrip', component: SearchTripComponent },
-<<<<<<< HEAD
   { path: 'organizer/:id/profile', component: OrganizerProfileComponent },
   { path: 'organizer/:id/trip/add', component: OrganizeATripComponent },
   { path: 'organizer/trip/edit/:id', component: EditTripComponent },
-=======
-  { path: 'organizer/profile', component: OrganizerProfileComponent },
-  { path: 'organizer/trip/add/:id', component: OrganizeATripComponent },
-  { path: 'organizer/trip/edit/:id', component: EditTripComponent },
-  { path: 'organizer/trips', component: OrganizerMyTripsComponent },
->>>>>>> fixing last commit
   { path: 'organizer/trip/details/:id', component: TripDetailsComponent },
   { path: 'guide/:id/profile', component: GuideProfileComponent },
   { path: 'organizer/trip/details/guides/:id', component: GuideListComponent },

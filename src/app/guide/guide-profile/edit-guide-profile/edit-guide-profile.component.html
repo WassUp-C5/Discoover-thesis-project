@@ -12,7 +12,7 @@
           id="username"
           name="username"
           value="{{ guide.username }}"
-          [ngModel]="guide.username"
+          [(ngModel)]="guide.username"
         />
       </div>
     </div>
@@ -25,7 +25,7 @@
           id="email"
           name="email"
           value="{{ guide.email }}"
-          [ngModel]="guide.email"
+          [(ngModel)]="guide.email"
         />
       </div>
     </div>
@@ -38,7 +38,7 @@
           id="firstname"
           name="firstname"
           value="{{ guide.first_name }}"
-          [ngModel]="guide.first_name"
+          [(ngModel)]="guide.first_name"
         />
       </div>
     </div>
@@ -51,7 +51,7 @@
           id="lastname"
           name="lastname"
           value="{{ guide.last_name }}"
-          [ngModel]="guide.last_name"
+          [(ngModel)]="guide.last_name"
         />
       </div>
     </div>
@@ -64,7 +64,7 @@
           id="mobile"
           name="mobile"
           value="{{ guide.phone_number }}"
-          [ngModel]="guide.phone_number"
+          [(ngModel)]="guide.phone_number"
         />
       </div>
     </div>
@@ -145,7 +145,7 @@
             type="text"
             class="form-control"
             placeholder="I speak ..."
-            [ngModel]="language"
+            [(ngModel)]="language"
             name="language"
           />
         </div>
@@ -153,7 +153,7 @@
       <div class="col-md-6">
         <div class="form-group">
           <select
-            [ngModel]="guide.qualifications"
+            [(ngModel)]="guide.qualifications"
             class="form-control"
             name="qualifications"
           >
