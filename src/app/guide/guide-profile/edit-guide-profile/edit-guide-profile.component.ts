@@ -12,13 +12,12 @@ import { catchError, retry } from 'rxjs/operators';
 export class EditGuideProfileComponent implements OnInit {
   @Input() guide;
 
-  guidep;
   currentUser: any;
   isLoggedIn: boolean;
   guideId: string;
   language: string = '';
   selectedLevel: string = '';
-  oldPassword: string = '';
+  currentPassword: string = '';
   newPassword: string = '';
 
   constructor(
@@ -52,21 +51,24 @@ export class EditGuideProfileComponent implements OnInit {
   }
 
   changePassword() {
-    console.log(this.oldPassword, this.newPassword);
-    this.http
-      .put('/api/user/:id/edit', {
-        oldPassword: this.oldPassword,
-        newPassword: this.newPassword,
-      })
+    console.log(this.currentPassword, this.newPassword);
+    if (this.currentPassword && this.newPassword) {
 
-      .subscribe(
-        (result) => {
-          console.log(result);
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
+      this.http
+        .put(`/api/user/${this.currentUser.id}/password/edit`, {
+          currentPassword: this.currentPassword,
+          newPassword: this.newPassword,
+        })
+
+        .subscribe(
+          (result) => {
+            console.log(result);
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+    }
   }
 
 }
