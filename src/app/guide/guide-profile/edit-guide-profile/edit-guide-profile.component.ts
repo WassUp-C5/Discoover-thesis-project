@@ -1,29 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
-<<<<<<< HEAD
-=======
 import { TokenStorageService } from './../../../services/token-storage.service';
 import { ActivatedRoute } from '@angular/router';
->>>>>>> test
 
 @Component({
   selector: 'app-edit-guide-profile',
   templateUrl: './edit-guide-profile.component.html',
-<<<<<<< HEAD
-  styleUrls: ['./edit-guide-profile.component.css']
-})
-export class EditGuideProfileComponent implements OnInit {
-
-  @Input() guide;
-
-
-  language: string = '';
-  selectedLevel: string = '';
-
-  constructor(private http: HttpClient) { }
-
-  ngOnInit(): void {
-=======
   styleUrls: ['./edit-guide-profile.component.css'],
 })
 export class EditGuideProfileComponent implements OnInit {
@@ -56,7 +38,6 @@ export class EditGuideProfileComponent implements OnInit {
 
       // In a real app: dispatch action to load the details here.
    });
->>>>>>> test
   }
 
   saveData() {

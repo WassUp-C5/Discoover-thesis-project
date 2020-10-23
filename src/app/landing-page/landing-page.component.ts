@@ -19,13 +19,13 @@ export class LandingPageComponent implements OnInit {
     console.log('clicked');
     if (this.tokenStorage.getToken()) {
       if (userRole === 'organizer') {
-        if (this.tokenStorage.getUser().roles[1] === 'organizer') {
-          this.router.navigate(['/organizer/trips']);
+        if (this.tokenStorage.getUser().roles.includes('organizer')) {
+          this.router.navigate(['/organizer/profile']);
         } else {
           this.router.navigate(['/signup/' + userRole]);
         }
       } else if (userRole === 'guide') {
-        if (this.tokenStorage.getUser().roles[1] === 'guide') {
+        if (this.tokenStorage.getUser().roles.includes('guide')) {
           this.router.navigate(['/guide/profile']);
         } else {
           this.router.navigate(['/signup/' + userRole]);
@@ -34,7 +34,11 @@ export class LandingPageComponent implements OnInit {
         this.router.navigate(['/searchTrip']);
       }
     } else {
-      this.router.navigate(['/signup/' + userRole]);
+      if (userRole === 'traveler') {
+        this.router.navigate(['/searchTrip']);
+      } else {
+        this.router.navigate(['/signup/' + userRole]);
+      }
     }
   }
 }
