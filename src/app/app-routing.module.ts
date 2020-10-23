@@ -20,13 +20,10 @@ const routes: Routes = [
   { path: 'organizer/trip/add/:id', component: OrganizeATripComponent },
   { path: 'organizer/trip/edit/:id', component: EditTripComponent },
   { path: 'organizer/trip/details/:id', component: TripDetailsComponent },
-<<<<<<< HEAD
   { path: 'guide/:id/profile', component: GuideProfileComponent },
-=======
   { path: 'organizer/trip/details/guides/:id', component: GuideListComponent },
   { path: 'guide/profile', component: GuideProfileComponent },
   { path: 'guide/profile/:tripId/:guideId', component: GuideProfileComponent },
->>>>>>> f84c71d4aaecf44236af4cedc695be1d4835cc70
   { path: 'guideTrip', component: GuideATripComponent },
   { path: 'signup', component: SignupComponent },
   {path : 'signup/:role',component:SignupComponent},
