@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Component, OnInit } from '@angular/core';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
@@ -12,8 +12,12 @@ import { TokenStorageService } from 'src/app/services/token-storage.service';
   styleUrls: ['./guide-profile.component.css'],
 })
 export class GuideProfileComponent implements OnInit {
-
-  constructor(private http: HttpClient,private tokenStorage: TokenStorageService, private activatedRoute : ActivatedRoute, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private tokenStorage: TokenStorageService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router
+  ) {}
 
   guide = {
     username: '',
@@ -28,27 +32,28 @@ export class GuideProfileComponent implements OnInit {
     qualifications: [],
   };
   currentUser = this.tokenStorage.getUser();
-userRole = this.currentUser.roles[1];
-condition = this.currentUser.roles[1] !== 'guide'
-
+  userRole = this.currentUser.roles[1];
+  condition = this.currentUser.roles[1] !== 'guide';
 
   ngOnInit(): void {
-
-    this.activatedRoute.params.subscribe(params => {
+    this.activatedRoute.params.subscribe((params) => {
       let id = params['guideId'];
-      let userId = this.userRole === 'guide' ? this.currentUser.id : id ;
+      let userId = this.userRole === 'guide' ? this.currentUser.id : id;
 
-    this.http
-      .get(`/api/user/guide/${userId}`)
-      .subscribe((res: any) => {
+      this.http.get(`/api/user/guide/${userId}`).subscribe((res: any) => {
         console.log('on init guide infos', res);
         this.guide = res;
         // this.guide.gender = 'Male';
-        console.log( this.guide);
+        console.log(this.guide);
         this.guide.qualifications = res.qualifications;
         console.log('user qualification ==>', this.guide.qualifications);
       });
-    })
+      this.http
+        .get(`/api/proposal/proposals/${userId}`)
+        .subscribe((res: any) => {
+          console.log('on init guide proposals', res);
+        });
+    });
   }
 
   // genderHandler(event: any) {
@@ -66,28 +71,26 @@ condition = this.currentUser.roles[1] !== 'guide'
   //   console.log('the lenguage level ===>', this.selectedLevel);
   // }
 
-
-  hire(){
-    this.activatedRoute.params.subscribe(params => {
+  hire() {
+    this.activatedRoute.params.subscribe((params) => {
       let tripId = params['tripId'];
       let guideId = params['guideId'];
       let proposal = {
-        organizerId : this.currentUser.id,
-        guideId : guideId,
-        tripId : tripId,
-        accepted : false
-      }
+        organizerId: this.currentUser.id,
+        guideId: guideId,
+        tripId: tripId,
+        accepted: false,
+      };
       console.log('trip id ====>', tripId);
       console.log('guide id ====>', `/api/trips/${tripId}/edit`);
-      this.http.post("/api/proposal/add",proposal)
+      this.http
+        .post('/api/proposal/add', proposal)
 
-      .subscribe(result=>{
-        console.log(result);
-        this.router.navigate(['/organizer/profile']);
-
-      })
-
-    })
+        .subscribe((result) => {
+          console.log(result);
+        });
+    });
+    this.router.navigate(['/organizer/profile']);
   }
 
   //   addLanguage() {
