@@ -35,6 +35,12 @@ export class TripDetailsComponent implements OnInit {
       this.router.navigate(['/organizer/trip/edit/'+id])
     })
   }
+  goToGuides() {
+    this.activatedRoute.params.subscribe(params => {
+      let id = params['id'];
+      this.router.navigate(['/organizer/trip/details/guides/'+id])
+    })
+  }
 
   cancel(){
 

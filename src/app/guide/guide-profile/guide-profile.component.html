@@ -96,6 +96,16 @@
               <i class="mdi mdi-settings-outline mr-1"></i>Settings
             </a>
           </li>
+          <li class="nav-item" ng-if="">
+            <a
+              href="#proposals"
+              data-toggle="tab"
+              aria-expanded="false"
+              class="nav-link"
+            >
+              <i class="mdi mdi-settings-outline mr-1"></i>proposals
+            </a>
+          </li>
         </ul>
 
         <div class="tab-content">
@@ -119,10 +129,58 @@
               <li>Guitar Moderate</li>
               <li>Golf Passif</li>
             </ul> -->
+            <button
+              type="submit"
+              (click)="hire()"
+              class="btn btn-danger btn-signin"
+            >
+              Hire Me
+            </button>
           </div>
           <!-- end timeline content-->
           <div class="tab-pane" id="settings">
             <app-edit-guide-profile [guide]="guide"></app-edit-guide-profile>
+          </div>
+
+          <div class="tab-pane" id="proposals">
+            <h5>My PROPOSALS</h5>
+
+            <ul>
+              <li *ngFor="let trip of trips">
+                <h3 class="text-primary">
+                  <span class="glyphicon glyphicon-arrow-right"></span>
+                  {{ trip.res.title }}
+                </h3>
+                <div>date : {{ trip.res.date }}</div>
+                <div>Location : {{ trip.res.location }}</div>
+                <div>price : {{ trip.res.price }}</div>
+                <div>Max travelers : {{ trip.res.maxTravelers }}</div>
+                <div>
+                  <p>Trip description : <br />{{ trip.res.description }}</p>
+                </div>
+                <button
+                  type="submit"
+                  (click)="accept(trip.res._id, trip.proposalId)"
+                  class="btn btn-secondary btn-signin"
+                >
+                  Accept
+                </button>
+                <button
+                  type="submit"
+                  (click)="decline(trip.proposalId)"
+                  class="btn btn-danger btn-signin"
+                >
+                  Decline
+                </button>
+              </li>
+            </ul>
+            <!-- <hr />
+              <h5>My Skills</h5>
+              <ul>
+                <li>Soccer Moderate</li>
+                <li>Guitar Moderate</li>
+                <li>Golf Passif</li>
+              </ul> -->
           </div>
         </div>
       </div>
