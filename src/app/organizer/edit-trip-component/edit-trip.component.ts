@@ -13,14 +13,7 @@ import { HttpClient } from '@angular/common/http';
 export class EditTripComponent implements OnInit {
   trip: FormGroup;
   toEdit = [];
-  newData = {
-    title: '',
-    location: '',
-    price: '',
-    date: '',
-    description: '',
-    maxTravelers: ''
-  }
+
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,
@@ -47,12 +40,13 @@ export class EditTripComponent implements OnInit {
     console.log('this trip update', this.toEdit[0]);
     this.route.params.subscribe(params => {
       let id = params['id'];
-    // this.http.put(id,'api/trips/')
-    // .subscribe((res: any) => {
-    //   this.toEdit.push(res);
-    //   console.log(this.toEdit);
+    this.http.put('api/trips/'+ id+'/edit', this.toEdit[0])
+    .subscribe((res: any) => {
+      this.toEdit.push(res);
+      console.log(this.toEdit);
+      this.router.navigate(['/organizer/profile/'])
 
-    // });
+    });
     })
   }
 

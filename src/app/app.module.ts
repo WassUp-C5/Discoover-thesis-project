@@ -16,6 +16,7 @@ import { OrganizerNavbarComponent } from './organizer/organizer-navbar/organizer
 import { OrganizerMyTripsComponent } from './organizer/organizer-my-trips/organizer-my-trips.component';
 import { TripDetailsComponent } from './organizer/trip-details/trip-details.component';
 
+import { EditGuideProfileComponent } from './guide/guide-profile/edit-guide-profile/edit-guide-profile.component';
 
 /* Angular material */
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -26,6 +27,7 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
 
 import { GuideNavBarComponent } from './guide/guide-navbar/guide-navbar.component';
 import { OrganizerProfileComponent } from './organizer/organizer-profile/organizer-profile.component';
+import { EditTripComponent } from './organizer/edit-trip-component/edit-trip.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { GuideListComponent } from './organizer/guide-list/guide-list.component';
@@ -46,11 +48,13 @@ import { TripItemComponent } from './search-trip/trip-list/trip-item/trip-item.c
     SignupComponent,
     SigninComponent,
     TripDetailsComponent,
+    EditGuideProfileComponent,
     EntryComponent,
     OrganizerNavbarComponent,
     OrganizerMyTripsComponent,
 
     OrganizerNavbarComponent,
+    EditTripComponent,
 
     GuideListComponent,
 

@@ -1,0 +1,175 @@
+<form>
+  <h5 class="mb-3 text-uppercase bg-light p-2">
+    <mat-icon>person</mat-icon> Personal Info
+  </h5>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input
+          type="username"
+          class="form-control"
+          id="username"
+          name="username"
+          value="{{ guide.username }}"
+          [(ngModel)]="guide.username"
+        />
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          name="email"
+          value="{{ guide.email }}"
+          [(ngModel)]="guide.email"
+        />
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="firstname">First name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="firstname"
+          name="firstname"
+          value="{{ guide.first_name }}"
+          [(ngModel)]="guide.first_name"
+        />
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="lastname">Last name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="lastname"
+          name="lastname"
+          value="{{ guide.last_name }}"
+          [(ngModel)]="guide.last_name"
+        />
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="mobile">Mobile</label>
+        <input
+          type="text"
+          class="form-control"
+          id="mobile"
+          name="mobile"
+          value="{{ guide.phone_number }}"
+          [(ngModel)]="guide.phone_number"
+        />
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 text-right">
+      <button
+        type="submit"
+        class="btn btn-success waves-effect waves-light mt-2"
+        (click)="saveData()"
+      >
+      <i class='far fa-save'></i>
+        Save
+      </button>
+    </div>
+  </div>
+
+  <h5 class="mb-3 text-uppercase bg-light p-2">
+    <i class="mdi mdi-account-circle mr-1"></i> Change password
+  </h5>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="userpassword"> Old password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="userpassword"
+          placeholder="Enter password"
+        />
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="userpassword">New password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="userpassword"
+          placeholder="Enter password"
+        />
+      </div>
+    </div>
+    <!-- end col -->
+  </div>
+  <!-- end row -->
+  <div>
+    <h5 class="mb-3 text-uppercase bg-light p-2">
+      <i class="mdi mdi-office-building mr-1"></i> Languages And Skills
+    </h5>
+    <div class="row">
+      <div class="col-md-12">
+        <svg
+          width="1em"
+          height="1em"
+          viewBox="0 0 16 16"
+          class="bi bi-chat-square-quote-fill"
+          fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.5a1 1 0 0 0-.8.4l-1.9 2.533a1 1 0 0 1-1.6 0L5.3 12.4a1 1 0 0 0-.8-.4H2a2 2 0 0 1-2-2V2zm7.194 2.766c.087.124.163.26.227.401.428.948.393 2.377-.942 3.706a.446.446 0 0 1-.612.01.405.405 0 0 1-.011-.59c.419-.416.672-.831.809-1.22-.269.165-.588.26-.93.26C4.775 7.333 4 6.587 4 5.667 4 4.747 4.776 4 5.734 4c.271 0 .528.06.756.166l.008.004c.169.07.327.182.469.324.085.083.161.174.227.272zM11 7.073c-.269.165-.588.26-.93.26-.958 0-1.735-.746-1.735-1.666 0-.92.777-1.667 1.734-1.667.271 0 .528.06.756.166l.008.004c.17.07.327.182.469.324.085.083.161.174.227.272.087.124.164.26.228.401.428.948.392 2.377-.942 3.706a.446.446 0 0 1-.613.01.405.405 0 0 1-.011-.59c.42-.416.672-.831.81-1.22z"
+          /></svg
+        ><label for="languageInput">Languages</label>
+      </div>
+    </div>
+    <app-entry
+      *ngFor="let qualification of guide.qualifications"
+      [qualification]="qualification"
+    >
+    </app-entry>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <input
+            let
+            type="text"
+            class="form-control"
+            placeholder="I speak ..."
+            [(ngModel)]="language"
+            name="language"
+          />
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <select
+            [(ngModel)]="guide.qualifications"
+            class="form-control"
+            name="qualifications"
+          >
+            <option value="--------">--------</option>
+            <option value="Native">Native</option>
+            <option value="Average">Average</option>
+            <option value="Advanced">Advanced</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="addLanguageArea">
+      <p>Add Language</p>
+    </div>
+    <br />
+  </div>
+
+  <!-- end col -->
+</form>
