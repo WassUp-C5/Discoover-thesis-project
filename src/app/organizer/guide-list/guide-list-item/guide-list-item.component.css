@@ -1,0 +1,95 @@
+
+h4{
+  font-size: 18px !important;
+}
+
+h6{
+  font-size: 12px !important;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+p {
+  font-size: 14px;
+  margin: 0 0 10px;
+  font-weight: 300;
+}
+
+.text-gray {
+  color: #999!important;
+}
+
+.card-title{
+  font-weight: 700 !important;
+  margin-top: 10px;
+  color: #3c4858;
+  font-family: Roboto Slab,Times New Roman,serif;
+}
+.card {
+  border: 0;
+  margin-bottom: 30px;
+  margin-top: 100px;
+  border-radius: 6px !important;
+  color: rgba(0,0,0,.87);
+  background: #fff;
+  width: 100%;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+}
+
+.card .card-body{
+  padding: .9375rem 1.875rem;
+
+}
+
+.card-description{
+  color: #999;
+  height: 80px;
+}
+
+
+.card.card-profile{
+  text-align: center;
+}
+
+.card .card-footer {
+  padding: .9375rem 1.875rem;
+}
+
+.card-profile .card-avatar {
+  width: 130px;
+  max-width: 130px;
+  max-height: 130px;
+  margin: -50px auto 0;
+  border-radius: 50%;
+  overflow: hidden;
+  padding: 0;
+  box-shadow: 0 16px 38px -12px rgba(0,0,0,.56), 0 4px 25px 0 rgba(0,0,0,.12), 0 8px 10px -5px rgba(0,0,0,.2);
+}
+
+.card-profile .card-avatar img{
+  width: 100%;
+}
+.card-profile .card-avatar+.card-body{
+  margin-top: 15px;
+}
+
+.btn.btn-info {
+  color: #fff !important;
+  background-color: #00bcd4 !important;
+  border-color: #00bcd4 !important;
+  box-shadow: 0 2px 2px 0 rgba(0,188,212,.14), 0 3px 1px -2px rgba(0,188,212,.2), 0 1px 5px 0 rgba(0,188,212,.12);
+}
+
+.btn.btn-round {
+  border-radius: 30px;
+}
+
+footer p a{
+  color: #555;
+  font-weight: 400;
+}
+
+footer p a:hover{
+  color: #9f26aa;
+  text-decoration: none;
+}

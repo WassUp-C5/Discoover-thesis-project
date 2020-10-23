@@ -17,22 +17,22 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700);
 
 body {
-    margin:40px;
-    font-family: 'Roboto Condensed', sans-serif;
-    background-color: black;
+  margin: 40px;
+  font-family: "Roboto Condensed", sans-serif;
+  background-color: black;
 }
 
 .container {
-    margin-top: 7%;
-    width: 70%;
+  margin-top: 7%;
+  width: 70%;
 }
 
 .board {
-    width: 70%;
-    height: auto;
-    margin: 20px auto;
-    background: #fefefe;
-    border-radius: 8px 8px 0 0;
+  width: 70%;
+  height: auto;
+  margin: 20px auto;
+  background: #fefefe;
+  border-radius: 8px 8px 0 0;
 }
 
 .header {
@@ -44,7 +44,7 @@ body {
   margin-top: 30%;
 }
 
-input, label {
+input,
+label {
   margin-bottom: 5%;
 }
-

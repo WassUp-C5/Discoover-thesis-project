@@ -13,7 +13,9 @@ import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
 import { EntryComponent } from './guide/guide-profile/entry-list/entry.component';
 import { OrganizerNavbarComponent } from './organizer/organizer-navbar/organizer-navbar.component';
-import { OrganizerMyTripsComponent } from './organizer/organizer-my-trips/organizer-my-trips.component';
+import { TripDetailsComponent } from './organizer/trip-details/trip-details.component';
+
+import { EditGuideProfileComponent } from './guide/guide-profile/edit-guide-profile/edit-guide-profile.component';
 
 /* Angular material */
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -24,8 +26,13 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
 
 import { GuideNavBarComponent } from './guide/guide-navbar/guide-navbar.component';
 import { OrganizerProfileComponent } from './organizer/organizer-profile/organizer-profile.component';
+import { EditTripComponent } from './organizer/edit-trip-component/edit-trip.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
+import { GuideListComponent } from './organizer/guide-list/guide-list.component';
+import { GuideListItemComponent } from './organizer/guide-list/guide-list-item/guide-list-item.component';
+import { TripListComponent } from './search-trip/trip-list/trip-list.component';
+import { TripItemComponent } from './search-trip/trip-list/trip-item/trip-item.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,12 +46,22 @@ import { ReactiveFormsModule } from '@angular/forms';
     GuideProfileComponent,
     SignupComponent,
     SigninComponent,
-
+    TripDetailsComponent,
+    EditGuideProfileComponent,
     EntryComponent,
     OrganizerNavbarComponent,
-    OrganizerMyTripsComponent,
 
     OrganizerNavbarComponent,
+    EditTripComponent,
+
+    GuideListComponent,
+
+    GuideListItemComponent,
+
+    TripListComponent,
+
+    TripItemComponent,
+
 
   ],
   imports: [
