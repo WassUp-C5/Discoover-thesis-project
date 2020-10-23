@@ -51,7 +51,7 @@ export class SigninComponent implements OnInit, OnDestroy {
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getUser().roles;
         // this.reloadPage();
-        this.router.navigate([`/${this.roles[1]}/profile`]);
+        this.router.navigate([`/${this.roles[1]}/${this.tokenStorage.getUser().id}/profile`]);
       },
       (err) => {
         this.errorMessage = err.error.message;
