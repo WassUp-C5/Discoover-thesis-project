@@ -62,6 +62,16 @@ tripsRouter.put("/edit/:id", (req, res) => {
     })
     .catch((err) => console.log(err));
 });
+/***********************Get trip by location***************************/
+tripsRouter.get("/:location", (req, res) => {
+  console.log('this console ==>', req.params.location)
+  Trip.findOne({ location: req.params.location }, function (err, trip) {
+    if (err) throw err;
+    res.send(trip);
+    console.log("trip ===> ", trip);
+  });
+});
+
 /***********************Delete trip by id***************************/
 tripsRouter.delete("/:id", (req, res) => {
   Trip.deleteOne({ _id: req.params.id }, function (err) {
