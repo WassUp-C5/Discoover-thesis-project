@@ -87,18 +87,25 @@
     <h5 class="mb-3 text-uppercase bg-light p-2">
       <i class="mdi mdi-account-circle mr-1"></i> Change password
     </h5>
-    <div class="alert alert-danger hidden" role="alert">
-      A simple danger alert—check it out!
+    <div
+      *ngIf="showErrorMessage"
+      class="alert alert-danger hidden"
+      role="alert"
+    >
+      {{ alertMessage }}
+    </div>
+    <div *ngIf="showSuccessMessage" class="alert alert-success" role="alert">
+      {{ alertMessage }}
     </div>
     <div class="row">
-
       <div class="col-md-6">
         <div class="form-group">
-          <label for="userpassword"> Old password</label>
+          <label for="userpassword"> Your current password</label>
           <input
-          name="currentPassword"
+            name="currentPassword"
             type="password"
             class="form-control"
+            [ngClass]="{ 'is-invalid': showErrorMessage }"
             id="userpassword"
             placeholder="Enter password"
             [(ngModel)]="currentPassword"
@@ -109,9 +116,10 @@
         <div class="form-group">
           <label for="userpassword">New password</label>
           <input
-          name="newPassword"
+            name="newPassword"
             type="password"
             class="form-control"
+            [ngClass]="{ 'is-invalid': showErrorMessage }"
             id="userpassword"
             placeholder="Enter password"
             [(ngModel)]="newPassword"
@@ -155,13 +163,13 @@
         ><label for="languageInput">Languages</label>
       </div>
     </div>
-    <!-- <app-entry
+    <app-entry
       *ngFor="let qualification of guide.qualifications"
       [qualification]="qualification"
     >
-    </app-entry> -->
+    </app-entry>
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-5">
         <div class="form-group">
           <input
             let
@@ -173,7 +181,7 @@
           />
         </div>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-5">
         <div class="form-group">
           <select
             [(ngModel)]="guide.qualifications"
@@ -187,10 +195,13 @@
           </select>
         </div>
       </div>
+      <div class="col-md-2">
+        <button class="btn btn-success">
+          <span class="material-icons"> add_circle_outline </span>
+        </button>
+      </div>
     </div>
-    <div class="addLanguageArea">
-      <p>Add Language</p>
-    </div>
+
     <br />
   </div>
 
