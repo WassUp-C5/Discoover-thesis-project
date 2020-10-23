@@ -16,7 +16,7 @@ proposalsRouter.post("/add", async (req, res) => {
   }
 });
 /*****************Get proposals of specific guide with his ID***************************** */
-proposalsRouter.get("/proposals/:guideId", async (req, res) => {
+proposalsRouter.get("/:guideId", async (req, res) => {
   try {
     console.log("req.params.id for guidId", req.params);
     await Proposal.find(req.params).then((result) => {
@@ -28,4 +28,26 @@ proposalsRouter.get("/proposals/:guideId", async (req, res) => {
     res.status(400).send("error");
   }
 });
+/*******************************Edit proposal with accepted state************************************* */
+proposalsRouter.put("/edit/:id", async (req, res) => {
+  let id = req.params.id;
+  Proposal.findById(id)
+    .then((proposal) => {
+      console.log("proposal ===>", proposal);
+      proposal.accepted = req.body.accepted;
+      proposal.save();
+      res.send({ message: "proposal accepted modified to true" });
+    })
+    .catch((err) => console.log(err));
+});
+/*******************************Delet proposal ************************************* */
+proposalsRouter.delete("/delete/:id", async (req, res) => {
+  let id = req.params.id;
+  Proposal.findByIdAndDelete(id)
+    .then((result) => {
+      res.send({ message: "proposal deleted" });
+    })
+    .catch((err) => console.log(err));
+});
+
 module.exports = proposalsRouter;

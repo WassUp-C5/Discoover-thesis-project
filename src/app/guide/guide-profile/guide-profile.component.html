@@ -149,25 +149,25 @@
               <li *ngFor="let trip of trips">
                 <h3 class="text-primary">
                   <span class="glyphicon glyphicon-arrow-right"></span>
-                  {{ trip.title }}
+                  {{ trip.res.title }}
                 </h3>
-                <div>date : {{ trip.date }}</div>
-                <div>Location : {{ trip.location }}</div>
-                <div>price : {{ trip.price }}</div>
-                <div>Max travelers : {{ trip.maxTravelers }}</div>
+                <div>date : {{ trip.res.date }}</div>
+                <div>Location : {{ trip.res.location }}</div>
+                <div>price : {{ trip.res.price }}</div>
+                <div>Max travelers : {{ trip.res.maxTravelers }}</div>
                 <div>
-                  <p>Trip description : <br />{{ trip.description }}</p>
+                  <p>Trip description : <br />{{ trip.res.description }}</p>
                 </div>
                 <button
                   type="submit"
-                  (click)="accept()"
+                  (click)="accept(trip.res._id, trip.proposalId)"
                   class="btn btn-secondary btn-signin"
                 >
                   Accept
                 </button>
                 <button
                   type="submit"
-                  (click)="decline()"
+                  (click)="decline(trip.proposalId)"
                   class="btn btn-danger btn-signin"
                 >
                   Decline
