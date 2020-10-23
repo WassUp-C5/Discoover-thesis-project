@@ -56,8 +56,12 @@ export class SignupComponent implements OnInit {
     if (this.signupForm.invalid) {
       return;
     }
-
-    console.log("Form ===> ",this.signupForm.value);
+    if (
+      this.signupForm.get('password') !== this.signupForm.get('confirmPassword')
+    ) {
+      return;
+    }
+    console.log('Form ===> ', this.signupForm.value);
     this.user = new User(this.signupForm.value);
     console.log('User ===> ', this.user);
     this.user.roles.push(this.route.snapshot.paramMap.get('role'));
