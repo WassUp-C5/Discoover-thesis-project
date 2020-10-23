@@ -39,8 +39,9 @@ export class GuideProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params) => {
-      let id = params['guideId'];
-      let userId = this.userRole === 'guide' ? this.currentUser.id : id;
+      // let id = params['guideId'];
+      // let userId = this.userRole === 'guide' ? this.currentUser.id : id;
+      let userId = params['guideId'];
 
       this.http.get(`/api/user/guide/${userId}`).subscribe((res: any) => {
         console.log('on init guide infos', res);
@@ -102,7 +103,7 @@ export class GuideProfileComponent implements OnInit {
         });
     });
 
-    this.router.navigate(['/organizer/profile']);
+    this.router.navigate([`/organizer/${this.currentUser.id}/profile`]);
   }
   /************We are here for the button of the accept and decline************************ */
   accept(tripId, proposalId) {

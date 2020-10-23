@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { TokenStorageService } from './../../services/token-storage.service';
 import { Trip } from '../../../../server/models/Trips';
@@ -11,6 +11,7 @@ import { Trip } from '../../../../server/models/Trips';
 export class OrganizerProfileComponent implements OnInit {
   currentUser: any;
   selectedGender = '';
+  organizerId:string;
   organizer = {
     first_name: '',
     username: '',
@@ -23,11 +24,19 @@ export class OrganizerProfileComponent implements OnInit {
     phone_number: '',
   };
 
-  constructor(private http: HttpClient, private token: TokenStorageService, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private token: TokenStorageService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
   trips: Trip[];
 
   ngOnInit(): void {
     this.currentUser = this.token.getUser();
+    this.route.params.subscribe(params => {
+      this.organizerId = params['id'];
+    })
     this.http
       .get(`/api/user/organizer/${this.currentUser.id}`)
       .subscribe((res: any) => {
@@ -41,17 +50,18 @@ export class OrganizerProfileComponent implements OnInit {
       });
   }
 
-  getTrip(tripId){
-    console.log("click is working")
-    this.router.navigate(['/organizer/trip/details/'+tripId])
+  getTrip(tripId) {
+    console.log('click is working');
+
+    this.router.navigate([`/organizer/${this.organizerId}/trip/details/${tripId}`]);
   }
 
-  addTrip(){
-    console.log("click is working trip add")
+  addTrip() {
+    console.log('click is working trip add');
     this.currentUser = this.token.getUser();
-    console.log('current user ====>',this.currentUser.id);
+    console.log('current user ====>', this.currentUser.id);
 
-    this.router.navigate(['/organizer/trip/add/'+this.currentUser.id])
+    this.router.navigate([`/organizer/${this.organizerId}/trip/add`]);
   }
 
   genderHandler(event: any) {

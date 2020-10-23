@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
 import { ActivatedRoute, Router } from "@angular/router";
+import { TokenStorageService } from 'src/app/services/token-storage.service';
 
 @Component({
   selector: 'app-trip-details',
@@ -9,6 +9,8 @@ import { ActivatedRoute, Router } from "@angular/router";
   styleUrls: ['./trip-details.component.css']
 })
 export class TripDetailsComponent implements OnInit {
+  tripId: any;
+  organizerId: any;
 
   constructor(private http: HttpClient, private activatedRoute : ActivatedRoute, private router: Router) {}
 
@@ -16,7 +18,7 @@ export class TripDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
-      let id = params['id'];
+      let id = params['tripId'];
 
       console.log(`${id}`);
 
@@ -31,7 +33,7 @@ export class TripDetailsComponent implements OnInit {
 
   goEdit(){
     this.activatedRoute.params.subscribe(params => {
-      let id = params['id'];
+      let id = params['tripId'];
       this.router.navigate(['/organizer/trip/edit/'+id])
     })
   }
@@ -45,15 +47,18 @@ export class TripDetailsComponent implements OnInit {
   cancel(){
 
     this.activatedRoute.params.subscribe(params => {
-      let id = params['id'];
-    this.http.delete('/api/trips/'+id)
+      this.tripId = params['tripId'];
+      this.organizerId = params['id']
+    this.http.delete('/api/trips/'+this.tripId)
     .subscribe((res: any)=>{
       console.log('navigate to profile after cancel');
 
 
     })
+
   });
-  this.router.navigate(['/organizer/profile/'])
+  this.router.navigate([`/organizer/${this.organizerId}/profile`])
+
   }
 
 }
