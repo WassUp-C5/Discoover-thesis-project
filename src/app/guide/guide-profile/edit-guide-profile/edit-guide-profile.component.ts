@@ -19,6 +19,9 @@ export class EditGuideProfileComponent implements OnInit {
   selectedLevel: string = '';
   currentPassword: string = '';
   newPassword: string = '';
+  showErrorMessage: boolean = false;
+  showSuccessMessage: boolean = false;
+  alertMessage: string;
 
   constructor(
     private http: HttpClient,
@@ -53,7 +56,6 @@ export class EditGuideProfileComponent implements OnInit {
   changePassword() {
     console.log(this.currentPassword, this.newPassword);
     if (this.currentPassword && this.newPassword) {
-
       this.http
         .put(`/api/user/${this.currentUser.id}/password/edit`, {
           currentPassword: this.currentPassword,
@@ -61,13 +63,25 @@ export class EditGuideProfileComponent implements OnInit {
         })
 
         .subscribe(
-          (result) => {
+          (result: any) => {
             console.log(result);
+            this.alertMessage = result.message;
+            this.showSuccessMessage = true;
           },
           (error) => {
             console.log(error);
+            this.alertMessage = error.error.message;
+            this.showErrorMessage = true;
           }
         );
+    } else {
+      this.alertMessage = 'Please check your password again!!';
+      this.showErrorMessage = true;
     }
+
+    setTimeout(() => {
+      this.showErrorMessage = false;
+      this.showSuccessMessage = false;
+    }, 5000);
   }
 }
