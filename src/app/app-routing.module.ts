@@ -15,7 +15,7 @@ import { SignupComponent } from './signup/signup.component';
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
   { path: 'searchTrip', component: SearchTripComponent },
-  { path: 'organizer/profile', component: OrganizerProfileComponent },
+  { path: 'organizer/:id/profile', component: OrganizerProfileComponent },
   { path: 'organizer/trip/add/:id', component: OrganizeATripComponent },
   { path: 'organizer/trip/edit/:id', component: EditTripComponent },
   { path: 'organizer/trips', component: OrganizerMyTripsComponent },

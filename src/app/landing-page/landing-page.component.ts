@@ -8,6 +8,7 @@ import { TokenStorageService } from '../services/token-storage.service';
   styleUrls: ['./landing-page.component.css'],
 })
 export class LandingPageComponent implements OnInit {
+  currentUser = this.tokenStorage.getUser();
   constructor(
     private router: Router,
     private tokenStorage: TokenStorageService
@@ -20,13 +21,13 @@ export class LandingPageComponent implements OnInit {
     if (this.tokenStorage.getToken()) {
       if (userRole === 'organizer') {
         if (this.tokenStorage.getUser().roles.includes('organizer')) {
-          this.router.navigate(['/organizer/profile']);
+          this.router.navigate([`/organizer/${this.currentUser.id}/profile`]);
         } else {
           this.router.navigate(['/signup/' + userRole]);
         }
       } else if (userRole === 'guide') {
         if (this.tokenStorage.getUser().roles.includes('guide')) {
-          this.router.navigate(['/guide/profile']);
+          this.router.navigate([`/guide/${this.currentUser.id}/profile`]);
         } else {
           this.router.navigate(['/signup/' + userRole]);
         }
