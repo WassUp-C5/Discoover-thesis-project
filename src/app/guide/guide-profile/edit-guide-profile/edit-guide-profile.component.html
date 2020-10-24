@@ -1,7 +1,7 @@
 <div>
   <form>
     <h5 class="mb-3 text-uppercase bg-light p-2">
-      <span class="material-icons"> Personal Info</span>
+      <span class="material-icons">person</span> Personal Info
     </h5>
     <div class="row">
       <div class="col-md-6">
@@ -71,25 +71,9 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-12 text-right">
-        <button
-          type="submit"
-          class="btn btn-success waves-effect waves-light mt-2"
-          (click)="saveData()"
-        >
-          <i class="far fa-save"></i>
-          Save
-        </button>
-      </div>
-    </div>
-  </form>
-  <form>
-    <h5 class="mb-3 text-uppercase bg-light p-2">
-      <span class="material-icons">person</span> Biography
-    </h5>
-    <div class="row">
       <div class="col-md-12">
         <div class="form-group">
+          <label for="username">Your biography</label>
           <textarea
             class="form-control"
             rows="10"
@@ -102,11 +86,23 @@
         </div>
       </div>
     </div>
-
+    <div class="row">
+      <div class="col-md-12">
+        <button
+          type="submit"
+          class="btn btn-success waves-effect waves-light mt-2"
+          (click)="saveData()"
+        >
+          <i class="far fa-save"></i>
+          Save changes
+        </button>
+      </div>
+    </div>
   </form>
+
   <form>
     <h5 class="mb-3 text-uppercase bg-light p-2">
-      <i class="mdi mdi-account-circle mr-1"></i> Change password
+      <i class="material-icons"></i>Password
     </h5>
     <div
       *ngIf="showErrorMessage"
