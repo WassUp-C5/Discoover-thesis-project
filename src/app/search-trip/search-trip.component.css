@@ -8,17 +8,6 @@ body {
   opacity: 0.5 !important
 }
 
-.btn:hover {
-  color: black !important
-}
-
-.vl {
-  margin: 8px !important;
-  width: 2px;
-  border-right: 1px solid #aaaaaa;
-  height: 25px
-}
-
 #plus {
   opacity: 0.8
 }
@@ -47,12 +36,28 @@ img {
   box-shadow: none !important
 }
 
-#titleTag {
-  margin-top: 1%;
-  margin-left: 1%;
+.amber-border {
+  border: 1px solid red;
 }
 
-#priceTag {
+.searchComponent {
   position: relative;
-  float: right;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.search-bar-input {
+  height: 50px;
+  width: 100%;
+  padding-left: 10px;
+  padding-right: 0;
+}
+
+.search-bar-button {
+  font-size: 20px;
+  width: 150px;
+  height: 50px;
+  background-color: red;
+  color: #FFF;
+  font-weight: 500;
 }

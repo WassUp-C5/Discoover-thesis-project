@@ -1,6 +1,8 @@
 const userRouter = require("express").Router();
 const User = require("../models/User");
 const Trip = require("../models/Trips");
+const bcrypt = require("bcryptjs");
+
 /****************Update Organizer Profile ******************** */
 userRouter.put("/organizer/edit", (req, res) => {
   let user = req.body;
@@ -66,4 +68,28 @@ userRouter.get("/guides", (req, res) => {
     })
     .catch((err) => console.log(err));
 });
+
+/**
+ * Change user password
+ */
+userRouter.put("/:id/password/edit", async (req, res) => {
+  try {
+    User.findById(req.params.id)
+    .then(user => {
+      if (!bcrypt.compareSync(req.body.currentPassword, user.password)) {
+        return res
+          .status(401)
+          .json({ message: "Please verify your password!!"});
+      }
+
+      user.password = req.body.newPassword;
+      user.save();
+      res.send({message: "Success: your password has been changed!!"})
+    })
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ message: "An error occured please try again!!"});
+  }
+});
+
 module.exports = userRouter;

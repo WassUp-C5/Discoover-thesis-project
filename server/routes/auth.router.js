@@ -7,7 +7,7 @@ authRouter.post("/signup", async (req, res) => {
   try {
     console.log(req.body);
     var user = new User(req.body);
-    await user.save().then((result) => {
+    await user.saveUser().then((result) => {
       console.log("success");
       res.send(result);
     });
@@ -22,21 +22,41 @@ authRouter.post("/signin", async (req, res) => {
   try {
     var user = await User.findOne({ username: req.body.username });
     if (!user) {
+      console.log("User not found")
       return res
         .status(401)
         .json({ title: "server side error", error: "invalid" });
     }
-    if (!bcrypt.compareSync(req.body.password, user.password)) {
-      return res
+    bcrypt.compare(req.body.password, user.password, (err, compRes) => {
+      if (err) { console.log(err) }
+      if (!compRes) {
+        console.log("Wrong Password")
+        return res
         .status(401)
         .json({ title: "log in failed", error: "invalid data" });
-    }
-    let token = jwt.sign({ userId: user._id }, "it's a secret");
-    res.status(200).json({
-      token: token,
-      user: { id: user._id, roles: user.roles },
-    });
-    console.log(user);
+      } else {
+        let token = jwt.sign({ userId: user._id }, "it's a secret");
+        res.status(200).json({
+          token: token,
+          user: { id: user._id, roles: user.roles },
+        });
+        // console.log(bcrypt.compareSync(req.body.password, user.password))
+        // console.log(user);
+      }
+    })
+
+    //   console.log("Wrong Password")
+    //   return res
+    //     .status(401)
+    //     .json({ title: "log in failed", error: "invalid data" });
+    // }
+    // let token = jwt.sign({ userId: user._id }, "it's a secret");
+    // res.status(200).json({
+    //   token: token,
+    //   user: { id: user._id, roles: user.roles },
+    // });
+    // console.log(bcrypt.compareSync(req.body.password, user.password))
+    // console.log(user);
   } catch (error) {
     console.log(error);
     res.send("error");

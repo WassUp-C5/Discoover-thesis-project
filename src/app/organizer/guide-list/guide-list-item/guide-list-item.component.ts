@@ -18,7 +18,7 @@ export class GuideListItemComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       let id = params['id'];
 
-    this.router.navigate(['/guide/profile/'+id+'/'+this.guide._id])
+    this.router.navigate([`/guide/${this.guide._id}/profile/${id}`])
   })
 }
 

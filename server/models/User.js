@@ -24,6 +24,8 @@ const usersSchema = new mongoose.Schema(
   }
 );
 
+//const userQualificationS
+
 const MongoUser = mongoose.model("User", usersSchema);
 class User extends MongoUser {
   constructor(data) {
@@ -57,10 +59,11 @@ class User extends MongoUser {
   //   });
   // }
 
-  save() {
+  saveUser() {
     return new Promise((resolve, reject) => {
       console.log("password ===> ", this.password);
-      this.password = bcrypt.hashSync(this.password, 10);
+      this.password = bcrypt.hashSync(this.password, 10)
+      console.log("hashed password ===> ", this.password);
       super.save(
         {
           first_name: this.first_name,
