@@ -9,7 +9,7 @@
   <!-- </button> -->
   <!-- <button mat-button [matMenuTriggerFor]="beforeMenu">Before</button> -->
   <mat-menu #beforeMenu="matMenu" xPosition="before">
-    <button routerLink="/organizer/profile" mat-menu-item>My profile</button>
+    <button routerLink="/organizer/:id/profile" mat-menu-item>My profile</button>
     <button routerLink="/organizer/trips" mat-menu-item>My trips</button>
     <button routerLink="/organizer/trip/add" mat-menu-item>Add a trip</button>
     <button mat-menu-item (click)="signOut()">Sign out</button>

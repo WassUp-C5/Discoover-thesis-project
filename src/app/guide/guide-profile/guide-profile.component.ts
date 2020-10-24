@@ -108,7 +108,7 @@ export class GuideProfileComponent implements OnInit {
         });
     });
 
-    this.router.navigate(['/organizer/profile']);
+    this.router.navigate([`/organizer/${this.currentUser.id}/profile`]);
   }
   /************We are here for the button of the accept and decline************************ */
   accept(tripId, proposalId) {
