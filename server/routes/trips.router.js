@@ -74,10 +74,6 @@ tripsRouter.put("/edit/:id", (req, res) => {
     })
     .catch((err) => console.log(err));
 });
-/***********************Get trip by location***************************/
-tripsRouter.get("/:location", (req, res) => {
-  console.log('this console ==>', req.params.location)
-  Trip.findOne({ location: req.params.location }, function (err, trip) {
 
 /***********************Get trip by date***************************/
 tripsRouter.get("/date/:date", (req, res) => {
@@ -87,16 +83,6 @@ tripsRouter.get("/date/:date", (req, res) => {
     console.log("trip DATE===> ", trip);
     res.send(trip);
   });
-});
-/****************Update trip  ******************** */
-tripsRouter.put("/:id/edit", (req, res) => {
-  let id = req.params.id;
-  console.log("router section organizer log ==>", req.body);
-  Trip.updateOne({ _id: id }, req.body)
-    .then((result) => {
-      res.send(result);
-    })
-    .catch((err) => console.log(err));
 });
 
 /***********************Delete trip by id***************************/
