@@ -42,12 +42,10 @@ export class OrganizerProfileComponent implements OnInit {
   }
 
   getTrip(tripId){
-    console.log("click is working")
     this.router.navigate(['/organizer/trip/details/'+tripId])
   }
 
   addTrip(){
-    console.log("click is working trip add")
     this.currentUser = this.token.getUser();
     console.log('current user ====>',this.currentUser.id);
 
@@ -60,8 +58,6 @@ export class OrganizerProfileComponent implements OnInit {
   }
   onClick() {
     window.location.reload();
-    console.log('organizer profile updated with ==>', this.organizer);
-
     this.http
       .put('/api/user/organizer/edit', this.organizer)
       .subscribe((res) => {

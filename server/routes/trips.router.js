@@ -96,7 +96,7 @@ tripsRouter.put("/:id/edit", (req, res) => {
 });
 
 /***********************Delete trip by id***************************/
-tripsRouter.delete("/:id", (req, res) => {
+tripsRouter.delete("/delete/:id", (req, res) => {
   Trip.deleteOne({ _id: req.params.id }, function (err) {
     if (err) throw err;;
     console.log("trip deleted");
