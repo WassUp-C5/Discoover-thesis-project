@@ -51,7 +51,7 @@ export class OrganizerProfileComponent implements OnInit {
     this.currentUser = this.token.getUser();
     console.log('current user ====>',this.currentUser.id);
 
-    this.router.navigate(['/organizer/trip/add/'+this.currentUser.id])
+    this.router.navigate([`/organizer/${this.currentUser.id}/trip/add`])
   }
 
   genderHandler(event: any) {

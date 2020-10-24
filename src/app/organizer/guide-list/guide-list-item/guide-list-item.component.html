@@ -12,6 +12,6 @@
     <p class="card-description">
       {{ (guide.bio |  slice:0:100) + "..." }}
     </p>
-    <a (click)="getGuideInfo()" class="btn btn-danger btn-round" routerLink="guide/profile">More Info</a>
+    <a (click)="getGuideInfo()" class="btn btn-danger btn-round" routerLink="guide/:id/profile">More Info</a>
   </div>
 </div>
