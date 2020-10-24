@@ -36,10 +36,16 @@ export class GuideProfileComponent implements OnInit {
   currentUser = this.tokenStorage.getUser();
   userRole = this.currentUser.roles[1];
   condition = this.currentUser.roles[1] !== 'guide';
+  guideId:string;
+
 
   ngOnInit(): void {
+    this.activatedRoute.params.subscribe(params => {
+      this.guideId = params['id'];
+    });
     this.activatedRoute.params.subscribe((params) => {
       let id = params['guideId'];
+
       let userId = this.userRole === 'guide' ? this.currentUser.id : id;
 
       this.http.get(`/api/user/guide/${userId}`).subscribe((res: any) => {
@@ -102,7 +108,7 @@ export class GuideProfileComponent implements OnInit {
         });
     });
 
-    this.router.navigate(['/organizer/profile']);
+    this.router.navigate([`/organizer/${this.currentUser.id}/profile`]);
   }
   /************We are here for the button of the accept and decline************************ */
   accept(tripId, proposalId) {

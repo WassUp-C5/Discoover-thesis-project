@@ -14,8 +14,8 @@ body,
   width: 33%;
   position: relative;
   flex: auto;
-  -webkit-filter: blur(8px);
-  filter: blur(8px);
+  -webkit-filter: blur(4px);
+  filter: blur(4px);
 }
 .landing-img {
   transition: all ease-in-out 0.3s;
@@ -55,7 +55,7 @@ body,
   border-radius: 5px;
   font-weight: bold;
 }
-/* 
+/*
 .landing-btn:hover > .landing-img {
   filter: blur(0);
   -webkit-filter: blur(0);

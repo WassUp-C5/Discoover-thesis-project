@@ -20,21 +20,33 @@ tripsRouter.post("/add", async (req, res) => {
   }
 });
 
+/***********************Get trip by location***************************/
+tripsRouter.get("/location/:location", (req, res) => {
+  console.log('****this console ==>', req.params.location)
+  Trip.find({ location: req.params.location }, function (err, trip) {
+    if (err) throw err;
+    console.log("location bodyparse  ===> ", trip);
+    res.send(trip);
+  });
+});
+
 /**********Get All The Trips************** */
 tripsRouter.get("/", (req, res) => {
+  console.log('yoooo');
   Trip.find({}, function (err, trip) {
     if (err) throw err;
     res.send(trip);
-    console.log("trip ===> ", trip);
+    console.log("tripALL ===> ", trip);
   });
 });
 
 /***********************Get trip by id***************************/
 tripsRouter.get("/:id", (req, res) => {
+  console.log('hiii');
   Trip.findOne({ _id: req.params.id }, function (err, trip) {
     if (err) throw err;
     res.send(trip);
-    console.log("trip ===> ", trip);
+    console.log("tripID ===> ", trip);
   });
 });
 /****************Update trip  ************** To be edited so it send a proposal to the guide before updating DB****** */
@@ -62,11 +74,31 @@ tripsRouter.put("/edit/:id", (req, res) => {
     })
     .catch((err) => console.log(err));
 });
-/***********************Delete trip by id***************************/
-tripsRouter.delete("/:id", (req, res) => {
-  Trip.deleteOne({ _id: req.params.id }, function (err) {
+
+/***********************Get trip by date***************************/
+tripsRouter.get("/date/:date", (req, res) => {
+  console.log('this console ==>', req.params.date)
+  Trip.find({ date: req.params.date }, function (err, trip) {
     if (err) throw err;
-    // res.send('trip deleted');
+    console.log("trip DATE===> ", trip);
+    res.send(trip);
+  });
+});
+/****************Update trip  ******************** */
+tripsRouter.put("/:id/edit", (req, res) => {
+  let id = req.params.id;
+  console.log("router section organizer log ==>", req.body);
+  Trip.updateOne({ _id: id }, req.body)
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => console.log(err));
+});
+
+/***********************Delete trip by id***************************/
+tripsRouter.delete("/delete/:id", (req, res) => {
+  Trip.deleteOne({ _id: req.params.id }, function (err) {
+    if (err) throw err;;
     console.log("trip deleted");
   });
 });
