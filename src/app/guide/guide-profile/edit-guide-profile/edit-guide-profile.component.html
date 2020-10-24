@@ -1,107 +1,163 @@
-<form>
+<div>
+  <form>
+    <h5 class="mb-3 text-uppercase bg-light p-2">
+      <span class="material-icons">person</span> Personal Info
+    </h5>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input
+            type="username"
+            class="form-control"
+            id="username"
+            name="username"
+            value="{{ guide.username }}"
+            [(ngModel)]="guide.username"
+          />
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            name="email"
+            value="{{ guide.email }}"
+            [(ngModel)]="guide.email"
+          />
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="firstname">First name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="firstname"
+            name="firstname"
+            value="{{ guide.first_name }}"
+            [(ngModel)]="guide.first_name"
+          />
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="lastname">Last name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="lastname"
+            name="lastname"
+            value="{{ guide.last_name }}"
+            [(ngModel)]="guide.last_name"
+          />
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="mobile">Mobile</label>
+          <input
+            type="text"
+            class="form-control"
+            id="mobile"
+            name="mobile"
+            value="{{ guide.phone_number }}"
+            [(ngModel)]="guide.phone_number"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="username">Your biography</label>
+          <textarea
+            class="form-control"
+            rows="10"
+            id="biography"
+            name="biography"
+            value="{{ guide.bio }}"
+            [(ngModel)]="guide.bio"
+          >
+          </textarea>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <button
+          type="submit"
+          class="btn btn-success waves-effect waves-light mt-2"
+          (click)="saveData()"
+        >
+          <i class="far fa-save"></i>
+          Save changes
+        </button>
+      </div>
+    </div>
+  </form>
 
-  <h5 class="mb-3 text-uppercase bg-light p-2">
-    <i class="mdi mdi-account-circle mr-1"></i> Personal Info
-  </h5>
-  <div class="row">
-    <div class="col-md-6">
-      <div class="form-group">
-        <label for="username">Username</label>
-        <input
-          type="username"
-          class="form-control"
-          id="username"
-          name="username"
-          value="{{ guide.username }}"
-          [ngModel]="guide.username"
-        />
+  <form>
+    <h5 class="mb-3 text-uppercase bg-light p-2">
+      <i class="material-icons"></i>Password
+    </h5>
+    <div
+      *ngIf="showErrorMessage"
+      class="alert alert-danger hidden"
+      role="alert"
+    >
+      {{ alertMessage }}
+    </div>
+    <div *ngIf="showSuccessMessage" class="alert alert-success" role="alert">
+      {{ alertMessage }}
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="userpassword"> Your current password</label>
+          <input
+            name="currentPassword"
+            type="password"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': showErrorMessage }"
+            id="userpassword"
+            placeholder="Enter password"
+            [(ngModel)]="currentPassword"
+          />
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="userpassword">New password</label>
+          <input
+            name="newPassword"
+            type="password"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': showErrorMessage }"
+            id="userpassword"
+            placeholder="Enter password"
+            [(ngModel)]="newPassword"
+          />
+        </div>
+      </div>
+      <!-- end col -->
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <button
+          type="submit"
+          class="btn btn-success waves-effect waves-light mt-2"
+          (click)="changePassword()"
+        >
+          <i class="far fa-save"></i>
+          Change password
+        </button>
       </div>
     </div>
-    <div class="col-md-6">
-      <div class="form-group">
-        <label for="email">Email Address</label>
-        <input
-          type="email"
-          class="form-control"
-          id="email"
-          name="email"
-          value="{{ guide.email }}"
-          [ngModel]="guide.email"
-        />
-
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="form-group">
-        <label for="firstname">First name</label>
-        <input
-          type="text"
-          class="form-control"
-          id="firstname"
-          name="firstname"
-          value="{{ guide.first_name }}"
-          [ngModel]="guide.first_name"
-        />
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="form-group">
-        <label for="lastname">Last name</label>
-        <input
-          type="text"
-          class="form-control"
-          id="lastname"
-          name="lastname"
-          value="{{ guide.last_name }}"
-          [ngModel]="guide.last_name"
-        />
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="form-group">
-        <label for="mobile">Mobile</label>
-        <input
-          type="text"
-          class="form-control"
-          id="mobile"
-          name="mobile"
-          value="{{ guide.phone_number }}"
-          [ngModel]="guide.phone_number"
-        />
-      </div>
-    </div>
-  </div>
-
-  <h5 class="mb-3 text-uppercase bg-light p-2">
-    <i class="mdi mdi-account-circle mr-1"></i> Change password
-  </h5>
-  <div class="row">
-    <div class="col-md-6">
-      <div class="form-group">
-        <label for="userpassword"> Old password</label>
-        <input
-          type="password"
-          class="form-control"
-          id="userpassword"
-          placeholder="Enter password"
-        />
-
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="form-group">
-        <label for="userpassword">New password</label>
-        <input
-          type="password"
-          class="form-control"
-          id="userpassword"
-          placeholder="Enter password"
-        />
-
-      </div>
-    </div>
-    <!-- end col -->
-  </div>
+  </form>
   <!-- end row -->
   <div>
     <h5 class="mb-3 text-uppercase bg-light p-2">
@@ -124,27 +180,31 @@
         ><label for="languageInput">Languages</label>
       </div>
     </div>
-    <app-entry
+    <!-- <app-entry
       *ngFor="let qualification of guide.qualifications"
       [qualification]="qualification"
     >
-    </app-entry>
+    </app-entry> -->
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-5">
         <div class="form-group">
           <input
             let
             type="text"
             class="form-control"
             placeholder="I speak ..."
-            [ngModel]="language"
+            [(ngModel)]="language"
             name="language"
           />
         </div>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-5">
         <div class="form-group">
-          <select [ngModel]="guide.qualifications" class="form-control" name="qualifications">
+          <select
+            [(ngModel)]="guide.qualifications"
+            class="form-control"
+            name="qualifications"
+          >
             <option value="--------">--------</option>
             <option value="Native">Native</option>
             <option value="Average">Average</option>
@@ -152,211 +212,26 @@
           </select>
         </div>
       </div>
+      <div class="col-md-2">
+        <button class="btn btn-success">
+          <span class="material-icons"> add_circle_outline </span>
+        </button>
+      </div>
     </div>
-    <div class="addLanguageArea">
-      <svg
-        width="1em"
-        height="1em"
-        viewBox="0 0 16 16"
-        class="bi bi-plus-circle-fill"
-        fill="currentColor"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          fill-rule="evenodd"
-          d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"
-        />
-      </svg>
-      <p>Add Language</p>
-    </div>
-    <br />
-    <!-- <div class="row">
-        <div class="col-md-12">
-          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-bullseye" fill="currentColor"
-            xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd"
-              d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-            <path fill-rule="evenodd"
-              d="M8 13A5 5 0 1 0 8 3a5 5 0 0 0 0 10zm0 1A6 6 0 1 0 8 2a6 6 0 0 0 0 12z" />
-            <path fill-rule="evenodd"
-              d="M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" />
-            <path d="M9.5 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
-          </svg><label for="languageInput">Skills</label>
-        </div>
-      </div>
-      <app-entry *ngFor="let qualification of guideUser.qualifications" [qualification]="qualification"
-        [type]="qualification.type"></app-entry>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="form-group">
-            <input let type="text" class="form-control" placeholder="I am Skilled At ...">
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <select class="form-control">
-              <option value="--------">--------</option>
-              <option value="Native">Master</option>
-              <option value="Average">Advanced</option>
-              <option value="Advanced">Moderate</option>
-            </select>
-          </div>
-        </div>
-      </div>
-      <div class="addSkillHere"></div>
-      <div class="addLanguageArea">
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus-circle-fill" fill="currentColor"
-          xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd"
-            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
-        </svg>
-        <p>Add Skill</p>
-      </div>
-      <br /> -->
-    <!-- end col -->
-  </div>
-  <!-- <h5 class="mb-3 text-uppercase bg-light p-2"><i class="mdi mdi mr-1"></i><svg width="1em" height="1em"
-        viewBox="0 0 16 16" class="bi bi-briefcase-fill" fill="currentColor"
-        xmlns="http://www.w3.org/2000/svg">
-        <path fill-rule="evenodd"
-          d="M0 12.5A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5V6.85L8.129 8.947a.5.5 0 0 1-.258 0L0 6.85v5.65z" />
-        <path fill-rule="evenodd"
-          d="M0 4.5A1.5 1.5 0 0 1 1.5 3h13A1.5 1.5 0 0 1 16 4.5v1.384l-7.614 2.03a1.5 1.5 0 0 1-.772 0L0 5.884V4.5zm5-2A1.5 1.5 0 0 1 6.5 1h3A1.5 1.5 0 0 1 11 2.5V3h-1v-.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5V3H5v-.5z" />
-      </svg> Experience</h5>
+
     <div class="row">
-      <div class="col-md-6">
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-bar-chart-line-fill"
-          fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd"
-            d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1V2z" />
-        </svg><label for="experienceInput">Experience</label>
+      <div class="col-md-12">
+        <button
+          type="submit"
+          class="btn btn-success waves-effect waves-light mt-2"
+          (click)="saveData()"
+        >
+          <i class="far fa-save"></i>
+          Save changes
+        </button>
       </div>
     </div>
-    <app-entry *ngFor="let qualification of guideUser.qualifications" [qualification]="qualification"
-      [type]="qualification.type"></app-entry>
-    <div class="row">
-      <div class="col-md-6">
-        <div class="form-group">
-          <input let type="text" class="form-control" placeholder="I have experience at ...">
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="form-group">
-          <select class="form-control">
-            <option value="--------">--------</option>
-            <option value="Native">Less Than 1 year</option>
-            <option value="Average">1 to 5 years</option>
-            <option value="Advanced">Over 5 years</option>
-          </select>
-        </div>
-      </div>
-    </div>
-    <div class="addExperienceHere"></div>
-    <div class="addLanguageArea">
-
-      <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus-circle-fill" fill="currentColor"
-        xmlns="http://www.w3.org/2000/svg">
-        <path fill-rule="evenodd"
-          d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
-      </svg>
-      <p>Add Experience</p>
-    </div>
-    <br /> -->
-  <!-- end col -->
-  <!-- end row -->
-  <h5 class="mb-3 text-uppercase bg-light p-2">
-    <i class="mdi mdi-earth mr-1"></i> Social
-  </h5>
-  <div class="row">
-    <div class="col-md-6">
-      <div class="form-group">
-        <label for="social-fb">Facebook</label>
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text"
-              ><i class="fab fa-facebook-square"></i
-            ></span>
-          </div>
-          <input
-            type="text"
-            class="form-control"
-            id="social-fb"
-            placeholder="Url"
-          />
-        </div>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="form-group">
-        <label for="social-tw">Twitter</label>
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text"><i class="fab fa-twitter"></i></span>
-          </div>
-          <input
-            type="text"
-            class="form-control"
-            id="social-tw"
-            placeholder="Username"
-          />
-        </div>
-      </div>
-    </div>
-    <!-- end col -->
-  </div>
-  <!-- end row -->
-
-  <div class="row">
-    <div class="col-md-6">
-      <div class="form-group">
-        <label for="social-insta">Instagram</label>
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text"
-              ><i class="fab fa-instagram"></i
-            ></span>
-          </div>
-          <input
-            type="text"
-            class="form-control"
-            id="social-insta"
-            placeholder="Url"
-          />
-        </div>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="form-group">
-        <label for="social-lin">Linkedin</label>
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text"
-              ><i class="fab fa-linkedin"></i
-            ></span>
-          </div>
-          <input
-            type="text"
-            class="form-control"
-            id="social-lin"
-            placeholder="Url"
-          />
-        </div>
-      </div>
-    </div>
-
-    <!-- end col -->
-  </div>
-  <!-- end row -->
-
-  <div class="text-right">
-    <button
-      type="submit"
-      class="btn btn-success waves-effect waves-light mt-2"
-      (click)="saveData()"
-    >
-      <i class="mdi mdi-content-save"></i> Save
-    </button>
   </div>
 
   <!-- end col -->
-</form>
+</div>

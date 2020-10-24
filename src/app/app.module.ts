@@ -31,6 +31,8 @@ import { EditTripComponent } from './organizer/edit-trip-component/edit-trip.com
 import { ReactiveFormsModule } from '@angular/forms';
 import { GuideListComponent } from './organizer/guide-list/guide-list.component';
 import { GuideListItemComponent } from './organizer/guide-list/guide-list-item/guide-list-item.component';
+import { TripListComponent } from './search-trip/trip-list/trip-list.component';
+import { TripItemComponent } from './search-trip/trip-list/trip-item/trip-item.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,6 +57,10 @@ import { GuideListItemComponent } from './organizer/guide-list/guide-list-item/g
     GuideListComponent,
 
     GuideListItemComponent,
+
+    TripListComponent,
+
+    TripItemComponent,
 
 
   ],

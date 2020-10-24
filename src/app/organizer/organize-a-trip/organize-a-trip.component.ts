@@ -59,7 +59,7 @@ export class OrganizeATripComponent implements OnInit {
       .subscribe((result) => {
         console.log('navigate to profile after adding trip');
 
-        this.router.navigate(['/organizer/profile']);
+        this.router.navigate([`/organizer/${id}/profile`]);
       });
   })
 }
