@@ -19,7 +19,7 @@ export class SearchTripComponent implements OnInit {
   }
 
   getData() {
-    if (this.pickedDate === undefined && this.searchLocation === '') {
+    if ((this.pickedDate === undefined || this.pickedDate === '') && this.searchLocation === '') {
       this.http.get('/api/trips').subscribe((data: Trip[]) => {
         this.trips = data;
         console.log('the data is ==>', this.trips);
