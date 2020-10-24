@@ -1,7 +1,7 @@
 <div>
   <form>
     <h5 class="mb-3 text-uppercase bg-light p-2">
-      <mat-icon>person</mat-icon> Personal Info
+      <span class="material-icons"> Personal Info</span>
     </h5>
     <div class="row">
       <div class="col-md-6">
@@ -82,6 +82,27 @@
         </button>
       </div>
     </div>
+  </form>
+  <form>
+    <h5 class="mb-3 text-uppercase bg-light p-2">
+      <span class="material-icons">person</span> Biography
+    </h5>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <textarea
+            class="form-control"
+            rows="10"
+            id="biography"
+            name="biography"
+            value="{{ guide.bio }}"
+            [(ngModel)]="guide.bio"
+          >
+          </textarea>
+        </div>
+      </div>
+    </div>
+
   </form>
   <form>
     <h5 class="mb-3 text-uppercase bg-light p-2">
