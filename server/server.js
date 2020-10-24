@@ -19,8 +19,10 @@ app.use(express.static(__dirname + "./../dist/DiscooverIn/"));
 app.use("/api/auth", authRouter);
 app.use("/api/user", userRouter);
 app.use("/api/trips", tripsRouter);
+app.use("/api/users/guides", guidesRouter);
 app.use("/api/proposals", proposalRouter);
 app.use("/api/users/guides", guidesRouter);
+
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "/../dist/DiscooverIn/index.html"));
