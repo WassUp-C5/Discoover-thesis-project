@@ -44,7 +44,7 @@ export class EditTripComponent implements OnInit {
     .subscribe((res: any) => {
       this.toEdit.push(res);
       console.log(this.toEdit);
-      this.router.navigate(['/organizer/profile/'])
+      this.router.navigate([`/organizer/${id}/profile`])
 
     });
     })

@@ -38,14 +38,15 @@ export class TripDetailsComponent implements OnInit {
   }
 
   cancel(){
+    let id;
     this.activatedRoute.params.subscribe(params => {
-      let id = params['id'];
+      id = params['id'];
     this.http.delete('/api/trips/delete/'+id)
     .subscribe((res: any)=>{
       console.log('navigate to profile after cancel');
     })
   });
-  this.router.navigate(['/organizer/profile/'])
+  this.router.navigate([`/organizer/${id}/profile/`])
   }
 
 }
