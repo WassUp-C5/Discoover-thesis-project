@@ -21,12 +21,15 @@ authRouter.post("/signin", async (req, res) => {
   console.log(req.body);
   try {
     var user = await User.findOne({ username: req.body.username });
+    console.log(user);
     if (!user) {
+      console.log('user not found ')
       return res
         .status(401)
         .json({ title: "server side error", error: "invalid" });
     }
     if (!bcrypt.compareSync(req.body.password, user.password)) {
+      console.log('wrong password');
       return res
         .status(401)
         .json({ title: "log in failed", error: "invalid data" });

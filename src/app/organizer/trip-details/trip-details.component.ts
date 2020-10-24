@@ -17,14 +17,9 @@ export class TripDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
       let id = params['id'];
-
-      console.log(`${id}`);
-
       this.http.get('/api/trips/'+id)
       .subscribe((res: any) => {
         this.trip.push(res);
-        console.log(this.trip);
-
       });
       });
   }
@@ -43,14 +38,11 @@ export class TripDetailsComponent implements OnInit {
   }
 
   cancel(){
-
     this.activatedRoute.params.subscribe(params => {
       let id = params['id'];
-    this.http.delete('/api/trips/'+id)
+    this.http.delete('/api/trips/delete/'+id)
     .subscribe((res: any)=>{
       console.log('navigate to profile after cancel');
-
-
     })
   });
   this.router.navigate(['/organizer/profile/'])
