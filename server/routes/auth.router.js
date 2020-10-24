@@ -7,7 +7,7 @@ authRouter.post("/signup", async (req, res) => {
   try {
     console.log(req.body);
     var user = new User(req.body);
-    await user.save().then((result) => {
+    await user.saveUser().then((result) => {
       console.log("success");
       res.send(result);
     });

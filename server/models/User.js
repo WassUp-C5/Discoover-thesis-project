@@ -59,7 +59,7 @@ class User extends MongoUser {
   //   });
   // }
 
-  save() {
+  saveUser() {
     return new Promise((resolve, reject) => {
       console.log("password ===> ", this.password);
       this.password = bcrypt.hashSync(this.password, 10)
