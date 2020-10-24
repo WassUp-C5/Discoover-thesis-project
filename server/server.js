@@ -16,7 +16,7 @@ app.use(express.static(__dirname + "./../dist/DiscooverIn/"));
 app.use("/api/auth", authRouter);
 app.use("/api/user", userRouter);
 app.use("/api/trips", tripsRouter);
-app.use("/api/proposal", proposalRouter);
+app.use("/api/proposals", proposalRouter);
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "/../dist/DiscooverIn/index.html"));
