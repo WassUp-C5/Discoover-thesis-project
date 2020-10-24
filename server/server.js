@@ -6,8 +6,10 @@ const authRouter = require("./routes/auth.router");
 const userRouter = require("./routes/user.router");
 const tripsRouter = require("./routes/trips.router");
 
+
 const app = express();
 const port = process.env.PORT || 5000;
+
 
 app.use(cors());
 app.use(express.json());
