@@ -28,7 +28,7 @@
                             <p>Organizer</p>
                             <a [routerLink]="['/organizer', this.organizer?._id, 'profile']">{{this.organizer?.first_name + " " +this.organizer?.last_name}}</a><br/>
                             <p>Guide(s)</p>
-                            <a *ngFor="let guideId of this.tripDetails?.guide" [routerLink]="['/guide', guideId, 'profile']">{{ tripDetails?.guide }}</a><br/>
+                            <a *ngFor="let guideId of this.tripDetails?.guide" [routerLink]="['/guide', guideId]">{{ guideInfo?.first_name + " " + guideInfo?.last_name }}</a><br/>
                             <a href="#" *ngIf="tripDetails?.guide?.length === 0"> No guide assigned </a><br/>
                         </div>
                     </div>

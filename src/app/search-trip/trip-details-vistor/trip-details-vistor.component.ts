@@ -17,6 +17,7 @@ export class TripDetailsVistorComponent implements OnInit {
   organizer: User;
   tripDetails: Trip;
   organizerName: String;
+  guideInfo: User;
 
 
   constructor(private http: HttpClient, private route: ActivatedRoute) { }
@@ -28,12 +29,22 @@ export class TripDetailsVistorComponent implements OnInit {
         .get(`/api/trips/${this.tripId}`)
         .subscribe((data: Trip[]) => {
           this.tripDetails = data;
-          let id = this.tripDetails.organizerId
+          console.log('the data from DB is ====>', this.tripDetails);
 
+          let id = this.tripDetails.organizerId;
           this.http
           .get(`/api/user/organizer/${id}`)
           .subscribe((result: User[]) => {
             this.organizer = result;
+            console.log('the result from DB is ===>', result);
+
+          })
+          let guideId = this.tripDetails.guide[0];
+          this.http
+          .get(`/api/user/guide/${guideId}`)
+          .subscribe((result : User[]) => {
+            this.guideInfo = result;
+            console.log('the guide name is ====>', this.guideInfo);
           })
         });
     });
