@@ -91,7 +91,7 @@
           </mat-tab>
           <mat-tab *ngIf="currentUser.id === guideId" label="Settings">
             <div class="tab-pane" id="settings">
-              <app-edit-guide-profile [getGuide]="getGuide.bind(this)" [guide]="guide"></app-edit-guide-profile>
+              <app-edit-guide-profile [getGuide]="getGuide" [guide]="guide"></app-edit-guide-profile>
             </div>
           </mat-tab>
           <mat-tab *ngIf="currentUser.id === guideId" label="Proposals">
