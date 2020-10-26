@@ -8,9 +8,9 @@
                     </div>
                     <div class="col-md-6">
                         <div class="profile-head">
-                                    <h5>
-                                      {{trip.title}}
-                                    </h5>
+                                    <h2>
+                                    {{tripDetails.title}}
+                                    </h2>
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About Trip</a>
@@ -25,12 +25,11 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="profile-work">
-                            <p>Organizer Details</p>
+                            <p>Organizer</p>
                             <a href="">Organizer Name</a><br/>
-                            <a href="#">Organizer Profile</a><br/>
-                            <p>Guide Details</p>
-                            <a href="">Guide Name</a><br/>
-                            <a href="">Guide Profile</a><br/>
+                            <p>Guide(s)</p>
+                            <a href="">{{ tripDetails.guide }}</a><br/>
+                            <a href="" *ngIf="tripDetails.guide?.length === 0"> No guide assigned </a><br/>
                         </div>
                     </div>
                     <div class="col-md-8">
@@ -41,7 +40,7 @@
                                                 <label>Trip Id</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>#khgjfd</p>
+                                                <p>{{tripDetails._id}}</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -49,7 +48,7 @@
                                                 <label>Location</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>Rimel</p>
+                                                <p>{{tripDetails.location}}</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -57,15 +56,23 @@
                                                 <label>Date</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>Nchalah Snéé!</p>
+                                                <p>{{tripDetails.date | date}}</p>
                                             </div>
                                         </div>
+                                        <div class="row">
+                                          <div class="col-md-6">
+                                              <label>Price</label>
+                                          </div>
+                                          <div class="col-md-6">
+                                              <p>{{tripDetails.price}} DT</p>
+                                          </div>
+                                      </div>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label>Trip Details</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>Ghatsa</p>
+                                                <p>{{tripDetails.description}}</p>
                                             </div>
                                         </div>
                             </div>
