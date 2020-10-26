@@ -3,19 +3,19 @@ const User = require("../models/User");
 const Trip = require("../models/Trips");
 const bcrypt = require("bcryptjs");
 
-/****************Update Organizer Profile ******************** */
-userRouter.put("/organizer/edit", (req, res) => {
-  let user = req.body;
-  console.log("router section organizer log ==>", user);
-  User.updateOne({ username: user.username }, user)
+/*******************Get the organizer info when page loads*********************************** */
+userRouter.get("/organizer/:id", (req, res) => {
+  User.findOne({ _id: req.params.id })
     .then((result) => {
       res.send(result);
     })
     .catch((err) => console.log(err));
 });
-/*******************Get the organizer info*********************************** */
-userRouter.get("/organizer/:id", (req, res) => {
-  User.findOne({ _id: req.params.id })
+/****************Update Organizer Profile ******************** */
+userRouter.put("/organizer/edit", (req, res) => {
+  let user = req.body;
+  console.log("router section organizer log ==>", user);
+  User.updateOne({ username: user.username }, user)
     .then((result) => {
       res.send(result);
     })
@@ -75,20 +75,20 @@ userRouter.get("/guides", (req, res) => {
 userRouter.put("/:id/password/edit", async (req, res) => {
   try {
     User.findById(req.params.id)
-    .then(user => {
-      if (!bcrypt.compareSync(req.body.currentPassword, user.password)) {
-        return res
-          .status(401)
-          .json({ message: "Please verify your password!!"});
-      }
+      .then(user => {
+        if (!bcrypt.compareSync(req.body.currentPassword, user.password)) {
+          return res
+            .status(401)
+            .json({ message: "Please verify your password!!" });
+        }
 
-      user.password = req.body.newPassword;
-      user.save();
-      res.send({message: "Success: your password has been changed!!"})
-    })
+        user.password = req.body.newPassword;
+        user.save();
+        res.send({ message: "Success: your password has been changed!!" })
+      })
   } catch (error) {
     console.log(error);
-    res.status(500).send({ message: "An error occured please try again!!"});
+    res.status(500).send({ message: "An error occured please try again!!" });
   }
 });
 
