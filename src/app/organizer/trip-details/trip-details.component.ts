@@ -20,12 +20,19 @@ export class TripDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params) => {
       let id = params['id'];
+<<<<<<< HEAD
 
       console.log(`${id}`);
 
       this.http.get('/api/trips/' + id).subscribe((res: any) => {
         this.trip.push(res);
         console.log(this.trip);
+=======
+      this.http.get('/api/trips/'+id)
+      .subscribe((res: any) => {
+        this.trip.push(res);
+      });
+>>>>>>> 5fc56c341ddfce035bc2e041f24ccabe4158d437
       });
     });
   }
@@ -43,16 +50,18 @@ export class TripDetailsComponent implements OnInit {
     });
   }
 
-  cancel() {
+  cancel(){
     let id;
-    this.activatedRoute.params.subscribe((params) => {
+    this.activatedRoute.params.subscribe(params => {
       id = params['id'];
-      this.http.delete('/api/trips/' + id).subscribe((res: any) => {
-        console.log('navigate to profile after cancel');
-
-      });
-    });
-    this.router.navigate([`/organizer/${id}/profile`]);
-
+    this.http.delete('/api/trips/delete/'+id)
+    .subscribe((res: any)=>{
+      console.log('navigate to profile after cancel');
+    })
+    this.http
+      .delete(`/api/proposals/delete/${id}`)
+      .subscribe((res) => console.log(res));
+  });
+  this.router.navigate([`/organizer/${id}/profile/`])
   }
 }

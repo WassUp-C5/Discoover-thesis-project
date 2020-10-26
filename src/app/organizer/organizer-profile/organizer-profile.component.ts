@@ -22,50 +22,74 @@ export class OrganizerProfileComponent implements OnInit {
     bio: '',
     phone_number: '',
   };
+  proposals = [];
+  tripP = []
 
   constructor(private http: HttpClient, private token: TokenStorageService, private router: Router) {}
   trips: Trip[];
 
   ngOnInit(): void {
     this.currentUser = this.token.getUser();
+    // Get organizer infos from DB
     this.http
       .get(`/api/user/organizer/${this.currentUser.id}`)
       .subscribe((res: any) => {
         console.log(res);
         this.organizer = res;
       });
+    // Get all the organizer's trips // =========>> it shows even the deleted trips ids (TO BE FIXED)
     this.http
       .get(`/api/user/organizer/trips/${this.currentUser.id}`)
       .subscribe((data: Trip[]) => {
         this.trips = data;
       });
+     // Get all the proposals by organizer ID
+     this.http.get(`/api/proposals/organizer/${this.currentUser.id}`).subscribe((res: any) => {
+      this.proposals = res;
+      console.log('on init organizer proposals', this.proposals);
+      this.proposals.forEach((proposal) => {
+        let tripId = proposal.tripId;
+        this.http.get(`/api/trips/${tripId}`).subscribe((res) => {
+          console.log('tripiya wa7da ', res);
+          this.tripP.push({ res, proposal });
+        });
+      });
+      console.log('this.trips ======>', this.tripP);
+    });
   }
 
-  getTrip(tripId){
-    console.log("click is working")
-    this.router.navigate(['/organizer/trip/details/'+tripId])
-  }
-
+  // Redirect to create trip
   addTrip(){
-    console.log("click is working trip add")
     this.currentUser = this.token.getUser();
     console.log('current user ====>',this.currentUser.id);
 
     this.router.navigate([`/organizer/${this.currentUser.id}/trip/add`])
   }
 
+  // Redirect to trip details
+  getTrip(tripId){
+    this.router.navigate(['/organizer/trip/details/'+tripId])
+  }
+
+  // Cancel a proposition
+  cancelProp(id){
+    this.http
+    .delete(`/api/proposals/delete/one/${id}`)
+    .subscribe((res) => console.log(res));
+  }
+
   genderHandler(event: any) {
     this.organizer.gender = event.target.value;
     console.log(this.organizer.gender);
   }
-  onClick() {
-    window.location.reload();
-    console.log('organizer profile updated with ==>', this.organizer);
 
+  // Edit organizer profile
+  onClick() {
     this.http
-      .put('/api/user/organizer/edit', this.organizer)
-      .subscribe((res) => {
-        console.log(res);
-      });
+    .put('/api/user/organizer/edit', this.organizer)
+    .subscribe((res) => {
+      console.log(res);
+    });
+    window.location.reload();
   }
 }

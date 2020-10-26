@@ -1,6 +1,8 @@
 const tripsRouter = require("express").Router();
 const Trip = require("../models/Trips");
 const User = require("../models/User");
+
+
 /****************Add a Trip******************************* */
 tripsRouter.post("/add", async (req, res) => {
   try {
@@ -31,9 +33,9 @@ tripsRouter.get("/location/:location", (req, res) => {
 });
 
 /**********Get All The Trips************** */
-tripsRouter.get("/", (req, res) => {
+tripsRouter.get("/public", (req, res) => {
   console.log('yoooo');
-  Trip.find({}, function (err, trip) {
+  Trip.find({ published: true}, function (err, trip) {
     if (err) throw err;
     res.send(trip);
     console.log("tripALL ===> ", trip);
@@ -96,10 +98,11 @@ tripsRouter.put("/:id/edit", (req, res) => {
 });
 
 /***********************Delete trip by id***************************/
-tripsRouter.delete("/:id", (req, res) => {
+tripsRouter.delete("/delete/:id", (req, res) => {
   Trip.deleteOne({ _id: req.params.id }, function (err) {
     if (err) throw err;;
     console.log("trip deleted");
   });
 });
+
 module.exports = tripsRouter;

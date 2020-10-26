@@ -46,6 +46,7 @@ export class GuideProfileComponent implements OnInit {
       let id = params['guideId'];
 
       let userId = this.userRole === 'guide' ? this.currentUser.id : id;
+      console.log('the user IDDD ==>', userId);
 
       this.http.get(`/api/user/guide/${userId}`).subscribe((res: any) => {
         console.log('on init guide infos', res);
@@ -56,15 +57,15 @@ export class GuideProfileComponent implements OnInit {
         console.log('user qualification ==>', this.guide.qualifications);
       });
       /*************Get all the proposal by guide ID******************* */
-      this.http.get(`/api/proposals/${userId}`).subscribe((res: any) => {
+      this.http.get(`/api/proposals/guide/${userId}`).subscribe((res: any) => {
         this.proposals = res;
         console.log('on init guide proposals', this.proposals);
         this.proposals.forEach((proposal) => {
           let tripId = proposal.tripId;
-          let proposalId = proposal._id;
+          // let proposalId = proposal._id;
           this.http.get(`/api/trips/${tripId}`).subscribe((res) => {
             console.log('tripiya wa7da ', res);
-            this.trips.push({ res, proposalId });
+            this.trips.push({ res, proposal });
           });
         });
         console.log('this.trips ======>', this.trips);
@@ -102,10 +103,12 @@ export class GuideProfileComponent implements OnInit {
         organizerId: this.currentUser.id,
         guideId: guideId,
         tripId: tripId,
-        accepted: false,
+        accepted : null,
       };
-      console.log('trip id ====>', tripId);
-      console.log('guide id ====>', `/api/trips/${tripId}/edit`);
+      // console.log('trip id ====>', tripId);
+      // console.log('guide id ====>', `/api/trips/${tripId}/edit`);
+
+      ////////// submitting a proposal
       this.http
         .post('/api/proposals/add', proposal)
 
@@ -118,14 +121,6 @@ export class GuideProfileComponent implements OnInit {
   }
   /************We are here for the button of the accept and decline************************ */
   accept(tripId, proposalId) {
-    this.activatedRoute.params.subscribe((params) => {
-      console.log(this.trips[0]);
-      console.log('proposal id from accept', proposalId);
-
-      // let tripId = params['tripId'];
-      console.log('trip id from accept', tripId);
-
-      console.log('this.currentUser.id  ', this.currentUser.id);
       this.http
         .put(`/api/trips/edit/${tripId}`, {
           guide: this.currentUser.id,
@@ -140,13 +135,16 @@ export class GuideProfileComponent implements OnInit {
         .subscribe((response) => {
           console.log(response);
         });
-    });
   }
 
   decline(proposalId) {
     this.http
-      .delete(`/api/proposals/delete/${proposalId}`)
-      .subscribe((res) => console.log(res));
+    .put(`/api/proposals/edit/${proposalId}`, {
+      accepted: false,
+    })
+    .subscribe((response) => {
+      console.log(response);
+    });
   }
 
   //   addLanguage() {
