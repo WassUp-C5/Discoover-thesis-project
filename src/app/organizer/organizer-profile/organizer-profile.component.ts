@@ -34,7 +34,7 @@ export class OrganizerProfileComponent implements OnInit {
     this.http
       .get(`/api/user/organizer/${this.currentUser.id}`)
       .subscribe((res: any) => {
-        console.log(res);
+        console.log(' 1 . Oninit Organizer Schema ===> ', res);
         this.organizer = res;
       });
     // Get all the organizer's trips // =========>> it shows even the deleted trips ids (TO BE FIXED)
@@ -61,8 +61,6 @@ export class OrganizerProfileComponent implements OnInit {
   // Redirect to create trip
   addTrip(){
     this.currentUser = this.token.getUser();
-    console.log('current user ====>',this.currentUser.id);
-
     this.router.navigate([`/organizer/${this.currentUser.id}/trip/add`])
   }
 
