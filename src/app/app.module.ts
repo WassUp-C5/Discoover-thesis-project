@@ -32,6 +32,7 @@ import { GuideListComponent } from './organizer/guide-list/guide-list.component'
 import { GuideListItemComponent } from './organizer/guide-list/guide-list-item/guide-list-item.component';
 import { TripListComponent } from './search-trip/trip-list/trip-list.component';
 import { TripItemComponent } from './search-trip/trip-list/trip-item/trip-item.component';
+import { TripDetailsVistorComponent } from './search-trip/trip-details-vistor/trip-details-vistor.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,6 +60,8 @@ import { TripItemComponent } from './search-trip/trip-list/trip-item/trip-item.c
     TripListComponent,
 
     TripItemComponent,
+
+    TripDetailsVistorComponent,
 
 
   ],
