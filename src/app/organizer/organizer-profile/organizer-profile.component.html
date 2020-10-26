@@ -86,6 +86,11 @@
               <i class="mdi mdi-settings-outline mr-1"></i>My Trips
             </a>
           </li>
+          <li class="nav-item">
+            <a href="#myProposals" data-toggle="tab" aria-expanded="false" class="nav-link">
+              <i class="mdi mdi-settings-outline mr-1"></i>My Proposals
+            </a>
+          </li>
         </ul>
 
         <div class="tab-content">
@@ -135,6 +140,37 @@
           </div>
 
           <!-- end timeline content-->
+          <div class="tab-pane show active" id="myProposals">
+            <h5 class="mb-4 text-uppercase">
+              <i class="mdi mdi-briefcase mr-1"></i> My Proposals
+            </h5>
+
+            <ul *ngFor="let trip of tripP">
+              <li>
+
+                <h3 class="text-primary">
+                  <span class="glyphicon glyphicon-arrow-right"></span>
+                  {{ trip.res.title }}
+                </h3>
+                <div *ngIf="trip.proposal.accepted === true">Status : Accepted </div>
+                <div *ngIf="trip.proposal.accepted == null">Status : Waiting response </div>
+                <div *ngIf="trip.proposal.accepted == false">Status : Declined </div>
+                <div>date : {{ trip.res.date }}</div>
+                <div>Location : {{ trip.res.location }}</div>
+                <div>price : {{ trip.res.price }}</div>
+                <div>Max travelers : {{ trip.res.maxTravelers }}</div>
+                <div>
+                  <p>Trip description : <br />{{ trip.res.description }}</p>
+                </div>
+
+                <button type="submit" (click)="cancelProp(trip.proposal._id)" class="btn btn-danger btn-signin">
+                  cancel Proposal
+                </button>
+              </li>
+            </ul>
+
+
+          </div>
 
           <div class="tab-pane" id="settings">
             <form>
