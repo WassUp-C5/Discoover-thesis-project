@@ -5,7 +5,7 @@ const tripsSchema = new mongoose.Schema(
     title: String,
     location: String,
     date: Date,
-    price: String,
+    price: Number,
     description: String,
     // activities: [],
     maxTravelers: String,

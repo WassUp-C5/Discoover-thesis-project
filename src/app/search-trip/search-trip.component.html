@@ -14,14 +14,21 @@
         class="input-group datePicker col-4"
         (change)="searchDateHandler($event)" (onChange)="getData()"
       >
-        <input type="date" class="form-control form-control-lg search-bar-input" />
+        <input
+          type="date"
+          class="form-control form-control-lg search-bar-input"
+        />
       </div>
       <div class="col-2">
         <button
+          mat-raised-button
+          color="warn"
           type="submit"
           class="btn form-control-lg search-bar-button"
           (click)="getData()"
         >
+
+          <mat-icon class="mat-18">search</mat-icon>
           Search
         </button>
       </div>
