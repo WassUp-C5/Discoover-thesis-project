@@ -45,6 +45,9 @@ export class TripDetailsComponent implements OnInit {
     .subscribe((res: any)=>{
       console.log('navigate to profile after cancel');
     })
+    this.http
+      .delete(`/api/proposals/delete/${id}`)
+      .subscribe((res) => console.log(res));
   });
   this.router.navigate([`/organizer/${id}/profile/`])
   }
