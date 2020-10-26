@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Trip } from '../../../../server/models/Trips.js';
+import { User} from '../../../../server/models/User.js';
 
 
 @Component({
@@ -13,8 +14,9 @@ import { Trip } from '../../../../server/models/Trips.js';
 export class TripDetailsVistorComponent implements OnInit {
 
   tripId: string;
-  organizer: [];
+  organizer: User;
   tripDetails: Trip;
+  organizerName: String;
 
 
   constructor(private http: HttpClient, private route: ActivatedRoute) { }
@@ -26,16 +28,13 @@ export class TripDetailsVistorComponent implements OnInit {
         .get(`/api/trips/${this.tripId}`)
         .subscribe((data: Trip[]) => {
           this.tripDetails = data;
-          console.log('the data is ==========>', this.tripDetails.organizerId)
           let id = this.tripDetails.organizerId
 
           this.http
           .get(`/api/user/organizer/${id}`)
-          .subscribe((result ) => {
-           console.log('the result of org is ===========>', result);
-
+          .subscribe((result: User[]) => {
+            this.organizer = result;
           })
-          // console.log('the organizer name =======>', this.organizerName);
         });
     });
 

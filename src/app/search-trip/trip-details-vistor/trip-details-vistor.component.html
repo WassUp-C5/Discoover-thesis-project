@@ -26,7 +26,7 @@
                     <div class="col-md-4">
                         <div class="profile-work">
                             <p>Organizer</p>
-                            <a href="">Organizer Name</a><br/>
+                            <a [routerLink]="['/organizer', this.organizer._id, 'profile']">{{this.organizer.first_name + " " +this.organizer.last_name}}</a><br/>
                             <p>Guide(s)</p>
                             <a href="">{{ tripDetails.guide }}</a><br/>
                             <a href="" *ngIf="tripDetails.guide?.length === 0"> No guide assigned </a><br/>
