@@ -17,3 +17,12 @@
 span {
   margin-right: 10px;
 }
+/*
+@media screen and (max-width: 600px) {
+  .nav.responsive {position: relative;}
+  .nav.responsive, span, button {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+} */
