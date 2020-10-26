@@ -1,0 +1,15 @@
+<div class="card-content">
+  <div class="card-img">
+    <img src="https://placeimg.com/380/230/nature" alt="Location Picture" />
+    <span>
+      <h4>{{ trip.price }} DT</h4>
+    </span>
+  </div>
+  <div class="card-desc">
+    <h3>{{ trip.title }}</h3>
+    <p>
+      {{ trip.description }}
+    </p>
+    <a class="btn-card" [routerLink]="['/trips', trip._id, 'details']">Show more</a>
+  </div>
+</div>

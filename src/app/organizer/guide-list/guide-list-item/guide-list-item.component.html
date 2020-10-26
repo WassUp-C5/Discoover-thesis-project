@@ -1,18 +1,17 @@
-
 <div class="card card-profile">
   <div class="card-avatar">
-    <a href="#">
+    <a>
       <img class="img" src="../../assets/photo.jpg" />
     </a>
   </div>
   <div class="card-body">
-    <h6 class="card-category text-gray">Full-Stuck Developer / Guide 3ajjaw</h6>
+    <h6 class="card-category text-gray">{{guide.roles[1]}}</h6>
 
     <h4 class="card-title">{{ guide.first_name + " " + guide.last_name | titlecase }}</h4>
 
     <p class="card-description">
       {{ (guide.bio |  slice:0:100) + "..." }}
     </p>
-    <a href="#" class="btn btn-danger btn-round" routerLink="guide/profile">More Info</a>
+    <a (click)="getGuideInfo()" class="btn btn-danger btn-round" routerLink="guide/:id/profile">More Info</a>
   </div>
 </div>

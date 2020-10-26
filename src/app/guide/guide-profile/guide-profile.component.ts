@@ -1,5 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+
+import { Component, OnInit } from '@angular/core';
+import { TokenStorageService } from 'src/app/services/token-storage.service';
 
 // import { User } from './../models/User';
 
@@ -9,69 +12,136 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./guide-profile.component.css'],
 })
 export class GuideProfileComponent implements OnInit {
-
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private tokenStorage: TokenStorageService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router
+  ) {}
 
   guide = {
-     username : '',
-     first_name : '',
-     last_name : '',
-     gender : '',
-     location : '',
-     email : '',
-     password : '',
-     bio : '',
-     phone_number : '',
-     qualifications : []
-  }
-  // guideUser: User;
-  // userQualifications: Array<any>;
-  // userData: Array<any>;
-  language: string = '';
-  selectedLevel: string = '';
-  fullName = '';
-  // @Input() qualification;
-  // @Input() type;
-
+    username: '',
+    first_name: '',
+    last_name: '',
+    gender: '',
+    location: '',
+    email: '',
+    password: '',
+    bio: '',
+    phone_number: '',
+    qualifications: [],
+  };
+  proposals = [];
+  trips = [];
+  currentUser = this.tokenStorage.getUser();
+  userRole = this.currentUser.roles[1];
+  condition = this.currentUser.roles[1] !== 'guide';
+  guideId:string;
 
 
   ngOnInit(): void {
-    this.http
-      .get('/api/user/guide/5f8af2f5d7ebfa75d4997522')
-      .subscribe((res : any) => {
-        console.log('on init guide infos',res);
+    this.activatedRoute.params.subscribe(params => {
+      this.guideId = params['id'];
+    });
+    this.activatedRoute.params.subscribe((params) => {
+      let id = params['guideId'];
+
+      let userId = this.userRole === 'guide' ? this.currentUser.id : id;
+
+      this.http.get(`/api/user/guide/${userId}`).subscribe((res: any) => {
+        console.log('on init guide infos', res);
         this.guide = res;
-        this.fullName = this.guide.first_name + ' ' + this.guide.last_name;
+        // this.guide.gender = 'Male';
+        console.log(this.guide);
         this.guide.qualifications = res.qualifications;
-        console.log('user qualification ==>', this.guide.qualifications)
+        console.log('user qualification ==>', this.guide.qualifications);
       });
+      /*************Get all the proposal by guide ID******************* */
+      this.http.get(`/api/proposals/${userId}`).subscribe((res: any) => {
+        this.proposals = res;
+        console.log('on init guide proposals', this.proposals);
+        this.proposals.forEach((proposal) => {
+          let tripId = proposal.tripId;
+          let proposalId = proposal._id;
+          this.http.get(`/api/trips/${tripId}`).subscribe((res) => {
+            console.log('tripiya wa7da ', res);
+            this.trips.push({ res, proposalId });
+          });
+        });
+        console.log('this.trips ======>', this.trips);
+      });
+    });
   }
 
-  genderHandler(event: any){
-    this.guide.gender = event.target.value;
-    console.log(this.guide.gender)
+  // genderHandler(event: any) {
+  //   this.guide.gender = event.target.value;
+  //   console.log(this.guide.gender);
+  // }
+
+  // changeLanguageHandler(event: any) {
+  //   this.language = event.target.value;
+  //   console.log('the language ===>', this.language);
+  // }
+
+  // changeLevelHandler(event: any) {
+  //   this.selectedLevel = event.target.value;
+  //   console.log('the lenguage level ===>', this.selectedLevel);
+  // }
+
+  hire() {
+    this.activatedRoute.params.subscribe((params) => {
+      let tripId = params['tripId'];
+      let guideId = params['guideId'];
+      let proposal = {
+        organizerId: this.currentUser.id,
+        guideId: guideId,
+        tripId: tripId,
+        accepted: false,
+      };
+      console.log('trip id ====>', tripId);
+      console.log('guide id ====>', `/api/trips/${tripId}/edit`);
+      this.http
+        .post('/api/proposals/add', proposal)
+
+        .subscribe((result) => {
+          console.log(result);
+        });
+    });
+
+    this.router.navigate([`/organizer/${this.currentUser.id}/profile`]);
+  }
+  /************We are here for the button of the accept and decline************************ */
+  accept(tripId, proposalId) {
+    this.activatedRoute.params.subscribe((params) => {
+      console.log(this.trips[0]);
+      console.log('proposal id from accept', proposalId);
+
+      // let tripId = params['tripId'];
+      console.log('trip id from accept', tripId);
+
+      console.log('this.currentUser.id  ', this.currentUser.id);
+      this.http
+        .put(`/api/trips/edit/${tripId}`, {
+          guide: this.currentUser.id,
+        })
+        .subscribe((response) => {
+          console.log(response);
+        });
+      this.http
+        .put(`/api/proposals/edit/${proposalId}`, {
+          accepted: true,
+        })
+        .subscribe((response) => {
+          console.log(response);
+        });
+    });
   }
 
-  changeLanguageHandler(event: any) {
-    this.language = event.target.value;
-    console.log('the language ===>', this.language);
+  decline(proposalId) {
+    this.http
+      .delete(`/api/proposals/delete/${proposalId}`)
+      .subscribe((res) => console.log(res));
   }
-
-  changeLevelHandler(event: any) {
-    this.selectedLevel = event.target.value;
-    console.log('the lenguage level ===>', this.selectedLevel);
-  }
-
-  saveData() {
-    window.location.reload();
-    this.guide.qualifications.push({language : this.language, level : this.selectedLevel})
-    console.log('guide profile updated with ==>', this.guide)
-    this.http.put<any>("/api/user/guide/edit",this.guide )
-    .subscribe(data => {
-      console.log(data);
-      })
-  }
-
 
   //   addLanguage() {
   //     let row = document.createElement('div');

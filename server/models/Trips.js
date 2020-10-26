@@ -5,12 +5,16 @@ const tripsSchema = new mongoose.Schema(
     title: String,
     location: String,
     date: Date,
-    price: String,
+    price: Number,
     description: String,
     // activities: [],
     maxTravelers: String,
+    organizerId: String,
     // travelers: []
-    guide: []
+    guide: [],
+    published: {
+      type: Boolean,
+      default: false}
   },
   {
     timestamps: true,
