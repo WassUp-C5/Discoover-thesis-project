@@ -47,6 +47,7 @@ export class GuideProfileComponent implements OnInit {
       let id = params['guideId'];
 
       let userId = this.userRole === 'guide' ? this.currentUser.id : id;
+      console.log('the user IDDD ==>', userId);
 
       this.http.get(`/api/user/guide/${userId}`).subscribe((res: any) => {
         console.log('on init guide infos', res);
