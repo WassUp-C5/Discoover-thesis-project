@@ -36,11 +36,10 @@ export class GuideProfileComponent implements OnInit {
   currentUser = this.tokenStorage.getUser();
   userRole = this.currentUser.roles[1];
   condition = this.currentUser.roles[1] !== 'guide';
-  guideId:string;
-
+  guideId: string;
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe(params => {
+    this.activatedRoute.params.subscribe((params) => {
       this.guideId = params['id'];
     });
     this.activatedRoute.params.subscribe((params) => {
@@ -53,7 +52,7 @@ export class GuideProfileComponent implements OnInit {
         this.guide = res;
         // this.guide.gender = 'Male';
         console.log(this.guide);
-        this.guide.qualifications = res.qualifications;
+        // this.guide.qualifications = res.qualifications;
         console.log('user qualification ==>', this.guide.qualifications);
       });
       /*************Get all the proposal by guide ID******************* */
@@ -72,6 +71,8 @@ export class GuideProfileComponent implements OnInit {
       });
     });
   }
+
+
 
   // genderHandler(event: any) {
   //   this.guide.gender = event.target.value;

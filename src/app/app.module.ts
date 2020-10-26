@@ -50,16 +50,11 @@ import { TripItemComponent } from './search-trip/trip-list/trip-item/trip-item.c
     EditGuideProfileComponent,
     EntryComponent,
     OrganizerNavbarComponent,
-
     OrganizerNavbarComponent,
     EditTripComponent,
-
     GuideListComponent,
-
     GuideListItemComponent,
-
     TripListComponent,
-
     TripItemComponent,
 
 

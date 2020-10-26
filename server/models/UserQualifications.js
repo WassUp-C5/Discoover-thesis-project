@@ -5,7 +5,7 @@ const userQualificationsSchema = new mongoose.Schema({
   levels: [],
   title: String,
   type: String,
-  currentlevel: String,
+  current_level: String,
   guide: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User"

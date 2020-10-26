@@ -6,7 +6,7 @@
   integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" /> -->
 <div class="container guide-profile">
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-3">
       <mat-card>
         <div class="text-center">
           <img
@@ -65,7 +65,7 @@
         </div>
       </mat-card>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-9">
       <mat-card>
         <mat-tab-group>
           <mat-tab label="About me">
@@ -77,16 +77,21 @@
               <hr />
               <h4>My Languages And Skills</h4>
               <h5>My Languages</h5>
-              <ul>
+              <mat-list role="list">
+                <mat-list-item *ngFor="let qualification of guide.qualifications" role="listitem">
+                  {{ qualification.title }}: {{ qualification.current_level }}
+                </mat-list-item>
+              </mat-list>
+              <!-- <ul>
                 <li *ngFor="let qualification of guide.qualifications">
                   {{ qualification.language }}: {{ qualification.level }}
                 </li>
-              </ul>
+              </ul> -->
             </div>
           </mat-tab>
           <mat-tab *ngIf="currentUser.id === guideId" label="Settings">
             <div class="tab-pane" id="settings">
-              <app-edit-guide-profile [guide]="guide"></app-edit-guide-profile>
+              <app-edit-guide-profile [getGuide]="getGuide.bind(this)" [guide]="guide"></app-edit-guide-profile>
             </div>
           </mat-tab>
           <mat-tab *ngIf="currentUser.id === guideId" label="Proposals">

@@ -41,7 +41,7 @@ userRouter.get("/organizer/trips/:id", (req, res) => {
 /****************Get guide info********************* */
 userRouter.get("/guide/:id", (req, res) => {
   User.findOne({ _id: req.params.id })
-    .populate("userQualifications")
+    .populate("qualifications")
     .then((result) => {
       res.send(result);
     })
