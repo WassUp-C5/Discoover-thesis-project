@@ -11,6 +11,7 @@ const tripsSchema = new mongoose.Schema(
     maxTravelers: Number,
     travelers: [],
     guide: [],
+    published: {type: Boolean, default: false}
   },
   {
     timestamps: true,
