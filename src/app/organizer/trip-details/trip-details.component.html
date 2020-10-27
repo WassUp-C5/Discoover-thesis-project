@@ -27,16 +27,24 @@
                   </h3>
                 </div>
                 <div>
-                  <p><strong>Date : </strong> &nbsp;{{ trip[0].date | date }}</p>
                   <p>
-                    <strong>Location : </strong
-                    >&nbsp;{{ trip[0].location | titlecase }}
+                    <strong>Date : </strong> &nbsp;{{ trip[0].date | date }}
                   </p>
+                  <hr>
+                  <p>
+                    <strong>Location : </strong>&nbsp;{{
+                      trip[0].location | titlecase
+                    }}
+                  </p>
+                  <hr>
                   <p><strong>Price : </strong>&nbsp;{{ trip[0].price }} DT</p>
+                  <hr>
                   <p>
-                    <strong>Trip description : </strong
-                    >&nbsp;{{ trip[0].description }}
+                    <strong>Trip description : </strong>&nbsp;{{
+                      trip[0].description
+                    }}
                   </p>
+                  <hr>
                 </div>
               </div>
             </div>
@@ -46,10 +54,7 @@
         <button type="button" class="btn btn-danger" (click)="cancel()">
           Cancel
         </button>
-        <button
-          (click)="goToGuides()"
-          type="button" class="btn btn-secondary"
-        >
+        <button (click)="goToGuides()" type="button" class="btn btn-secondary">
           Add a Local Guide
         </button>
         <button type="button" class="btn btn-info" (click)="goEdit()">

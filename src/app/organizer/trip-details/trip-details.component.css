@@ -6,9 +6,12 @@
   border-radius: 0.5rem;
   background: #fff;
 }
-
+h3 {
+  margin-left: 15%;
+}
 img {
-  height: 200px;
+  height: 220px;
+  width: 220px;
   margin-bottom: 5%;
 }
 
