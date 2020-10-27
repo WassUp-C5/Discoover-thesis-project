@@ -30,20 +30,21 @@ export class OrganizerProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentUser = this.token.getUser();
-    // Get organizer infos from DB
+    // Get organizer infos from DB // Works Fine
     this.http
       .get(`/api/user/organizer/${this.currentUser.id}`)
       .subscribe((res: any) => {
         console.log(res);
         this.organizer = res;
       });
-    // Get all the organizer's trips // =========>> it shows even the deleted trips ids (TO BE FIXED)
+    // Get all the organizer's trips // Works Fine
     this.http
       .get(`/api/user/organizer/trips/${this.currentUser.id}`)
       .subscribe((data: Trip[]) => {
+        console.log("organizer trips to be shown in my trips ====> ", data)
         this.trips = data;
       });
-     // Get all the proposals by organizer ID
+     // Get all the proposals by organizer ID // Works Fine
      this.http.get(`/api/proposals/organizer/${this.currentUser.id}`).subscribe((res: any) => {
       this.proposals = res;
       console.log('on init organizer proposals', this.proposals);

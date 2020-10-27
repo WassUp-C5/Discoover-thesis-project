@@ -73,6 +73,7 @@ export class GuideProfileComponent implements OnInit {
     });
   }
 
+
   // genderHandler(event: any) {
   //   this.guide.gender = event.target.value;
   //   console.log(this.guide.gender);

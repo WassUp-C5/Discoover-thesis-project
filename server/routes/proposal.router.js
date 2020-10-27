@@ -37,7 +37,9 @@ proposalsRouter.post("/add", async (req, res) => {
     res.status(400).send("error");
   }
 });
-/*****************Get proposals of specific organizer with his ID***************************** */
+
+/*****************Get proposals of specific organizer with his ID************ Works Fine ***************** */
+
 proposalsRouter.get("/organizer/:organizerId", async (req, res) => {
   try {
     console.log("req.params.id for organizerId", req.params);
@@ -50,12 +52,14 @@ proposalsRouter.get("/organizer/:organizerId", async (req, res) => {
     res.status(400).send("error");
   }
 });
-/*****************Get proposals of specific guide with his ID***************************** */
+/*****************Get proposals of specific guide with his ID********** Works Fine ******************* */
 proposalsRouter.get("/guide/:guideId", async (req, res) => {
+  console.log("req.params should be  guideId something === > ", req.params);
   try {
     console.log("req.params.id for guidId", req.params);
     await Proposal.find(req.params).then((result) => {
-      console.log("guide proposals =====>", result);
+      console.log(" this guides proposals ===> ", result);
+
       res.send(result);
     });
   } catch (error) {
