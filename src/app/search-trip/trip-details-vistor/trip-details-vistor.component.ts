@@ -25,6 +25,8 @@ export class TripDetailsVistorComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe(param => {
       this.tripId = param["id"];
+      console.log('tripd IDDDD', this.tripId);
+
       this.http
         .get(`/api/trips/${this.tripId}`)
         .subscribe((data: Trip[]) => {
