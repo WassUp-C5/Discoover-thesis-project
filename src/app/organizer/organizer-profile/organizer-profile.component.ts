@@ -72,11 +72,14 @@ export class OrganizerProfileComponent implements OnInit {
     this.router.navigate(['/organizer/trip/details/'+tripId])
   }
 
-  // Cancel a proposition
-  cancelProp(id){
+  // Cancel a proposition and rm this guide id from trip schema
+  cancelProp(propId, guideId, tripId){
     this.http
-    .delete(`/api/proposals/delete/one/${id}`)
+    .delete(`/api/proposals/delete/one/${propId}`)
     .subscribe((res) => console.log(res));
+    this.http
+    .put(`/api/trips/rmGuide/${tripId}`, {guideId} )
+    .subscribe((res) => console.log('after the pull request to rm guide Id from array ===>', res));
   }
 
   genderHandler(event: any) {

@@ -131,7 +131,7 @@ export class GuideProfileComponent implements OnInit {
         });
   }
 
-  decline(proposalId) {
+  decline(tripId, proposalId, guideId) {
     this.http
     .put(`/api/proposals/edit/${proposalId}`, {
       accepted: false,
@@ -139,6 +139,12 @@ export class GuideProfileComponent implements OnInit {
     .subscribe((response) => {
       console.log(response);
     });
+    this.http
+        .put(`/api/trips/rmGuide/${tripId}`, {guideId})
+        .subscribe((response) => {
+          console.log(response);
+        });
+
   }
 
   //   addLanguage() {

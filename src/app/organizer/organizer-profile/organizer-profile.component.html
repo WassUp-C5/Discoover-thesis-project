@@ -163,7 +163,9 @@
                   <p>Trip description : <br />{{ trip.res.description }}</p>
                 </div>
 
-                <button type="submit" (click)="cancelProp(trip.proposal._id)" class="btn btn-danger btn-signin">
+                <button type="submit"
+                  (click)="cancelProp(trip.proposal._id, trip.proposal.guideId, trip.proposal.tripId)"
+                  class="btn btn-danger btn-signin">
                   cancel Proposal
                 </button>
               </li>
