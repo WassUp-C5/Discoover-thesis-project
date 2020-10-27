@@ -5,12 +5,15 @@ const Guide = require("./../models/Guide");
  * Update one guide's personal info
  */
 guidesRouter.put("/:id/edit", async (req, res) => {
-  try {
-    var result = await Guide.updateOne({ _id: req.params.id }, req.body);
+  try{
+    console.log(req.body);
+    var result = await Guide.updateOne({_id: req.params.id}, req.body);
     res.send(result);
+    console.log(result);
   }
-  catch (error) {
+  catch(error){
     res.status(500).send("Error !!");
+    console.log(error)
   }
 });
 

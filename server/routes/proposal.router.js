@@ -5,31 +5,50 @@ const Trip = require("../models/Trips");
 /*********** Add proposal *********** */
 proposalsRouter.post("/add", async (req, res) => {
   try {
+    console.log('proposal infos ====>', req.body);
     var proposal = req.body;
+    console.log("this is proposal ===>", proposal);
     await Proposal.find(proposal).then(result => {
+
+      console.log('result length ==>', result.length)
       if (result.length === 0) {
         newProp = new Proposal(proposal)
+        console.log('proposal don\'t exist ===>', result)
         newProp.save().then((result) => {
-          res.send(result)
+          console.log("proposal saved =====>", result);
+          res.send({ proposal: 'Hire request sent' })
         })
+
+
       }
       else {
+        console.log('proposal exist and check gave ===>', result);
         res.send({ proposal: 'already hired' })
       }
     }
     )
-  } catch (error) {
+  }
+
+
+
+
+  catch (error) {
+    console.log("error ===> ", error);
     res.status(400).send("error");
   }
 });
 
 /*****************Get proposals of specific organizer with his ID************ Works Fine ***************** */
+
 proposalsRouter.get("/organizer/:organizerId", async (req, res) => {
   try {
+    console.log("req.params.id for organizerId", req.params);
     await Proposal.find(req.params).then((result) => {
+      console.log("organizer proposals =====>", result);
       res.send(result);
     });
   } catch (error) {
+    console.log("error ===> ", error);
     res.status(400).send("error");
   }
 });
@@ -37,20 +56,24 @@ proposalsRouter.get("/organizer/:organizerId", async (req, res) => {
 proposalsRouter.get("/guide/:guideId", async (req, res) => {
   console.log("req.params should be  guideId something === > ", req.params);
   try {
+    console.log("req.params.id for guidId", req.params);
     await Proposal.find(req.params).then((result) => {
       console.log(" this guides proposals ===> ", result);
+
       res.send(result);
     });
   } catch (error) {
+    console.log("error ===> ", error);
     res.status(400).send("error");
   }
 });
 
 /*******************************Edit proposal with accepted state************************************* */
-proposalsRouter.put("/guide/acceptance/:id", async (req, res) => {
+proposalsRouter.put("/edit/:id", async (req, res) => {
   let id = req.params.id;
   Proposal.findById(id)
     .then((proposal) => {
+      console.log("proposal ===>", proposal);
       proposal.accepted = req.body.accepted;
       proposal.save();
       res.send({ message: "proposal accepted modified " });

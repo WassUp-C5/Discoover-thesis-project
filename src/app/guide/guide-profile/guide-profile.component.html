@@ -22,10 +22,6 @@
           <button type="submit" (click)="hire()" class="btn btn-danger btn-signin" *ngIf="currentUser.id !== guideId">
             Hire Me
           </button>
-          <button type="submit" (click)="unhire(guideId, currentUser.id)" class="btn btn-danger btn-signin"
-            *ngIf="currentUser.id !== guideId && currentProposal !== null">
-            Unhire
-          </button>
 
           <div class="text-left mt-3">
             <h4 class="font-13 text-uppercase">About Me :</h4>
@@ -104,8 +100,10 @@
                     (click)="accept(trip.res._id, trip.proposal._id)" class="btn btn-secondary btn-signin">
                     Accept
                   </button>
+
                   <button type="submit" (click)="decline(trip.res._id, trip.proposal._id, trip.proposal.guideId)"
                     class="btn btn-danger btn-signin">
+
                     Decline
                   </button>
                 </li>
