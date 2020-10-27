@@ -15,7 +15,7 @@ export class SigninComponent implements OnInit, OnDestroy {
   isLoggedIn = false;
   isLoginFailed = false;
   credentials = {
-    username: '',
+    email: '',
     password: '',
   };
   errorMessage = '';
@@ -32,7 +32,7 @@ export class SigninComponent implements OnInit, OnDestroy {
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
       this.roles = this.tokenStorage.getUser().roles;
-      this.router.navigate(["/"]);
+      this.router.navigate(['/']);
     }
   }
   ngOnDestroy() {
@@ -43,7 +43,7 @@ export class SigninComponent implements OnInit, OnDestroy {
     console.log('Your form data : ', this.credentials);
     this.authService.login(this.credentials).subscribe(
       (data) => {
-        console.log(data)
+        console.log(data);
         this.tokenStorage.saveToken(data.token);
         this.tokenStorage.saveUser(data.user);
 
@@ -51,7 +51,9 @@ export class SigninComponent implements OnInit, OnDestroy {
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getUser().roles;
         // this.reloadPage();
-        this.router.navigate([`/${this.roles[1]}/${this.tokenStorage.getUser().id}/profile`]);
+        this.router.navigate([
+          `/${this.roles[1]}/${this.tokenStorage.getUser().id}/profile`,
+        ]);
       },
       (err) => {
         this.errorMessage = err.error.message;
