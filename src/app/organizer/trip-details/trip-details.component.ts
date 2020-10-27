@@ -37,26 +37,6 @@ export class TripDetailsComponent implements OnInit {
     })
   }
 
-  publish(tripId){
-    this.http
-        .put(`/api/trips/publish/${tripId}`, {
-          published: true,
-        })
-        .subscribe((response) => {
-          console.log(response);
-        });
-  }
-
-  unpublish(tripId){
-    this.http
-        .put(`/api/trips/publish/${tripId}`, {
-          published: false,
-        })
-        .subscribe((response) => {
-          console.log(response);
-        });
-  }
-
   cancel(){
     let id;
     this.activatedRoute.params.subscribe(params => {
