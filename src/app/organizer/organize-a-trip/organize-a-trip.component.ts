@@ -54,9 +54,11 @@ export class OrganizeATripComponent implements OnInit {
     this.http
       .post<any>('/api/trips/add', {
         trip: this.trip.value,
-        organizerId: id,
+        userId: id,
       })
-      .subscribe(() => {
+      .subscribe((result) => {
+        console.log('navigate to profile after adding trip');
+
         this.router.navigate([`/organizer/${id}/profile`]);
       });
   })
