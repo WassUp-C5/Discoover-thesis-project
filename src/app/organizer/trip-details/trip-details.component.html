@@ -46,21 +46,22 @@
                   </p>
                   <hr>
                 </div>
+                <button type="button" class="btn btn-danger" (click)="cancel()">
+                  Cancel
+                </button>
+                <button (click)="goToGuides()" type="button" class="btn btn-secondary">
+                  Add a Local Guide
+                </button>
+                <button type="button" class="btn btn-info" (click)="goEdit()">
+                  Edit
+                </button>
               </div>
             </div>
           </div>
           <!-- /row -->
         </article>
-        <button type="button" class="btn btn-danger" (click)="cancel()">
-          Cancel
-        </button>
-        <button (click)="goToGuides()" type="button" class="btn btn-secondary">
-          Add a Local Guide
-        </button>
-        <button type="button" class="btn btn-info" (click)="goEdit()">
-          Edit
-        </button>
       </div>
     </div>
   </div>
 </section>
+
