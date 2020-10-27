@@ -13,7 +13,7 @@
           data-validate="Type user name"
         >
           <!-- User Name -->
-          <input
+          <!-- <input
             formControlName="username"
             id="first-name"
             class="input100"
@@ -27,7 +27,7 @@
             <div *ngIf="f.username.errors.required">User Name is required</div>
           </div>
         </div>
-        <div class="wrap-input100 rs1-wrap-input100 validate-input m-b-20">
+        <div class="wrap-input100 rs1-wrap-input100 validate-input m-b-20"> -->
           <!-- First Name  -->
           <input
             formControlName="first_name"
@@ -88,6 +88,23 @@
             </div>
           </div>
           <span class="focus-input100"></span>
+        </div>
+        <!-- Birthday -->
+        <div
+          class="wrap-input100 rs1-wrap-input100 validate-input m-b-20"
+          data-validate="Type email"
+        >
+          <input
+            type="date"
+            formControlName="birthday"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.birthday.errors }"
+          />
+          <div *ngIf="submitted && f.birthday.errors" class="invalid-feedback">
+            <div *ngIf="f.birthday.errors.required">
+              Date of Birth is required
+            </div>
+          </div>
         </div>
         <!-- Password -->
         <div

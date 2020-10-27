@@ -25,19 +25,18 @@ export class SignupComponent implements OnInit {
 
   ngOnInit() {
     this.signupForm = this.formBuilder.group({
-      username: ['', Validators.required],
       first_name: ['', Validators.required],
       last_name: ['', Validators.required],
       // validates date format yyyy-mm-dd
-      // birthday: [
-      //   '',
-      //   [
-      //     Validators.required,
-      //     Validators.pattern(
-      //       /^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/
-      //     ),
-      //   ],
-      // ],
+      birthday: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(
+            /^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/
+          ),
+        ],
+      ],
       phone_number: ['', [Validators.required, Validators.minLength(8)]],
       location: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
