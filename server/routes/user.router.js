@@ -3,7 +3,7 @@ const User = require("../models/User");
 const Trip = require("../models/Trips");
 const bcrypt = require("bcryptjs");
 
-/*******************Get the organizer info when page loads*********************************** */
+/*******************Get the organizer info when page loads**************** Works Fine ******************* */
 userRouter.get("/organizer/:id", (req, res) => {
   User.findOne({ _id: req.params.id })
     .then((result) => {
@@ -22,20 +22,16 @@ userRouter.put("/organizer/edit", (req, res) => {
     .catch((err) => console.log(err));
 });
 
-/*************Get all the organizer's Trips******************** */
+/*************Get all the organizer's Trips********* Works Fine *********** */
 
 userRouter.get("/organizer/trips/:id", (req, res) => {
   let id = req.params.id;
   console.log("user ID ======>", id);
-  User.findOne({ _id: id }).then((user) => {
-    console.log("user trips ===>", user.trips);
-    Trip.find({ _id: user.trips })
-      .then((result) => {
-        res.send(result);
-        console.log("result =============>", result);
-      })
-      .catch((err) => console.log(err));
-  });
+  Trip.find({ organizerId: id }, function (err, trips) {
+    if (err) throw err;
+    console.log("organizer trips to be shown  ===> ", trips);
+    res.send(trips);
+  })
 });
 
 /****************Get guide info********************* */

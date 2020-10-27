@@ -73,10 +73,7 @@ export class GuideProfileComponent implements OnInit {
       });
     });
   }
-  ngDoCheck(){
-    console.log('NG DOCHECK current prop when press unhire ===>', this.currentProposal)
 
-  }
 
   // genderHandler(event: any) {
   //   this.guide.gender = event.target.value;
