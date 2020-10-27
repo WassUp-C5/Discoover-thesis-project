@@ -149,7 +149,7 @@ export class GuideProfileComponent implements OnInit {
         });
   }
 
-  decline(tripId, proposalId) {
+  decline(tripId, proposalId, guideId) {
     this.http
     .put(`/api/proposals/guide/acceptance/${proposalId}`, {
       accepted: false,
@@ -158,9 +158,7 @@ export class GuideProfileComponent implements OnInit {
       console.log(response);
     });
     this.http
-        .put(`/api/trips/guide/decline/${tripId}`, {
-          guideId : this.currentUser.id
-        })
+        .put(`/api/trips/rmGuide/${tripId}`, {guideId})
         .subscribe((response) => {
           console.log(response);
         });

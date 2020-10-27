@@ -64,7 +64,7 @@ tripsRouter.put("/publish/:id", (req, res) => {
     })
     .catch((err) => console.log(err));
 });
-/**************Update Trip to add a guide ********************************* */
+/**************Update Trip with guide id when he accepts  ********************************* */
 tripsRouter.put("/edit/:id", (req, res) => {
   let id = req.params.id;
   let guideId = req.body.guide;
@@ -72,14 +72,18 @@ tripsRouter.put("/edit/:id", (req, res) => {
   Trip.findById(id)
     .then((trip) => {
       console.log("trip ===>", trip);
-      trip.guide.push(guideId);
-      trip.save();
-      res.send({ message: "guide  added" });
+      if (trip.guide.includes(guideId)) {
+        res.send({ message: "guide already added" });
+      } else {
+        trip.guide.push(guideId);
+        trip.save();
+        res.send({ message: "guide  added" });
+      }
     })
     .catch((err) => console.log(err));
 });
-/**************Update Trip to remove a the guide Id from guide ********************************* */
-tripsRouter.put("/guide/decline/:id", (req, res) => {
+/**************Update Trip to remove the guide Id from guide ********************************* */
+tripsRouter.put("/rmGuide/:id", (req, res) => {
   let tripId = req.params.id;
   let guideId = req.body.guideId;
   console.log("logging guide array and trip id ==>", tripId, guideId);
@@ -102,7 +106,7 @@ tripsRouter.get("/date/:date", (req, res) => {
     res.send(trip);
   });
 });
-/****************Update trip  ******************** */
+/**************** Update trip  ******************** */
 tripsRouter.put("/:id/edit", (req, res) => {
   let id = req.params.id;
   console.log("router section organizer log ==>", req.body);

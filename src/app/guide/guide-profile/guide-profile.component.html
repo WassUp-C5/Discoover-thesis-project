@@ -100,11 +100,11 @@
                   <div>
                     <p>Trip description : <br />{{ trip.res.description }}</p>
                   </div>
-                  <button type="submit" (click)="accept(trip.res._id, trip.proposal._id)"
-                    class="btn btn-secondary btn-signin">
+                  <button type="submit" *ngIf="trip.proposal.accepted === false || trip.proposal.accepted === null"
+                    (click)="accept(trip.res._id, trip.proposal._id)" class="btn btn-secondary btn-signin">
                     Accept
                   </button>
-                  <button type="submit" (click)="decline(trip.res._id, trip.proposal._id)"
+                  <button type="submit" (click)="decline(trip.res._id, trip.proposal._id, trip.proposal.guideId)"
                     class="btn btn-danger btn-signin">
                     Decline
                   </button>
