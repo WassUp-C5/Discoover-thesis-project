@@ -48,8 +48,8 @@
           </div> <!-- /row -->
 
         </article>
-        <button *ngIf="trip[0].guide.length === 1 && trip[0].published === false" (click)="publish(trip[0]._id)"
-          class="publish" mat-flat-button color="warn">
+        <button *ngIf="trip[0].guide.length === 1 && trip[0].published === false && trip[0].guide.length !==0"
+          (click)="publish(trip[0]._id)" class="publish" mat-flat-button color="warn">
           Publish
         </button>
         <button *ngIf="trip[0].published === true" (click)="unpublish(trip[0]._id)" class="publish" mat-flat-button
@@ -59,8 +59,12 @@
         <button (click)="cancel()" class="cancel" mat-flat-button color="warn">
           Cancel
         </button>
-        <button (click)="goToGuides()" class="addGuide" mat-flat-button color="warn">
+        <button *ngIf="trip[0].guide.length ===0" (click)="goToGuides()" class="addGuide" mat-flat-button color="warn">
           Add a Local Guide
+        </button>
+        <button *ngIf="trip[0].guide[0]" (click)="getGuideInfo(trip[0].guide[0])" class="addGuide" mat-flat-button
+          color="warn">
+          Show My Guide
         </button>
         <button (click)="goEdit()" class="edit" mat-flat-button color="warn">
           Edit
