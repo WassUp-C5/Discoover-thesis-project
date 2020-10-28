@@ -37,13 +37,14 @@ export class GuideProfileComponent implements OnInit {
   condition = this.currentUser.roles[1] !== 'guide';
   guideId: string;
   currentProposal = [];
+  dataIsReady: boolean = false;
 
   ngOnInit(): void {
+    this.dataIsReady = false;
     this.activatedRoute.params.subscribe((param) => {
-      if(param['id']){
+      if (param['id']) {
         this.guideId = param['id'];
-      }
-      else{
+      } else {
         this.guideId = param['guideId'];
       }
 
@@ -51,49 +52,53 @@ export class GuideProfileComponent implements OnInit {
       console.log('guideId: ', this.guideId);
 
       /* ****************Get current proposal with guideId and tripId********************** */
-      this.http.get(`/api/proposals/current/${this.guideId}/${tripIdFromLink}`)
-      .subscribe((res: any) =>{
-        this.currentProposal = res
-      })
+      this.http
+        .get(`/api/proposals/current/${this.guideId}/${tripIdFromLink}`)
+        .subscribe((res: any) => {
+          this.currentProposal = res;
+        });
     });
     this.activatedRoute.params.subscribe((param) => {
-      if(param['id']){
+      if (param['id']) {
         this.guideId = param['id'];
-      }
-      else{
+      } else {
         this.guideId = param['guideId'];
       }
 
       this.http.get(`/api/user/guide/${this.guideId}`).subscribe((res: any) => {
         console.log('on init guide infos', res);
         this.guide = res;
+        this.dataIsReady = true;
         // this.guide.gender = 'Male';
         console.log(this.guide);
         // this.guide.qualifications = res.qualifications;
         console.log('user qualification ==>', this.guide.qualifications);
       });
       /*************Get all the proposal by guide ID******************* */
-      this.http.get(`/api/proposals/guide/${this.guideId}`).subscribe((res: any) => {
-        this.proposals = res;
-        console.log('on init guide proposals', this.proposals);
-        console.log('on init guide current prop', this.currentProposal);
-        this.proposals.forEach((proposal) => {
-          let tripId = proposal.tripId;
-          // let proposalId = proposal._id;
-          this.http.get(`/api/trips/${tripId}`).subscribe((res) => {
-            console.log('tripiya wa7da ', res);
-            this.trips.push({ res, proposal });
+      this.http
+        .get(`/api/proposals/guide/${this.guideId}`)
+        .subscribe((res: any) => {
+          this.proposals = res;
+          console.log('on init guide proposals', this.proposals);
+          console.log('on init guide current prop', this.currentProposal);
+          this.proposals.forEach((proposal) => {
+            let tripId = proposal.tripId;
+            // let proposalId = proposal._id;
+            this.http.get(`/api/trips/${tripId}`).subscribe((res) => {
+              console.log('tripiya wa7da ', res);
+              this.trips.push({ res, proposal });
+            });
           });
+          console.log('this.trips ======>', this.trips);
         });
-        console.log('this.trips ======>', this.trips);
-      });
-
     });
   }
 
   getGuide() {
+    this.dataIsReady = false;
     this.http.get(`/api/user/guide/${this.guideId}`).subscribe((guide: any) => {
       this.guide = guide;
+      this.dataIsReady = true;
       console.log('New guide ==>', this.guide);
     });
   }
@@ -131,10 +136,7 @@ export class GuideProfileComponent implements OnInit {
         .post('/api/proposals/add', proposal)
 
         .subscribe((result) => {
-          console.log(
-            'return of adding new proposal (hiring)===>',
-            result
-          );
+          console.log('return of adding new proposal (hiring)===>', result);
         });
     });
 
@@ -143,21 +145,25 @@ export class GuideProfileComponent implements OnInit {
 
   unhire() {
     console.log('current prop when press unhire ===>', this.currentProposal);
-      this.http
+    this.http
 
       .delete(`/api/proposals/delete/one/${this.currentProposal[0]._id}`)
       .subscribe((res) => {
-        console.log(res)
-        console.log('this.currentProposal before update ====>', this.currentProposal);
+        console.log(res);
+        console.log(
+          'this.currentProposal before update ====>',
+          this.currentProposal
+        );
         this.currentProposal = [];
-        console.log('this.currentProposal after update ====>', this.currentProposal);
-
-    }
-      );
-      let guideId = this.currentProposal[0].guideId
-      let tripIdToRm = this.currentProposal[0].tripId
-      this.http
-      .put(`/api/trips/rmGuide/${tripIdToRm}`, { guideId})
+        console.log(
+          'this.currentProposal after update ====>',
+          this.currentProposal
+        );
+      });
+    let guideId = this.currentProposal[0].guideId;
+    let tripIdToRm = this.currentProposal[0].tripId;
+    this.http
+      .put(`/api/trips/rmGuide/${tripIdToRm}`, { guideId })
       .subscribe((response) => {
         console.log(response);
       });
