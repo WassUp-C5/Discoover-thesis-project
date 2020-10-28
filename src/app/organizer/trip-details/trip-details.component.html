@@ -1,71 +1,92 @@
 <app-organizer-navbar></app-organizer-navbar>
 
-
 <!--  -->
-<section id="principal-content">
-  <div class="container bootstrap snippets bootdey">
-    <div class="row">
-      <div class="col-md-12">
-        <article>
-          <header>
-            <h2 class="text-primary text-center">
+<div class="container">
+  <section id="principal-content">
+    <div class="col-md-12" id="main">
+      <div class="row">
+        <div class="col-md-4 col-md-offset-1">
+          <figure>
+            <img
+              class="img-circle img-thumbnail"
+              src="https://placeimg.com/380/230/nature"
+            />
+            <h3><strong>Organizer name</strong></h3>
+          </figure>
+        </div>
+        <!-- 4 -->
+        <div class="col-md-6">
 
-            </h2>
-          </header>
-          <div class="row" id="design">
-            <div class="col-md-4 col-md-offset-1">
-              <div class="home-design-info">
-                <figure>
-                  <img class="img-circle img-thumbnail" src="https://placeimg.com/380/230/nature">
-                  <p>organizer name</p>
-                </figure>
-              </div>
-            </div> <!-- 4 -->
-            <div class="col-md-6">
-              <div class="deets">
+          <div class="titleDiv">
+            <h3 class="text-primary">
+              <strong> {{ trip[0].title | titlecase }} </strong>
+            </h3>
+          </div>
 
-                <h3 class="text-primary"><span class="glyphicon glyphicon-arrow-right"></span> {{trip[0].title}}
-                </h3>
-                <div>
-                  date : {{trip[0].date}}
-                </div>
-                <div>
-                  Location : {{trip[0].location}}
-                </div>
-                <div>
-                  price : {{trip[0].price}}
-                </div>
-                <div>
-                  Max travelers : {{trip[0].maxTravelers}}
-                </div>
-                <div>
-                  <p>Trip description : <br>{{trip[0].description}}</p>
-                </div>
-
-
-              </div>
-            </div>
-          </div> <!-- /row -->
-
-        </article>
-        <button *ngIf="trip[0].guide.length === 1 && trip[0].published === false" (click)="publish(trip[0]._id)"
-          class="publish" mat-flat-button color="warn">
-          Publish
-        </button>
-        <button *ngIf="trip[0].published === true" (click)="unpublish(trip[0]._id)" class="publish" mat-flat-button
-          color="warn">
-          Unpublish
-        </button>
-        <button (click)="cancel()" class="cancel" mat-flat-button color="warn">
-          Cancel
-        </button>
-        <button (click)="goToGuides()" class="addGuide" mat-flat-button color="warn">
-          Add a Local Guide
-        </button>
-        <button (click)="goEdit()" class="edit" mat-flat-button color="warn">
-          Edit
-        </button>
+          <div>
+            <p><strong>Date : </strong> &nbsp;{{ trip[0].date | date }}</p>
+            <hr />
+            <p>
+              <strong>Location : </strong>&nbsp;{{
+                trip[0].location | titlecase
+              }}
+            </p>
+            <hr />
+            <p><strong>Price : </strong>&nbsp;{{ trip[0].price }} DT</p>
+            <hr />
+            <p>
+              <strong>Trip description : </strong>&nbsp;{{
+                trip[0].description
+              }}
+            </p>
+            <hr />
+          </div>
+          <div class="row">
+            <button
+              type="button"
+              class="btn btn-info col col-md-2 col-sm"
+              (click)="goEdit()"
+            >
+              Edit
+            </button>
+            <button
+              (click)="goToGuides()"
+              type="button"
+              class="btn btn-secondary col col-md-6 col-sm"
+            >
+              Add a Local Guide
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger col col-md-3 col-sm"
+              (click)="cancel()"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div id="pubBtn" class="text-right">
+            <button
+              *ngIf="trip[0].guide.length === 1 && trip[0].published === false"
+              (click)="publish(trip[0]._id)"
+              type="button"
+              class="btn btn-primary"
+            >
+              Publish
+            </button>
+            <button
+              *ngIf="trip[0].published === true"
+              (click)="unpublish(trip[0]._id)"
+              type="button"
+              class="btn btn-primary"
+            >
+              Unpublish
+            </button>
+          </div>
+        </div>
       </div>
+      <!-- /row -->
     </div>
-  </div>
-</section>
+  </section>
+</div>
