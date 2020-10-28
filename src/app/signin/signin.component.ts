@@ -57,11 +57,11 @@ export class SigninComponent implements OnInit, OnDestroy {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getUser().roles;
-        // this.reloadPage();
-        // this.router.navigate([
-        //   `/${this.roles[1]}/${this.tokenStorage.getUser().id}/profile`,
-        // ]);
-        this.router.navigateByUrl(this.previousUrl);
+        //this.reloadPage();
+        this.router.navigate([
+          `/${this.roles[1]}/${this.tokenStorage.getUser().id}/profile`,
+        ]);
+        // this.router.navigateByUrl(this.previousUrl);
       },
       (err) => {
         this.errorMessage = err.error.message;

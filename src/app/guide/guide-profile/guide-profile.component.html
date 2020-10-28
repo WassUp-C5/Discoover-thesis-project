@@ -30,9 +30,17 @@
             type="submit"
             (click)="hire()"
             class="btn btn-danger btn-signin"
-            *ngIf="currentUser.id !== guideId"
+            *ngIf="currentUser.id !== guideId && currentProposal === null"
           >
             Hire Me
+          </button>
+          <button
+            type="submit"
+            (click)="unhire(guideId, currentUser.id)"
+            class="btn btn-danger btn-signin"
+            *ngIf="currentUser.id !== guideId && currentProposal !== null"
+          >
+            Unhire
           </button>
 
           <div class="text-left mt-3">
@@ -130,6 +138,10 @@
                   </div>
                   <button
                     type="submit"
+                    *ngIf="
+                      trip.proposal.accepted === false ||
+                      trip.proposal.accepted === null
+                    "
                     (click)="accept(trip.res._id, trip.proposal._id)"
                     class="btn btn-secondary btn-signin"
                   >
@@ -137,7 +149,13 @@
                   </button>
                   <button
                     type="submit"
-                    (click)="decline(trip.proposal._id)"
+                    (click)="
+                      decline(
+                        trip.res._id,
+                        trip.proposal._id,
+                        trip.proposal.guideId
+                      )
+                    "
                     class="btn btn-danger btn-signin"
                   >
                     Decline
