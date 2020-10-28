@@ -1,0 +1,32 @@
+h3 {
+  margin-top: 10%;
+}
+
+.titleDiv {
+  margin: 5%;
+}
+
+img {
+  height: 250px;
+  margin-bottom: 10%;
+}
+
+#main {
+  margin-top: 3%;
+  background-color: white;
+  margin-left: 10%;
+  width: 80%;
+  height: 95%;
+  border-radius: 5px;
+  box-shadow: 5px 3px 10px 1px #888888;
+  margin-top: 7%;
+  padding: 2%;
+}
+
+#infoDiv {
+  text-align: center;
+}
+
+#basicInfo {
+  width: 100%;
+}
