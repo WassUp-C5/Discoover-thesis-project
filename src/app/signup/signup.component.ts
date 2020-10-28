@@ -25,7 +25,6 @@ export class SignupComponent implements OnInit {
 
   ngOnInit() {
     this.signupForm = this.formBuilder.group({
-      username: ['', Validators.required],
       first_name: ['', Validators.required],
       last_name: ['', Validators.required],
       // validates date format yyyy-mm-dd
@@ -54,10 +53,11 @@ export class SignupComponent implements OnInit {
     this.submitted = true;
 
     if (this.signupForm.invalid) {
+      console.log(this.signupForm.value);
       return;
     }
 
-    console.log("Form ===> ",this.signupForm.value);
+    console.log('Form ===> ', this.signupForm.value);
     this.user = new User(this.signupForm.value);
     console.log('User ===> ', this.user);
     this.user.roles.push(this.route.snapshot.paramMap.get('role'));
