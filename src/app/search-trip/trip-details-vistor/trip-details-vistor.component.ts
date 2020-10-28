@@ -15,6 +15,7 @@ export class TripDetailsVistorComponent implements OnInit {
   organizer: User;
   tripDetails: Trip;
   organizerName: String;
+  guideInfo: User;
   isLoggedIn = !!this.tokenStorage.getUser();
 
   constructor(
@@ -25,22 +26,32 @@ export class TripDetailsVistorComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getTripDetail();
-  }
+    this.route.params.subscribe(param => {
+      this.tripId = param["id"];
+      console.log('tripd IDDDD', this.tripId);
 
-  getTripDetail() {
-    this.route.params.subscribe((param) => {
-      this.tripId = param['id'];
-      this.http.get(`/api/trips/${this.tripId}`).subscribe((data: Trip[]) => {
-        this.tripDetails = data;
-        let id = this.tripDetails.organizerId;
+      this.http
+        .get(`/api/trips/${this.tripId}`)
+        .subscribe((data: Trip[]) => {
+          this.tripDetails = data;
+          console.log('the data from DB is ====>', this.tripDetails);
 
-        this.http
+          let id = this.tripDetails.organizerId;
+          this.http
           .get(`/api/user/organizer/${id}`)
           .subscribe((result: User[]) => {
             this.organizer = result;
-          });
-      });
+            console.log('the result from DB is ===>', result);
+
+          })
+          let guideId = this.tripDetails.guide[0];
+          this.http
+          .get(`/api/user/guide/${guideId}`)
+          .subscribe((result : User[]) => {
+            this.guideInfo = result;
+            console.log('the guide name is ====>', this.guideInfo);
+          })
+        });
     });
   }
 

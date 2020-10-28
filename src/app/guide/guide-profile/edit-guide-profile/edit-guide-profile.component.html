@@ -6,32 +6,6 @@
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">
-          <label for="username">Username</label>
-          <input
-            type="username"
-            class="form-control"
-            id="username"
-            name="username"
-            value="{{ guide.username }}"
-            [(ngModel)]="guide.username"
-          />
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="email">Email Address</label>
-          <input
-            type="email"
-            class="form-control"
-            id="email"
-            name="email"
-            value="{{ guide.email }}"
-            [(ngModel)]="guide.email"
-          />
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="form-group">
           <label for="firstname">First name</label>
           <input
             type="text"
@@ -56,6 +30,20 @@
           />
         </div>
       </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            name="email"
+            value="{{ guide.email }}"
+            [(ngModel)]="guide.email"
+          />
+        </div>
+      </div>
+
       <div class="col-md-6">
         <div class="form-group">
           <label for="mobile">Mobile</label>
@@ -184,7 +172,11 @@
       </div>
       <div class="col-md-5">
         <div class="form-group">
-          <select class="form-control" name="qualifications" [(ngModel)]="userQualifications.current_level">
+          <select
+            class="form-control"
+            name="qualifications"
+            [(ngModel)]="userQualifications.current_level"
+          >
             <option value="beginner">Beginner</option>
             <option value="average">Average</option>
             <option value="advanced">Advanced</option>

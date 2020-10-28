@@ -24,7 +24,7 @@ export class OrganizerProfileComponent implements OnInit {
   };
   proposals = [];
   tripP = [];
-  organizerId:string;
+  organizerId: string;
 
   constructor(
     private http: HttpClient,
@@ -37,10 +37,9 @@ export class OrganizerProfileComponent implements OnInit {
   ngOnInit(): void {
     this.currentUser = this.token.getUser();
     // Get organizer infos from DB
-    this.route.params
-      .subscribe(param => {
-        this.organizerId = param['id'];
-      })
+    this.route.params.subscribe((param) => {
+      this.organizerId = param['id'];
+    });
     this.http
       .get(`/api/user/organizer/${this.organizerId}`)
       .subscribe((res: any) => {
@@ -51,7 +50,7 @@ export class OrganizerProfileComponent implements OnInit {
     this.http
       .get(`/api/user/organizer/trips/${this.currentUser.id}`)
       .subscribe((data: Trip[]) => {
-        console.log("organizer trips to be shown in my trips ====> ", data)
+        console.log('organizer trips to be shown in my trips ====> ', data);
         this.trips = data;
       });
     // Get all the proposals by organizer ID
