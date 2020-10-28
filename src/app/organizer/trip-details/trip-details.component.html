@@ -60,8 +60,15 @@
               </div>
               </div>
             </div>
-          </div>
-          <!-- /row -->
+          </div> <!-- /row -->
+        <button *ngIf="trip[0].guide.length === 1 && trip[0].published === false" (click)="publish(trip[0]._id)"
+          class="publish" mat-flat-button color="warn">
+          Publish
+        </button>
+        <button *ngIf="trip[0].published === true" (click)="unpublish(trip[0]._id)" class="publish" mat-flat-button
+          color="warn">
+          Unpublish
+        </button>
       </div>
     </div>
   </div>
