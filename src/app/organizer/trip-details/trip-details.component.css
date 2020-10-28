@@ -2,25 +2,12 @@
 h3 {
   margin-left: 15%;
 }
-img {
-  height: 220px;
-  width: 220px;
-  margin-bottom: 5%;
-}
 
 .titleDiv {
   margin: 5%;
 }
 
-label {
-  margin-bottom: 30px;
-}
-
-button {
-  float: right;
-  margin: 1%;
-}
- article {
+#main {
    margin-top: 3%;
    background-color: white;
    margin-left:5%;
@@ -28,4 +15,10 @@ button {
    height: 95%;
    border-radius: 2%;
    box-shadow: 5px 3px 10px 1px #888888;
+   margin-top: 7%;
+   padding:2%
  }
+
+.btn {
+  margin-right: 4px;
+}
