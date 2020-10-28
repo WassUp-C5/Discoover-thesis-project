@@ -6,8 +6,8 @@ const User = require("../models/User");
 /****************Add a Trip**************** WORKS FINE *************** */
 tripsRouter.post("/add", async (req, res) => {
   try {
-    console.log(req.body);
     var trip = new Trip(req.body.trip);
+    trip.organizerId = req.body.organizerId;
     await trip.save().then((result) => {
       console.log("trip saved successfully");
     });
@@ -29,28 +29,22 @@ tripsRouter.get("/location/:location", (req, res) => {
 
 /**********Get All The Trips************** */
 tripsRouter.get("/public", (req, res) => {
-  console.log('yoooo');
   Trip.find({ published: true}, function (err, trip) {
     if (err) throw err;
     res.send(trip);
-    console.log("tripALL ===> ", trip);
   });
 });
 
 /***********************Get trip by id***************************/
 tripsRouter.get("/:id", (req, res) => {
-  console.log('hiii');
   Trip.findOne({ _id: req.params.id }, function (err, trip) {
     if (err) throw err;
     res.send(trip);
-    console.log("tripID ===> ", trip);
   });
 });
-/****************Update trip  ************** To be edited so it send a proposal to the guide before updating DB****** */
+/****************Update trip  ******************** */
 tripsRouter.put("/:id/edit", (req, res) => {
   let id = req.params.id;
-  let guideId = req.body.guide;
-  console.log("logging guide id and trip id ==>", id, guideId);
   Trip.updateOne({ _id: id }, req.body)
     .then((result) => {
       res.send(result);
@@ -71,7 +65,6 @@ tripsRouter.put("/publish/:id", (req, res) => {
     })
     .catch((err) => console.log(err));
 });
-
 /**************Update Trip with guide id when he accepts  ********************************* */
 tripsRouter.put("/edit/:id", (req, res) => {
   let id = req.params.id;
@@ -90,7 +83,6 @@ tripsRouter.put("/edit/:id", (req, res) => {
     })
     .catch((err) => console.log(err));
 });
-
 /**************Update Trip to remove the guide Id from guide ********************************* */
 tripsRouter.put("/rmGuide/:id", (req, res) => {
   let tripId = req.params.id;
@@ -105,8 +97,6 @@ tripsRouter.put("/rmGuide/:id", (req, res) => {
     })
     .catch((err) => console.log(err));
 });
-
-
 /***********************Get trip by date***************************/
 tripsRouter.get("/date/:date", (req, res) => {
   console.log('this console ==>', req.params.date)
@@ -116,16 +106,7 @@ tripsRouter.get("/date/:date", (req, res) => {
     res.send(trip);
   });
 });
-/**************** Update trip  ******************** */
-tripsRouter.put("/:id/edit", (req, res) => {
-  let id = req.params.id;
-  console.log("router section organizer log ==>", req.body);
-  Trip.updateOne({ _id: id }, req.body)
-    .then((result) => {
-      res.send(result);
-    })
-    .catch((err) => console.log(err));
-});
+
 
 /***********************Delete trip by id***************************/
 tripsRouter.delete("/delete/:id", (req, res) => {

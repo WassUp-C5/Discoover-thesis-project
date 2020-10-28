@@ -3,8 +3,7 @@ const User = require("../models/User");
 const Trip = require("../models/Trips");
 const bcrypt = require("bcryptjs");
 
-
-/*******************Get the organizer info when page loads**************** Works Fine ******************* */
+/*******************Get the organizer info*********************************** */
 userRouter.get("/organizer/:id", (req, res) => {
   User.findOne({ _id: req.params.id })
     .then((result) => {
@@ -12,20 +11,13 @@ userRouter.get("/organizer/:id", (req, res) => {
     })
     .catch((err) => console.log(err));
 });
+
 
 /****************Update Organizer Profile ******************** */
 userRouter.put("/organizer/edit", (req, res) => {
   let user = req.body;
   console.log("router section organizer log ==>", user);
   User.updateOne({ username: user.username }, user)
-    .then((result) => {
-      res.send(result);
-    })
-    .catch((err) => console.log(err));
-});
-/*******************Get the organizer info*********************************** */
-userRouter.get("/organizer/:id", (req, res) => {
-  User.findOne({ _id: req.params.id })
     .then((result) => {
       res.send(result);
     })
@@ -44,9 +36,12 @@ userRouter.get("/organizer/trips/:id", (req, res) => {
   })
 });
 
+
 /****************Get guide info********************* */
 userRouter.get("/guide/:id", (req, res) => {
-  User.findOne({ _id: req.params.id })
+  console.log("guide id: ", req.params.id)
+  User.findById(req.params.id)
+    .populate("qualifications")
     .then((result) => {
       res.send(result);
     })

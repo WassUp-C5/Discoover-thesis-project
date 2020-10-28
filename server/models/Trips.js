@@ -12,9 +12,7 @@ const tripsSchema = new mongoose.Schema(
     organizerId: String,
     // travelers: []
     guide: [],
-    published: {
-      type: Boolean,
-      default: false}
+    published: {type: Boolean, default: false}
   },
   {
     timestamps: true,
