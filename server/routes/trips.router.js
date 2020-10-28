@@ -29,7 +29,7 @@ tripsRouter.get("/location/:location", (req, res) => {
 
 /**********Get All The Trips************** */
 tripsRouter.get("/public", (req, res) => {
-  Trip.find({ published: true}, function (err, trip) {
+  Trip.find({ published: true }, function (err, trip) {
     if (err) throw err;
     res.send(trip);
   });
