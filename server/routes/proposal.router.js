@@ -1,5 +1,4 @@
 const proposalsRouter = require("express").Router();
-const { element } = require("protractor");
 const Proposal = require("../models/Proposal");
 const Trip = require("../models/Trips");
 /*********** Add proposal *********** */
