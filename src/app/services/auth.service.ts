@@ -7,23 +7,23 @@ import { User } from './../models/User';
 const AUTH_API = '/api/auth/';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
 };
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-
-
-  constructor(private http: HttpClient) {
-
-  }
+  constructor(private http: HttpClient) {}
 
   login(credentials): Observable<any> {
-    return this.http.post(AUTH_API + 'signin', {
-      username: credentials.username,
-      password: credentials.password
-    }, httpOptions);
+    return this.http.post(
+      AUTH_API + 'signin',
+      {
+        email: credentials.email,
+        password: credentials.password,
+      },
+      httpOptions
+    );
   }
 
   register(user): Observable<any> {

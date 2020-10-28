@@ -2,14 +2,22 @@ const tripsRouter = require("express").Router();
 const Trip = require("../models/Trips");
 const User = require("../models/User");
 
-
 /****************Add a Trip**************** WORKS FINE *************** */
 tripsRouter.post("/add", async (req, res) => {
   try {
     var trip = new Trip(req.body.trip);
     trip.organizerId = req.body.organizerId;
+    console.log("====================================");
+    console.log("organizerId is : ==>", trip.organizerId);
+    console.log("====================================");
     await trip.save().then((result) => {
-      console.log("trip saved successfully");
+      User.findById(trip.organizerId).then((user) => {
+        user.trips.push(trip._id.toString());
+        user.save().then((result) => {
+          console.log("trip saved successfully");
+          res.send(result);
+        });
+      });
     });
   } catch (error) {
     console.log("error ===> ", error);
@@ -19,7 +27,7 @@ tripsRouter.post("/add", async (req, res) => {
 
 /***********************Get trip by location***************************/
 tripsRouter.get("/location/:location", (req, res) => {
-  console.log('****this console ==>', req.params.location)
+  console.log("****this console ==>", req.params.location);
   Trip.find({ location: req.params.location }, function (err, trip) {
     if (err) throw err;
     console.log("location bodyparse  ===> ", trip);
@@ -29,7 +37,7 @@ tripsRouter.get("/location/:location", (req, res) => {
 
 /**********Get All The Trips************** */
 tripsRouter.get("/public", (req, res) => {
-  Trip.find({ published: true}, function (err, trip) {
+  Trip.find({ published: true }, function (err, trip) {
     if (err) throw err;
     res.send(trip);
   });
@@ -55,10 +63,10 @@ tripsRouter.put("/:id/edit", (req, res) => {
 /****************Update trip to be published  **************  */
 tripsRouter.put("/publish/:id", (req, res) => {
   let tripId = req.params.id;
-  console.log('====================================');
-  console.log('req.body ====>', req.body);
-  console.log('tripId ====>', tripId);
-  console.log('====================================');
+  console.log("====================================");
+  console.log("req.body ====>", req.body);
+  console.log("tripId ====>", tripId);
+  console.log("====================================");
   Trip.updateOne({ _id: tripId }, req.body)
     .then((result) => {
       res.send(result);
@@ -90,7 +98,7 @@ tripsRouter.put("/rmGuide/:id", (req, res) => {
   console.log("logging guide array and trip id ==>", tripId, guideId);
   Trip.findById(tripId)
     .then((trip) => {
-      trip.guide.pull(guideId)
+      trip.guide.pull(guideId);
       console.log("trip to delete the guide from array ===>", trip);
       trip.save();
       res.send({ message: "guide  deleted" });
@@ -99,7 +107,7 @@ tripsRouter.put("/rmGuide/:id", (req, res) => {
 });
 /***********************Get trip by date***************************/
 tripsRouter.get("/date/:date", (req, res) => {
-  console.log('this console ==>', req.params.date)
+  console.log("this console ==>", req.params.date);
   Trip.find({ date: req.params.date }, function (err, trip) {
     if (err) throw err;
     console.log("trip DATE===> ", trip);
@@ -107,12 +115,18 @@ tripsRouter.get("/date/:date", (req, res) => {
   });
 });
 
-
 /***********************Delete trip by id***************************/
-tripsRouter.delete("/delete/:id", (req, res) => {
-  Trip.deleteOne({ _id: req.params.id }, function (err) {
-    if (err) throw err;;
-    console.log("trip deleted");
+tripsRouter.delete("/delete/:id/:organizerId", (req, res) => {
+  User.findById(req.params.organizerId).then((user) => {
+    user.trips.pull(req.params.id);
+    user.save().then((result) => {
+      Trip.deleteOne({ _id: req.params.id }, function (err, data) {
+        if (err) throw err;
+        console.log("trip deleted");
+
+        res.send(result);
+      });
+    });
   });
 });
 

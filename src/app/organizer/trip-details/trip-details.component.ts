@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
 import { ActivatedRoute, Router } from '@angular/router';
+import { TokenStorageService } from 'src/app/services/token-storage.service';
 
 @Component({
   selector: 'app-trip-details',
@@ -10,11 +10,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class TripDetailsComponent implements OnInit {
   constructor(
+    private tokenStorage: TokenStorageService,
     private http: HttpClient,
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {}
-
+    currentUser:any = this.tokenStorage.getUser();
   trip = [];
 
   ngOnInit(): void {
@@ -63,13 +64,13 @@ export class TripDetailsComponent implements OnInit {
     let id;
     this.activatedRoute.params.subscribe((params) => {
       id = params['id'];
-      this.http.delete('/api/trips/delete/' + id).subscribe((res: any) => {
+      this.http.delete('/api/trips/delete/' + id + '/' + this.currentUser.id).subscribe((res: any) => {
         console.log('navigate to profile after cancel');
       });
       this.http
         .delete(`/api/proposals/delete/${id}`)
         .subscribe((res) => console.log(res));
     });
-    this.router.navigate([`/organizer/${id}/profile/`]);
+    this.router.navigate([`/organizer/${this.currentUser.id}/profile/`]);
   }
 }

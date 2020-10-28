@@ -16,7 +16,7 @@ export class SigninComponent implements OnInit, OnDestroy {
   isLoggedIn = false;
   isLoginFailed = false;
   credentials = {
-    username: '',
+    email: '',
     password: '',
   };
   errorMessage = '';
