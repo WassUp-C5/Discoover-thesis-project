@@ -6,7 +6,7 @@
   integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" /> -->
 <div class="container guide-profile">
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-3">
       <mat-card>
         <div class="text-center">
           <img src="../../assets/photo.jpg" class="rounded-circle avatar-xl img-thumbnail" id="profileImg"
@@ -19,8 +19,13 @@
             *ngIf="currentUser.id === guideId">
             Update Photo
           </button>
-          <button type="submit" (click)="hire()" class="btn btn-danger btn-signin" *ngIf="currentUser.id !== guideId">
+          <button type="submit" (click)="hire()" class="btn btn-danger btn-signin"
+            *ngIf="currentUser.id !== guideId && currentProposal === null">
             Hire Me
+          </button>
+          <button type="submit" (click)="unhire(guideId, currentUser.id)" class="btn btn-danger btn-signin"
+            *ngIf="currentUser.id !== guideId && currentProposal !== null">
+            Unhire
           </button>
 
           <div class="text-left mt-3">
@@ -52,7 +57,7 @@
         </div>
       </mat-card>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-9">
       <mat-card>
         <mat-tab-group>
           <mat-tab label="About me">
@@ -64,16 +69,21 @@
               <hr />
               <h4>My Languages And Skills</h4>
               <h5>My Languages</h5>
-              <ul>
+              <mat-list role="list">
+                <mat-list-item *ngFor="let qualification of guide.qualifications" role="listitem">
+                  {{ qualification.title }}: {{ qualification.current_level }}
+                </mat-list-item>
+              </mat-list>
+              <!-- <ul>
                 <li *ngFor="let qualification of guide.qualifications">
                   {{ qualification.language }}: {{ qualification.level }}
                 </li>
-              </ul>
+              </ul> -->
             </div>
           </mat-tab>
           <mat-tab *ngIf="currentUser.id === guideId" label="Settings">
             <div class="tab-pane" id="settings">
-              <app-edit-guide-profile [guide]="guide"></app-edit-guide-profile>
+              <app-edit-guide-profile [getGuide]="getGuide" [guide]="guide"></app-edit-guide-profile>
             </div>
           </mat-tab>
           <mat-tab *ngIf="currentUser.id === guideId" label="Proposals">
@@ -81,14 +91,20 @@
               <h5>My PROPOSALS</h5>
 
               <ul *ngFor="let trip of trips">
-                <li *ngIf="trip.proposal.accepted ===  null || trip.proposal.accepted ===  true">
-
+                <li *ngIf="
+                    trip.proposal.accepted === null ||
+                    trip.proposal.accepted === true
+                  ">
                   <h3 class="text-primary">
                     <span class="glyphicon glyphicon-arrow-right"></span>
                     {{ trip.res.title }}
                   </h3>
-                  <div *ngIf="trip.proposal.accepted === true">Status : Accepted </div>
-                  <div *ngIf="trip.proposal.accepted == null">Status : waiting response </div>
+                  <div *ngIf="trip.proposal.accepted === true">
+                    Status : Accepted
+                  </div>
+                  <div *ngIf="trip.proposal.accepted == null">
+                    Status : waiting response
+                  </div>
                   <div>date : {{ trip.res.date }}</div>
                   <div>Location : {{ trip.res.location }}</div>
                   <div>price : {{ trip.res.price }}</div>
@@ -96,14 +112,19 @@
                   <div>
                     <p>Trip description : <br />{{ trip.res.description }}</p>
                   </div>
-                  <button type="submit" *ngIf="trip.proposal.accepted === false || trip.proposal.accepted === null"
-                    (click)="accept(trip.res._id, trip.proposal._id)" class="btn btn-secondary btn-signin">
+                  <button type="submit" *ngIf="
+                      trip.proposal.accepted === false ||
+                      trip.proposal.accepted === null
+                    " (click)="accept(trip.res._id, trip.proposal._id)" class="btn btn-secondary btn-signin">
                     Accept
                   </button>
-
-                  <button type="submit" (click)="decline(trip.res._id, trip.proposal._id, trip.proposal.guideId)"
-                    class="btn btn-danger btn-signin">
-
+                  <button type="submit" (click)="
+                      decline(
+                        trip.res._id,
+                        trip.proposal._id,
+                        trip.proposal.guideId
+                      )
+                    " class="btn btn-danger btn-signin">
                     Decline
                   </button>
                 </li>

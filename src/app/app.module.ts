@@ -51,16 +51,11 @@ import { TripDetailsVistorComponent } from './search-trip/trip-details-vistor/tr
     EditGuideProfileComponent,
     EntryComponent,
     OrganizerNavbarComponent,
-
     OrganizerNavbarComponent,
     EditTripComponent,
-
     GuideListComponent,
-
     GuideListItemComponent,
-
     TripListComponent,
-
     TripItemComponent,
 
     TripDetailsVistorComponent,

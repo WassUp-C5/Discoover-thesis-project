@@ -2,8 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { TokenStorageService } from './../../../services/token-storage.service';
 import { ActivatedRoute } from '@angular/router';
-import { catchError, retry } from 'rxjs/operators';
-
+import { UserQualifications} from './../../../models/UserQualifications';
 @Component({
   selector: 'app-edit-guide-profile',
   templateUrl: './edit-guide-profile.component.html',
@@ -11,6 +10,7 @@ import { catchError, retry } from 'rxjs/operators';
 })
 export class EditGuideProfileComponent implements OnInit {
   @Input() guide;
+  @Input() getGuide;
 
   currentUser: any;
   isLoggedIn: boolean;
@@ -22,6 +22,7 @@ export class EditGuideProfileComponent implements OnInit {
   showErrorMessage: boolean = false;
   showSuccessMessage: boolean = false;
   alertMessage: string;
+  userQualifications = new UserQualifications();
 
   constructor(
     private http: HttpClient,
@@ -51,6 +52,26 @@ export class EditGuideProfileComponent implements OnInit {
       .subscribe((data) => {
         console.log(data);
       });
+  }
+
+  addLanguage(){
+    this.userQualifications.type = "language";
+    this.http
+      .put(`/api/users/guides/${this.guideId}/qualifications/add`, this.userQualifications)
+      .subscribe(result => {
+        console.log(result);
+        this.userQualifications = new UserQualifications();
+        this.getGuide();
+      })
+  }
+
+  deleteUserQualification(entryId) {
+    this.http
+      .delete(`/api/users/guides/${this.tokenStorage.getUser().id}/qualifications/${entryId}/delete`)
+      .subscribe(result => {
+        console.log(result);
+        this.getGuide();
+      })
   }
 
   changePassword() {
