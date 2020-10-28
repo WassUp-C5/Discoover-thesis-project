@@ -47,10 +47,11 @@ export class OrganizerProfileComponent implements OnInit {
         console.log(res);
         this.organizer = res;
       });
-    // Get all the organizer's trips // =========>> it shows even the deleted trips ids (TO BE FIXED)
+    // Get all the organizer's trips // Works Fine
     this.http
       .get(`/api/user/organizer/trips/${this.currentUser.id}`)
       .subscribe((data: Trip[]) => {
+        console.log("organizer trips to be shown in my trips ====> ", data)
         this.trips = data;
       });
     // Get all the proposals by organizer ID

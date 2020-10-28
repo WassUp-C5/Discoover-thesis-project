@@ -24,7 +24,6 @@ userRouter.put("/organizer/edit", (req, res) => {
     .catch((err) => console.log(err));
 });
 
-
 /*************Get all the organizer's Trips********* Works Fine *********** */
 
 userRouter.get("/organizer/trips/:id", (req, res) => {
