@@ -14,15 +14,21 @@ img {
 #main {
   margin-top: 3%;
   background-color: white;
-  margin-left: 5%;
-  width: 90%;
+  margin-left: 10%;
+  width: 80%;
   height: 95%;
-  border-radius: 2%;
+  border-radius: 5px;
   box-shadow: 5px 3px 10px 1px #888888;
   margin-top: 7%;
   padding: 2%;
 }
 
+#pubBtn {
+  position: relative;
+  float: right;
+}
+
 .btn {
-  margin-right: 20px;
+  margin-right: 5px;
+  margin-top: 1%;
 }
