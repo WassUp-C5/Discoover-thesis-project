@@ -8,8 +8,18 @@ tripsRouter.post("/add", async (req, res) => {
   try {
     var trip = new Trip(req.body.trip);
     trip.organizerId = req.body.organizerId;
+    console.log('====================================');
+    console.log('organizerId is : ==>', trip.organizerId);
+    console.log('====================================');
     await trip.save().then((result) => {
-      console.log("trip saved successfully");
+      User.findById(trip.organizerId).then(user => {
+        user.trips.push(trip._id.toString());
+        user.save().then(result => {
+          console.log("trip saved successfully");
+          res.send(result)
+        })
+      })
+
     });
   } catch (error) {
     console.log("error ===> ", error);
@@ -109,11 +119,20 @@ tripsRouter.get("/date/:date", (req, res) => {
 
 
 /***********************Delete trip by id***************************/
-tripsRouter.delete("/delete/:id", (req, res) => {
-  Trip.deleteOne({ _id: req.params.id }, function (err) {
-    if (err) throw err;;
-    console.log("trip deleted");
-  });
+tripsRouter.delete("/delete/:id/:organizerId", (req, res) => {
+  User.findById(req.params.organizerId).then(user => {
+    user.trips.pull(req.params.id)
+    user.save().then(result => {
+      Trip.deleteOne({ _id: req.params.id }, function (err, data) {
+        if (err) throw err;
+        console.log("trip deleted");
+
+        res.send(result)
+      })
+    });
+
+  })
+
 });
 
 module.exports = tripsRouter;
