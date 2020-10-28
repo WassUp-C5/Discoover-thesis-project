@@ -5,7 +5,10 @@ var bcrypt = require("bcryptjs");
 const usersSchema = new mongoose.Schema(
   {
     first_name: String,
-    qualifications: [],
+    qualifications: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "UserQualification",
+    }],
     last_name: String,
     username: String,
     password: String,
@@ -24,7 +27,6 @@ const usersSchema = new mongoose.Schema(
   }
 );
 
-//const userQualificationS
 
 const MongoUser = mongoose.model("User", usersSchema);
 class User extends MongoUser {

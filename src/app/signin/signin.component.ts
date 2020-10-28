@@ -1,8 +1,9 @@
 import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { AuthService } from './../services/auth.service';
 import { TokenStorageService } from '../services/token-storage.service';
+import { Observable } from 'rxjs';
+import { UrlService } from '../services/url.service';
 
 @Component({
   selector: 'app-signin',
@@ -20,11 +21,13 @@ export class SigninComponent implements OnInit, OnDestroy {
   };
   errorMessage = '';
   roles: string[] = [];
+  previousUrl: string;
 
   constructor(
     private router: Router,
     private authService: AuthService,
-    private tokenStorage: TokenStorageService
+    private tokenStorage: TokenStorageService,
+    private urlService: UrlService
   ) {}
 
   ngOnInit(): void {
@@ -34,6 +37,10 @@ export class SigninComponent implements OnInit, OnDestroy {
       this.roles = this.tokenStorage.getUser().roles;
       this.router.navigate(['/']);
     }
+
+    this.urlService.previousUrl$.subscribe((previousUrl: string) => {
+      this.previousUrl = previousUrl;
+    });
   }
   ngOnDestroy() {
     // remove the class form body tag
@@ -50,10 +57,11 @@ export class SigninComponent implements OnInit, OnDestroy {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getUser().roles;
-        // this.reloadPage();
+        //this.reloadPage();
         this.router.navigate([
           `/${this.roles[1]}/${this.tokenStorage.getUser().id}/profile`,
         ]);
+        // this.router.navigateByUrl(this.previousUrl);
       },
       (err) => {
         this.errorMessage = err.error.message;
