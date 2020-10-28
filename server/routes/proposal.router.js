@@ -43,6 +43,20 @@ proposalsRouter.get("/guide/:guideId", async (req, res) => {
     res.status(400).send("error");
   }
 });
+/* *********************************Get current proposal to guide profile when organizer access it************************************** */
+proposalsRouter.get("/current/:guideId/:tripId", async (req, res) => {
+  try {
+    console.log('====================================');
+    console.log('req params from get current prop : ', req.params);
+    console.log('====================================');
+    await Proposal.find(req.params).then((result) => {
+      console.log(" this guides proposals ===> ", result);
+      res.send(result);
+    });
+  } catch (error) {
+    res.status(400).send("error");
+  }
+});
 /*******************************Edit proposal with accepted state************************************* */
 proposalsRouter.put("/guide/acceptance/:id", async (req, res) => {
   let id = req.params.id;

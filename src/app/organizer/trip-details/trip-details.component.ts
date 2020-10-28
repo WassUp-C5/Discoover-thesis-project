@@ -35,10 +35,18 @@ export class TripDetailsComponent implements OnInit {
   }
   goToGuides() {
     this.activatedRoute.params.subscribe((params) => {
-      let id = params['id'];
-      this.router.navigate(['/organizer/trip/details/guides/' + id]);
+      let tripId = params['id'];
+      this.router.navigate(['/organizer/trip/details/guides/' + tripId]);
     });
   }
+
+  getGuideInfo(guideId){
+    this.activatedRoute.params.subscribe(params => {
+      let id = params['id'];
+
+    this.router.navigate([`/guide/${guideId}/profile/${id}`])
+  })
+}
 
   publish(tripId) {
     this.http
