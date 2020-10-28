@@ -20,21 +20,23 @@ authRouter.post("/signup", async (req, res) => {
 authRouter.post("/signin", async (req, res) => {
   console.log(req.body);
   try {
-    var user = await User.findOne({ username: req.body.username });
+    var user = await User.findOne({ email: req.body.email });
     console.log(user);
     if (!user) {
-      console.log("User not found")
+      console.log("User not found");
       return res
         .status(401)
-        .json({ title: "server side error", error: "invalid" });
+        .json({ message: "Please check your credentials!!" });
     }
     bcrypt.compare(req.body.password, user.password, (err, compRes) => {
-      if (err) { console.log(err) }
+      if (err) {
+        console.log(err);
+      }
       if (!compRes) {
-        console.log("Wrong Password")
+        console.log("Wrong Password");
         return res
           .status(401)
-          .json({ title: "log in failed", error: "invalid data" });
+          .json({ message: "Please check your credentials!!" });
       } else {
         let token = jwt.sign({ userId: user._id }, "it's a secret");
         res.status(200).json({
@@ -44,7 +46,7 @@ authRouter.post("/signin", async (req, res) => {
         // console.log(bcrypt.compareSync(req.body.password, user.password))
         // console.log(user);
       }
-    })
+    });
 
     //   console.log("Wrong Password")
     //   return res
