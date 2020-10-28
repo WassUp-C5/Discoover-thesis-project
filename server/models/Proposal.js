@@ -5,7 +5,7 @@ const proposalSchema = new mongoose.Schema(
     organizerId: String,
     guideId: String,
     tripId: String,
-    accepted: Boolean
+    accepted: { type: Boolean, default: null }
   },
   {
     timestamps: true,
