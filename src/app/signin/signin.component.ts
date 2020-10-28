@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { AuthService } from './../services/auth.service';
 import { TokenStorageService } from '../services/token-storage.service';
@@ -9,19 +9,19 @@ import { UrlService } from '../services/url.service';
   selector: 'app-signin',
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.css'],
-
-  encapsulation: ViewEncapsulation.None,
 })
-export class SigninComponent implements OnInit, OnDestroy {
+export class SigninComponent implements OnInit {
   isLoggedIn = false;
   isLoginFailed = false;
   credentials = {
     email: '',
     password: '',
   };
-  errorMessage = '';
+  showErrorMessage: boolean = false;
+  errorMessage: string = '';
   roles: string[] = [];
   previousUrl: string;
+  checking:boolean = false;
 
   constructor(
     private router: Router,
@@ -31,9 +31,7 @@ export class SigninComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    document.body.classList.add('background-img');
     if (this.tokenStorage.getToken()) {
-      this.isLoggedIn = true;
       this.roles = this.tokenStorage.getUser().roles;
       this.router.navigate(['/']);
     }
@@ -42,11 +40,9 @@ export class SigninComponent implements OnInit, OnDestroy {
       this.previousUrl = previousUrl;
     });
   }
-  ngOnDestroy() {
-    // remove the class form body tag
-    document.body.classList.remove('background-img');
-  }
+
   onSubmit() {
+    this.checking = true;
     console.log('Your form data : ', this.credentials);
     this.authService.login(this.credentials).subscribe(
       (data) => {
@@ -58,14 +54,18 @@ export class SigninComponent implements OnInit, OnDestroy {
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getUser().roles;
         //this.reloadPage();
-        this.router.navigate([
-          `/${this.roles[1]}/${this.tokenStorage.getUser().id}/profile`,
-        ]);
-        // this.router.navigateByUrl(this.previousUrl);
+        // this.router.navigate([
+        //   `/${this.roles[1]}/${this.tokenStorage.getUser().id}/profile`,
+        // ]);
+        console.log("prev url: ", this.previousUrl);
+        this.router.navigateByUrl(this.previousUrl);
       },
       (err) => {
         this.errorMessage = err.error.message;
-        this.isLoginFailed = true;
+        this.showErrorMessage = true;
+        setTimeout(() => {
+          this.showErrorMessage = false;
+        }, 3000);
       }
     );
   }
