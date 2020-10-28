@@ -1,73 +1,32 @@
-
-.emp-profile{
-  padding: 3%;
-  margin-top: 3%;
-  margin-bottom: 3%;
-  border-radius: 0.5rem;
-  background: #fff;
-}
-
-.profile-img img{
-  width: 70%;
-  height: 100%;
-}
-.profile-img .file {
-  position: relative;
-  overflow: hidden;
-  margin-top: -20%;
-  width: 70%;
-  border: none;
-  border-radius: 0;
-  font-size: 15px;
-  background: #212529b8;
-}
-
-.proile-rating span{
-  color: #495057;
-  font-size: 15px;
-  font-weight: 600;
-}
-.profile-head .nav-tabs{
-  margin-bottom:5%;
-}
-.profile-head .nav-tabs .nav-link{
-  font-weight:600;
-  border: none;
-}
-.profile-head .nav-tabs .nav-link.active{
-  border: none;
-  border-bottom:2px solid #0062cc;
-}
-.profile-work{
-  padding: 14%;
-  margin-top: -15%;
-}
-.profile-work p{
-  font-size: 12px;
-  color: #818182;
-  font-weight: 600;
+h3 {
   margin-top: 10%;
 }
-.profile-work a{
-  text-decoration: none;
-  color: #495057;
-  font-weight: 600;
-  font-size: 14px;
-}
-.profile-work ul{
-  list-style: none;
-}
-.profile-tab label{
-  font-weight: 600;
-}
-.profile-tab p{
-  font-weight: 600;
-  color: #0062cc;
-}
-label {
-  margin-bottom: 30px;
+
+.titleDiv {
+  margin: 5%;
 }
 
-ul {
-  margin-bottom: 1px;
+img {
+  height: 250px;
+  margin-bottom: 10%;
+}
+
+#main {
+  margin-top: 3%;
+  background-color: white;
+  margin-left: 10%;
+  width: 80%;
+  height: 95%;
+  border-radius: 5px;
+  box-shadow: 5px 3px 10px 1px #888888;
+  margin-top: 7%;
+  padding: 2%;
+}
+
+#infoDiv {
+  text-align: center;
+}
+
+#basicInfo {
+  width: 100%;
 }
