@@ -5,6 +5,9 @@ const bcrypt = require("bcryptjs");
 
 /*******************Get the organizer info*********************************** */
 userRouter.get("/organizer/:id", (req, res) => {
+  console.log('====================================');
+  console.log('req.params line 9 : ', req.params);
+  console.log('====================================');
   User.findOne({ _id: req.params.id })
     .then((result) => {
       res.send(result);
@@ -76,20 +79,20 @@ userRouter.get("/guides", (req, res) => {
 userRouter.put("/:id/password/edit", async (req, res) => {
   try {
     User.findById(req.params.id)
-    .then(user => {
-      if (!bcrypt.compareSync(req.body.currentPassword, user.password)) {
-        return res
-          .status(401)
-          .json({ message: "Please verify your password!!"});
-      }
+      .then(user => {
+        if (!bcrypt.compareSync(req.body.currentPassword, user.password)) {
+          return res
+            .status(401)
+            .json({ message: "Please verify your password!!" });
+        }
 
-      user.password = req.body.newPassword;
-      user.save();
-      res.send({message: "Success: your password has been changed!!"})
-    })
+        user.password = req.body.newPassword;
+        user.save();
+        res.send({ message: "Success: your password has been changed!!" })
+      })
   } catch (error) {
     console.log(error);
-    res.status(500).send({ message: "An error occured please try again!!"});
+    res.status(500).send({ message: "An error occured please try again!!" });
   }
 });
 
