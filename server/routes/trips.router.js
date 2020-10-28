@@ -3,18 +3,23 @@ const Trip = require("../models/Trips");
 const User = require("../models/User");
 
 
-/****************Add a Trip******************************* */
+/****************Add a Trip**************** WORKS FINE *************** */
 tripsRouter.post("/add", async (req, res) => {
   try {
-    console.log(req.body);
     var trip = new Trip(req.body.trip);
+    trip.organizerId = req.body.organizerId;
+    console.log('====================================');
+    console.log('organizerId is : ==>', trip.organizerId);
+    console.log('====================================');
     await trip.save().then((result) => {
-      console.log("trip saved successfully");
-      User.findById(req.body.userId).then((user) => {
-        user.trips.push(result._id);
-        user.save();
-      });
-      res.send(result);
+      User.findById(trip.organizerId).then(user => {
+        user.trips.push(trip._id.toString());
+        user.save().then(result => {
+          console.log("trip saved successfully");
+          res.send(result)
+        })
+      })
+
     });
   } catch (error) {
     console.log("error ===> ", error);
@@ -34,35 +39,43 @@ tripsRouter.get("/location/:location", (req, res) => {
 
 /**********Get All The Trips************** */
 tripsRouter.get("/public", (req, res) => {
-  console.log('yoooo');
-  Trip.find({ published: true}, function (err, trip) {
+  Trip.find({ published: true }, function (err, trip) {
     if (err) throw err;
     res.send(trip);
-    console.log("tripALL ===> ", trip);
   });
 });
 
 /***********************Get trip by id***************************/
 tripsRouter.get("/:id", (req, res) => {
-  console.log('hiii');
   Trip.findOne({ _id: req.params.id }, function (err, trip) {
     if (err) throw err;
     res.send(trip);
-    console.log("tripID ===> ", trip);
   });
 });
-/****************Update trip  ************** To be edited so it send a proposal to the guide before updating DB****** */
+/****************Update trip  ******************** */
 tripsRouter.put("/:id/edit", (req, res) => {
   let id = req.params.id;
-  let guideId = req.body.guide;
-  console.log("logging guide id and trip id ==>", id, guideId);
   Trip.updateOne({ _id: id }, req.body)
     .then((result) => {
       res.send(result);
     })
     .catch((err) => console.log(err));
 });
-/**************Update Trip to add a guide ********************************* */
+
+/****************Update trip to be published  **************  */
+tripsRouter.put("/publish/:id", (req, res) => {
+  let tripId = req.params.id;
+  console.log('====================================');
+  console.log('req.body ====>', req.body);
+  console.log('tripId ====>', tripId);
+  console.log('====================================');
+  Trip.updateOne({ _id: tripId }, req.body)
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => console.log(err));
+});
+/**************Update Trip with guide id when he accepts  ********************************* */
 tripsRouter.put("/edit/:id", (req, res) => {
   let id = req.params.id;
   let guideId = req.body.guide;
@@ -70,13 +83,30 @@ tripsRouter.put("/edit/:id", (req, res) => {
   Trip.findById(id)
     .then((trip) => {
       console.log("trip ===>", trip);
-      trip.guide.push(guideId);
-      trip.save();
-      res.send({ message: "guide  added" });
+      if (trip.guide.includes(guideId)) {
+        res.send({ message: "guide already added" });
+      } else {
+        trip.guide.push(guideId);
+        trip.save();
+        res.send({ message: "guide  added" });
+      }
     })
     .catch((err) => console.log(err));
 });
-
+/**************Update Trip to remove the guide Id from guide ********************************* */
+tripsRouter.put("/rmGuide/:id", (req, res) => {
+  let tripId = req.params.id;
+  let guideId = req.body.guideId;
+  console.log("logging guide array and trip id ==>", tripId, guideId);
+  Trip.findById(tripId)
+    .then((trip) => {
+      trip.guide.pull(guideId)
+      console.log("trip to delete the guide from array ===>", trip);
+      trip.save();
+      res.send({ message: "guide  deleted" });
+    })
+    .catch((err) => console.log(err));
+});
 /***********************Get trip by date***************************/
 tripsRouter.get("/date/:date", (req, res) => {
   console.log('this console ==>', req.params.date)
@@ -86,23 +116,23 @@ tripsRouter.get("/date/:date", (req, res) => {
     res.send(trip);
   });
 });
-/****************Update trip  ******************** */
-tripsRouter.put("/:id/edit", (req, res) => {
-  let id = req.params.id;
-  console.log("router section organizer log ==>", req.body);
-  Trip.updateOne({ _id: id }, req.body)
-    .then((result) => {
-      res.send(result);
-    })
-    .catch((err) => console.log(err));
-});
+
 
 /***********************Delete trip by id***************************/
-tripsRouter.delete("/delete/:id", (req, res) => {
-  Trip.deleteOne({ _id: req.params.id }, function (err) {
-    if (err) throw err;;
-    console.log("trip deleted");
-  });
+tripsRouter.delete("/delete/:id/:organizerId", (req, res) => {
+  User.findById(req.params.organizerId).then(user => {
+    user.trips.pull(req.params.id)
+    user.save().then(result => {
+      Trip.deleteOne({ _id: req.params.id }, function (err, data) {
+        if (err) throw err;
+        console.log("trip deleted");
+
+        res.send(result)
+      })
+    });
+
+  })
+
 });
 
 module.exports = tripsRouter;
