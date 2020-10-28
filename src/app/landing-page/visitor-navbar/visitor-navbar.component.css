@@ -2,7 +2,8 @@
   flex: 1 1 auto;
 }
 .nav {
-  background: transparent;
+  background: white;
+  box-shadow: 5px 3px 10px 1px #888888;
 }
 
 .avatar-img {
@@ -16,3 +17,12 @@
 span {
   margin-right: 10px;
 }
+/*
+@media screen and (max-width: 600px) {
+  .nav.responsive {position: relative;}
+  .nav.responsive, span, button {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+} */

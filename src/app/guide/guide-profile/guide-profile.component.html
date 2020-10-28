@@ -6,184 +6,133 @@
   integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" /> -->
 <div class="container guide-profile">
   <div class="row">
-    <div class="col-lg-4 col-xl-4">
-      <div class="card-box text-center">
-        <img
-          src="../../assets/photo.jpg"
-          class="rounded-circle avatar-xl img-thumbnail"
-          id="profileImg"
-          alt="profile-image"
-        />
+    <div class="col-md-3">
+      <mat-card>
+        <div class="text-center">
+          <img src="../../assets/photo.jpg" class="rounded-circle avatar-xl img-thumbnail" id="profileImg"
+            alt="profile-image" />
 
-        <h4 class="mb-0">
-          {{ this.guide.first_name + " " + this.guide.last_name }}
-        </h4>
-        <button
-          type="button"
-          class="btn btn-success btn-xs waves-effect mb-2 waves-light"
-        >
-          Update Photo
-        </button>
+          <h4 class="mb-0">
+            {{ this.guide.first_name + " " + this.guide.last_name }}
+          </h4>
+          <button type="button" class="btn btn-success btn-xs waves-effect mb-2 waves-light"
+            *ngIf="currentUser.id === guideId">
+            Update Photo
+          </button>
+          <button type="submit" (click)="hire()" class="btn btn-danger btn-signin"
+            *ngIf="currentUser.id !== guideId && currentProposal === null">
+            Hire Me
+          </button>
+          <button type="submit" (click)="unhire(guideId, currentUser.id)" class="btn btn-danger btn-signin"
+            *ngIf="currentUser.id !== guideId && currentProposal !== null">
+            Unhire
+          </button>
 
-        <div class="text-left mt-3">
-          <h4 class="font-13 text-uppercase">About Me :</h4>
-          <p class="text-muted font-13 mb-3">{{ guide.bio }}</p>
-          <p class="text-muted mb-2 font-13">
-            <strong>Full Name :</strong>
-            <span class="ml-2">{{
-              this.guide.first_name + " " + this.guide.last_name
-            }}</span>
-          </p>
-
-          <p class="text-muted mb-2 font-13">
-            <strong>Mobile :</strong
-            ><span class="ml-2">+216{{ guide.phone_number }}</span>
-          </p>
-
-          <p class="text-muted mb-2 font-13">
-            <strong>Email :</strong> <span class="ml-2">{{ guide.email }}</span>
-          </p>
-
-          <p class="text-muted mb-1 font-13">
-            <strong>Location :</strong>
-            <span class="ml-2">{{ guide.location }}</span>
-          </p>
-        </div>
-
-        <!-- <ul class="social-list list-inline mt-3 mb-0">
-          <li class="list-inline-item">
-            <a href="javascript: void(0);" class="social-list-item border-purple text-purple"><i
-                class="fab fa-facebook"></i></a>
-          </li>
-          <li class="list-inline-item">
-            <a href="javascript: void(0);" class="social-list-item border-danger text-danger"><i
-                class="fab fa-google"></i></a>
-          </li>
-          <li class="list-inline-item">
-            <a href="javascript: void(0);" class="social-list-item border-info text-info"><i
-                class="fab fa-twitter"></i></a>
-          </li>
-          <li class="list-inline-item">
-            <a href="javascript: void(0);" class="social-list-item border-secondary text-secondary"><i
-                class="fab fa-github"></i></a>
-          </li>
-        </ul> -->
-      </div>
-      <!-- end card-box -->
-    </div>
-    <!-- end col-->
-
-    <div class="col-lg-8 col-xl-8">
-      <div class="card-box">
-        <ul class="nav nav-pills navtab-bg">
-          <li class="nav-item">
-            <a
-              href="#about-me"
-              data-toggle="tab"
-              aria-expanded="true"
-              class="nav-link ml-0 active"
-            >
-              <i class="mdi mdi-face-profile mr-1"></i>About Me
-            </a>
-          </li>
-          <li class="nav-item" ng-if="">
-            <a
-              href="#settings"
-              data-toggle="tab"
-              aria-expanded="false"
-              class="nav-link"
-            >
-              <i class="mdi mdi-settings-outline mr-1"></i>Settings
-            </a>
-          </li>
-          <li class="nav-item" ng-if="">
-            <a
-              href="#proposals"
-              data-toggle="tab"
-              aria-expanded="false"
-              class="nav-link"
-            >
-              <i class="mdi mdi-settings-outline mr-1"></i>proposals
-            </a>
-          </li>
-        </ul>
-
-        <div class="tab-content">
-          <div class="tab-pane show active" id="about-me">
-            <h5>My Biography</h5>
-            <p>
-              {{ guide.bio }}
+          <div class="text-left mt-3">
+            <h4 class="font-13 text-uppercase">About Me :</h4>
+            <p class="text-muted font-13 mb-3">
+              {{ (guide.bio | slice: 0:100) + "..." }}
             </p>
-            <hr />
-            <h4>My Languages And Skills</h4>
-            <h5>My Languages</h5>
-            <ul>
-              <li *ngFor="let qualification of guide.qualifications">
-                {{ qualification.language }}: {{ qualification.level }}
-              </li>
-            </ul>
-            <!-- <hr />
-            <h5>My Skills</h5>
-            <ul>
-              <li>Soccer Moderate</li>
-              <li>Guitar Moderate</li>
-              <li>Golf Passif</li>
-            </ul> -->
-            <button
-              type="submit"
-              (click)="hire()"
-              class="btn btn-danger btn-signin"
-            >
-              Hire Me
-            </button>
-          </div>
-          <!-- end timeline content-->
-          <div class="tab-pane" id="settings">
-            <app-edit-guide-profile [guide]="guide"></app-edit-guide-profile>
-          </div>
+            <p class="text-muted mb-2 font-13">
+              <strong>Full name :</strong>
+              <span class="ml-2">{{
+                this.guide.first_name + " " + this.guide.last_name
+              }}</span>
+            </p>
 
-          <div class="tab-pane" id="proposals">
-            <h5>My PROPOSALS</h5>
+            <p class="text-muted mb-2 font-13">
+              <strong>Mobile :</strong><span class="ml-2">+216{{ guide.phone_number }}</span>
+            </p>
 
-            <ul>
-              <li *ngFor="let trip of trips">
-                <h3 class="text-primary">
-                  <span class="glyphicon glyphicon-arrow-right"></span>
-                  {{ trip.res.title }}
-                </h3>
-                <div>date : {{ trip.res.date }}</div>
-                <div>Location : {{ trip.res.location }}</div>
-                <div>price : {{ trip.res.price }}</div>
-                <div>Max travelers : {{ trip.res.maxTravelers }}</div>
-                <div>
-                  <p>Trip description : <br />{{ trip.res.description }}</p>
-                </div>
-                <button
-                  type="submit"
-                  (click)="accept(trip.res._id, trip.proposalId)"
-                  class="btn btn-secondary btn-signin"
-                >
-                  Accept
-                </button>
-                <button
-                  type="submit"
-                  (click)="decline(trip.proposalId)"
-                  class="btn btn-danger btn-signin"
-                >
-                  Decline
-                </button>
-              </li>
-            </ul>
-            <!-- <hr />
-              <h5>My Skills</h5>
-              <ul>
-                <li>Soccer Moderate</li>
-                <li>Guitar Moderate</li>
-                <li>Golf Passif</li>
-              </ul> -->
+            <p class="text-muted mb-2 font-13">
+              <strong>Email :</strong>
+              <span class="ml-2">{{ guide.email }}</span>
+            </p>
+
+            <p class="text-muted mb-1 font-13">
+              <strong>Location :</strong>
+              <span class="ml-2">{{ guide.location }}</span>
+            </p>
           </div>
         </div>
-      </div>
+      </mat-card>
+    </div>
+    <div class="col-md-9">
+      <mat-card>
+        <mat-tab-group>
+          <mat-tab label="About me">
+            <div class="tab-pane show active" id="about-me">
+              <h5>My Biography</h5>
+              <p>
+                {{ guide.bio }}
+              </p>
+              <hr />
+              <h4>My Languages And Skills</h4>
+              <h5>My Languages</h5>
+              <mat-list role="list">
+                <mat-list-item *ngFor="let qualification of guide.qualifications" role="listitem">
+                  {{ qualification.title }}: {{ qualification.current_level }}
+                </mat-list-item>
+              </mat-list>
+              <!-- <ul>
+                <li *ngFor="let qualification of guide.qualifications">
+                  {{ qualification.language }}: {{ qualification.level }}
+                </li>
+              </ul> -->
+            </div>
+          </mat-tab>
+          <mat-tab *ngIf="currentUser.id === guideId" label="Settings">
+            <div class="tab-pane" id="settings">
+              <app-edit-guide-profile [getGuide]="getGuide" [guide]="guide"></app-edit-guide-profile>
+            </div>
+          </mat-tab>
+          <mat-tab *ngIf="currentUser.id === guideId" label="Proposals">
+            <div class="tab-pane" id="proposals">
+              <h5>My PROPOSALS</h5>
+
+              <ul *ngFor="let trip of trips">
+                <li *ngIf="
+                    trip.proposal.accepted === null ||
+                    trip.proposal.accepted === true
+                  ">
+                  <h3 class="text-primary">
+                    <span class="glyphicon glyphicon-arrow-right"></span>
+                    {{ trip.res.title }}
+                  </h3>
+                  <div *ngIf="trip.proposal.accepted === true">
+                    Status : Accepted
+                  </div>
+                  <div *ngIf="trip.proposal.accepted == null">
+                    Status : waiting response
+                  </div>
+                  <div>date : {{ trip.res.date }}</div>
+                  <div>Location : {{ trip.res.location }}</div>
+                  <div>price : {{ trip.res.price }}</div>
+                  <div>Max travelers : {{ trip.res.maxTravelers }}</div>
+                  <div>
+                    <p>Trip description : <br />{{ trip.res.description }}</p>
+                  </div>
+                  <button type="submit" *ngIf="
+                      trip.proposal.accepted === false ||
+                      trip.proposal.accepted === null
+                    " (click)="accept(trip.res._id, trip.proposal._id)" class="btn btn-secondary btn-signin">
+                    Accept
+                  </button>
+                  <button type="submit" (click)="
+                      decline(
+                        trip.res._id,
+                        trip.proposal._id,
+                        trip.proposal.guideId
+                      )
+                    " class="btn btn-danger btn-signin">
+                    Decline
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </mat-tab>
+        </mat-tab-group>
+      </mat-card>
     </div>
   </div>
 </div>

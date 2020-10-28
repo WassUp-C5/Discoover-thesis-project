@@ -1,13 +1,38 @@
 <app-visitor-navbar></app-visitor-navbar>
+<div class="container">
+  <form class="form-inline searchComponent">
+    <div class="row col-12">
+      <div class="col-4">
+        <input
+          type="text"
+          class="form-control form-control-lg search-bar-input"
+          placeholder="Search by location"
+          (change)="searchLocationHandler($event)" (change)="getData()"
+        />
+      </div>
+      <div
+        class="input-group datePicker col-4"
+        (change)="searchDateHandler($event)" (onChange)="getData()"
+      >
+        <input
+          type="date"
+          class="form-control form-control-lg search-bar-input"
+        />
+      </div>
+      <div class="col-2">
+        <button
+          mat-raised-button
+          color="warn"
+          type="submit"
+          class="btn form-control-lg search-bar-button"
+          (click)="getData()"
+        >
 
-<div class="main_div">
-  <div>
-    <label for="fname">Name of trip:</label>
-    <input type="text" id="tname" name="tname" /><br /><br />
-  </div>
-  <div>
-    <label for="dateOftrip">Date of trip:</label>
-    <input type="date" id="dateOftrip" name="dateOftrip" />
-  </div>
+          <mat-icon class="mat-18">search</mat-icon>
+          Search
+        </button>
+      </div>
+    </div>
+  </form>
 </div>
-<app-trip-list></app-trip-list>
+<app-trip-list [trips]="trips"></app-trip-list>
