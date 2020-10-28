@@ -9,7 +9,7 @@
                     <div class="col-md-6">
                         <div class="profile-head">
                                     <h2>
-                                    {{tripDetails.title}}
+                                    {{tripDetails?.title}}
                                     </h2>
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
@@ -26,10 +26,10 @@
                     <div class="col-md-4">
                         <div class="profile-work">
                             <p>Organizer</p>
-                            <a href="">Organizer Name</a><br/>
+                            <a [routerLink]="['/organizer', this.organizer?._id, 'profile']" >{{this.organizer?.first_name + " " +this.organizer?.last_name}}</a><br/>
                             <p>Guide(s)</p>
-                            <a href="">{{ tripDetails.guide }}</a><br/>
-                            <a href="" *ngIf="tripDetails.guide?.length === 0"> No guide assigned </a><br/>
+                            <a *ngFor="let guideId of this.tripDetails?.guide" [routerLink]="['/guide', guideId, 'profile']">{{ tripDetails?.guide }}</a><br/>
+                            <a href="#" *ngIf="tripDetails?.guide?.length === 0"> No guide assigned </a><br/>
                         </div>
                     </div>
                     <div class="col-md-8">
@@ -40,7 +40,7 @@
                                                 <label>Trip Id</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>{{tripDetails._id}}</p>
+                                                <p>{{tripDetails?._id}}</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -48,7 +48,7 @@
                                                 <label>Location</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>{{tripDetails.location}}</p>
+                                                <p>{{tripDetails?.location}}</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -56,7 +56,7 @@
                                                 <label>Date</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>{{tripDetails.date | date}}</p>
+                                                <p>{{tripDetails?.date | date}}</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -64,7 +64,7 @@
                                               <label>Price</label>
                                           </div>
                                           <div class="col-md-6">
-                                              <p>{{tripDetails.price}} DT</p>
+                                              <p>{{tripDetails?.price}} DT</p>
                                           </div>
                                       </div>
                                         <div class="row">
@@ -72,7 +72,7 @@
                                                 <label>Trip Details</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>{{tripDetails.description}}</p>
+                                                <p>{{tripDetails?.description}}</p>
                                             </div>
                                         </div>
                             </div>
@@ -89,14 +89,6 @@
                                     <img class="d-block w-100" src="https://placeimg.com/380/230/nature" alt="Third slide">
                                   </div>
                                 </div>
-                                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                  <span class="sr-only">Previous</span>
-                                </a>
-                                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                  <span class="sr-only">Next</span>
-                                </a>
                               </div>
                             </div>
                         </div>

@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
-
 import { Component, OnInit } from '@angular/core';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
 
@@ -36,25 +35,25 @@ export class GuideProfileComponent implements OnInit {
   currentUser = this.tokenStorage.getUser();
   userRole = this.currentUser.roles[1];
   condition = this.currentUser.roles[1] !== 'guide';
-  guideId:string;
-  currentProposal = null
-
+  guideId: string;
+  currentProposal = null;
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe(params => {
+    this.activatedRoute.params.subscribe((params) => {
       this.guideId = params['id'];
     });
     this.activatedRoute.params.subscribe((params) => {
       let id = params['guideId'];
 
       let userId = this.userRole === 'guide' ? this.currentUser.id : id;
+      console.log('the user IDDD ==>', userId);
 
       this.http.get(`/api/user/guide/${userId}`).subscribe((res: any) => {
         console.log('on init guide infos', res);
         this.guide = res;
         // this.guide.gender = 'Male';
         console.log(this.guide);
-        this.guide.qualifications = res.qualifications;
+        // this.guide.qualifications = res.qualifications;
         console.log('user qualification ==>', this.guide.qualifications);
       });
       /*************Get all the proposal by guide ID******************* */
@@ -75,6 +74,12 @@ export class GuideProfileComponent implements OnInit {
     });
   }
 
+  getGuide() {
+    this.http.get(`/api/user/guide/${this.guideId}`).subscribe((guide: any) => {
+      this.guide = guide;
+      console.log('New guide ==>', this.guide);
+    });
+  }
 
   // genderHandler(event: any) {
   //   this.guide.gender = event.target.value;
@@ -99,7 +104,7 @@ export class GuideProfileComponent implements OnInit {
         organizerId: this.currentUser.id,
         guideId: guideId,
         tripId: tripId,
-        accepted : null,
+        accepted: null,
       };
       // console.log('trip id ====>', tripId);
       // console.log('guide id ====>', `/api/trips/${tripId}/edit`);
@@ -110,7 +115,10 @@ export class GuideProfileComponent implements OnInit {
 
         .subscribe((result) => {
           this.currentProposal = result;
-          console.log('return of adding new proposal current prop ===>',this.currentProposal);
+          console.log(
+            'return of adding new proposal current prop ===>',
+            this.currentProposal
+          );
         });
     });
 
@@ -118,51 +126,50 @@ export class GuideProfileComponent implements OnInit {
   }
 
   unhire() {
+    console.log('current prop when press unhire ===>', this.currentProposal);
+    //   this.http
 
-     console.log('current prop when press unhire ===>', this.currentProposal)
-  //   this.http
+    //   .delete(`/api/proposals/delete/one/${id}`)
+    //   .subscribe((res) => {
+    //     console.log(res)
+    //     console.log('this.currentProposal before update ====>', this.currentProposal);
+    //     this.currentProposal = null
+    //     console.log('this.currentProposal after update ====>', this.currentProposal);
 
-  //   .delete(`/api/proposals/delete/one/${id}`)
-  //   .subscribe((res) => {
-  //     console.log(res)
-  //     console.log('this.currentProposal before update ====>', this.currentProposal);
-  //     this.currentProposal = null
-  //     console.log('this.currentProposal after update ====>', this.currentProposal);
-
-  // }
-  //   );
+    // }
+    //   );
   }
   /************We are here for the button of the accept and decline************************ */
   accept(tripId, proposalId) {
-      this.http
-        .put(`/api/trips/edit/${tripId}`, {
-          guide: this.currentUser.id,
-        })
-        .subscribe((response) => {
-          console.log(response);
-        });
-      this.http
-        .put(`/api/proposals/guide/acceptance/${proposalId}`, {
-          accepted: true,
-        })
-        .subscribe((response) => {
-          console.log(response);
-        });
+    this.http
+      .put(`/api/trips/edit/${tripId}`, {
+        guide: this.currentUser.id,
+      })
+      .subscribe((response) => {
+        console.log(response);
+      });
+    this.http
+      .put(`/api/proposals/guide/acceptance/${proposalId}`, {
+        accepted: true,
+      })
+      .subscribe((response) => {
+        console.log(response);
+      });
   }
 
   decline(tripId, proposalId, guideId) {
     this.http
-    .put(`/api/proposals/guide/acceptance/${proposalId}`, {
-      accepted: false,
-    })
-    .subscribe((response) => {
-      console.log(response);
-    });
+      .put(`/api/proposals/guide/acceptance/${proposalId}`, {
+        accepted: false,
+      })
+      .subscribe((response) => {
+        console.log(response);
+      });
     this.http
-        .put(`/api/trips/rmGuide/${tripId}`, {guideId})
-        .subscribe((response) => {
-          console.log(response);
-        });
+      .put(`/api/trips/rmGuide/${tripId}`, { guideId })
+      .subscribe((response) => {
+        console.log(response);
+      });
   }
 
   //   addLanguage() {

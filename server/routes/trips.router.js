@@ -51,6 +51,7 @@ tripsRouter.put("/:id/edit", (req, res) => {
     })
     .catch((err) => console.log(err));
 });
+
 /****************Update trip to be published  **************  */
 tripsRouter.put("/publish/:id", (req, res) => {
   let tripId = req.params.id;
@@ -96,7 +97,6 @@ tripsRouter.put("/rmGuide/:id", (req, res) => {
     })
     .catch((err) => console.log(err));
 });
-
 /***********************Get trip by date***************************/
 tripsRouter.get("/date/:date", (req, res) => {
   console.log('this console ==>', req.params.date)

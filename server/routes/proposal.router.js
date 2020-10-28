@@ -21,7 +21,6 @@ proposalsRouter.post("/add", async (req, res) => {
     res.status(400).send("error");
   }
 });
-
 /*****************Get proposals of specific organizer with his ID************ Works Fine ***************** */
 proposalsRouter.get("/organizer/:organizerId", async (req, res) => {
   try {
@@ -44,7 +43,6 @@ proposalsRouter.get("/guide/:guideId", async (req, res) => {
     res.status(400).send("error");
   }
 });
-
 /*******************************Edit proposal with accepted state************************************* */
 proposalsRouter.put("/guide/acceptance/:id", async (req, res) => {
   let id = req.params.id;
@@ -82,5 +80,4 @@ proposalsRouter.delete("/delete/:id", async (req, res) => {
   Proposal.deleteMany({ tripId: id })
     .catch((err) => console.log(err));
 });
-
 module.exports = proposalsRouter;
