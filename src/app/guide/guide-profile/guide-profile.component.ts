@@ -60,6 +60,7 @@ export class GuideProfileComponent implements OnInit {
       this.http.get(`/api/proposals/guide/${userId}`).subscribe((res: any) => {
         this.proposals = res;
         console.log('on init guide proposals', this.proposals);
+        console.log('on init guide current prop', this.proposals);
         this.proposals.forEach((proposal) => {
           let tripId = proposal.tripId;
           // let proposalId = proposal._id;
