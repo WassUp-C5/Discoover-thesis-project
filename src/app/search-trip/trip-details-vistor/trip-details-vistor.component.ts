@@ -49,7 +49,7 @@ export class TripDetailsVistorComponent implements OnInit {
           .get(`/api/user/guide/${guideId}`)
           .subscribe((result : User[]) => {
             this.guideInfo = result;
-            console.log('the guide name is ====>', this.guideInfo);
+            console.log('the guide name is ====>', this.guideInfo.first_name);
           })
         });
     });

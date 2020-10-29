@@ -23,7 +23,7 @@ export class OrganizerProfileComponent implements OnInit {
     phone_number: '',
   };
   proposals = [];
-  tripP = [];
+  // tripP = [];
   organizerId: string;
 
   constructor(
@@ -58,16 +58,19 @@ export class OrganizerProfileComponent implements OnInit {
       .get(`/api/proposals/organizer/${this.currentUser.id}`)
       .subscribe((res: any) => {
         this.proposals = res;
-        console.log('on init organizer proposals', this.proposals);
-        this.proposals.forEach((proposal) => {
-          let tripId = proposal.tripId;
-          this.http.get(`/api/trips/${tripId}`).subscribe((res) => {
-            console.log('tripiya wa7da ', res);
-            this.tripP.push({ res, proposal });
-          });
-        });
-        console.log('this.trips ======>', this.tripP);
+        console.log('on init organizer proposals', res);
+        // this.proposals.forEach((proposal) => {
+        //   let tripId = proposal.tripId;
+        //   this.http.get(`/api/trips/${tripId}`).subscribe((result) => {
+        //     // let guideID = result.guide[0];
+        //     // this.http.get(`/api/users/guide/${}`)
+        //     console.log('tripiya wa7da ', result);
+        //     this.tripP.push({ res, proposal });
+        //   });
+        // });
+        // console.log('this.trips ======>', this.tripP);
       });
+    // Work is here nowwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww show guide name in proposal
   }
 
   // Redirect to create trip
@@ -93,6 +96,10 @@ export class OrganizerProfileComponent implements OnInit {
   genderHandler(event: any) {
     this.organizer.gender = event.target.value;
     console.log(this.organizer.gender);
+  }
+
+  getGuideInfo(guideId, tripId) {
+    this.router.navigate([`/guide/${guideId}/profile/${tripId}`]);
   }
 
   // Edit organizer profile
