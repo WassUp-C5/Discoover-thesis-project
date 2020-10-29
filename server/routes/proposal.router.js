@@ -24,7 +24,7 @@ proposalsRouter.post("/add", async (req, res) => {
 /*****************Get proposals of specific organizer with his ID************ Works Fine ***************** */
 proposalsRouter.get("/organizer/:organizerId", async (req, res) => {
   try {
-    await Proposal.find(req.params).then((result) => {
+    await Proposal.find(req.params).populate('guideId').populate('tripId').then((result) => {
       res.send(result);
     });
   } catch (error) {
@@ -35,6 +35,20 @@ proposalsRouter.get("/organizer/:organizerId", async (req, res) => {
 proposalsRouter.get("/guide/:guideId", async (req, res) => {
   console.log("req.params should be  guideId something === > ", req.params);
   try {
+    await Proposal.find(req.params).then((result) => {
+      console.log(" this guides proposals ===> ", result);
+      res.send(result);
+    });
+  } catch (error) {
+    res.status(400).send("error");
+  }
+});
+/* *********************************Get current proposal to guide profile when organizer access it************************************** */
+proposalsRouter.get("/current/:guideId/:tripId", async (req, res) => {
+  try {
+    console.log('====================================');
+    console.log('req params from get current prop : ', req.params);
+    console.log('====================================');
     await Proposal.find(req.params).then((result) => {
       console.log(" this guides proposals ===> ", result);
       res.send(result);

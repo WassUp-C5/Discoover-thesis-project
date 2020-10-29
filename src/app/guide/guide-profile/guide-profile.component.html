@@ -4,6 +4,7 @@
   integrity="sha256-NAxhqDvtY0l4xn+YVa6WjAcmd94NNfttjNsDmNatFVc=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
   integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" /> -->
+  <mat-progress-bar mode="indeterminate" *ngIf="!dataIsReady"></mat-progress-bar>
 <div class="container guide-profile">
   <div class="row">
     <div class="col-md-3">
@@ -20,11 +21,11 @@
             Update Photo
           </button>
           <button type="submit" (click)="hire()" class="btn btn-danger btn-signin"
-            *ngIf="currentUser.id !== guideId && currentProposal === null">
+            *ngIf="currentUser.id !== guideId && currentProposal.length === 0 && !currentUser.roles.includes('guide')">
             Hire Me
           </button>
           <button type="submit" (click)="unhire(guideId, currentUser.id)" class="btn btn-danger btn-signin"
-            *ngIf="currentUser.id !== guideId && currentProposal !== null">
+            *ngIf="currentUser.id !== guideId && currentProposal.length ">
             Unhire
           </button>
 
