@@ -11,6 +11,7 @@ import { Trip } from '../../../../server/models/Trips';
 export class OrganizerProfileComponent implements OnInit {
   currentUser: any;
   selectedGender = '';
+  organizerId:string;
   organizer = {
     first_name: '',
     username: '',
@@ -24,7 +25,6 @@ export class OrganizerProfileComponent implements OnInit {
   };
   proposals = [];
   // tripP = [];
-  organizerId: string;
 
   constructor(
     private http: HttpClient,
