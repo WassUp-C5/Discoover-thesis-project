@@ -50,7 +50,9 @@ section {
 /* .details-card {
   background: #ecf0f1;
 } */
-
+.organizer-profile {
+  margin-top: 50px;;
+}
 .card-content {
   background: #ffffff;
   border: 4px;
@@ -165,7 +167,7 @@ body {
   border-radius: 0.25rem;
 }
 .avatar-xl {
-  height: 20rem;
+  height: 10rem;
   /* width: 6rem; */
 }
 .rounded-circle {
