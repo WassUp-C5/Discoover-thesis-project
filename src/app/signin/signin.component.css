@@ -15,7 +15,11 @@ html {
   height: 100%;
   font-family: Poppins-Regular, sans-serif;
 }
-
+/** ========= Custom CSS ======== **/
+.alert{
+  width: 100%;
+}
+/** ========= End Custom CSS ======== **/
 /*---------------------------------------------*/
 a {
   font-family: Poppins-Regular;
