@@ -11,21 +11,24 @@
               class="img-circle img-thumbnail"
               src="https://placeimg.com/380/230/nature"
             />
-            <div  id="infoDiv">
-            <h3><strong>Organizer name</strong></h3>
-            <a [routerLink]="['/organizer', this.organizer?._id, 'profile']"><strong>{{
-              this.organizer?.first_name + " " + this.organizer?.last_name
-            }}</strong></a
-            ><br />
-            <h3><strong>Guide name</strong></h3>
-            <a
-              *ngFor="let guideId of this.tripDetails?.guide"
-              [routerLink]="['/guide', guideId, 'profile']"
-              ><strong>{{ guideInfo.first_name + " " + guideInfo.last_name}}</strong></a
-            >
-            <a href="#" *ngIf="tripDetails?.guide?.length === 0">
-              No guide assigned </a
-            ><br />
+            <div id="infoDiv">
+              <h3><strong>Organizer name</strong></h3>
+              <a [routerLink]="['/organizer', this.organizer?._id, 'profile']"
+                ><strong>{{
+                  this.organizer?.first_name + " " + this.organizer?.last_name
+                }}</strong></a
+              ><br />
+              <h3><strong>Guide name</strong></h3>
+              <a
+                *ngFor="let guideId of this.tripDetails?.guide"
+                [routerLink]="['/guide', guideId, 'profile']"
+                ><strong>{{
+                  guideInfo.first_name + " " + guideInfo.last_name
+                }}</strong></a
+              >
+              <a href="#" *ngIf="tripDetails?.guide?.length === 0">
+                No guide assigned </a
+              ><br />
             </div>
           </figure>
         </div>
@@ -57,6 +60,7 @@
           </div>
         </div>
       </div>
+      <button click="book(tripDetails?._id)">Book</button>
       <!-- /row -->
     </div>
   </section>
