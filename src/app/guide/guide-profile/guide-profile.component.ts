@@ -36,11 +36,19 @@ export class GuideProfileComponent implements OnInit {
   userRole = this.currentUser.roles[1];
   condition = this.currentUser.roles[1] !== 'guide';
   guideId: string;
-  currentProposal = null;
+  currentProposal = [];
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params) => {
       this.guideId = params['id'];
+      let guideIdforOrg = params['guideId'];
+      let tripIdFromLink = params['tripId'];
+
+      /* ****************Get current proposal with guideId and tripId********************** */
+      this.http.get(`/api/proposals/current/${guideIdforOrg}/${tripIdFromLink}`)
+      .subscribe((res: any) =>{
+        this.currentProposal = res
+      })
     });
     this.activatedRoute.params.subscribe((params) => {
       let id = params['guideId'];
@@ -60,7 +68,7 @@ export class GuideProfileComponent implements OnInit {
       this.http.get(`/api/proposals/guide/${userId}`).subscribe((res: any) => {
         this.proposals = res;
         console.log('on init guide proposals', this.proposals);
-        console.log('on init guide current prop', this.proposals);
+        console.log('on init guide current prop', this.currentProposal);
         this.proposals.forEach((proposal) => {
           let tripId = proposal.tripId;
           // let proposalId = proposal._id;
@@ -71,6 +79,7 @@ export class GuideProfileComponent implements OnInit {
         });
         console.log('this.trips ======>', this.trips);
       });
+
     });
   }
 
@@ -114,10 +123,9 @@ export class GuideProfileComponent implements OnInit {
         .post('/api/proposals/add', proposal)
 
         .subscribe((result) => {
-          this.currentProposal = result;
           console.log(
-            'return of adding new proposal current prop ===>',
-            this.currentProposal
+            'return of adding new proposal (hiring)===>',
+            result
           );
         });
     });
@@ -127,17 +135,24 @@ export class GuideProfileComponent implements OnInit {
 
   unhire() {
     console.log('current prop when press unhire ===>', this.currentProposal);
-    //   this.http
+      this.http
 
-    //   .delete(`/api/proposals/delete/one/${id}`)
-    //   .subscribe((res) => {
-    //     console.log(res)
-    //     console.log('this.currentProposal before update ====>', this.currentProposal);
-    //     this.currentProposal = null
-    //     console.log('this.currentProposal after update ====>', this.currentProposal);
+      .delete(`/api/proposals/delete/one/${this.currentProposal[0]._id}`)
+      .subscribe((res) => {
+        console.log(res)
+        console.log('this.currentProposal before update ====>', this.currentProposal);
+        this.currentProposal = [];
+        console.log('this.currentProposal after update ====>', this.currentProposal);
 
-    // }
-    //   );
+    }
+      );
+      let guideId = this.currentProposal[0].guideId
+      let tripIdToRm = this.currentProposal[0].tripId
+      this.http
+      .put(`/api/trips/rmGuide/${tripIdToRm}`, { guideId})
+      .subscribe((response) => {
+        console.log(response);
+      });
   }
   /************We are here for the button of the accept and decline************************ */
   accept(tripId, proposalId) {
