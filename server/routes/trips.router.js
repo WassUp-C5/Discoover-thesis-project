@@ -59,7 +59,22 @@ tripsRouter.put("/:id/edit", (req, res) => {
     })
     .catch((err) => console.log(err));
 });
-
+/******************Update trip by adding a new tripper************************** */
+tripsRouter.put("add/triper/:id", async (req, res) => {
+  let tripId = req.params.id;
+  let tripperId = req.body.triperID;
+  Trip.findById(tripId)
+    .then((trip) => {
+      if (trip.travelers.length === maxTravelers) {
+        res.send({ message: "The trip reach his max of travelers" });
+      } else {
+        trip.travelers.push(tripperId);
+        trip.save();
+        res.send({ message: "Travelers added " });
+      }
+    })
+    .catch((err) => console.log(err));
+});
 /****************Update trip to be published  **************  */
 tripsRouter.put("/publish/:id", (req, res) => {
   let tripId = req.params.id;
@@ -73,6 +88,7 @@ tripsRouter.put("/publish/:id", (req, res) => {
     })
     .catch((err) => console.log(err));
 });
+
 /**************Update Trip with guide id when he accepts  ********************************* */
 tripsRouter.put("/edit/:id", (req, res) => {
   let id = req.params.id;

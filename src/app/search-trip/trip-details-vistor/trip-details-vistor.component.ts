@@ -62,5 +62,12 @@ export class TripDetailsVistorComponent implements OnInit {
   }
 
   /***********Boook a trip ********************* */
-  book(tripID) {}
+  book(tripID) {
+    this.http
+      .put(`/api/trips/add/triper/${tripID}`, triperID)
+
+      .subscribe((result) => {
+        console.log('a new triper has been added===>', result);
+      });
+  }
 }
