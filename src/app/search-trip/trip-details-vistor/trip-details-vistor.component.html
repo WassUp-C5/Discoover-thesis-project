@@ -23,9 +23,8 @@
               [routerLink]="['/guide', guideId, 'profile']"
               ><strong>{{ guideInfo.first_name + " " + guideInfo.last_name}}</strong></a
             >
-            <a href="#" *ngIf="tripDetails?.guide?.length === 0">
-              No guide assigned </a
-            ><br />
+            <p href="#" *ngIf="tripDetails?.guide?.length === 0">
+              No guide assigned </p><br />
             </div>
           </figure>
         </div>
