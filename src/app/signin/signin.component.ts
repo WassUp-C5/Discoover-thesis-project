@@ -21,7 +21,7 @@ export class SigninComponent implements OnInit {
   errorMessage: string = '';
   roles: string[] = [];
   previousUrl: string;
-  checking:boolean = false;
+  checking: boolean = false;
 
   constructor(
     private router: Router,
@@ -57,8 +57,14 @@ export class SigninComponent implements OnInit {
         // this.router.navigate([
         //   `/${this.roles[1]}/${this.tokenStorage.getUser().id}/profile`,
         // ]);
-        console.log("prev url: ", this.previousUrl);
-        this.router.navigateByUrl(this.previousUrl);
+        console.log('prev url: ', this.previousUrl);
+        if (this.previousUrl === '/') {
+          this.router.navigate([
+            `/${this.roles[1]}/${this.tokenStorage.getUser().id}/profile`,
+          ]);
+        } else {
+          this.router.navigateByUrl(this.previousUrl);
+        }
       },
       (err) => {
         this.errorMessage = err.error.message;

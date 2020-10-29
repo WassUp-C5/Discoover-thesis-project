@@ -33,8 +33,8 @@ import { GuideListItemComponent } from './organizer/guide-list/guide-list-item/g
 import { TripListComponent } from './search-trip/trip-list/trip-list.component';
 import { TripItemComponent } from './search-trip/trip-list/trip-item/trip-item.component';
 import { TripDetailsVistorComponent } from './search-trip/trip-details-vistor/trip-details-vistor.component';
-
 import { FlashMessagesModule } from 'angular2-flash-messages';
+import { TravelerModule } from './traveler/traveler.module';
 
 const modules = [
   BrowserModule,
@@ -44,7 +44,7 @@ const modules = [
   AngularMaterialModule,
   FormsModule,
   ReactiveFormsModule,
-
+  TravelerModule
 ]
 @NgModule({
   declarations: [
@@ -69,9 +69,7 @@ const modules = [
     GuideListItemComponent,
     TripListComponent,
     TripItemComponent,
-
     TripDetailsVistorComponent,
-
 
   ],
   imports: [ ...modules, FlashMessagesModule.forRoot() ],
