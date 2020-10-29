@@ -50,11 +50,20 @@ section {
 /* .details-card {
   background: #ecf0f1;
 } */
-
+.organizer-profile {
+  margin-top: 50px;;
+}
 .card-content {
   background: #ffffff;
   border: 4px;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  margin-right: 30px;
+  margin-bottom: 20px;
+}
+
+.trip-item {
+  max-width: 300px;
+  margin: 10px;
 }
 
 .card-img {
@@ -165,7 +174,7 @@ body {
   border-radius: 0.25rem;
 }
 .avatar-xl {
-  height: 20rem;
+  height: 10rem;
   /* width: 6rem; */
 }
 .rounded-circle {
