@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
+import { UrlService } from 'src/app/services/url.service';
 
 @Component({
   selector: 'app-visitor-navbar',
@@ -11,7 +12,8 @@ export class VisitorNavbarComponent implements OnInit {
   isLoggedIn = false;
   constructor(
     private router: Router,
-    private tokenStorage: TokenStorageService
+    private tokenStorage: TokenStorageService,
+    private urlService: UrlService
   ) {}
 
   ngOnInit(): void {
@@ -23,6 +25,10 @@ export class VisitorNavbarComponent implements OnInit {
       this.tokenStorage.signOut();
       window.location.reload();
     } else {
+      let url = this.router.url;
+      console.log(url);
+
+      this.urlService.setPreviousUrl(url)
       this.router.navigate(['/signin']);
     }
   }

@@ -8,11 +8,11 @@ const tripsSchema = new mongoose.Schema(
     price: Number,
     description: String,
     // activities: [],
-    maxTravelers: String,
+    maxTravelers: Number,
     organizerId: String,
-    // travelers: []
+    travelers: [],
     guide: [],
-    published: {type: Boolean, default: false}
+    published: { type: Boolean, default: false },
   },
   {
     timestamps: true,
