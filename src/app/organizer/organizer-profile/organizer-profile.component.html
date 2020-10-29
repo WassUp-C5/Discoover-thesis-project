@@ -86,6 +86,11 @@
               <i class="mdi mdi-settings-outline mr-1"></i>My Trips
             </a>
           </li>
+          <li class="nav-item">
+            <a href="#myProposals" data-toggle="tab" aria-expanded="false" class="nav-link">
+              <i class="mdi mdi-settings-outline mr-1"></i>My Proposals
+            </a>
+          </li>
         </ul>
 
         <div class="tab-content">
@@ -135,6 +140,50 @@
           </div>
 
           <!-- end timeline content-->
+          <div class="tab-pane show active" id="myProposals">
+            <h5 class="mb-4 text-uppercase">
+              <i class="mdi mdi-briefcase mr-1"></i> My Proposals
+            </h5>
+
+            <ul *ngFor="let trip of proposals">
+              <li>
+                <h3 class="text-primary">
+                  <span class="glyphicon glyphicon-arrow-right"></span>
+                  {{ trip.tripId.title }}
+                </h3>
+                <div>
+                  Guide : <a x-no-tabbing
+                    (click)="getGuideInfo(trip.guideId._id,trip.tripId._id)">{{trip.guideId.first_name+ ' ' +trip.guideId.last_name}}</a>
+                </div>
+                <div *ngIf="trip.accepted === true">
+                  Status : Accepted
+                </div>
+                <div *ngIf="trip.accepted == null">
+                  Status : Waiting response
+                </div>
+                <div *ngIf="trip.accepted == false">
+                  Status : Declined
+                </div>
+                <div>date : {{ trip.tripId.date }}</div>
+                <div>Location : {{ trip.tripId.location }}</div>
+                <div>price : {{ trip.tripId.price }}</div>
+                <div>Max travelers : {{ trip.tripId.maxTravelers }}</div>
+                <div>
+                  <p>Trip description : <br />{{ trip.tripId.description }}</p>
+                </div>
+
+                <button type="submit" (click)="
+                    cancelProp(
+                      trip._id,
+                      trip.guideId._id,
+                      trip.tripId._id
+                    )
+                  " class="btn btn-danger btn-signin">
+                  cancel Proposal
+                </button>
+              </li>
+            </ul>
+          </div>
 
           <div class="tab-pane" id="settings">
             <form>

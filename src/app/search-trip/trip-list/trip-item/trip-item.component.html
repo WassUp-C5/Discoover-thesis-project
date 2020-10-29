@@ -10,6 +10,6 @@
     <p>
       {{ trip.description }}
     </p>
-    <a class="btn-card">Show more</a>
+    <a class="btn-card" [routerLink]="['/trips', trip._id, 'details']">Show more</a>
   </div>
 </div>

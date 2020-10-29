@@ -1,6 +1,21 @@
 const userRouter = require("express").Router();
 const User = require("../models/User");
 const Trip = require("../models/Trips");
+const bcrypt = require("bcryptjs");
+
+/*******************Get the organizer info*********************************** */
+userRouter.get("/organizer/:id", (req, res) => {
+  console.log('====================================');
+  console.log('req.params line 9 : ', req.params);
+  console.log('====================================');
+  User.findOne({ _id: req.params.id })
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => console.log(err));
+});
+
+
 /****************Update Organizer Profile ******************** */
 userRouter.put("/organizer/edit", (req, res) => {
   let user = req.body;
@@ -11,34 +26,25 @@ userRouter.put("/organizer/edit", (req, res) => {
     })
     .catch((err) => console.log(err));
 });
-/*******************Get the organizer info*********************************** */
-userRouter.get("/organizer/:id", (req, res) => {
-  User.findOne({ _id: req.params.id })
-    .then((result) => {
-      res.send(result);
-    })
-    .catch((err) => console.log(err));
-});
 
-/*************Get all the organizer's Trips******************** */
+/*************Get all the organizer's Trips********* Works Fine *********** */
 
 userRouter.get("/organizer/trips/:id", (req, res) => {
   let id = req.params.id;
   console.log("user ID ======>", id);
-  User.findOne({ _id: id }).then((user) => {
-    console.log("user trips ===>", user.trips);
-    Trip.find({ _id: user.trips })
-      .then((result) => {
-        res.send(result);
-        console.log("result =============>", result);
-      })
-      .catch((err) => console.log(err));
-  });
+  Trip.find({ organizerId: id }, function (err, trips) {
+    if (err) throw err;
+    console.log("organizer trips to be shown  ===> ", trips);
+    res.send(trips);
+  })
 });
+
 
 /****************Get guide info********************* */
 userRouter.get("/guide/:id", (req, res) => {
-  User.findOne({ _id: req.params.id })
+  console.log("guide id: ", req.params.id)
+  User.findById(req.params.id)
+    .populate("qualifications")
     .then((result) => {
       res.send(result);
     })
@@ -66,4 +72,28 @@ userRouter.get("/guides", (req, res) => {
     })
     .catch((err) => console.log(err));
 });
+
+/**
+ * Change user password
+ */
+userRouter.put("/:id/password/edit", async (req, res) => {
+  try {
+    User.findById(req.params.id)
+      .then(user => {
+        if (!bcrypt.compareSync(req.body.currentPassword, user.password)) {
+          return res
+            .status(401)
+            .json({ message: "Please verify your password!!" });
+        }
+
+        user.password = req.body.newPassword;
+        user.save();
+        res.send({ message: "Success: your password has been changed!!" })
+      })
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ message: "An error occured please try again!!" });
+  }
+});
+
 module.exports = userRouter;

@@ -2,10 +2,19 @@ const mongoose = require("mongoose");
 
 const proposalSchema = new mongoose.Schema(
   {
-    organizerId: String,
-    guideId: String,
-    tripId: String,
-    accepted: Boolean
+    organizerId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User"
+    },
+    guideId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User"
+    },
+    tripId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Trip"
+    },
+    accepted: { type: Boolean, default: null }
   },
   {
     timestamps: true,

@@ -1,0 +1,63 @@
+<app-organizer-navbar></app-organizer-navbar>
+
+<!--  -->
+<div class="container">
+  <section id="principal-content">
+    <div class="col-md-12" id="main">
+      <div class="row">
+        <div class="col-md-4 col-md-offset-1">
+          <figure>
+            <img
+              class="img-circle img-thumbnail"
+              src="https://placeimg.com/380/230/nature"
+            />
+            <div  id="infoDiv">
+            <h3><strong>Organizer name</strong></h3>
+            <a [routerLink]="['/organizer', this.organizer?._id, 'profile']"><strong>{{
+              this.organizer?.first_name + " " + this.organizer?.last_name
+            }}</strong></a
+            ><br />
+            <h3><strong>Guide name</strong></h3>
+            <a
+              *ngFor="let guideId of this.tripDetails?.guide"
+              [routerLink]="['/guide', guideId, 'profile']"
+              ><strong>{{ guideInfo.first_name + " " + guideInfo.last_name}}</strong></a
+            >
+            <a href="#" *ngIf="tripDetails?.guide?.length === 0">
+              No guide assigned </a
+            ><br />
+            </div>
+          </figure>
+        </div>
+        <!-- 4 -->
+        <div class="col-md-6">
+          <div class="titleDiv">
+            <h3 class="text-primary">
+              <strong> {{ tripDetails?.title | titlecase }} </strong>
+            </h3>
+          </div>
+
+          <div id="basicInfo">
+            <p><strong>Date : </strong> &nbsp;{{ tripDetails?.date | date }}</p>
+            <hr />
+            <p>
+              <strong>Location : </strong>&nbsp;{{
+                tripDetails?.location | titlecase
+              }}
+            </p>
+            <hr />
+            <p><strong>Price : </strong>&nbsp;{{ tripDetails?.price }} DT</p>
+            <hr />
+            <p>
+              <strong>Trip description : </strong>&nbsp;{{
+                tripDetails?.description
+              }}
+            </p>
+            <hr />
+          </div>
+        </div>
+      </div>
+      <!-- /row -->
+    </div>
+  </section>
+</div>

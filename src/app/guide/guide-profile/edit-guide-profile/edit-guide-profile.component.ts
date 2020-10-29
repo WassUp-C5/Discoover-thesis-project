@@ -1,9 +1,8 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
-import { TokenStorageService } from 'src/app/services/token-storage.service';
+import { TokenStorageService } from './../../../services/token-storage.service';
 import { ActivatedRoute } from '@angular/router';
-import { catchError, retry } from 'rxjs/operators';
-
+import { UserQualifications} from './../../../models/UserQualifications';
 @Component({
   selector: 'app-edit-guide-profile',
   templateUrl: './edit-guide-profile.component.html',
@@ -11,15 +10,19 @@ import { catchError, retry } from 'rxjs/operators';
 })
 export class EditGuideProfileComponent implements OnInit {
   @Input() guide;
+  @Input() getGuide;
 
-  guidep;
   currentUser: any;
   isLoggedIn: boolean;
   guideId: string;
   language: string = '';
   selectedLevel: string = '';
-  oldPassword: string = '';
+  currentPassword: string = '';
   newPassword: string = '';
+  showErrorMessage: boolean = false;
+  showSuccessMessage: boolean = false;
+  alertMessage: string;
+  userQualifications = new UserQualifications();
 
   constructor(
     private http: HttpClient,
@@ -51,21 +54,55 @@ export class EditGuideProfileComponent implements OnInit {
       });
   }
 
-  changePassword() {
-    console.log(this.oldPassword, this.newPassword);
+  addLanguage(){
+    this.userQualifications.type = "language";
     this.http
-      .put('/api/user/:id/edit', {
-        oldPassword: this.oldPassword,
-        newPassword: this.newPassword,
+      .put(`/api/users/guides/${this.guideId}/qualifications/add`, this.userQualifications)
+      .subscribe(result => {
+        console.log(result);
+        this.userQualifications = new UserQualifications();
+        this.getGuide();
       })
+  }
 
-      .subscribe(
-        (result) => {
-          console.log(result);
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
+  deleteUserQualification(entryId) {
+    this.http
+      .delete(`/api/users/guides/${this.tokenStorage.getUser().id}/qualifications/${entryId}/delete`)
+      .subscribe(result => {
+        console.log(result);
+        this.getGuide();
+      })
+  }
+
+  changePassword() {
+    console.log(this.currentPassword, this.newPassword);
+    if (this.currentPassword && this.newPassword) {
+      this.http
+        .put(`/api/user/${this.currentUser.id}/password/edit`, {
+          currentPassword: this.currentPassword,
+          newPassword: this.newPassword,
+        })
+
+        .subscribe(
+          (result: any) => {
+            console.log(result);
+            this.alertMessage = result.message;
+            this.showSuccessMessage = true;
+          },
+          (error) => {
+            console.log(error);
+            this.alertMessage = error.error.message;
+            this.showErrorMessage = true;
+          }
+        );
+    } else {
+      this.alertMessage = 'Please check your password again!!';
+      this.showErrorMessage = true;
+    }
+
+    setTimeout(() => {
+      this.showErrorMessage = false;
+      this.showSuccessMessage = false;
+    }, 5000);
   }
 }

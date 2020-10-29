@@ -23,6 +23,8 @@ export class OrganizerProfileComponent implements OnInit {
     bio: '',
     phone_number: '',
   };
+  proposals = [];
+  // tripP = [];
 
   constructor(
     private http: HttpClient,
@@ -34,48 +36,79 @@ export class OrganizerProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentUser = this.token.getUser();
-    this.route.params.subscribe(params => {
-      this.organizerId = params['id'];
-    })
+    // Get organizer infos from DB
+    this.route.params.subscribe((param) => {
+      this.organizerId = param['id'];
+    });
     this.http
-      .get(`/api/user/organizer/${this.currentUser.id}`)
+      .get(`/api/user/organizer/${this.organizerId}`)
       .subscribe((res: any) => {
         console.log(res);
         this.organizer = res;
       });
+    // Get all the organizer's trips // Works Fine
     this.http
       .get(`/api/user/organizer/trips/${this.currentUser.id}`)
       .subscribe((data: Trip[]) => {
+        console.log('organizer trips to be shown in my trips ====> ', data);
         this.trips = data;
       });
+    // Get all the proposals by organizer ID
+    this.http
+      .get(`/api/proposals/organizer/${this.currentUser.id}`)
+      .subscribe((res: any) => {
+        this.proposals = res;
+        console.log('on init organizer proposals', res);
+        // this.proposals.forEach((proposal) => {
+        //   let tripId = proposal.tripId;
+        //   this.http.get(`/api/trips/${tripId}`).subscribe((result) => {
+        //     // let guideID = result.guide[0];
+        //     // this.http.get(`/api/users/guide/${}`)
+        //     console.log('tripiya wa7da ', result);
+        //     this.tripP.push({ res, proposal });
+        //   });
+        // });
+        // console.log('this.trips ======>', this.tripP);
+      });
+    // Work is here nowwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww show guide name in proposal
   }
 
-  getTrip(tripId) {
-    console.log('click is working');
-
-    this.router.navigate([`/organizer/${this.organizerId}/trip/details/${tripId}`]);
-  }
-
+  // Redirect to create trip
   addTrip() {
-    console.log('click is working trip add');
     this.currentUser = this.token.getUser();
     console.log('current user ====>', this.currentUser.id);
 
-    this.router.navigate([`/organizer/${this.organizerId}/trip/add`]);
+    this.router.navigate([`/organizer/${this.currentUser.id}/trip/add`]);
+  }
+
+  // Redirect to trip details
+  getTrip(tripId) {
+    this.router.navigate(['/organizer/trip/details/' + tripId]);
+  }
+
+  // Cancel a proposition
+  cancelProp(id) {
+    this.http
+      .delete(`/api/proposals/delete/one/${id}`)
+      .subscribe((res) => console.log(res));
   }
 
   genderHandler(event: any) {
     this.organizer.gender = event.target.value;
     console.log(this.organizer.gender);
   }
-  onClick() {
-    window.location.reload();
-    console.log('organizer profile updated with ==>', this.organizer);
 
+  getGuideInfo(guideId, tripId) {
+    this.router.navigate([`/guide/${guideId}/profile/${tripId}`]);
+  }
+
+  // Edit organizer profile
+  onClick() {
     this.http
       .put('/api/user/organizer/edit', this.organizer)
       .subscribe((res) => {
         console.log(res);
       });
+    window.location.reload();
   }
 }

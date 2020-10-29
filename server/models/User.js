@@ -5,7 +5,10 @@ var bcrypt = require("bcryptjs");
 const usersSchema = new mongoose.Schema(
   {
     first_name: String,
-    qualifications: [],
+    qualifications: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "UserQualification",
+    }],
     last_name: String,
     username: String,
     password: String,
@@ -23,6 +26,7 @@ const usersSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
+
 
 const MongoUser = mongoose.model("User", usersSchema);
 class User extends MongoUser {
@@ -57,10 +61,11 @@ class User extends MongoUser {
   //   });
   // }
 
-  save() {
+  saveUser() {
     return new Promise((resolve, reject) => {
       console.log("password ===> ", this.password);
-      this.password = bcrypt.hashSync(this.password, 10);
+      this.password = bcrypt.hashSync(this.password, 10)
+      console.log("hashed password ===> ", this.password);
       super.save(
         {
           first_name: this.first_name,

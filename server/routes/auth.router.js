@@ -7,7 +7,7 @@ authRouter.post("/signup", async (req, res) => {
   try {
     console.log(req.body);
     var user = new User(req.body);
-    await user.save().then((result) => {
+    await user.saveUser().then((result) => {
       console.log("success");
       res.send(result);
     });
@@ -20,23 +20,46 @@ authRouter.post("/signup", async (req, res) => {
 authRouter.post("/signin", async (req, res) => {
   console.log(req.body);
   try {
-    var user = await User.findOne({ username: req.body.username });
-    if (!user) {
-      return res
-        .status(401)
-        .json({ title: "server side error", error: "invalid" });
-    }
-    if (!bcrypt.compareSync(req.body.password, user.password)) {
-      return res
-        .status(401)
-        .json({ title: "log in failed", error: "invalid data" });
-    }
-    let token = jwt.sign({ userId: user._id }, "it's a secret");
-    res.status(200).json({
-      token: token,
-      user: { id: user._id, roles: user.roles },
-    });
+    var user = await User.findOne({ email: req.body.email });
     console.log(user);
+    if (!user) {
+      console.log("User not found");
+      return res
+        .status(401)
+        .json({ message: "Please check your credentials!!" });
+    }
+    bcrypt.compare(req.body.password, user.password, (err, compRes) => {
+      if (err) {
+        console.log(err);
+      }
+      if (!compRes) {
+        console.log("Wrong Password");
+        return res
+          .status(401)
+          .json({ message: "Please check your credentials!!" });
+      } else {
+        let token = jwt.sign({ userId: user._id }, "it's a secret");
+        res.status(200).json({
+          token: token,
+          user: { id: user._id, roles: user.roles },
+        });
+        // console.log(bcrypt.compareSync(req.body.password, user.password))
+        // console.log(user);
+      }
+    });
+
+    //   console.log("Wrong Password")
+    //   return res
+    //     .status(401)
+    //     .json({ title: "log in failed", error: "invalid data" });
+    // }
+    // let token = jwt.sign({ userId: user._id }, "it's a secret");
+    // res.status(200).json({
+    //   token: token,
+    //   user: { id: user._id, roles: user.roles },
+    // });
+    // console.log(bcrypt.compareSync(req.body.password, user.password))
+    // console.log(user);
   } catch (error) {
     console.log(error);
     res.send("error");

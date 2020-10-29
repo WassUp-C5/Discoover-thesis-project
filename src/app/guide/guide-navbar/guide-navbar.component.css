@@ -5,6 +5,7 @@
 }
 .nav {
   background: #cf0008;
+  box-shadow: 5px 3px 10px 1px #888888;
 }
 
 .avatar-img {

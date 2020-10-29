@@ -7,12 +7,12 @@
           type="text"
           class="form-control form-control-lg search-bar-input"
           placeholder="Search by location"
-          (change)="searchLocationHandler($event)"
+          (change)="searchLocationHandler($event)" (change)="getData()"
         />
       </div>
       <div
         class="input-group datePicker col-4"
-        (change)="searchDateHandler($event)"
+        (change)="searchDateHandler($event)" (onChange)="getData()"
       >
         <input
           type="date"
@@ -25,7 +25,7 @@
           color="warn"
           type="submit"
           class="btn form-control-lg search-bar-button"
-          (click)="getLocationTrips()"
+          (click)="getData()"
         >
 
           <mat-icon class="mat-18">search</mat-icon>
