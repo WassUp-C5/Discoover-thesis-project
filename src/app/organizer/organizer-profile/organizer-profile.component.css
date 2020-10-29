@@ -57,6 +57,13 @@ section {
   background: #ffffff;
   border: 4px;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  margin-right: 30px;
+  margin-bottom: 20px;
+}
+
+.trip-item {
+  max-width: 300px;
+  margin: 10px;
 }
 
 .card-img {

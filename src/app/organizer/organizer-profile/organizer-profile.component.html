@@ -112,10 +112,29 @@
               >
                 Add Trip
               </button>
-              <section class="details-card">
-                <div class="container" >
-                  <div class="row">
-                      <div class="card-content col-md-6" *ngFor="let trip of trips">
+
+              <div class="container">
+                <div class="row">
+                  <mat-card class="col-md-6 col-sm-12 trip-item" *ngFor="let trip of trips">
+                    <mat-card-header>
+                      <mat-card-title>{{ trip.title }}</mat-card-title>
+                      <mat-card-subtitle>{{ trip.price }}</mat-card-subtitle>
+                    </mat-card-header>
+                    <img mat-card-image src="https://placeimg.com/380/230/nature" alt="" />
+                    <mat-card-content>
+                      <p>
+                        {{ (trip.description | slice: 0:50) + "..." }}
+                      </p>
+                      <button
+                        mat-raised-button
+                        (click)="getTrip(trip._id)"
+                        color="primary"
+                      >
+                        Show more
+                      </button>
+                    </mat-card-content>
+                  </mat-card>
+                  <!-- <div class="card-content col-md-4 col-sm-12" *ngFor="let trip of trips">
                         <div class="card-img">
                           <img
                             src="https://placeimg.com/380/230/nature"
@@ -134,10 +153,9 @@
                             >Show more</a
                           >
                         </div>
-                      </div>
-                  </div>
+                      </div> -->
                 </div>
-              </section>
+              </div>
             </div>
           </mat-tab>
           <mat-tab label="My proposals">
@@ -388,7 +406,7 @@
                       </div>
                     </div>
                   </div> -->
-                  <!-- end col -->
+                <!-- end col -->
                 <!-- </div> -->
                 <!-- end row -->
 
@@ -429,7 +447,7 @@
                       </div>
                     </div>
                   </div> -->
-                  <!-- end col -->
+                <!-- end col -->
                 <!-- </div> -->
                 <!-- end row -->
 
@@ -452,7 +470,7 @@
                       </div>
                     </div>
                   </div> -->
-                  <!-- end col -->
+                <!-- end col -->
                 <!-- </div> -->
                 <!-- end row -->
 
