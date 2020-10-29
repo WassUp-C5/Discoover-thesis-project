@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 /* Angular material */
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AngularMaterialModule } from './angular-material.module';
+import { AngularMaterialModule } from './shared/angular-material.module';
 
 import { VisitorNavbarComponent } from './landing-page/visitor-navbar/visitor-navbar.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
@@ -35,6 +35,9 @@ import { TripItemComponent } from './search-trip/trip-list/trip-item/trip-item.c
 import { TripDetailsVistorComponent } from './search-trip/trip-details-vistor/trip-details-vistor.component';
 
 import { FlashMessagesModule } from 'angular2-flash-messages';
+import { SharedModule } from './shared/shared.module';
+
+
 
 const modules = [
   BrowserModule,
@@ -44,7 +47,7 @@ const modules = [
   AngularMaterialModule,
   FormsModule,
   ReactiveFormsModule,
-
+  SharedModule
 ]
 @NgModule({
   declarations: [
@@ -69,13 +72,12 @@ const modules = [
     GuideListItemComponent,
     TripListComponent,
     TripItemComponent,
-
     TripDetailsVistorComponent,
-
-
   ],
+
   imports: [ ...modules, FlashMessagesModule.forRoot() ],
   exports: [ ...modules ],
+
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent],
 })
