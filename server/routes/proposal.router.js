@@ -24,7 +24,7 @@ proposalsRouter.post("/add", async (req, res) => {
 /*****************Get proposals of specific organizer with his ID************ Works Fine ***************** */
 proposalsRouter.get("/organizer/:organizerId", async (req, res) => {
   try {
-    await Proposal.find(req.params).then((result) => {
+    await Proposal.find(req.params).populate('guideId').populate('tripId').then((result) => {
       res.send(result);
     });
   } catch (error) {
