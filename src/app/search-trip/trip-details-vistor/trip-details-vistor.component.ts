@@ -26,7 +26,6 @@ export class TripDetailsVistorComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log('real id user', this.currentUser.id);
     this.route.params.subscribe((param) => {
       this.tripId = param['id'];
       console.log('tripd IDDDD', this.tripId);
@@ -43,6 +42,8 @@ export class TripDetailsVistorComponent implements OnInit {
             console.log('the result from DB is ===>', result);
           });
         let guideId = this.tripDetails.guide[0];
+        console.log('id guide', guideId);
+
         this.http
           .get(`/api/user/guide/${guideId}`)
           .subscribe((result: User[]) => {
@@ -63,11 +64,27 @@ export class TripDetailsVistorComponent implements OnInit {
 
   /***********Boook a trip ********************* */
   book(tripID) {
-    this.http
-      .put(`/api/trips/add/triper/${tripID}`, triperID)
+    console.log('tripID', tripID);
+    if (this.isLoggedIn) {
+      let triperID = this.currentUser.id;
+      console.log('triperID', triperID);
 
+      this.http
+        .put(`/api/trips/add/triper/${tripID}`, { triperID })
+        .subscribe((result) => {
+          console.log('a new triper has been added===>', result);
+        });
+    } else {
+      this.router.navigate(['/signin']);
+    }
+  }
+  /*****************Cancel Booking********************** */
+  cancelBooking(tripID) {
+    let triperID = this.currentUser.id;
+    this.http
+      .put(`/api/trips/rmTripper/${tripID}`, { triperID })
       .subscribe((result) => {
-        console.log('a new triper has been added===>', result);
+        console.log('The triper has been deleted===>', result);
       });
   }
 }

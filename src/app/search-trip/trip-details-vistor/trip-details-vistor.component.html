@@ -55,12 +55,27 @@
               <strong>Trip description : </strong>&nbsp;{{
                 tripDetails?.description
               }}
+              {{ isLoggedIn }}
             </p>
             <hr />
           </div>
         </div>
       </div>
-      <button click="book(tripDetails?._id)">Book</button>
+      <button
+        *ngIf="
+          isLoggedIn === false ||
+          !tripDetails.travelers.includes(currentUser.id)
+        "
+        (click)="book(tripDetails?._id)"
+      >
+        Book
+      </button>
+      <button
+        *ngIf="tripDetails.travelers.includes(currentUser.id)"
+        (click)="cancelBooking(tripDetails?._id)"
+      >
+        Cancel Booking
+      </button>
       <!-- /row -->
     </div>
   </section>
