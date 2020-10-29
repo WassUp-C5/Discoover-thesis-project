@@ -27,6 +27,7 @@ export default class User {
       this.birthday = values.birthday;
       this.gender = values.gender;
       this.phone_number = values.phone_number;
+      this.bio = values.bio;
     }
   }
 

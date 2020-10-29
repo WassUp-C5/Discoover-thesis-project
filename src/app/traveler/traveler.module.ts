@@ -20,7 +20,8 @@ import { BookedTripComponent } from './components/booked-trip/booked-trip.compon
     CommonModule,
     BrowserAnimationsModule,
     AngularMaterialModule,
-    ProfileComponent, BookedTripComponent
+    ProfileComponent,
+    BookedTripComponent
   ]
 })
 export class TravelerModule { }
