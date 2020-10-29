@@ -30,3 +30,9 @@ img {
 #basicInfo {
   width: 100%;
 }
+.bookBtn {
+  position: relative;
+  float: right;
+  margin-right: 5px;
+  margin-top: 1%;
+}
