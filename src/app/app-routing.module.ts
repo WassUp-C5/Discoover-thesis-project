@@ -13,6 +13,7 @@ import { EditTripComponent } from './organizer/edit-trip-component/edit-trip.com
 import { SearchTripComponent } from './search-trip/search-trip.component';
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
+import { ProfileComponent } from './traveler/components/profile/profile.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -29,6 +30,7 @@ const routes: Routes = [
   { path : 'signup/:role',component:SignupComponent},
   { path: 'signin', component: SigninComponent },
   { path: 'trips/:id/details', component: TripDetailsVistorComponent },
+  { path: 'traveler/:id/profile', component: ProfileComponent}
 ];
 
 @NgModule({

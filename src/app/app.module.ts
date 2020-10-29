@@ -58,9 +58,7 @@ import { TravelerModule } from './traveler/traveler.module';
     GuideListItemComponent,
     TripListComponent,
     TripItemComponent,
-
     TripDetailsVistorComponent,
-    TravelerModule
 
   ],
   imports: [
@@ -71,6 +69,7 @@ import { TravelerModule } from './traveler/traveler.module';
     AngularMaterialModule,
     FormsModule,
     ReactiveFormsModule,
+    TravelerModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent],
