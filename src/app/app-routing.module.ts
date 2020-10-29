@@ -27,7 +27,7 @@ const routes: Routes = [
   { path: 'guide/:guideId/profile/:tripId', component: GuideProfileComponent },
   { path: 'guideTrip', component: GuideATripComponent },
   { path: 'signup', component: SignupComponent },
-  { path : 'signup/:role',component:SignupComponent},
+  { path: 'signup/:role',component:SignupComponent},
   { path: 'signin', component: SigninComponent },
   { path: 'trips/:id/details', component: TripDetailsVistorComponent },
   { path: 'traveler/:id/profile', component: ProfileComponent}

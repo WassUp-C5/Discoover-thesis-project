@@ -15,6 +15,7 @@ export class SearchTripComponent implements OnInit {
   constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {
+    console.log(this.router.url);
     this.getData();
   }
 
