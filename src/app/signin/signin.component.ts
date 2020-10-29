@@ -4,6 +4,7 @@ import { AuthService } from './../services/auth.service';
 import { TokenStorageService } from '../services/token-storage.service';
 import { Observable } from 'rxjs';
 import { UrlService } from '../services/url.service';
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-signin',
@@ -27,7 +28,8 @@ export class SigninComponent implements OnInit {
     private router: Router,
     private authService: AuthService,
     private tokenStorage: TokenStorageService,
-    private urlService: UrlService
+    private urlService: UrlService,
+    private _flashMessagesService: FlashMessagesService
   ) {}
 
   ngOnInit(): void {
@@ -52,6 +54,7 @@ export class SigninComponent implements OnInit {
 
         this.isLoginFailed = false;
         this.isLoggedIn = true;
+        this.checking = false;
         this.roles = this.tokenStorage.getUser().roles;
         //this.reloadPage();
         // this.router.navigate([
@@ -67,11 +70,10 @@ export class SigninComponent implements OnInit {
         }
       },
       (err) => {
-        this.errorMessage = err.error.message;
-        this.showErrorMessage = true;
-        setTimeout(() => {
-          this.showErrorMessage = false;
-        }, 3000);
+
+        this._flashMessagesService.show(err.error.message, { cssClass: 'alert-danger', timeout: 3000 });
+        this.checking = false;
+
       }
     );
   }
