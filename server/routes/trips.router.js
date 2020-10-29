@@ -59,7 +59,26 @@ tripsRouter.put("/:id/edit", (req, res) => {
     })
     .catch((err) => console.log(err));
 });
-
+/******************Update trip by adding a new tripper************************** */
+tripsRouter.put("/add/triper/:tripID", async (req, res) => {
+  let tripId = req.params.tripID;
+  console.log("tripId", tripId);
+  let tripperId = req.body.triperID;
+  console.log("tripperId", tripperId);
+  Trip.findById(tripId)
+    .then((trip) => {
+      if (trip.travelers.length === trip.maxTravelers) {
+        res.send({ message: "The trip reach his max of travelers" });
+      } else if (trip.travelers.includes(tripperId)) {
+        res.send({ message: "Traveler already added " });
+      } else {
+        trip.travelers.push(tripperId);
+        trip.save();
+        res.send({ message: "Travelers added " });
+      }
+    })
+    .catch((err) => console.log(err));
+});
 /****************Update trip to be published  **************  */
 tripsRouter.put("/publish/:id", (req, res) => {
   let tripId = req.params.id;
@@ -73,6 +92,7 @@ tripsRouter.put("/publish/:id", (req, res) => {
     })
     .catch((err) => console.log(err));
 });
+
 /**************Update Trip with guide id when he accepts  ********************************* */
 tripsRouter.put("/edit/:id", (req, res) => {
   let id = req.params.id;
@@ -102,6 +122,19 @@ tripsRouter.put("/rmGuide/:id", (req, res) => {
       console.log("trip to delete the guide from array ===>", trip);
       trip.save();
       res.send({ message: "guide  deleted" });
+    })
+    .catch((err) => console.log(err));
+});
+
+/**************Update Trip to remove the travelers Id from trip ********************************* */
+tripsRouter.put("/rmTripper/:id", (req, res) => {
+  let tripperID = req.body.triperID;
+  let tripID = req.params.id;
+  Trip.findById(tripID)
+    .then((trip) => {
+      trip.travelers.pull(tripperID);
+      trip.save();
+      res.send({ message: "traveler  deleted" });
     })
     .catch((err) => console.log(err));
 });
