@@ -1,0 +1,79 @@
+<div class="container profile-container">
+  <div class="row">
+    <div class="col-md-3">
+      <mat-card mat-elevation-z2>
+        <div class="text-center">
+          <img
+            src="../../assets/photo.jpg"
+            class="rounded-circle avatar-xl img-thumbnail"
+            id="profileImg"
+            alt="profile-image"
+          />
+
+          <h4 class="mb-0">
+            {{
+              this.profileOwner.first_name + " " + this.profileOwner.last_name
+            }}
+          </h4>
+          <button
+            type="button"
+            class="btn btn-success btn-xs waves-effect mb-2 waves-light"
+            *ngIf="currentUser.id === this.profileOwner.id"
+          >
+            Update Photo
+          </button>
+
+          <div class="text-left mt-3">
+            <p class="text-muted mb-2 font-13">
+              <strong>Full name :</strong>
+              <span class="ml-2">{{
+                this.profileOwner.first_name + " " + this.profileOwner.last_name
+              }}</span>
+            </p>
+
+            <p class="text-muted mb-2 font-13">
+              <strong>Mobile :</strong
+              ><span class="ml-2"
+                >+216{{ this.profileOwner.phone_number }}</span
+              >
+            </p>
+
+            <p class="text-muted mb-2 font-13">
+              <strong>Email :</strong>
+              <span class="ml-2">{{ this.profileOwner.email }}</span>
+            </p>
+
+            <p class="text-muted mb-1 font-13">
+              <strong>Location :</strong>
+              <span class="ml-2">{{ this.profileOwner.location }}</span>
+            </p>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+    <div class="col-md-9">
+      <mat-tab-group>
+        <mat-tab label="About me">
+          <mat-card class="tab-content mat-elevation-z2">
+            <h5>My Biography</h5>
+            <p>
+              {{ this.profileOwner.bio }}
+            </p>
+            <hr />
+          </mat-card>
+        </mat-tab>
+        <mat-tab label="Reservations">
+          <div class="tab-content">
+            <app-booked-trip></app-booked-trip>
+          </div>
+        </mat-tab>
+        <mat-tab
+          *ngIf="this.currentUser.id === this.profileOwner.id"
+          label="Settings"
+        >
+          <mat-card class="tab-content">Edit profile not done yet</mat-card>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</div>

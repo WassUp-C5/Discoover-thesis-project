@@ -4,11 +4,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { HttpClient } from '@angular/common/http';
 
-
 @Component({
   selector: 'app-edit-trip',
   templateUrl: './edit-trip.component.html',
-  styleUrls: ['./edit-trip.component.css']
+  styleUrls: ['./edit-trip.component.css'],
 })
 export class EditTripComponent implements OnInit {
   trip: FormGroup;
@@ -19,35 +18,34 @@ export class EditTripComponent implements OnInit {
     private http: HttpClient,
     private route: ActivatedRoute,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
+    this.route.params.subscribe((params) => {
       let id = params['id'];
-    this.http.get('api/trips/'+id)
-    .subscribe((res: any) => {
-      this.toEdit.push(res);
-      console.log(this.toEdit);
-
+      this.http.get('api/trips/' + id).subscribe((res: any) => {
+        this.toEdit.push(res);
+        console.log(this.toEdit);
+      });
     });
-    })
   }
- ////////////////////////////////////////////////////// last thing here to edit in DB
-  onSubmit(){
-
+  ////////////////////////////////////////////////////// last thing here to edit in DB
+  onSubmit() {
     // this.trip = this.formBuilder.group({})
 
     console.log('this trip update', this.toEdit[0]);
-    this.route.params.subscribe(params => {
+    this.route.params.subscribe((params) => {
       let id = params['id'];
-    this.http.put('api/trips/'+ id+'/edit', this.toEdit[0])
-    .subscribe((res: any) => {
-      this.toEdit.push(res);
-      console.log(this.toEdit);
-      this.router.navigate([`/organizer/${id}/profile`])
-
+      console.log('====================================');
+      console.log('org Id after submitting edit === ', id);
+      console.log('====================================');
+      this.http
+        .put('api/trips/' + id + '/edit', this.toEdit[0])
+        .subscribe((res: any) => {
+          // this.toEdit.push(res);
+          // console.log(this.toEdit);
+          this.router.navigate([`/organizer/${id}/profile`]);
+        });
     });
-    })
   }
-
 }

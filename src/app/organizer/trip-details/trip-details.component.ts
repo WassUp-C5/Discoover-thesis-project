@@ -15,38 +15,41 @@ export class TripDetailsComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {}
-    currentUser:any = this.tokenStorage.getUser();
+  currentUser: any = this.tokenStorage.getUser();
   trip = [];
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params) => {
-      let id = params['id'];
+      let id = params['tripId'];
       this.http.get('/api/trips/' + id).subscribe((res: any) => {
         this.trip.push(res);
+        console.log('====================================');
+        console.log('trip should be === ', res);
+        console.log('====================================');
       });
     });
   }
 
   goEdit() {
     this.activatedRoute.params.subscribe((params) => {
-      let id = params['id'];
+      let id = params['tripId'];
       this.router.navigate(['/organizer/trip/edit/' + id]);
     });
   }
   goToGuides() {
     this.activatedRoute.params.subscribe((params) => {
-      let tripId = params['id'];
+      let tripId = params['tripId'];
       this.router.navigate(['/organizer/trip/details/guides/' + tripId]);
     });
   }
 
-  getGuideInfo(guideId){
-    this.activatedRoute.params.subscribe(params => {
+  getGuideInfo(guideId, tripId) {
+    this.activatedRoute.params.subscribe((params) => {
       let id = params['id'];
 
-    this.router.navigate([`/guide/${guideId}/profile/${id}`])
-  })
-}
+      this.router.navigate([`/guide/${guideId}/profile/${tripId}`]);
+    });
+  }
 
   publish(tripId) {
     this.http
@@ -71,10 +74,12 @@ export class TripDetailsComponent implements OnInit {
   cancel() {
     let id;
     this.activatedRoute.params.subscribe((params) => {
-      id = params['id'];
-      this.http.delete('/api/trips/delete/' + id + '/' + this.currentUser.id).subscribe((res: any) => {
-        console.log('navigate to profile after cancel');
-      });
+      id = params['tripId'];
+      this.http
+        .delete('/api/trips/delete/' + id + '/' + this.currentUser.id)
+        .subscribe((res: any) => {
+          console.log('navigate to profile after cancel');
+        });
       this.http
         .delete(`/api/proposals/delete/${id}`)
         .subscribe((res) => console.log(res));

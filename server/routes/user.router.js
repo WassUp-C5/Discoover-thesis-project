@@ -10,6 +10,9 @@ userRouter.get("/organizer/:id", (req, res) => {
   console.log('====================================');
   User.findOne({ _id: req.params.id })
     .then((result) => {
+      console.log('====================================');
+      console.log('result to be send with org data after editing and on init == ', result);
+      console.log('====================================');
       res.send(result);
     })
     .catch((err) => console.log(err));
