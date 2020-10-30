@@ -7,31 +7,14 @@
           {{ errorMessage }}
         </div> -->
         <flash-messages></flash-messages>
-        <div
-          class="wrap-input100 rs1-wrap-input100 validate-input m-b-20"
-          data-validate="Type email"
-        >
-          <input
-            id="email"
-            class="input100"
-            type="text"
-            name="email"
-            placeholder="Email"
-            [(ngModel)]="credentials.email"
-          />
+        <div class="wrap-input100 rs1-wrap-input100 validate-input m-b-20" data-validate="Type email">
+          <input id="email" class="input100" type="text" name="email" placeholder="Email"
+            [(ngModel)]="credentials.email" />
           <span class="focus-input100"></span>
         </div>
-        <div
-          class="wrap-input100 rs2-wrap-input100 validate-input m-b-20"
-          data-validate="Type password"
-        >
-          <input
-            class="input100"
-            type="password"
-            name="pass"
-            placeholder="Password"
-            [(ngModel)]="credentials.password"
-          />
+        <div class="wrap-input100 rs2-wrap-input100 validate-input m-b-20" data-validate="Type password">
+          <input class="input100" type="password" name="pass" placeholder="Password"
+            [(ngModel)]="credentials.password" />
           <span class="focus-input100"></span>
         </div>
 
@@ -54,10 +37,7 @@
         </div>
       </form>
 
-      <div
-        class="login100-more"
-        style="background-image: url('../../assets/bg-03.jpg')"
-      ></div>
+      <div class="login100-more" style="background-image: url('../../assets/bg-03.jpg')"></div>
     </div>
   </div>
 </div>

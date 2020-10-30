@@ -21,16 +21,16 @@ const routes: Routes = [
   { path: 'organizer/:id/profile', component: OrganizerProfileComponent },
   { path: 'organizer/:id/trip/add', component: OrganizeATripComponent },
   { path: 'organizer/trip/edit/:id', component: EditTripComponent },
-  { path: 'organizer/:id/trip/details/:tripId', component: TripDetailsComponent },
+  { path: 'organizer/trip/details/:tripId', component: TripDetailsComponent },
   { path: 'guide/:id/profile', component: GuideProfileComponent },
   { path: 'organizer/trip/details/guides/:id', component: GuideListComponent },
   { path: 'guide/:guideId/profile/:tripId', component: GuideProfileComponent },
   { path: 'guideTrip', component: GuideATripComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'signup/:role',component:SignupComponent},
+  { path: 'signup/:role', component: SignupComponent },
   { path: 'signin', component: SigninComponent },
   { path: 'trips/:id/details', component: TripDetailsVistorComponent },
-  { path: 'traveler/:id/profile', component: ProfileComponent}
+  { path: 'traveler/:id/profile', component: ProfileComponent },
 ];
 
 @NgModule({
