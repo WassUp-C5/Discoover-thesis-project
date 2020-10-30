@@ -11,7 +11,6 @@ export default class User {
   gender: string;
   location: string;
   phone_number:string;
-  qualifications:[];
   roles:string[] = ["user"];
   constructor()
   constructor(values)

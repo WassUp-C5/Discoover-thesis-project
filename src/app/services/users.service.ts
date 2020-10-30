@@ -9,15 +9,11 @@ import Guide from './../models/Guide';
 })
 export class UsersService {
 
-  traveler: Observable<Traveler>;
-
   constructor(private http: HttpClient) { }
 
-  getTraveler(id): Observable<Traveler>{
+  getTraveler(id:string): Observable<Traveler>{
     return this.http.get<Traveler>(`/api/users/travelers/${id}`);
   }
 
-  getGuide(id){
-    return this.http.get<Guide>(`/api/user/guide/${id}`);
-  }
+
 }
