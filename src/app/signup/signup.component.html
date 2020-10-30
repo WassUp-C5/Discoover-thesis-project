@@ -95,9 +95,9 @@
           data-validate="Type email"
         >
           <input
+            class="date-input"
             type="date"
             formControlName="birthday"
-            class="form-control"
             [ngClass]="{ 'is-invalid': submitted && f.birthday.errors }"
           />
           <div *ngIf="submitted && f.birthday.errors" class="invalid-feedback">
