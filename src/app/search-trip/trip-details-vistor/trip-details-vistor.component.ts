@@ -74,12 +74,6 @@ export class TripDetailsVistorComponent implements OnInit {
         .subscribe((result) => {
           console.log('a new triper has been added===>', result);
         });
-
-      // this.http
-      //   .get(`/api/trips/add/triper/${tripID}`, {})
-      //   .subscribe((result) => {
-      //     console.log('a new triper has been added===>', result);
-      //   });
     } else {
       this.router.navigate(['/signin']);
     }

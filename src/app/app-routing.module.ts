@@ -13,6 +13,7 @@ import { EditTripComponent } from './organizer/edit-trip-component/edit-trip.com
 import { SearchTripComponent } from './search-trip/search-trip.component';
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
+import { ProfileComponent } from './traveler/components/profile/profile.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -20,15 +21,16 @@ const routes: Routes = [
   { path: 'organizer/:id/profile', component: OrganizerProfileComponent },
   { path: 'organizer/:id/trip/add', component: OrganizeATripComponent },
   { path: 'organizer/trip/edit/:id', component: EditTripComponent },
-  { path: 'organizer/trip/details/:id', component: TripDetailsComponent },
+  { path: 'organizer/:id/trip/details/:tripId', component: TripDetailsComponent },
   { path: 'guide/:id/profile', component: GuideProfileComponent },
   { path: 'organizer/trip/details/guides/:id', component: GuideListComponent },
   { path: 'guide/:guideId/profile/:tripId', component: GuideProfileComponent },
   { path: 'guideTrip', component: GuideATripComponent },
   { path: 'signup', component: SignupComponent },
-  { path : 'signup/:role',component:SignupComponent},
+  { path: 'signup/:role',component:SignupComponent},
   { path: 'signin', component: SigninComponent },
   { path: 'trips/:id/details', component: TripDetailsVistorComponent },
+  { path: 'traveler/:id/profile', component: ProfileComponent}
 ];
 
 @NgModule({
