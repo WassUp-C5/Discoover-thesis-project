@@ -20,6 +20,9 @@ const usersSchema = new mongoose.Schema(
     bio: String,
     location: String,
     trips: [],
+    tripReservations: [{
+
+    }],
     roles: [],
   },
   {

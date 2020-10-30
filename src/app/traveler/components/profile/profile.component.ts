@@ -12,6 +12,7 @@ import { TokenStorageService } from 'src/app/services/token-storage.service';
 export class ProfileComponent implements OnInit {
   profileOwner: User = new User();
   currentUser: any = this.tokenStorage.getUser();
+  bookedTrips:any[];
 
   constructor(
     private http: HttpClient,
@@ -30,8 +31,9 @@ export class ProfileComponent implements OnInit {
   }
 
   getUser(id) {
-    this.http.get(`/api/user/${id}`).subscribe((user) => {
+    this.http.get(`/api/users/travelers/${id}`).subscribe((user) => {
       this.profileOwner = new User(user);
+      console.log(this.profileOwner)
     });
   }
 }

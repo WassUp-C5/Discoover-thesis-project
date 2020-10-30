@@ -5,12 +5,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './../angular-material.module';
 
 import { ProfileComponent } from './components/profile/profile.component';
-import { BookedTripsComponent } from './components/booked-trips/booked-trips.component';
+import { BookedTripComponent } from './components/booked-trip/booked-trip.component';
 
 
 
 @NgModule({
-  declarations: [ProfileComponent, BookedTripsComponent],
+  declarations: [ProfileComponent, BookedTripComponent],
   imports: [
     CommonModule,
     BrowserAnimationsModule,
@@ -20,7 +20,8 @@ import { BookedTripsComponent } from './components/booked-trips/booked-trips.com
     CommonModule,
     BrowserAnimationsModule,
     AngularMaterialModule,
-    ProfileComponent, BookedTripsComponent
+    ProfileComponent,
+    BookedTripComponent
   ]
 })
 export class TravelerModule { }
