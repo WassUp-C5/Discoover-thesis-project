@@ -11,11 +11,14 @@ export class OrganizerNavbarComponent implements OnInit {
     private tokenStorage: TokenStorageService,
     private router: Router
   ) {}
-
+  currentUser = this.tokenStorage.getUser();
   ngOnInit(): void {}
 
   signOut() {
     this.tokenStorage.signOut();
     this.router.navigate(['/']);
+  }
+  goToProfile() {
+    this.router.navigate([`/organizer/${this.currentUser.id}/profile`]);
   }
 }

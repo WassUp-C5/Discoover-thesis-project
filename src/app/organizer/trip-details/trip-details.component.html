@@ -46,7 +46,7 @@
               class="btn btn-secondary col col-md-6 col-sm">
               Add a Local Guide
             </button>
-            <button *ngIf="trip[0].guide[0]" (click)="getGuideInfo(trip[0].guide[0])" type="button"
+            <button *ngIf="trip[0].guide[0]" (click)="getGuideInfo(trip[0].guide[0], trip[0]._id)" type="button"
               class="btn btn-success col col-md-6 col-sm">
               Show My Guide
             </button>
