@@ -1,4 +1,4 @@
-export class User {
+export default class User {
   id: string;
   first_name: string;
   last_name: string;
@@ -17,6 +17,7 @@ export class User {
   constructor(values)
   constructor(values?){
     if(values){
+      this.id = values._id;
       this.location = values.location;
       this.first_name = values.first_name;
       this.last_name = values.last_name;
@@ -26,6 +27,7 @@ export class User {
       this.birthday = values.birthday;
       this.gender = values.gender;
       this.phone_number = values.phone_number;
+      this.bio = values.bio;
     }
   }
 
