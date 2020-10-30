@@ -36,16 +36,7 @@ import { TripDetailsVistorComponent } from './search-trip/trip-details-vistor/tr
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { TravelerModule } from './traveler/traveler.module';
 
-const modules = [
-  BrowserModule,
-  HttpClientModule,
-  AppRoutingModule,
-  BrowserAnimationsModule,
-  AngularMaterialModule,
-  FormsModule,
-  ReactiveFormsModule,
-  TravelerModule
-]
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -70,12 +61,19 @@ const modules = [
     TripListComponent,
     TripItemComponent,
     TripDetailsVistorComponent,
-
   ],
-  imports: [ ...modules, FlashMessagesModule.forRoot() ],
-  exports: [ ...modules ],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    AngularMaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
+    TravelerModule,
+    FlashMessagesModule.forRoot(),
+  ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent],
 })
-
 export class AppModule {}

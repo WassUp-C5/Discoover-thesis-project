@@ -3,9 +3,10 @@
     <div class="wrap-login100">
       <form class="login100-form validate-form">
         <span class="login100-form-title p-b-34"> Sign In </span>
-        <div *ngIf="showErrorMessage" class="alert alert-danger" role="alert">
+        <!-- <div *ngIf="showErrorMessage" class="alert alert-danger" role="alert">
           {{ errorMessage }}
-        </div>
+        </div> -->
+        <flash-messages></flash-messages>
         <div
           class="wrap-input100 rs1-wrap-input100 validate-input m-b-20"
           data-validate="Type email"
@@ -39,7 +40,7 @@
             <div class="spinner-border text-light" role="status" *ngIf="checking">
               <span class="sr-only">Loading...</span>
             </div>
-            {{ !isLoggedIn ? "Sign In" : null }}
+            {{ !checking ? "Sign In" : null }}
           </button>
         </div>
 

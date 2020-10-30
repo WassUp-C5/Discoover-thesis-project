@@ -1,7 +1,7 @@
 <div class="container profile-container">
   <div class="row">
     <div class="col-md-3">
-      <mat-card>
+      <mat-card mat-elevation-z2>
         <div class="text-center">
           <img
             src="../../assets/photo.jpg"
@@ -52,26 +52,28 @@
       </mat-card>
     </div>
     <div class="col-md-9">
-      <mat-card>
-        <mat-tab-group>
-          <mat-tab label="About me">
-            <div class="tab-pane show active" id="about-me">
-              <h5>My Biography</h5>
-              <p>
-                {{ this.profileOwner.bio }}
-              </p>
-              <hr />
-            </div>
-          </mat-tab>
-          <mat-tab label="Reservations"> List booked trips here </mat-tab>
-          <mat-tab
-            *ngIf="this.currentUser.id === this.profileOwner.id"
-            label="Settings"
-          >
-            <div class="tab-pane" id="settings">Edit profile not done yet</div>
-          </mat-tab>
-        </mat-tab-group>
-      </mat-card>
+      <mat-tab-group>
+        <mat-tab label="About me">
+          <mat-card class="tab-content mat-elevation-z2">
+            <h5>My Biography</h5>
+            <p>
+              {{ this.profileOwner.bio }}
+            </p>
+            <hr />
+          </mat-card>
+        </mat-tab>
+        <mat-tab label="Reservations">
+          <div class="tab-content">
+            <app-booked-trip></app-booked-trip>
+          </div>
+        </mat-tab>
+        <mat-tab
+          *ngIf="this.currentUser.id === this.profileOwner.id"
+          label="Settings"
+        >
+          <mat-card class="tab-content">Edit profile not done yet</mat-card>
+        </mat-tab>
+      </mat-tab-group>
     </div>
   </div>
 </div>

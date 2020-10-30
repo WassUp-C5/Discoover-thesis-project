@@ -3,7 +3,7 @@ const User = require("../models/User");
 
 travelersRouter.get("/:id", async (req, res) => {
   try{
-    let traveler = User.findById(req.params.id);
+    let traveler = await User.findById(req.params.id);
     res.send(traveler);
   }
   catch(error){
