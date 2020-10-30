@@ -128,16 +128,12 @@
     </div>
     <div class="card-body">
       <div class="row" id="priceDiv">
-        <div class="col col-md-12">
-          <p id="priceTag">
-            <strong>{{ tripDetails?.price }} DT</strong>
-          </p>
-        </div>
+        <div class="col col-md-12"></div>
       </div>
       <div class="row">
         <div class="col col-md-8">
           <h3 class="col-md-6" id="tripTitle">
-            <strong> {{ tripDetails?.title | titlecase }} </strong>
+            {{ tripDetails?.title | titlecase }}
           </h3>
           <footer class="blockquote-footer">
             Organized By
@@ -149,45 +145,56 @@
               ></cite
             >
           </footer>
-        </div>
-        <div class="col-md-4">
-          <button
-            type="button"
-            class="btn btn-warning btn-lg"
-            *ngIf="
-              isLoggedIn === false ||
-              !tripDetails.travelers.includes(currentUser.id)
-            "
-            (click)="book(tripDetails?._id)"
-          >
-            <strong> Book Now </strong>
-          </button>
-          <button
-            type="button"
-            class="btn btn-warning btn-lg"
-            *ngIf="tripDetails.travelers.includes(currentUser.id)"
-            (click)="cancelBooking(tripDetails?._id)"
-          >
-            Cancel Booking
-          </button>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col col-md-12">
-          <div class="dateLoc col-md-12">
+          <div class="dateLoc">
             <p>
-              <i class="material-icons">date_range</i>
-              <span> {{ tripDetails?.date | date }}</span>
+              <span class="material-icons">date_range</span>
+              {{ tripDetails?.date | date }}
             </p>
-            ,
             <p>
               <span class="material-icons"> location_on </span
               >{{ tripDetails?.location | titlecase }}
             </p>
           </div>
-          <h4>{{ tripDetails?.description }}</h4>
+        </div>
+        <div class="col-md-4">
+          <div class="btn-book-holder">
+            <h1 id="priceTag">
+              <span class="badge badge-light"
+                >{{ tripDetails?.price | currency: "TND":"symbol" }}
+              </span>
+              <!-- <strong>{{ tripDetails?.price }} DT</strong> -->
+            </h1>
+            <button
+              type="button"
+              class="btn btn-warning btn-lg book-btn"
+              *ngIf="
+                isLoggedIn === false ||
+                !tripDetails.travelers.includes(currentUser.id)
+              "
+              (click)="book(tripDetails?._id)"
+            >
+              <strong> Book now </strong>
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger btn-lg book-btn"
+              *ngIf="tripDetails.travelers.includes(currentUser.id)"
+              (click)="cancelBooking(tripDetails?._id)"
+            >
+              Cancel Booking
+            </button>
+          </div>
+          <div><small class="text-muted">5/20 place remaining</small></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-md-12">
+          <hr />
+          <h2>Description</h2>
+          <p>{{ tripDetails?.description }}</p>
         </div>
       </div>
     </div>
+    <google-map width="100%"></google-map>
   </div>
 </div>
