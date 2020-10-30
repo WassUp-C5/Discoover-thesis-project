@@ -1,7 +1,7 @@
 <app-organizer-navbar></app-organizer-navbar>
 
 <!--  -->
-<div class="container">
+<!-- <div class="container">
   <section id="principal-content">
     <div class="col-md-12" id="main">
       <div class="row">
@@ -31,9 +31,9 @@
               ><br />
             </div>
           </figure>
-        </div>
-        <!-- 4 -->
-        <div class="col-md-6">
+        </div> -->
+<!-- 4 -->
+<!-- <div class="col-md-6">
           <div class="titleDiv">
             <h3 class="text-primary">
               <strong> {{ tripDetails?.title | titlecase }} </strong>
@@ -75,8 +75,121 @@
         (click)="cancelBooking(tripDetails?._id)"
       >
         Cancel Booking
-      </button>
-      <!-- /row -->
-    </div>
+      </button> -->
+<!-- /row -->
+<!-- </div>
   </section>
+</div> -->
+
+
+
+<div class="container">
+  <div class="card">
+    <div id="image" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active" data-interval="10000">
+          <img
+            src="https://placeimg.com/380/230/nature"
+            class="d-block w-100"
+            alt="Trip Location Images"
+          />
+        </div>
+        <div class="carousel-item" data-interval="2000">
+          <img
+            src="https://placeimg.com/380/230/nature"
+            class="d-block w-100"
+            alt="Trip Location Images"
+          />
+        </div>
+        <div class="carousel-item">
+          <img
+            src="https://placeimg.com/380/230/nature"
+            class="d-block w-100"
+            alt="Trip Location Images"
+          />
+        </div>
+      </div>
+      <a
+        class="carousel-control-prev"
+        href="#image"
+        role="button"
+        data-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only"></span>
+      </a>
+      <a
+        class="carousel-control-next"
+        href="#image"
+        role="button"
+        data-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only"></span>
+      </a>
+    </div>
+    <div class="card-body">
+      <div class="row" id="priceDiv">
+        <div class="col col-md-12">
+          <p id="priceTag">
+            <strong>{{ tripDetails?.price }} DT</strong>
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-md-8">
+          <h3 class="col-md-6" id="tripTitle">
+            <strong> {{ tripDetails?.title | titlecase }} </strong>
+          </h3>
+          <footer class="blockquote-footer">
+            Organized By
+            <cite title="Source Title"
+              ><a [routerLink]="['/organizer', this.organizer?._id, 'profile']"
+                ><strong>{{
+                  this.organizer?.first_name + " " + this.organizer?.last_name
+                }}</strong></a
+              ></cite
+            >
+          </footer>
+        </div>
+        <div class="col-md-4">
+          <button
+            type="button"
+            class="btn btn-warning btn-lg"
+            *ngIf="
+              isLoggedIn === false ||
+              !tripDetails.travelers.includes(currentUser.id)
+            "
+            (click)="book(tripDetails?._id)"
+          >
+            <strong> Book Now </strong>
+          </button>
+          <button
+            type="button"
+            class="btn btn-warning btn-lg"
+            *ngIf="tripDetails.travelers.includes(currentUser.id)"
+            (click)="cancelBooking(tripDetails?._id)"
+          >
+            Cancel Booking
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-md-12">
+          <div class="dateLoc col-md-12">
+            <p>
+              <i class="material-icons">date_range</i>
+              <span> {{ tripDetails?.date | date }}</span>
+            </p>
+            ,
+            <p>
+              <span class="material-icons"> location_on </span
+              >{{ tripDetails?.location | titlecase }}
+            </p>
+          </div>
+          <h4>{{ tripDetails?.description }}</h4>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
