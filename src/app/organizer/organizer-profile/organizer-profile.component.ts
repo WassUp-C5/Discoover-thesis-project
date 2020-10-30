@@ -11,7 +11,7 @@ import { Trip } from '../../../../server/models/Trips';
 export class OrganizerProfileComponent implements OnInit {
   currentUser: any;
   selectedGender = '';
-  organizerId:string;
+  organizerId: string;
   organizer = {
     first_name: '',
     username: '',
@@ -41,9 +41,8 @@ export class OrganizerProfileComponent implements OnInit {
       this.organizerId = param['id'];
     });
     this.http
-      .get(`/api/user/organizer/${this.organizerId}`)
+      .get(`/api/user/organizer/${this.currentUser.id}`)
       .subscribe((res: any) => {
-        console.log(res);
         this.organizer = res;
       });
     // Get all the organizer's trips // Works Fine
@@ -83,6 +82,9 @@ export class OrganizerProfileComponent implements OnInit {
 
   // Redirect to trip details
   getTrip(tripId) {
+    console.log('====================================');
+    console.log('tripId from show more ===> ', tripId);
+    console.log('====================================');
     this.router.navigate(['/organizer/trip/details/' + tripId]);
   }
 
