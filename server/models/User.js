@@ -11,7 +11,7 @@ const usersSchema = new mongoose.Schema(
     }],
     last_name: String,
     username: String,
-    password: String,
+    password: { type: String, select: false },
     imageUrl: String,
     email: String,
     birthday: Date,

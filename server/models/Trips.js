@@ -10,7 +10,10 @@ const tripsSchema = new mongoose.Schema(
     description: String,
     // activities: [],
     maxTravelers: Number,
-    organizerId: String,
+    organizerId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    },
     travelers: [{
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User'

@@ -20,10 +20,8 @@ authRouter.post("/signup", async (req, res) => {
 authRouter.post("/signin", async (req, res) => {
   console.log(req.body);
   try {
-    var user = await User.findOne({ email: req.body.email });
-    console.log(user);
+    var user = await User.findOne({ email: req.body.email }).select('+password');
     if (!user) {
-      console.log("User not found");
       return res
         .status(401)
         .json({ message: "Please check your credentials!!" });

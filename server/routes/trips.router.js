@@ -3,6 +3,7 @@ const Trip = require("../models/Trips");
 const User = require("../models/User");
 const TripReservation = require("../models/TripReservation");
 
+
 /****************Add a Trip**************** WORKS FINE *************** */
 tripsRouter.post("/add", async (req, res) => {
   try {
@@ -62,23 +63,36 @@ tripsRouter.put("/:id/edit", (req, res) => {
 });
 /******************Update trip by adding a new tripper************************** */
 tripsRouter.put("/add/triper/:tripID", async (req, res) => {
-  let tripId = req.params.tripID;
-  console.log("tripId", tripId);
-  let tripperId = req.body.triperID;
-  console.log("tripperId", tripperId);
-  Trip.findById(tripId)
-    .then((trip) => {
-      if (trip.travelers.length === trip.maxTravelers) {
-        res.send({ message: "The trip reach his max of travelers" });
-      } else if (trip.travelers.includes(tripperId)) {
-        res.send({ message: "Traveler already added " });
-      } else {
-        trip.travelers.push(tripperId);
-        trip.save();
-        res.send({ message: "Travelers added " });
-      }
-    })
-    .catch((err) => console.log(err));
+  try{
+    let user = await User.findById(req.body.triperID);
+    let trip = await Trip.findById(req.params.tripID);
+    let tripReservation = new TripReservation({traveler: user._id,trip: trip._id });
+    tripReservation.save();
+    user.tripReservations.push(tripReservation._id);
+    user.save();
+    trip.travelers.push(user._id);
+  }
+  catch(error){
+    console.log(error);
+    res.status(500).send({message: 'Something wrong happend!!'})
+  }
+  // let tripId = req.params.tripID;
+  // console.log("tripId", tripId);
+  // let tripperId = req.body.triperID;
+  // console.log("tripperId", tripperId);
+  // Trip.findById(tripId)
+  //   .then((trip) => {
+  //     if (trip.travelers.length === trip.maxTravelers) {
+  //       res.send({ message: "The trip reach his max of travelers" });
+  //     } else if (trip.travelers.includes(tripperId)) {
+  //       res.send({ message: "Traveler already added " });
+  //     } else {
+  //       trip.travelers.push(tripperId);
+  //       trip.save();
+  //       res.send({ message: "Travelers added " });
+  //     }
+  //   })
+  //   .catch((err) => console.log(err));
 });
 /****************Update trip to be published  **************  */
 tripsRouter.put("/publish/:id", (req, res) => {
