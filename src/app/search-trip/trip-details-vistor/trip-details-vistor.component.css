@@ -1,32 +1,46 @@
-h3 {
-  margin-top: 10%;
+
+.container {
+  margin-top: 5%;
+  margin-bottom: 5%;
 }
 
-.titleDiv {
-  margin: 5%;
+h4 {
+  margin-top: 2%;
+  margin-left: 3%;
 }
 
+.card {
+  box-shadow: 0px 3px 30px 1px #888888;
+}
+
+.dateLoc {
+  display: inline-flex;
+}
 img {
-  height: 250px;
-  margin-bottom: 10%;
+  height: 400px;
 }
 
-#main {
-  margin-top: 3%;
-  background-color: white;
-  margin-left: 10%;
-  width: 80%;
-  height: 95%;
-  border-radius: 5px;
-  box-shadow: 5px 3px 10px 1px #888888;
-  margin-top: 7%;
-  padding: 2%;
+button {
+  float: right;
+  margin-right: 15%;
+  width: 250px;
+  height: 50px;
+  font-size: 25px;
+}
+#priceDiv {
+  margin-right: 4%;
 }
 
-#infoDiv {
-  text-align: center;
+#tripTitle {
+  font-size: 30px;
 }
 
-#basicInfo {
-  width: 100%;
+#priceTag {
+  float: right;
+  font-size: 25px;
+}
+
+div footer {
+  font-size: 15px;
+  margin-left: 3%;
 }
