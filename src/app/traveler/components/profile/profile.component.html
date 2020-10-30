@@ -55,15 +55,15 @@
       <mat-tab-group>
         <mat-tab label="About me">
           <mat-card class="tab-content mat-elevation-z2">
-            <h5>My Biography</h5>
             <p>
               {{ this.profileOwner.bio }}
             </p>
             <hr />
           </mat-card>
         </mat-tab>
-        <mat-tab label="Reservations">
+        <mat-tab label="My bookings">
           <div class="tab-content">
+            <app-booked-trip></app-booked-trip>
             <app-booked-trip></app-booked-trip>
           </div>
         </mat-tab>

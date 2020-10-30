@@ -11,4 +11,8 @@ const tripReservationSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Trip'
   }
-})
+});
+
+const TripReservation = mongoose.model('TripReservation', tripReservationSchema);
+
+module.exports = TripReservation;

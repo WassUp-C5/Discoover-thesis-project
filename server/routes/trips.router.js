@@ -1,6 +1,7 @@
 const tripsRouter = require("express").Router();
 const Trip = require("../models/Trips");
 const User = require("../models/User");
+const TripReservation = require("../models/TripReservation");
 
 /****************Add a Trip**************** WORKS FINE *************** */
 tripsRouter.post("/add", async (req, res) => {

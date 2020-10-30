@@ -21,7 +21,8 @@ const usersSchema = new mongoose.Schema(
     location: String,
     trips: [],
     tripReservations: [{
-
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'TripReservation'
     }],
     roles: [],
   },

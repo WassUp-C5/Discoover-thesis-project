@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const db = require('./../../db/config.js');
 
 const tripsSchema = new mongoose.Schema(
   {
@@ -10,7 +11,10 @@ const tripsSchema = new mongoose.Schema(
     // activities: [],
     maxTravelers: Number,
     organizerId: String,
-    travelers: [],
+    travelers: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    }],
     guide: [],
     published: { type: Boolean, default: false },
   },

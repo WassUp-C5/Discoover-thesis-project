@@ -4,6 +4,7 @@ const User = require("../models/User");
 travelersRouter.get("/:id", async (req, res) => {
   try{
     let traveler = await User.findById(req.params.id);
+    await traveler.populate('tripReservations');
     res.send(traveler);
   }
   catch(error){
