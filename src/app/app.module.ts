@@ -33,19 +33,10 @@ import { GuideListItemComponent } from './organizer/guide-list/guide-list-item/g
 import { TripListComponent } from './search-trip/trip-list/trip-list.component';
 import { TripItemComponent } from './search-trip/trip-list/trip-item/trip-item.component';
 import { TripDetailsVistorComponent } from './search-trip/trip-details-vistor/trip-details-vistor.component';
-
 import { FlashMessagesModule } from 'angular2-flash-messages';
+import { TravelerModule } from './traveler/traveler.module';
 
-const modules = [
-  BrowserModule,
-  HttpClientModule,
-  AppRoutingModule,
-  BrowserAnimationsModule,
-  AngularMaterialModule,
-  FormsModule,
-  ReactiveFormsModule,
 
-]
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,15 +60,20 @@ const modules = [
     GuideListItemComponent,
     TripListComponent,
     TripItemComponent,
-
     TripDetailsVistorComponent,
-
-
   ],
-  imports: [ ...modules, FlashMessagesModule.forRoot() ],
-  exports: [ ...modules ],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    AngularMaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
+    TravelerModule,
+    FlashMessagesModule.forRoot(),
+  ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent],
 })
-
 export class AppModule {}
