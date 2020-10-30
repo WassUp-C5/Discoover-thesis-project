@@ -12,7 +12,7 @@ export class BookedTripComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.tripReservation)
+    //console.log(this.tripReservation)
   }
 
 }

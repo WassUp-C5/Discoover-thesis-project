@@ -48,15 +48,17 @@ export class GuideProfileComponent implements OnInit {
         this.guideId = param['guideId'];
       }
 
-      let tripIdFromLink = param['tripId'];
       console.log('guideId: ', this.guideId);
 
       /* ****************Get current proposal with guideId and tripId********************** */
-      this.http
-        .get(`/api/proposals/current/${this.guideId}/${tripIdFromLink}`)
-        .subscribe((res: any) => {
-          this.currentProposal = res;
-        });
+      if (param['tripId']) {
+        let tripIdFromLink = param['tripId'];
+        this.http
+          .get(`/api/proposals/current/${this.guideId}/${tripIdFromLink}`)
+          .subscribe((res: any) => {
+            this.currentProposal = res;
+          });
+      }
     });
     this.activatedRoute.params.subscribe((param) => {
       if (param['id']) {
@@ -200,6 +202,4 @@ export class GuideProfileComponent implements OnInit {
         console.log(response);
       });
   }
-
-
 }

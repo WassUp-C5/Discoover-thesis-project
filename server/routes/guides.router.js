@@ -46,7 +46,8 @@ guidesRouter.delete('/:id/qualifications/:qualificationId/delete', async (req, r
     let guide = await Guide.findById(req.params.id);
     guide.qualifications.pull(req.params.qualificationId);
     await UserQualifications.deleteOne({_id: req.params.qualificationId});
-    let result = await guide.save();
+    await guide.save();
+    let result = await guide.populate('qualifications');
     res.send(result);
   }
   catch(error){

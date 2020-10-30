@@ -1,8 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 import Traveler from 'src/app/models/Traveler';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-profile',
@@ -10,30 +12,28 @@ import { TokenStorageService } from 'src/app/services/token-storage.service';
   styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit {
-  profileOwner: Traveler = new Traveler();
+  profileOwner: Traveler;
   currentUser: any = this.tokenStorage.getUser();
   bookedTrips: any[];
 
   constructor(
-    private http: HttpClient,
     private route: ActivatedRoute,
-    private tokenStorage: TokenStorageService
+    private tokenStorage: TokenStorageService,
+    private usersService: UsersService
   ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((param) => {
       if (param['id']) {
-        this.profileOwner.id = param['id'];
-
-        this.getTravelerData(this.profileOwner.id);
+        this.getTravelerData(param['id']);
       }
     });
   }
 
   getTravelerData(id) {
-    this.http.get(`/api/users/travelers/${id}`).subscribe((user) => {
+    this.usersService.getTraveler(id).subscribe((user) => {
       console.log(user);
-      this.profileOwner = new Traveler(user);
+      this.profileOwner = user;
       console.log(this.profileOwner);
     });
   }

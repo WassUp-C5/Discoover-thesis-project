@@ -1,5 +1,5 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { TokenStorageService } from './../../../services/token-storage.service';
 import { ActivatedRoute } from '@angular/router';
 import { UserQualifications} from './../../../models/UserQualifications';
@@ -11,6 +11,7 @@ import { UserQualifications} from './../../../models/UserQualifications';
 export class EditGuideProfileComponent implements OnInit {
   @Input() guide;
   @Input() getGuide;
+
 
   currentUser: any;
   isLoggedIn: boolean;
