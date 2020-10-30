@@ -122,6 +122,9 @@ export class GuideProfileComponent implements OnInit {
         tripId: tripId,
         accepted: null,
       };
+      console.log('====================================');
+      console.log('Proposal to be added === ', params);
+      console.log('====================================');
       // console.log('trip id ====>', tripId);
       // console.log('guide id ====>', `/api/trips/${tripId}/edit`);
 
@@ -131,10 +134,11 @@ export class GuideProfileComponent implements OnInit {
 
         .subscribe((result) => {
           console.log('return of adding new proposal (hiring)===>', result);
+          this.currentProposal.push(result);
         });
     });
 
-    this.router.navigate([`/organizer/${this.currentUser.id}/profile`]);
+    // this.router.navigate([`/organizer/${this.currentUser.id}/profile`]);
   }
 
   unhire() {

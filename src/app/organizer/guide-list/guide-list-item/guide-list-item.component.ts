@@ -1,26 +1,22 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-guide-list-item',
   templateUrl: './guide-list-item.component.html',
-  styleUrls: ['./guide-list-item.component.css']
+  styleUrls: ['./guide-list-item.component.css'],
 })
 export class GuideListItemComponent implements OnInit {
   @Input() guide;
-  constructor(private router: Router, private activatedRoute : ActivatedRoute) { }
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
 
-  }
-
-  getGuideInfo(){
-    this.activatedRoute.params.subscribe(params => {
+  getGuideInfo() {
+    this.activatedRoute.params.subscribe((params) => {
       let id = params['id'];
 
-    this.router.navigate([`/guide/${this.guide._id}/profile/${id}`])
-  })
-}
-
-
+      this.router.navigate([`/guide/${this.guide._id}/profile/${id}`]);
+    });
+  }
 }
