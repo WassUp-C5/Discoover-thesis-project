@@ -45,11 +45,16 @@ export class GuideProfileComponent implements OnInit {
       let tripIdFromLink = params['tripId'];
 
       /* ****************Get current proposal with guideId and tripId********************** */
-      this.http
-        .get(`/api/proposals/current/${guideIdforOrg}/${tripIdFromLink}`)
-        .subscribe((res: any) => {
-          this.currentProposal = res;
-        });
+      if (this.currentUser.id === guideIdforOrg) {
+        this.http
+          .get(`/api/proposals/current/${guideIdforOrg}/${tripIdFromLink}`)
+          .subscribe((res: any) => {
+            console.log('guideIdforOrg', guideIdforOrg);
+            console.log('tripIdFromLink', tripIdFromLink);
+
+            this.currentProposal = res;
+          });
+      }
     });
     this.activatedRoute.params.subscribe((params) => {
       let id = params['guideId'];
