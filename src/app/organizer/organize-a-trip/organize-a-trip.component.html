@@ -5,7 +5,9 @@
     <h3>Create a new Trip</h3>
     <h4></h4>
     <!-- Title -->
+
     <fieldset>
+      <label>Ttile</label>
       <input
         placeholder="Title"
         type="text"
@@ -21,7 +23,7 @@
 
     <!-- Location -->
     <fieldset>
-      <label>location</label>
+      <label>Location</label>
       <select
         name="location"
         id="cars"
@@ -40,6 +42,7 @@
 
     <!-- Price -->
     <fieldset>
+      <label>Price</label>
       <input
         placeholder="Price"
         type="tel"
@@ -51,10 +54,9 @@
         <div *ngIf="f.price.errors.required">price is required</div>
       </div>
     </fieldset>
-
     <!-- Date of trips -->
-
     <fieldset>
+      <label>Date of trip</label>
       <input
         placeholder="date"
         type="date"
@@ -69,6 +71,7 @@
     </fieldset>
     <!-- Max Travelers -->
     <fieldset>
+      <label>Max Travelers</label>
       <input
         placeholder="Max Travelers"
         type="url"
@@ -84,6 +87,7 @@
     </fieldset>
     <!-- Description -->
     <fieldset>
+      <label>Description</label>
       <textarea
         placeholder="Type your description here...."
         tabindex="5"
