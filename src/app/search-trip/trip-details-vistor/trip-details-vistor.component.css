@@ -13,20 +13,37 @@ h4 {
   box-shadow: 0px 3px 30px 1px #888888;
 }
 
-.dateLoc {
-  display: inline-flex;
+.card-body {
+  box-shadow: 0px -1px 13px 5px rgba(97, 102, 100, 1);
 }
+small {
+  display: block;
+  text-align: center;
+}
+
+.dateLoc {
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+
 img {
   height: 400px;
 }
 
-button {
-  float: right;
-  margin-right: 15%;
+.book-btn {
   width: 250px;
-  height: 50px;
+  padding: 10px;
   font-size: 25px;
+  text-align: center;
+  margin: 0 auto;
 }
+
+.btn-book-holder{
+  text-align: center;
+  margin-bottom: 10px;
+}
+
 #priceDiv {
   margin-right: 4%;
 }
@@ -36,11 +53,16 @@ button {
 }
 
 #priceTag {
-  float: right;
-  font-size: 25px;
+  font-size: 2rem;
 }
 
 div footer {
   font-size: 15px;
   margin-left: 3%;
+}
+.bookBtn {
+  position: relative;
+  float: right;
+  margin-right: 5px;
+  margin-top: 1%;
 }
