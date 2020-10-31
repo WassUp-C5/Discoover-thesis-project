@@ -1,90 +1,108 @@
 <app-organizer-navbar></app-organizer-navbar>
-<h1>organize a trip</h1>
-<form
-  class="text-center border border-light p-5"
-  [formGroup]="trip"
-  (ngSubmit)="onSubmit()"
->
-  <p class="h4 mb-4">organize a trip</p>
 
-  <!-- Title -->
-  <label>Title</label>
-  <input
-    type="text"
-    id="defaultContactFormName"
-    class="form-control mb-4"
-    formControlName="title"
-    [ngClass]="{ 'is-invalid': submitted && f.title.errors }"
-  />
-  <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
-    <div *ngIf="f.title.errors.required">Title is required</div>
-  </div>
-  <!-- Location -->
-  <label>location</label>
-  <select
-    name="location"
-    id="cars"
-    class="form-control mb-4"
-    formControlName="location"
-    [ngClass]="{ 'is-invalid': submitted && f.location.errors }"
-  >
-    <option value="Ghar El melah">Ghar El melah</option>
-    <option value="Rafraf">Rafraf</option>
-    <option value="Rimel">Rimel</option>
-  </select>
+<div class="container">
+  <form id="contact" [formGroup]="trip" (ngSubmit)="onSubmit()">
+    <h3>Create a new Trip</h3>
+    <h4></h4>
+    <!-- Title -->
+    <fieldset>
+      <input
+        placeholder="Title"
+        type="text"
+        tabindex="1"
+        formControlName="title"
+        [ngClass]="{ 'is-invalid': submitted && f.title.errors }"
+        autofocus
+      />
+      <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+        <div *ngIf="f.title.errors.required">Title is required</div>
+      </div>
+    </fieldset>
 
-  <div *ngIf="submitted && f.location.errors" class="invalid-feedback">
-    <div *ngIf="f.location.errors.required">Location is required</div>
-  </div>
-  <label>Price</label>
-  <input
-    type="text"
-    id="defaultContactFormEmail"
-    class="form-control mb-4"
-    formControlName="price"
-    [ngClass]="{ 'is-invalid': submitted && f.price.errors }"
-  />
-  <div *ngIf="submitted && f.price.errors" class="invalid-feedback">
-    <div *ngIf="f.price.errors.required">price is required</div>
-  </div>
+    <!-- Location -->
+    <fieldset>
+      <label>location</label>
+      <select
+        name="location"
+        id="cars"
+        class="form-control mb-4"
+        formControlName="location"
+        [ngClass]="{ 'is-invalid': submitted && f.location.errors }"
+      >
+        <option value="Ghar El melah">Ghar El melah</option>
+        <option value="Rafraf">Rafraf</option>
+        <option value="Rimel">Rimel</option>
+      </select>
+      <div *ngIf="submitted && f.location.errors" class="invalid-feedback">
+        <div *ngIf="f.location.errors.required">Location is required</div>
+      </div>
+    </fieldset>
 
-  <!-- Date of trips -->
-  <label>Date of trips</label>
-  <input
-    type="date"
-    formControlName="date"
-    class="form-control"
-    [ngClass]="{ 'is-invalid': submitted && f.date.errors }"
-  />
-  <div *ngIf="submitted && f.date.errors" class="invalid-feedback">
-    <div *ngIf="f.date.errors.required">date is required</div>
-  </div>
-  <!-- Description -->
-  <label>Description</label>
-  <div class="form-group">
-    <textarea
-      class="form-control rounded-0"
-      id="exampleFormControlTextarea2"
-      rows="3"
-      formControlName="description"
-      [ngClass]="{ 'is-invalid': submitted && f.description.errors }"
-    ></textarea>
-  </div>
-  <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
-    <div *ngIf="f.description.errors.required">description is required</div>
-  </div>
-  <label>Max Travelers</label>
-  <input
-    type="location"
-    id="defaultContactFormEmail"
-    class="form-control mb-4"
-    formControlName="maxTravelers"
-    [ngClass]="{ 'is-invalid': submitted && f.maxTravelers.errors }"
-  />
-  <div *ngIf="submitted && f.maxTravelers.errors" class="invalid-feedback">
-    <div *ngIf="f.maxTravelers.errors.required">maxTravelers is required</div>
-  </div>
+    <!-- Price -->
+    <fieldset>
+      <input
+        placeholder="Price"
+        type="tel"
+        tabindex="3"
+        formControlName="price"
+        [ngClass]="{ 'is-invalid': submitted && f.price.errors }"
+      />
+      <div *ngIf="submitted && f.price.errors" class="invalid-feedback">
+        <div *ngIf="f.price.errors.required">price is required</div>
+      </div>
+    </fieldset>
 
-  <!-- Send button -->
-  <button class="btn btn-info btn-block">Send</button>
-</form>
+    <!-- Date of trips -->
+
+    <fieldset>
+      <input
+        placeholder="date"
+        type="date"
+        tabindex="4"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f.date.errors }"
+        formControlName="date"
+      />
+      <div *ngIf="submitted && f.date.errors" class="invalid-feedback">
+        <div *ngIf="f.date.errors.required">date is required</div>
+      </div>
+    </fieldset>
+    <!-- Max Travelers -->
+    <fieldset>
+      <input
+        placeholder="Max Travelers"
+        type="url"
+        tabindex="4"
+        formControlName="maxTravelers"
+        [ngClass]="{ 'is-invalid': submitted && f.maxTravelers.errors }"
+      />
+      <div *ngIf="submitted && f.maxTravelers.errors" class="invalid-feedback">
+        <div *ngIf="f.maxTravelers.errors.required">
+          maxTravelers is required
+        </div>
+      </div>
+    </fieldset>
+    <!-- Description -->
+    <fieldset>
+      <textarea
+        placeholder="Type your description here...."
+        tabindex="5"
+        formControlName="description"
+        [ngClass]="{ 'is-invalid': submitted && f.description.errors }"
+      ></textarea>
+      <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+        <div *ngIf="f.description.errors.required">description is required</div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <button
+        name="submit"
+        type="submit"
+        id="contact-submit"
+        data-submit="...Sending"
+      >
+        Submit
+      </button>
+    </fieldset>
+  </form>
+</div>
