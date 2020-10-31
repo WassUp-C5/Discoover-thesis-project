@@ -3,7 +3,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
-
 @Component({
   selector: 'app-organize-a-trip',
   templateUrl: './organize-a-trip.component.html',
@@ -37,6 +36,7 @@ export class OrganizeATripComponent implements OnInit {
       maxTravelers: ['', Validators.required],
     });
   }
+
   get f() {
     return this.trip.controls;
   }
@@ -49,20 +49,20 @@ export class OrganizeATripComponent implements OnInit {
 
     console.log(this.trip.value);
     // this.user.roles.push(this.route.snapshot.paramMap.get('role'));
-    this.route.params.subscribe(params => {
+    this.route.params.subscribe((params) => {
       let id = params['id'];
-    this.http
-      .post<any>('/api/trips/add', {
-        trip: this.trip.value,
-        organizerId: id,
-      })
-      .subscribe((result) => {
-        console.log('navigate to profile after adding trip');
-console.log('====================================');
-console.log('result after saving trip is ==> ', result);
-console.log('====================================');
-        this.router.navigate([`/organizer/${id}/profile`]);
-      });
-  })
-}
+      this.http
+        .post<any>('/api/trips/add', {
+          trip: this.trip.value,
+          organizerId: id,
+        })
+        .subscribe((result) => {
+          console.log('navigate to profile after adding trip');
+          console.log('====================================');
+          console.log('result after saving trip is ==> ', result);
+          console.log('====================================');
+          this.router.navigate([`/organizer/${id}/profile`]);
+        });
+    });
+  }
 }
