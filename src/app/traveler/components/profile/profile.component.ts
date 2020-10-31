@@ -12,7 +12,7 @@ import { UsersService } from 'src/app/services/users.service';
   styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit {
-  profileOwner: Traveler;
+  profileOwner: Traveler = new Traveler();
   currentUser: any = this.tokenStorage.getUser();
   bookedTrips: any[];
 

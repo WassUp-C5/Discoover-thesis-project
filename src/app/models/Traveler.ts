@@ -1,7 +1,7 @@
 import User from './User';
 
 export default class Traveler extends User {
-  tripReservations: [];
+  tripReservations:any[] = [];
   constructor();
   constructor(data);
 

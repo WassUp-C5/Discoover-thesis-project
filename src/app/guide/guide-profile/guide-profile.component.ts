@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
-import { UsersService } from 'src/app/services/users.service';
 import Guide from 'src/app/models/Guide';
+import { GuideService } from '../services/guide.service';
 
 // import { User } from './../models/User';
 
@@ -18,7 +18,7 @@ export class GuideProfileComponent implements OnInit {
     private tokenStorage: TokenStorageService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private usersService: UsersService
+    private guideService: GuideService
   ) {}
 
   guide:Guide;
@@ -90,7 +90,7 @@ export class GuideProfileComponent implements OnInit {
 
   getGuide() {
     this.dataIsReady = false;
-    this.usersService.getGuide(this.guideId).subscribe((guide) => {
+    this.guideService.getGuide(this.guideId).subscribe((guide) => {
       this.guide = guide;
       this.dataIsReady = true;
       console.log('New guide ==>', this.guide);

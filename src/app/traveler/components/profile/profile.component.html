@@ -12,7 +12,7 @@
 
           <h4 class="mb-0">
             {{
-              this.profileOwner.first_name + " " + this.profileOwner.last_name
+              this.profileOwner.first_name + " " + this.profileOwner.last_name | titlecase
             }}
           </h4>
           <button
@@ -27,7 +27,7 @@
             <p class="text-muted mb-2 font-13">
               <strong>Full name :</strong>
               <span class="ml-2">{{
-                this.profileOwner.first_name + " " + this.profileOwner.last_name
+                this.profileOwner.first_name + " " + this.profileOwner.last_name | titlecase
               }}</span>
             </p>
 
@@ -70,7 +70,7 @@
               <div *ngIf="profileOwner.tripReservations">
                 <div
                   class="col-md-6 col-sm-12"
-                  *ngFor="let tripReservation of profileOwner.tripReservations | async"
+                  *ngFor="let tripReservation of profileOwner.tripReservations"
                 >
                 confirmed: {{tripReservation.confirmed}}
                   <app-booked-trip

@@ -141,18 +141,19 @@
               ><a [routerLink]="['/organizer', this.organizer?._id, 'profile']"
                 ><strong>{{
                   this.organizer?.first_name + " " + this.organizer?.last_name
+                    | titlecase
                 }}</strong></a
               ></cite
             >
           </footer>
           <div class="dateLoc">
             <p>
-              <span class="material-icons">date_range</span>
-              {{ tripDetails?.date | date }}
-            </p>
-            <p>
               <span class="material-icons"> location_on </span
               >{{ tripDetails?.location | titlecase }}
+            </p>
+            <p>
+              <span class="material-icons">date_range</span>
+              {{ tripDetails?.date | date }}
             </p>
           </div>
         </div>

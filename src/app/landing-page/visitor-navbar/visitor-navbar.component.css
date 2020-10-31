@@ -2,8 +2,8 @@
   flex: 1 1 auto;
 }
 .nav {
-  background: white;
-  box-shadow: 5px 3px 10px 1px #888888;
+  position: absolute;
+  background: transparent;
 }
 
 .avatar-img {

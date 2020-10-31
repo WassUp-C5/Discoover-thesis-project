@@ -7,12 +7,12 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class BookedTripComponent implements OnInit {
 
-  @Input() tripReservation;
+  @Input() tripReservation: any;
 
   constructor() { }
 
   ngOnInit(): void {
-    //console.log(this.tripReservation)
+    console.log(this.tripReservation)
   }
 
 }
