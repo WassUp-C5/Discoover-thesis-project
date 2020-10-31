@@ -60,3 +60,9 @@ div footer {
   font-size: 15px;
   margin-left: 3%;
 }
+.bookBtn {
+  position: relative;
+  float: right;
+  margin-right: 5px;
+  margin-top: 1%;
+}

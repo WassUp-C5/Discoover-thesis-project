@@ -20,17 +20,15 @@
 
         <div class="container-login100-form-btn">
           <button class="login100-form-btn" type="submit" (click)="onSubmit()">
-            <div class="spinner-border text-light" role="status" *ngIf="checking">
+            <div
+              class="spinner-border text-light"
+              role="status"
+              *ngIf="checking"
+            >
               <span class="sr-only">Loading...</span>
             </div>
             {{ !checking ? "Sign In" : null }}
           </button>
-        </div>
-
-        <div class="w-full text-center p-t-27 p-b-239">
-          <span class="txt1"> Forgot your </span>
-
-          <a href="#" class="txt2"> password? </a>
         </div>
 
         <div class="w-full text-center">

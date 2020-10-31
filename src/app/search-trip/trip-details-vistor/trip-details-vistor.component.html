@@ -1,4 +1,4 @@
-<app-organizer-navbar></app-organizer-navbar>
+<app-visitor-navbar></app-visitor-navbar>
 
 <!--  -->
 <!-- <div class="container">
@@ -62,6 +62,7 @@
         </div>
       </div>
       <button
+        class="bookBtn"
         *ngIf="
           isLoggedIn === false ||
           !tripDetails.travelers.includes(currentUser.id)
@@ -71,6 +72,7 @@
         Book
       </button>
       <button
+        class="bookBtn"
         *ngIf="tripDetails.travelers.includes(currentUser.id)"
         (click)="cancelBooking(tripDetails?._id)"
       >
