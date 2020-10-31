@@ -6,13 +6,7 @@
   <span>Our Social Impact </span>
   <span> | </span>
   <span> Help</span>
-  <button
-    (click)="onClick()"
-    class="signInBtn"
-    mat-flat-button
-    color="warn"
-    [routerLink]="['/signin']"
-  >
-    Login
+  <button (click)="onClick()" class="signInBtn" mat-flat-button color="warn">
+    {{ isLoggedIn ? "Sign out" : "Sign in" }}
   </button>
 </mat-toolbar>
