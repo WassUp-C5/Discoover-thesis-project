@@ -191,7 +191,6 @@ export class GuideProfileComponent implements OnInit {
       .subscribe((response) => {
         console.log(response);
       });
-    this.tripPropStatus = true;
   }
 
   decline(tripId, proposalId, guideId) {
