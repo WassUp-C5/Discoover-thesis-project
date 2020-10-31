@@ -71,9 +71,13 @@
                 <div
                   class="col-md-6 col-sm-12"
                   *ngFor="let tripReservation of profileOwner.tripReservations"
+
                 >
-                confirmed: {{tripReservation.confirmed}}
+                  <div *ngIf="!tripReservation">
+                    You don't have any booking! you can pick one from <a routerLink="['/searchTrip']" routerLinkActive="router-link-active" >here</a>
+                  </div>
                   <app-booked-trip
+
                     [tripReservation]="tripReservation"
                   ></app-booked-trip>
                 </div>
