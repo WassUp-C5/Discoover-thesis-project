@@ -56,6 +56,9 @@ export class GuideProfileComponent implements OnInit {
         .get(`/api/proposals/current/${this.guideId}/${tripIdFromLink}`)
         .subscribe((res: any) => {
           this.currentProposal = res;
+          console.log('====================================');
+          console.log('this trip prop stat === ', res);
+          console.log('====================================');
         });
     });
     this.activatedRoute.params.subscribe((param) => {
@@ -188,6 +191,7 @@ export class GuideProfileComponent implements OnInit {
       .subscribe((response) => {
         console.log(response);
       });
+    this.tripPropStatus = true;
   }
 
   decline(tripId, proposalId, guideId) {
