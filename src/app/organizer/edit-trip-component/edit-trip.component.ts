@@ -12,7 +12,7 @@ import { HttpClient } from '@angular/common/http';
 export class EditTripComponent implements OnInit {
   trip: FormGroup;
   toEdit = [];
-
+  date = '';
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,
@@ -25,10 +25,14 @@ export class EditTripComponent implements OnInit {
       let id = params['id'];
       this.http.get('api/trips/' + id).subscribe((res: any) => {
         this.toEdit.push(res);
-        console.log(this.toEdit);
+
+        console.log('helllllllooooooooooo', this.toEdit);
+        this.date = this.toEdit[0].date.split('T')[0];
+        console.log('date =============>', this.date);
       });
     });
   }
+
   ////////////////////////////////////////////////////// last thing here to edit in DB
   onSubmit() {
     // this.trip = this.formBuilder.group({})
@@ -39,6 +43,7 @@ export class EditTripComponent implements OnInit {
       console.log('====================================');
       console.log('org Id after submitting edit === ', id);
       console.log('====================================');
+      this.toEdit[0].date = this.date;
       this.http
         .put('api/trips/' + id + '/edit', this.toEdit[0])
         .subscribe((res: any) => {
@@ -46,6 +51,7 @@ export class EditTripComponent implements OnInit {
           // console.log(this.toEdit);
           this.router.navigate([`/organizer/${id}/profile`]);
         });
+      console.log('this edit date ', this.toEdit[0].date);
     });
   }
 }
