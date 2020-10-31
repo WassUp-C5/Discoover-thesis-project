@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { HttpClient } from '@angular/common/http';
-import User  from './../models/User';
+import User from './../models/User';
 import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-signup',
@@ -24,14 +24,17 @@ export class SignupComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    let date = new Date();
     this.signupForm = this.formBuilder.group({
       first_name: ['', Validators.required],
       last_name: ['', Validators.required],
       // validates date format yyyy-mm-dd
       birthday: [
         '',
+
         [
           Validators.required,
+
           Validators.pattern(
             /^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/
           ),

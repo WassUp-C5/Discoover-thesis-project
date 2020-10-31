@@ -2,12 +2,17 @@
   <img routerLink="/" src="../../assets/Discoover logo.PNG" />
   <span class="example-spacer"></span>
 
-
   <!-- <span class="example-spacer"></span> -->
   <span>Our Social Impact </span>
   <span> | </span>
   <span> Help</span>
-  <button (click)="onClick()" class="signInBtn" mat-flat-button color="warn">
-    {{ isLoggedIn ? "Sign out" : "Sign in" }}
+  <button
+    (click)="onClick()"
+    class="signInBtn"
+    mat-flat-button
+    color="warn"
+    [routerLink]="['/signin']"
+  >
+    Login
   </button>
 </mat-toolbar>
