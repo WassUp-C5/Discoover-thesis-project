@@ -96,7 +96,7 @@ export class GuideProfileComponent implements OnInit {
         });
     });
   }
-
+  /*********************to refresh page *********************** */
   getGuide() {
     this.dataIsReady = false;
     this.http.get(`/api/user/guide/${this.guideId}`).subscribe((guide: any) => {

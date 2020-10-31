@@ -1,32 +1,68 @@
-h3 {
-  margin-top: 10%;
+
+.container {
+  margin-top: 5%;
+  margin-bottom: 5%;
 }
 
-.titleDiv {
-  margin: 5%;
+h4 {
+  margin-top: 2%;
+  margin-left: 3%;
 }
 
-img {
-  height: 250px;
-  margin-bottom: 10%;
+.card {
+  box-shadow: 0px 3px 30px 1px #888888;
 }
 
-#main {
-  margin-top: 3%;
-  background-color: white;
-  margin-left: 10%;
-  width: 80%;
-  height: 95%;
-  border-radius: 5px;
-  box-shadow: 5px 3px 10px 1px #888888;
-  margin-top: 7%;
-  padding: 2%;
+.card-body {
+  box-shadow: 0px -1px 13px 5px rgba(97, 102, 100, 1);
 }
-
-#infoDiv {
+small {
+  display: block;
   text-align: center;
 }
 
-#basicInfo {
-  width: 100%;
+.dateLoc {
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+
+img {
+  height: 400px;
+}
+
+.book-btn {
+  width: 250px;
+  padding: 10px;
+  font-size: 25px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.btn-book-holder{
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+#priceDiv {
+  margin-right: 4%;
+}
+
+#tripTitle {
+  font-size: 30px;
+}
+
+#priceTag {
+  font-size: 2rem;
+}
+
+div footer {
+  font-size: 15px;
+  margin-left: 3%;
+}
+.bookBtn {
+  position: relative;
+  float: right;
+  margin-right: 5px;
+  margin-top: 1%;
 }
