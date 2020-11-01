@@ -17,14 +17,16 @@ export class TripDetailsComponent implements OnInit {
   ) {}
   currentUser: any = this.tokenStorage.getUser();
   trip = [];
+  publishStatus = null;
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params) => {
       let id = params['tripId'];
       this.http.get('/api/trips/' + id).subscribe((res: any) => {
         this.trip.push(res);
+        this.publishStatus = res.published;
         console.log('====================================');
-        console.log('trip should be === ', res);
+        console.log('trip should be === ', this.publishStatus);
         console.log('====================================');
       });
     });
@@ -58,6 +60,7 @@ export class TripDetailsComponent implements OnInit {
       })
       .subscribe((response) => {
         console.log(response);
+        this.publishStatus = true;
       });
   }
 
@@ -68,6 +71,7 @@ export class TripDetailsComponent implements OnInit {
       })
       .subscribe((response) => {
         console.log(response);
+        this.publishStatus = false;
       });
   }
 
