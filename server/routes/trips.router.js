@@ -71,6 +71,8 @@ tripsRouter.put("/add/triper/:tripID", async (req, res) => {
     user.tripReservations.push(tripReservation._id);
     user.save();
     trip.travelers.push(user._id);
+    trip.save();
+    res.send(trep);
   }
   catch(error){
     console.log(error);
