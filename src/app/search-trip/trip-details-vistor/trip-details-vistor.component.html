@@ -64,14 +64,14 @@
       <button
         *ngIf="
           isLoggedIn === false ||
-          !tripDetails.travelers.includes(currentUser.id)
+          !tripDetails.reservations.includes(currentUser.id)
         "
         (click)="book(tripDetails?._id)"
       >
         Book
       </button>
       <button
-        *ngIf="tripDetails.travelers.includes(currentUser.id)"
+        *ngIf="tripDetails.reservations.includes(currentUser.id)"
         (click)="cancelBooking(tripDetails?._id)"
       >
         Cancel Booking
@@ -131,7 +131,7 @@
         <div class="col col-md-12"></div>
       </div>
       <div class="row">
-        <div class="col col-md-8">
+        <div class="col-md-6 col-sm-12">
           <h3 class="col-md-6" id="tripTitle">
             {{ tripDetails?.title | titlecase }}
           </h3>
@@ -157,7 +157,7 @@
             </p>
           </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-6 col-sm-12">
           <div class="btn-book-holder">
             <h1 id="priceTag">
               <span class="badge badge-light"
@@ -170,7 +170,7 @@
               class="btn btn-warning btn-lg book-btn"
               *ngIf="
                 isLoggedIn === false ||
-                !tripDetails.travelers.includes(currentUser.id)
+                !tripDetails.reservations.includes(currentUser.id)
               "
               (click)="book(tripDetails?._id)"
             >
@@ -179,13 +179,13 @@
             <button
               type="button"
               class="btn btn-danger btn-lg book-btn"
-              *ngIf="tripDetails.travelers.includes(currentUser.id)"
+              *ngIf="tripDetails.reservations.includes(currentUser.id)"
               (click)="cancelBooking(tripDetails?._id)"
             >
               Cancel Booking
             </button>
           </div>
-          <div><small class="text-muted">5/20 place remaining</small></div>
+          <div><small class="text-muted">{{ tripDetails.reservations.length + "/" + tripDetails.maxTravelers }} place remaining</small></div>
         </div>
       </div>
       <div class="row">

@@ -13,7 +13,7 @@ import { TokenStorageService } from 'src/app/services/token-storage.service.js';
 export class TripDetailsVistorComponent implements OnInit {
   tripId: string;
   organizer: User;
-  tripDetails: Trip;
+  tripDetails: any;
   organizerName: String;
   guideInfo: User;
   isLoggedIn = !!this.tokenStorage.getUser();
@@ -30,7 +30,7 @@ export class TripDetailsVistorComponent implements OnInit {
       this.tripId = param['id'];
       console.log('tripd IDDDD', this.tripId);
 
-      this.http.get(`/api/trips/${this.tripId}`).subscribe((data: Trip[]) => {
+      this.http.get(`/api/trips/${this.tripId}`).subscribe((data: any) => {
         this.tripDetails = data;
         console.log('the data from DB is ====>', this.tripDetails);
 

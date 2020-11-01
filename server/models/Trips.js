@@ -14,9 +14,9 @@ const tripsSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User'
     },
-    travelers: [{
+    reservations: [{
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'User'
+      ref: 'TripReservation'
     }],
     guide: [],
     published: { type: Boolean, default: false },

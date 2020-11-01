@@ -37,7 +37,7 @@ tripsRouter.get("/location/:location", (req, res) => {
   });
 });
 
-/**********Get All The Trips************** */
+/**********Get All published Trips************** */
 tripsRouter.get("/public", (req, res) => {
   Trip.find({ published: true }, function (err, trip) {
     if (err) throw err;
@@ -49,6 +49,10 @@ tripsRouter.get("/public", (req, res) => {
 tripsRouter.get("/:id", (req, res) => {
   Trip.findOne({ _id: req.params.id }, function (err, trip) {
     if (err) throw err;
+
+    trip.populate({path: 'reservations', populate: {path: 'traveler'}});
+    trip.populate('organizerId');
+    console.log(trip)
     res.send(trip);
   });
 });
@@ -70,9 +74,10 @@ tripsRouter.put("/add/triper/:tripID", async (req, res) => {
     tripReservation.save();
     user.tripReservations.push(tripReservation._id);
     user.save();
-    trip.travelers.push(user._id);
+    trip.reservations.push(tripReservation._id);
     trip.save();
-    res.send(trep);
+    trip.populate({path: 'reservations', populate: {path: 'traveler'}});
+    res.send(trip);
   }
   catch(error){
     console.log(error);
@@ -144,16 +149,28 @@ tripsRouter.put("/rmGuide/:id", (req, res) => {
 });
 
 /**************Update Trip to remove the travelers Id from trip ********************************* */
-tripsRouter.put("/rmTripper/:id", (req, res) => {
-  let tripperID = req.body.triperID;
-  let tripID = req.params.id;
-  Trip.findById(tripID)
-    .then((trip) => {
-      trip.travelers.pull(tripperID);
-      trip.save();
-      res.send({ message: "traveler  deleted" });
-    })
-    .catch((err) => console.log(err));
+tripsRouter.put("/rmTripper/:id", async (req, res) => {
+  try{
+    let trip = await Trip.findById(req.params.id); // get trip from db
+    let tripper = await User.findById(req.body.triperID); // get traveler from db
+    await trip.reservations.pull(tripper._id); // delete the traveler from the travelers list of the trip
+    // await TripReservation.deleteOne
+    await trip.save();
+    res.send(trip);
+  }
+  catch(error){
+    console.log(error);
+    res.status.send('Something wrong happend!!')
+  }
+  // let tripperID = req.body.triperID;
+  // let tripID = req.params.id;
+  // Trip.findById(tripID)
+  //   .then((trip) => {
+  //     trip.travelers.pull(tripperID);
+  //     trip.save();
+  //     res.send({ message: "traveler  deleted" });
+  //   })
+  //   .catch((err) => console.log(err));
 });
 /***********************Get trip by date***************************/
 tripsRouter.get("/date/:date", (req, res) => {

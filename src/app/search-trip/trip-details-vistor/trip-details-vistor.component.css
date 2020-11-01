@@ -19,6 +19,7 @@ h4 {
 small {
   display: block;
   text-align: center;
+  font-size: 20px;
 }
 
 .dateLoc {
@@ -42,10 +43,12 @@ img {
 .btn-book-holder{
   text-align: center;
   margin-bottom: 10px;
+
 }
 
 #priceDiv {
   margin-right: 4%;
+
 }
 
 #tripTitle {
