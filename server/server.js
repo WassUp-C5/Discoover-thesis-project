@@ -18,11 +18,10 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(__dirname + "./../dist/DiscooverIn/"));
 app.use("/api/auth", authRouter);
-app.use("/api/user", userRouter);
+app.use("/api/users", userRouter);
 app.use("/api/trips", tripsRouter);
 app.use("/api/users/guides", guidesRouter);
 app.use("/api/proposals", proposalRouter);
-app.use("/api/users/guides", guidesRouter);
 app.use("/api/users/travelers", travelersRouter);
 
 

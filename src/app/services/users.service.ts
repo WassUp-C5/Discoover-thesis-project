@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import  Traveler from './../models/Traveler';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -12,6 +13,10 @@ export class UsersService {
 
   getTraveler(id:string): Observable<Traveler>{
     return this.http.get<Traveler>(`/api/users/travelers/${id}`);
+  }
+
+  getCurrentConnectedUser(id, role){
+    return this.http.get(`/api/users/${role}s/${id}`);
   }
 
 

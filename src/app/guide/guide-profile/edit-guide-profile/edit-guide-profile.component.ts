@@ -79,7 +79,7 @@ export class EditGuideProfileComponent implements OnInit {
     console.log(this.currentPassword, this.newPassword);
     if (this.currentPassword && this.newPassword) {
       this.http
-        .put(`/api/user/${this.currentUser.id}/password/edit`, {
+        .put(`/api/users/${this.currentUser.id}/password/edit`, {
           currentPassword: this.currentPassword,
           newPassword: this.newPassword,
         })

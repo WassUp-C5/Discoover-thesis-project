@@ -3,7 +3,6 @@ const Trip = require("../models/Trips");
 const User = require("../models/User");
 const TripReservation = require("../models/TripReservation");
 
-
 /****************Add a Trip**************** WORKS FINE *************** */
 tripsRouter.post("/add", async (req, res) => {
   try {
@@ -46,15 +45,20 @@ tripsRouter.get("/public", (req, res) => {
 });
 
 /***********************Get trip by id***************************/
-tripsRouter.get("/:id", (req, res) => {
-  Trip.findOne({ _id: req.params.id }, function (err, trip) {
-    if (err) throw err;
-
-    trip.populate({path: 'reservations', populate: {path: 'traveler'}});
-    trip.populate('organizerId');
-    console.log(trip)
+tripsRouter.get("/:id", async (req, res) => {
+  try {
+    let trip = await Trip.findOne({ _id: req.params.id })
+      .populate({
+        path: "reservations",
+        populate: { path: "traveler" },
+      })
+      .populate("organizerId");
+    console.log(trip);
     res.send(trip);
-  });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Something wrong happend!!");
+  }
 });
 /****************Update trip  ******************** */
 tripsRouter.put("/:id/edit", (req, res) => {
@@ -65,23 +69,38 @@ tripsRouter.put("/:id/edit", (req, res) => {
     })
     .catch((err) => console.log(err));
 });
+/**
+ * Book a trip
+ */
 /******************Update trip by adding a new tripper************************** */
 tripsRouter.put("/add/triper/:tripID", async (req, res) => {
-  try{
+  try {
     let user = await User.findById(req.body.triperID);
     let trip = await Trip.findById(req.params.tripID);
-    let tripReservation = new TripReservation({traveler: user._id,trip: trip._id });
-    tripReservation.save();
+    let tripReservation = new TripReservation({
+      traveler: user._id,
+      trip: trip._id,
+    });
+    //Update data
     user.tripReservations.push(tripReservation._id);
-    user.save();
     trip.reservations.push(tripReservation._id);
-    trip.save();
-    trip.populate({path: 'reservations', populate: {path: 'traveler'}});
+    trip.waitingList.push(user._id);
+    //Save data
+    await tripReservation.save();
+    await user.save();
+    await trip.save();
+    //populate needed fields
+    await trip
+      .populate({
+        path: "reservations",
+        populate: { path: "traveler" },
+      })
+      .populate("organizerId");
+      //send back the trip
     res.send(trip);
-  }
-  catch(error){
+  } catch (error) {
     console.log(error);
-    res.status(500).send({message: 'Something wrong happend!!'})
+    res.status(500).send({ message: "Something wrong happend!!" });
   }
   // let tripId = req.params.tripID;
   // console.log("tripId", tripId);
@@ -101,6 +120,35 @@ tripsRouter.put("/add/triper/:tripID", async (req, res) => {
   //   })
   //   .catch((err) => console.log(err));
 });
+/**
+ * Confirm traveler reservation
+ */
+tripsRouter.put(
+  "/:id/reservations/:reservationId/travelers/:travelerId/add",
+  async (req, res) => {
+    try {
+      let trip = await Trip.findById(req.params.id);
+      let traveler = await User.findById(req.params.travelerId);
+      if (!trip.travelers.includes(traveler._id)) {
+        trip.travelers.push(traveler._id);
+        trip.waitingList.pull(traveler._id);
+        await trip.save();
+        await TripReservation.updateOne(
+          { _id: req.params.reservationId },
+          { confirmed: true }
+        );
+        res.send(trip);
+      } else {
+        res
+          .status(500)
+          .send({ message: "traveler already in travelers list!!" });
+      }
+    } catch (error) {
+      console.log(error);
+      res.status(500).send("Somthing worng happend!!");
+    }
+  }
+);
 /****************Update trip to be published  **************  */
 tripsRouter.put("/publish/:id", (req, res) => {
   let tripId = req.params.id;
@@ -147,20 +195,39 @@ tripsRouter.put("/rmGuide/:id", (req, res) => {
     })
     .catch((err) => console.log(err));
 });
-
+/**
+ * Cancel trip reservation, this function will do the next:
+ *  1. Delete the trip reservation from tripsReservations collection
+ *  2. Delete refrence for the reservation id from reservations array in the trips collection
+ *  3. Delete refrence for the reservation id from tripReservation in the users collection
+ */
 /**************Update Trip to remove the travelers Id from trip ********************************* */
-tripsRouter.put("/rmTripper/:id", async (req, res) => {
-  try{
+tripsRouter.put("/:id/travelers/:travelerId/reservations/cancel", async (req, res) => {
+  try {
     let trip = await Trip.findById(req.params.id); // get trip from db
-    let tripper = await User.findById(req.body.triperID); // get traveler from db
-    await trip.reservations.pull(tripper._id); // delete the traveler from the travelers list of the trip
-    // await TripReservation.deleteOne
+    let traveler = await User.findById(req.params.travelerId); // get traveler from db
+    let tripReservation = await TripReservation.findOne({trip: trip._id, traveler: traveler._id});
+    console.log('====================================');
+    console.log(tripReservation);
+    console.log('====================================');
+    trip.reservations.pull(tripReservation._id); // delete the traveler from the travelers list of the trip
+    traveler.tripReservations.pull(tripReservation._id);
+    trip.travelers.pull(traveler._id);
+    trip.waitingList.pull(traveler._id);
+    let reservationId = tripReservation._id
+    await TripReservation.findOneAndDelete({_id: reservationId});
+    await traveler.save();
     await trip.save();
-    res.send(trip);
-  }
-  catch(error){
+    await trip
+      .populate({
+        path: "reservations",
+        populate: { path: "traveler" },
+      })
+      .populate("organizerId");
+    await res.send(trip);
+  } catch (error) {
     console.log(error);
-    res.status.send('Something wrong happend!!')
+    res.status.send("Something wrong happend!!");
   }
   // let tripperID = req.body.triperID;
   // let tripID = req.params.id;

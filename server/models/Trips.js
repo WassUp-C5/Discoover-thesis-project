@@ -18,6 +18,16 @@ const tripsSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: 'TripReservation'
     }],
+    waitingList: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      unique: true
+    }],
+    travelers: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      unique: true
+    }],
     guide: [],
     published: { type: Boolean, default: false },
   },

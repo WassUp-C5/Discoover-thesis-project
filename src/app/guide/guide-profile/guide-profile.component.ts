@@ -59,7 +59,7 @@ export class GuideProfileComponent implements OnInit {
         this.guideId = param['guideId'];
       }
 
-      this.http.get(`/api/user/guide/${this.guideId}`).subscribe((res: any) => {
+      this.http.get(`/api/users/guide/${this.guideId}`).subscribe((res: any) => {
         console.log('on init guide infos', res);
         this.guide = res;
         this.dataIsReady = true;

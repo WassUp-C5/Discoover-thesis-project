@@ -11,6 +11,6 @@ export class GuideService {
   constructor(private http: HttpClient) { }
 
   getGuide(id:string): Observable<Guide> {
-    return this.http.get<Guide>(`/api/user/guide/${id}`);
+    return this.http.get<Guide>(`/api/users/guide/${id}`);
   }
 }

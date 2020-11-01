@@ -7,7 +7,6 @@ const tripReservationSchema = new mongoose.Schema(
     traveler: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
-      unique: true,
     },
     trip: {
       type: mongoose.Schema.Types.ObjectId,
@@ -18,6 +17,8 @@ const tripReservationSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
+
+tripReservationSchema.index({'trip':1, 'traveler': 1}, {unique: true});
 
 const TripReservation = mongoose.model(
   "TripReservation",

@@ -64,14 +64,14 @@
       <button
         *ngIf="
           isLoggedIn === false ||
-          !tripDetails.reservations.includes(currentUser.id)
+          !tripDetails.travelers.includes(currentUser.id)
         "
         (click)="book(tripDetails?._id)"
       >
         Book
       </button>
       <button
-        *ngIf="tripDetails.reservations.includes(currentUser.id)"
+        *ngIf="tripDetails.travelers.includes(currentUser.id)"
         (click)="cancelBooking(tripDetails?._id)"
       >
         Cancel Booking
@@ -126,7 +126,7 @@
         <span class="sr-only"></span>
       </a>
     </div>
-    <div class="card-body">
+    <div class="card-body" *ngIf="!!this.tripDetails">
       <div class="row" id="priceDiv">
         <div class="col col-md-12"></div>
       </div>
@@ -138,7 +138,7 @@
           <footer class="blockquote-footer">
             Organized By
             <cite title="Source Title"
-              ><a [routerLink]="['/organizer', this.organizer?._id, 'profile']"
+              ><a [routerLink]="['/organizer', this.organizer?.id, 'profile']"
                 ><strong>{{
                   this.organizer?.first_name + " " + this.organizer?.last_name
                     | titlecase
@@ -170,7 +170,7 @@
               class="btn btn-warning btn-lg book-btn"
               *ngIf="
                 isLoggedIn === false ||
-                !tripDetails.reservations.includes(currentUser.id)
+                !tripDetails.waitingList.includes(currentUser.id) && !tripDetails.travelers.includes(currentUser.id)
               "
               (click)="book(tripDetails?._id)"
             >
@@ -179,13 +179,14 @@
             <button
               type="button"
               class="btn btn-danger btn-lg book-btn"
-              *ngIf="tripDetails.reservations.includes(currentUser.id)"
+              *ngIf="tripDetails.waitingList.includes(currentUser.id) || tripDetails.travelers.includes(currentUser.id)"
               (click)="cancelBooking(tripDetails?._id)"
             >
               Cancel Booking
             </button>
+
           </div>
-          <div><small class="text-muted">{{ tripDetails.reservations.length + "/" + tripDetails.maxTravelers }} place remaining</small></div>
+          <div><small class="text-muted">{{ tripDetails.travelers.length + "/" + tripDetails.maxTravelers }} place remaining</small></div>
         </div>
       </div>
       <div class="row">
@@ -196,6 +197,6 @@
         </div>
       </div>
     </div>
-    <google-map width="100%"></google-map>
+    <!-- <google-map width="100%"></google-map> -->
   </div>
 </div>
