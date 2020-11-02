@@ -405,3 +405,19 @@ body {
     margin-bottom: 10px;
   }
 }
+
+a {
+  margin-left: 7%;
+}
+p {
+  margin-left: 10%;
+  margin-top: 5%;
+}
+
+.info {
+  display: inline-flex;
+}
+
+svg {
+  margin-right: 5%;
+}
