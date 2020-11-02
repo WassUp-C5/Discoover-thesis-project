@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { HttpClient } from '@angular/common/http';
+import Trip from 'src/app/models/Trip';
 
 @Component({
   selector: 'app-edit-trip',
@@ -11,8 +12,9 @@ import { HttpClient } from '@angular/common/http';
 })
 export class EditTripComponent implements OnInit {
   trip: FormGroup;
-  toEdit: any;
-
+  toEdit = [];
+  newTrip: Trip;
+  date = '';
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,
@@ -23,27 +25,35 @@ export class EditTripComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       let id = params['id'];
-      this.http.get('api/trips/' + id).subscribe((res: any) => {
-        console.log('reees', res);
-        this.toEdit=res;
-        this.toEdit["date"] = this.toEdit["date"].toISOString().split('T')[0];
-        console.log('===>>>==',this.toEdit);
+      this.http.get('api/trips/' + id).subscribe((res: Trip) => {
+        console.log('result', res);
+
+        // this.toEdit.push(res);
+        this.newTrip = res;
+        this.newTrip.date = res.date.split('T')[0];
+        console.log('this date', this.newTrip.date);
+        console.log('new trip OBJ', this.newTrip);
+
+        // console.log('helllllllooooooooooo', this.toEdit);
+        // this.date = this.toEdit[0].date.split('T')[0];
+        // console.log('date =============>', this.date);
       });
     });
   }
+
   ////////////////////////////////////////////////////// last thing here to edit in DB
   onSubmit() {
     // this.trip = this.formBuilder.group({})
 
-    console.log('this trip update', this.toEdit);
-
+    console.log('this trip update', this.newTrip);
     this.route.params.subscribe((params) => {
       let id = params['id'];
       console.log('====================================');
       console.log('org Id after submitting edit === ', id);
       console.log('====================================');
+
       this.http
-        .put('api/trips/' + id + '/edit', this.toEdit)
+        .put('api/trips/' + id + '/edit', this.newTrip)
         .subscribe((res: any) => {
 
           // this.toEdit.push(res);

@@ -7,9 +7,11 @@ tripsRouter.post("/add", async (req, res) => {
   try {
     var trip = new Trip(req.body.trip);
     trip.organizerId = req.body.organizerId;
-    console.log('===>>>==', this.trip)
+    console.log(trip.date.toISOString().split("T")[0]);
+    trip.date = trip.date.toISOString().split("T")[0];
+
     console.log("====================================");
-    console.log("organizerId is : ==>", trip.organizerId);
+    console.log("new trip value is : ==>", trip.value);
     console.log("====================================");
     await trip.save().then((result) => {
       User.findById(trip.organizerId).then((user) => {
