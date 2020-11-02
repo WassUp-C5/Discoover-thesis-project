@@ -31,7 +31,7 @@ export class TripDetailsVistorComponent implements OnInit {
 
   ngOnInit(): void {
     this.usersService
-      .getCurrentConnectedUser(this.currentUser.id, this.currentUser.roles[1])
+      .getCurrentConnectedUser(this.currentUser.id, this.currentUser.roles[1]) // I need to fix undefined id
       .subscribe((user) => {
         this.currentConnectedUserData = user;
       });
