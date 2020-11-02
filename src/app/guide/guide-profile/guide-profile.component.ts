@@ -77,17 +77,18 @@ export class GuideProfileComponent implements OnInit {
           console.log('on init guide current prop', this.currentProposal);
           this.proposals.forEach((proposal) => {
             let tripId = proposal.tripId;
-            // let proposalId = proposal._id;
-            this.http.get(`/api/trips/${tripId}`).subscribe((res) => {
-              console.log('tripiya wa7da ', res);
-              this.trips.push({ res, proposal });
-            });
+            let currentProposalStatus =
+              // let proposalId = proposal._id;
+              this.http.get(`/api/trips/${tripId}`).subscribe((res) => {
+                console.log('tripiya wa7da ', res);
+                this.trips.push({ res, proposal });
+              });
           });
           console.log('this.trips ======>', this.trips);
         });
     });
   }
-
+  /*********************to refresh page *********************** */
   getGuide() {
     this.dataIsReady = false;
     this.guideService.getGuide(this.guideId).subscribe((guide) => {

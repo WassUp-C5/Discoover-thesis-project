@@ -57,12 +57,12 @@
         </div>
         <div class="col-md-2">
           <div id="pubBtn" class="text-right">
-            <button *ngIf="trip[0].guide.length === 1 && trip[0].published === false && trip[0].guide.length !==0"
+            <button *ngIf="trip[0].guide.length === 1 && publishStatus === false && trip[0].guide.length !==0"
               (click)="publish(trip[0]._id)" type="button" class="btn btn-primary">
               Publish
             </button>
-            <button *ngIf="trip[0].published === true" (click)="unpublish(trip[0]._id)" (click)="unpublish(trip[0]._id)"
-              type="button" class="btn btn-primary">
+            <button *ngIf="trip[0] && publishStatus === true" (click)="unpublish(trip[0]._id)" type="button"
+              class="btn btn-primary">
               Unpublish
             </button>
           </div>

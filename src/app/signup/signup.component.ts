@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import User  from './../models/User';
+import { HttpClient } from '@angular/common/http';
+import User from './../models/User';
 import { ActivatedRoute, Router } from '@angular/router';
 
 
@@ -27,6 +27,7 @@ export class SignupComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    let date = new Date();
     this.signupForm = this.formBuilder.group({
       avatarFile: [''],
       first_name: ['', Validators.required],
@@ -34,8 +35,10 @@ export class SignupComponent implements OnInit {
       // validates date format yyyy-mm-dd
       birthday: [
         '',
+
         [
           Validators.required,
+
           Validators.pattern(
             /^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/
           ),

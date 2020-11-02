@@ -1,4 +1,4 @@
-<app-organizer-navbar></app-organizer-navbar>
+<app-visitor-navbar></app-visitor-navbar>
 
 <!--  -->
 <!-- <div class="container">
@@ -62,6 +62,7 @@
         </div>
       </div>
       <button
+        class="bookBtn"
         *ngIf="
           isLoggedIn === false ||
           !tripDetails.travelers.includes(currentUser.id)
@@ -71,6 +72,7 @@
         Book
       </button>
       <button
+        class="bookBtn"
         *ngIf="tripDetails.travelers.includes(currentUser.id)"
         (click)="cancelBooking(tripDetails?._id)"
       >
@@ -86,42 +88,20 @@
     <div id="image" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active" data-interval="10000">
-          <img
-            src="https://placeimg.com/380/230/nature"
-            class="d-block w-100"
-            alt="..."
-          />
+          <img src="https://placeimg.com/380/230/nature" class="d-block w-100" alt="..." />
         </div>
         <div class="carousel-item" data-interval="2000">
-          <img
-            src="https://placeimg.com/380/230/nature"
-            class="d-block w-100"
-            alt="..."
-          />
+          <img src="https://placeimg.com/380/230/nature" class="d-block w-100" alt="..." />
         </div>
         <div class="carousel-item">
-          <img
-            src="https://placeimg.com/380/230/nature"
-            class="d-block w-100"
-            alt="..."
-          />
+          <img src="https://placeimg.com/380/230/nature" class="d-block w-100" alt="..." />
         </div>
       </div>
-      <a
-        class="carousel-control-prev"
-        href="#image"
-        role="button"
-        data-slide="prev"
-      >
+      <a class="carousel-control-prev" href="#image" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="sr-only"></span>
       </a>
-      <a
-        class="carousel-control-next"
-        href="#image"
-        role="button"
-        data-slide="next"
-      >
+      <a class="carousel-control-next" href="#image" role="button" data-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="sr-only"></span>
       </a>
@@ -160,15 +140,11 @@
         <div class="col-md-6 col-sm-12">
           <div class="btn-book-holder">
             <h1 id="priceTag">
-              <span class="badge badge-light"
-                >{{ tripDetails?.price | currency: "TND":"symbol" }}
+              <span class="badge badge-light">{{ tripDetails?.price | currency: "TND":"symbol" }}
               </span>
               <!-- <strong>{{ tripDetails?.price }} DT</strong> -->
             </h1>
-            <button
-              type="button"
-              class="btn btn-warning btn-lg book-btn"
-              *ngIf="
+            <button type="button" class="btn btn-warning btn-lg book-btn" *ngIf="
                 isLoggedIn === false ||
                 !tripDetails.waitingList.includes(currentUser.id) && !tripDetails.travelers.includes(currentUser.id)
               "

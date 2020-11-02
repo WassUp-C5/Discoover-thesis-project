@@ -22,11 +22,11 @@
             Update Photo
           </button>
           <button type="submit" (click)="hire()" class="btn btn-danger btn-signin"
-            *ngIf="currentUser.id !== guideId && currentProposal.length === 0 && !currentUser.roles.includes('guide')">
+            *ngIf="currentUser.id !== guideId && currentProposal.length === 0 && !currentUser.roles.includes('guide') && !currentUser.roles.includes('traveler')">
             Hire Me
           </button>
           <button type="submit" (click)="unhire(guideId, currentUser.id)" class="btn btn-danger btn-signin"
-            *ngIf="currentUser.id !== guideId && currentProposal.length ">
+            *ngIf="currentUser.id !== guideId && currentProposal.length && !currentUser.roles.includes('traveler') ">
             Unhire
           </button>
 
