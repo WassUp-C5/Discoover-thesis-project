@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { Trip } from '../../../../server/models/Trips.js';
-import { User } from '../../../../server/models/User.js';
+import User from './../../models/User';
 import { TokenStorageService } from 'src/app/services/token-storage.service.js';
+import { UsersService } from 'src/app/services/users.service';
+import { TripsService } from 'src/app/services/trips.service';
 
 @Component({
   selector: 'app-trip-details-vistor',
@@ -13,31 +14,39 @@ import { TokenStorageService } from 'src/app/services/token-storage.service.js';
 export class TripDetailsVistorComponent implements OnInit {
   tripId: string;
   organizer: User;
-  tripDetails: Trip;
+  tripDetails: any;
   organizerName: String;
   guideInfo: User;
   isLoggedIn = !!this.tokenStorage.getUser();
   currentUser = this.tokenStorage.getUser();
+  currentConnectedUserData;
   constructor(
     private http: HttpClient,
     private route: ActivatedRoute,
     private tokenStorage: TokenStorageService,
-    private router: Router
+    private router: Router,
+    private usersService: UsersService,
+    private tripsService: TripsService
   ) {}
 
   ngOnInit(): void {
+    this.usersService
+      .getCurrentConnectedUser(this.currentUser.id, this.currentUser.roles[1]) // I need to fix undefined id
+      .subscribe((user) => {
+        this.currentConnectedUserData = user;
+      });
     this.route.params.subscribe((param) => {
       this.tripId = param['id'];
       console.log('tripd IDDDD', this.tripId);
 
-      this.http.get(`/api/trips/${this.tripId}`).subscribe((data: Trip[]) => {
+      this.http.get(`/api/trips/${this.tripId}`).subscribe((data: any) => {
         this.tripDetails = data;
         console.log('the data from DB is ====>', this.tripDetails);
 
-        let id = this.tripDetails.organizerId;
+        let id = this.tripDetails.organizerId._id;
         this.http
-          .get(`/api/user/organizer/${id}`)
-          .subscribe((result: User[]) => {
+          .get(`/api/users/organizer/${id}`)
+          .subscribe((result: User) => {
             this.organizer = result;
             console.log('the result from DB is ===>', result);
           });
@@ -45,8 +54,8 @@ export class TripDetailsVistorComponent implements OnInit {
         console.log('id guide', guideId);
 
         this.http
-          .get(`/api/user/guide/${guideId}`)
-          .subscribe((result: User[]) => {
+          .get(`/api/users/guide/${guideId}`)
+          .subscribe((result: User) => {
             this.guideInfo = result;
             console.log('the guide name is ====>', this.guideInfo.first_name);
           });
@@ -56,7 +65,7 @@ export class TripDetailsVistorComponent implements OnInit {
 
   showOrganizer() {
     if (this.isLoggedIn) {
-      this.router.navigate(['/organizer', this.organizer?._id, 'profile']);
+      this.router.navigate(['/organizer', this.organizer?.id, 'profile']);
     } else {
       this.router.navigate(['/signin']);
     }
@@ -73,6 +82,7 @@ export class TripDetailsVistorComponent implements OnInit {
         .put(`/api/trips/add/triper/${tripID}`, { triperID })
         .subscribe((result) => {
           console.log('a new triper has been added===>', result);
+          this.tripDetails = result;
         });
     } else {
       this.router.navigate(['/signin']);
@@ -80,11 +90,14 @@ export class TripDetailsVistorComponent implements OnInit {
   }
   /*****************Cancel Booking********************** */
   cancelBooking(tripID) {
-    let triperID = this.currentUser.id;
     this.http
-      .put(`/api/trips/rmTripper/${tripID}`, { triperID })
+      .put(
+        `/api/trips/${tripID}/travelers/${this.currentUser.id}/reservations/cancel`,
+        { travelerId: this.currentUser.id }
+      )
       .subscribe((result) => {
         console.log('The triper has been deleted===>', result);
+        this.tripDetails = result;
       });
   }
 }

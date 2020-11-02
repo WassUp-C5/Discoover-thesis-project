@@ -12,7 +12,7 @@ guidesList: Array<any>;
 
   ngOnInit(): void {
       this.http
-         .get('/api/user/guides')
+         .get('/api/users/guides')
          .subscribe((res : any) => {
            console.log('on init guide infos',res);
            this.guidesList = res;

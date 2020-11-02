@@ -6,11 +6,13 @@ import { AngularMaterialModule } from './../angular-material.module';
 
 import { ProfileComponent } from './components/profile/profile.component';
 import { BookedTripComponent } from './components/booked-trip/booked-trip.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+
 
 
 
 @NgModule({
-  declarations: [ProfileComponent, BookedTripComponent],
+  declarations: [ProfileComponent, BookedTripComponent, NavbarComponent],
   imports: [
     CommonModule,
     BrowserAnimationsModule,

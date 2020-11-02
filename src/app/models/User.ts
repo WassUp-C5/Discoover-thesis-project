@@ -4,14 +4,13 @@ export default class User {
   last_name: string;
   username: string;
   password: string;
-  imageUrl: string;
+  avatar: string;
   email: string;
   birthday: Date;
   bio: string;
   gender: string;
   location: string;
   phone_number:string;
-  qualifications:[];
   roles:string[] = ["user"];
   constructor()
   constructor(values)
@@ -28,6 +27,7 @@ export default class User {
       this.gender = values.gender;
       this.phone_number = values.phone_number;
       this.bio = values.bio;
+      this.avatar = values.avatar;
     }
   }
 

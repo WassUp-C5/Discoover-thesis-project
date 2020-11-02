@@ -1,20 +1,29 @@
-<app-organizer-navbar></app-organizer-navbar>
+<app-organizer-navbar [avatar]="organizer.avatar"></app-organizer-navbar>
 <link rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css"
-  integrity="sha256-NAxhqDvtY0l4xn+YVa6WjAcmd94NNfttjNsDmNatFVc=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
-  integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
+  integrity="sha256-NAxhqDvtY0l4xn+YVa6WjAcmd94NNfttjNsDmNatFVc="
+  crossorigin="anonymous"
+/>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
+  integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA="
+  crossorigin="anonymous"
+/>
 <div class="container organizer-profile">
   <div class="row">
     <div class="col-lg-4 col-xl-4">
       <div class="card-box text-center">
-        <img [src]="'../../assets/photo.jpg'" class="rounded-circle avatar-xl img-thumbnail" alt="profile-image" />
+        <img [src]="organizer.avatar" class="rounded-circle avatar-xl img-thumbnail" alt="profile-image" />
 
         <h2 class="mb-0">
           {{ organizer.first_name + " " + organizer.last_name }}
         </h2>
 
-        <button type="button" class="btn btn-success btn-xs waves-effect mb-2 waves-light">
+        <button
+          type="button"
+          class="btn btn-success btn-xs waves-effect mb-2 waves-light"
+        >
           Update Photo
         </button>
 
@@ -31,7 +40,8 @@
           </p>
 
           <p class="text-muted mb-2 font-13">
-            <strong>Mobile :</strong><span class="ml-2">+216{{ organizer.phone_number }} </span>
+            <strong>Mobile :</strong
+            ><span class="ml-2">+216{{ organizer.phone_number }} </span>
           </p>
 
           <p class="text-muted mb-2 font-13">
@@ -89,23 +99,39 @@
               <!------ Include the above in your HEAD tag ---------->
 
               <!-- details card section starts from here -->
-              <button (click)="addTrip()" class="add-trip" mat-flat-button color="warn">
+              <button
+                (click)="addTrip()"
+                class="add-trip"
+                mat-flat-button
+                color="warn"
+              >
                 Add Trip
               </button>
 
               <div class="container">
                 <div class="row">
-                  <mat-card class="col-md-6 col-sm-12 trip-item" *ngFor="let trip of trips">
+                  <mat-card
+                    class="col-md-6 col-sm-12 trip-item"
+                    *ngFor="let trip of trips"
+                  >
                     <mat-card-header>
                       <mat-card-title>{{ trip.title }}</mat-card-title>
                       <mat-card-subtitle>{{ trip.price }}</mat-card-subtitle>
                     </mat-card-header>
-                    <img mat-card-image src="https://placeimg.com/380/230/nature" alt="" />
+                    <img
+                      mat-card-image
+                      src="https://placeimg.com/380/230/nature"
+                      alt=""
+                    />
                     <mat-card-content>
                       <p>
                         {{ (trip.description | slice: 0:50) + "..." }}
                       </p>
-                      <button mat-raised-button (click)="getTrip(trip._id)" color="primary">
+                      <button
+                        mat-raised-button
+                        (click)="getTrip(trip._id)"
+                        color="primary"
+                      >
                         Show more
                       </button>
                     </mat-card-content>
@@ -148,9 +174,13 @@
                   </h3>
                   <div>
                     Guide :
-                    <a x-no-tabbing (click)="getGuideInfo(trip.guideId._id, trip.tripId._id)">{{
+                    <a
+                      x-no-tabbing
+                      (click)="getGuideInfo(trip.guideId._id, trip.tripId._id)"
+                      >{{
                         trip.guideId.first_name + " " + trip.guideId.last_name
-                      }}</a>
+                      }}</a
+                    >
                   </div>
                   <div *ngIf="trip.accepted === true">Status : Accepted</div>
                   <div *ngIf="trip.accepted == null">
@@ -167,9 +197,13 @@
                     </p>
                   </div>
 
-                  <button type="submit" (click)="
+                  <button
+                    type="submit"
+                    (click)="
                       cancelProp(trip._id, trip.guideId._id, trip.tripId._id)
-                    " class="btn btn-danger btn-signin">
+                    "
+                    class="btn btn-danger btn-signin"
+                  >
                     cancel Proposal
                   </button>
                 </li>
@@ -187,21 +221,38 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="username">Username</label>
-                      <input type="email" class="form-control" id="username" placeholder="{{ organizer.username }}" />
+                      <input
+                        type="email"
+                        class="form-control"
+                        id="username"
+                        placeholder="{{ organizer.username }}"
+                      />
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="firstname">First Name</label>
-                      <input type="text" class="form-control" id="firstname" placeholder="{{ organizer.first_name }}"
-                        [(ngModel)]="organizer.first_name" name="first" />
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="firstname"
+                        placeholder="{{ organizer.first_name }}"
+                        [(ngModel)]="organizer.first_name"
+                        name="first"
+                      />
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="lastname">Last Name</label>
-                      <input type="text" class="form-control" id="lastname" placeholder="{{ organizer.last_name }}"
-                        [(ngModel)]="organizer.last_name" name="last" />
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="lastname"
+                        placeholder="{{ organizer.last_name }}"
+                        [(ngModel)]="organizer.last_name"
+                        name="last"
+                      />
                     </div>
                   </div>
                   <!-- <div class="col-md-6">
@@ -228,25 +279,47 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="useremail">Email Address</label>
-                      <input type="email" class="form-control" id="useremail" placeholder="{{ organizer.email }}"
-                        [(ngModel)]="organizer.email" name="email" />
-                      <span class="form-text text-muted"><small>If you want to change email please
-                          <a href="javascript: void(0);">click</a> here.</small></span>
+                      <input
+                        type="email"
+                        class="form-control"
+                        id="useremail"
+                        placeholder="{{ organizer.email }}"
+                        [(ngModel)]="organizer.email"
+                        name="email"
+                      />
+                      <span class="form-text text-muted"
+                        ><small
+                          >If you want to change email please
+                          <a href="javascript: void(0);">click</a> here.</small
+                        ></span
+                      >
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="lastname">Phone number</label>
-                      <input type="text" class="form-control" id="phone" placeholder="{{ organizer.phone_number }}"
-                        [(ngModel)]="organizer.phone_number" name="phone" />
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="phone"
+                        placeholder="{{ organizer.phone_number }}"
+                        [(ngModel)]="organizer.phone_number"
+                        name="phone"
+                      />
                     </div>
                   </div>
 
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="location">Location</label>
-                      <input type="text" class="form-control" id="location" placeholder="{{ organizer.location }}"
-                        [(ngModel)]="organizer.location" name="location" />
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="location"
+                        placeholder="{{ organizer.location }}"
+                        [(ngModel)]="organizer.location"
+                        name="location"
+                      />
                     </div>
                   </div>
                   <!-- <div class="col-md-6">
@@ -264,8 +337,14 @@
                   <div class="col-12">
                     <div class="form-group">
                       <label for="userbio">Bio</label>
-                      <textarea class="form-control" id="userbio" rows="4" placeholder="Write something..."
-                        [(ngModel)]="organizer.bio" name="bio"></textarea>
+                      <textarea
+                        class="form-control"
+                        id="userbio"
+                        rows="4"
+                        placeholder="Write something..."
+                        [(ngModel)]="organizer.bio"
+                        name="bio"
+                      ></textarea>
                     </div>
                   </div>
                   <!-- end col -->
@@ -398,7 +477,11 @@
                 <!-- end row -->
 
                 <div class="text-right">
-                  <button (click)="onClick()" type="submit" class="btn btn-success waves-effect waves-light mt-2">
+                  <button
+                    (click)="onClick()"
+                    type="submit"
+                    class="btn btn-success waves-effect waves-light mt-2"
+                  >
                     <i class="mdi mdi-content-save"></i> Save
                   </button>
                 </div>

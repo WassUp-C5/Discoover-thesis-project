@@ -3,6 +3,7 @@ const User = require("../models/User");
 const Trip = require("../models/Trips");
 const bcrypt = require("bcryptjs");
 
+
 /*******************Get the organizer info*********************************** */
 userRouter.get("/organizer/:id", (req, res) => {
   console.log('====================================');
