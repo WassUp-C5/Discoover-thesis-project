@@ -7,6 +7,7 @@ tripsRouter.post("/add", async (req, res) => {
   try {
     var trip = new Trip(req.body.trip);
     trip.organizerId = req.body.organizerId;
+    console.log('===>>>==', this.trip)
     console.log("====================================");
     console.log("organizerId is : ==>", trip.organizerId);
     console.log("====================================");

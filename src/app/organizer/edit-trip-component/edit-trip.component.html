@@ -1,16 +1,16 @@
 <app-organizer-navbar></app-organizer-navbar>
-<h1>Edit a trip</h1>
+<!-- <h1>Edit a trip</h1>
 <form class="text-center border border-light p-5">
-  <p class="h4 mb-4">organize a trip</p>
+  <p class="h4 mb-4">organize a trip</p> -->
 
   <!-- Title -->
 
-  <label>Title</label>
-  <input type="text" id="defaultContactFormName" class="form-control mb-4" value={{toEdit[0].title}} name="title"
-    [(ngModel)]="toEdit[0].title" />
+  <!-- <label>Title</label>
+  <input type="text" id="defaultContactFormName" class="form-control mb-4" value={{toEdit.title}} name="title"
+    [(ngModel)]="toEdit[0].title" /> -->
 
   <!-- Location -->
-  <label>location</label>
+  <!-- <label>location</label>
   <select name="location" value={{toEdit[0].location}} id="cars" [(ngModel)]="toEdit[0].location"
     class="form-control mb-4">
     <option value="Ghar El melah">Ghar El melah</option>
@@ -22,15 +22,15 @@
 
   <label>Price</label>
   <input type="text" name="price" id="defaultContactFormEmail" class="form-control mb-4" value={{toEdit[0].price}}
-    [(ngModel)]="toEdit[0].price" />
+    [(ngModel)]="toEdit[0].price" /> -->
 
 
   <!-- Date of trips -->
-  <label>Date of trips</label>
-  <input type="date" name="date" class="form-control" value={{toEdit[0].date}} [(ngModel)]="toEdit[0].date" />
+  <!-- <label>Date of trips</label>
+  <input type="date" name="date" class="form-control" value={{toEdit[0].date}} [(ngModel)]="toEdit[0].date" /> -->
 
   <!-- Description -->
-  <label>Description</label>
+  <!-- <label>Description</label>
   <div class="form-group">
     <textarea class="form-control rounded-0" name="description" id="exampleFormControlTextarea2" rows="3"
       value={{toEdit[0].description}} [(ngModel)]="toEdit[0].description"></textarea>
@@ -38,9 +38,94 @@
 
   <label>Max Travelers</label>
   <input type="location" id="defaultContactFormEmail" name="maxTravelers" class="form-control mb-4"
-    value={{toEdit[0].maxTravelers}} [(ngModel)]="toEdit[0].maxTravelers" />
+    value={{toEdit[0].maxTravelers}} [(ngModel)]="toEdit[0].maxTravelers" /> -->
 
 
   <!-- Send button -->
-  <button (click)="onSubmit()" class="btn btn-info btn-block">Send</button>
-</form>
+  <!-- <button (click)="onSubmit()" class="btn btn-info btn-block">Send</button>
+</form> -->
+
+<!-- <div class="container" *ngIf="toEdit">
+  <form id="contact"> -->
+    <!-- Title -->
+    <!-- <fieldset>
+      <label>Title</label>
+      <input type="text" id="defaultContactFormName" class="form-control mb-4" value={{toEdit[0].title}} name="title"
+      [(ngModel)]="toEdit['title']" />
+    </fieldset> -->
+
+    <!-- Location -->
+    <!-- <fieldset>
+      <label>location</label>
+      <select
+        name="location"
+        id="cars"
+        class="form-control mb-4"
+        formControlName="location"
+        value={{toEdit.location}} [(ngModel)]="toEdit.location"
+      >
+        <option value="Ghar El melah">Ghar El melah</option>
+        <option value="Rafraf">Rafraf</option>
+        <option value="Rimel">Rimel</option>
+      </select>
+    </fieldset> -->
+
+    <!-- Price -->
+    <!-- <fieldset>
+      <label>Price</label>
+      <input
+        placeholder="Price"
+        type="text"
+        tabindex="3"
+        formControlName="price"
+        value={{toEdit['price']}}
+        [(ngModel)]="toEdit['price']"
+      />
+    </fieldset> -->
+
+    <!-- Date of trips -->
+
+    <!-- <fieldset>
+      <label>Date</label>
+      <input
+        type="date"
+        tabindex="4"
+        class="form-control"
+        value={{ toEdit['date'] | date }} [(ngModel)]="toEdit['date']"
+        formControlName="date"
+      />
+    </fieldset> -->
+    <!-- Max Travelers -->
+    <!-- <fieldset>
+      <label>Max Travelers</label>
+      <input
+        placeholder="Max Travelers"
+        type="url"
+        tabindex="4"
+        formControlName="maxTravelers"
+        value={{toEdit['maxTravelers']}} [(ngModel)]="toEdit['maxTravelers']"
+      />
+    </fieldset> -->
+    <!-- Description -->
+    <!-- <fieldset>
+      <label>Description</label>
+      <textarea
+        placeholder="Type your description here...."
+        tabindex="5"
+        formControlName="description"
+        value={{toEdit.description}} [(ngModel)]="toEdit.description"
+      ></textarea>
+    </fieldset>
+    <fieldset>
+      <button
+        name="submit"
+        type="submit"
+        id="contact-submit"
+        data-submit="...Sending"
+        (click)="onSubmit()"
+      >
+        Submit
+      </button>
+    </fieldset>
+  </form>
+</div> -->

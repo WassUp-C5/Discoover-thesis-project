@@ -11,7 +11,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class EditTripComponent implements OnInit {
   trip: FormGroup;
-  toEdit = [];
+  toEdit: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -24,8 +24,10 @@ export class EditTripComponent implements OnInit {
     this.route.params.subscribe((params) => {
       let id = params['id'];
       this.http.get('api/trips/' + id).subscribe((res: any) => {
-        this.toEdit.push(res);
-        console.log(this.toEdit);
+        console.log('reees', res);
+        this.toEdit=res;
+        this.toEdit["date"] = this.toEdit["date"].toISOString().split('T')[0];
+        console.log('===>>>==',this.toEdit);
       });
     });
   }
@@ -33,15 +35,17 @@ export class EditTripComponent implements OnInit {
   onSubmit() {
     // this.trip = this.formBuilder.group({})
 
-    console.log('this trip update', this.toEdit[0]);
+    console.log('this trip update', this.toEdit);
+
     this.route.params.subscribe((params) => {
       let id = params['id'];
       console.log('====================================');
       console.log('org Id after submitting edit === ', id);
       console.log('====================================');
       this.http
-        .put('api/trips/' + id + '/edit', this.toEdit[0])
+        .put('api/trips/' + id + '/edit', this.toEdit)
         .subscribe((res: any) => {
+
           // this.toEdit.push(res);
           // console.log(this.toEdit);
           this.router.navigate([`/organizer/${id}/profile`]);
