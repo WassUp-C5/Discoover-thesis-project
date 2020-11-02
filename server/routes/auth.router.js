@@ -2,15 +2,52 @@ const authRouter = require("express").Router();
 const User = require("../models/User");
 var bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const {  dataUri } = require('./../middlewares/multerUpload');
+const { uploader } = require('./../config/cloudinaryConfig');
+
+
 /*****************Create a new user **************************** */
 authRouter.post("/signup", async (req, res) => {
+  console.log(req.body);
   try {
-    console.log(req.body);
-    var user = new User(req.body);
-    await user.saveUser().then((result) => {
-      console.log("success");
-      res.send(result);
-    });
+
+    if(req.file) {
+      const file = dataUri(req).content;
+      return uploader.upload(file)
+              .then( async (result) => {
+                var userData = JSON.parse(req.body.user);
+                userData.avatar = result.url;
+                var user = new User(userData);
+                await user.saveUser();
+                console.log('Your image has been uploded successfully to cloudinary');
+                return res
+                        .status(200)
+                        .json({
+                          messge: 'Your account has been created successfully',
+                        })
+              })
+              .catch((err) =>
+                res
+                .status(400)
+                .json({
+                  messge: 'someting went wrong while processing your request',
+                  data: {
+                    err
+                  }
+                })
+              )
+    }
+
+
+
+
+    // console.log(req.body);
+
+    // var user = new User(req.body);
+    // await user.saveUser().then((result) => {
+    //   console.log("success");
+    //   res.send(result);
+    // });
   } catch (error) {
     console.log("error ===> ", error);
     res.status(400).send("error");

@@ -6,6 +6,14 @@
         [formGroup]="signupForm"
         (ngSubmit)="onSubmit()"
       >
+      <div class="image-upload">
+        <label for="file-input">
+          <img [src]="avatar" id="userAvatar"/>
+        </label>
+
+        <input id="file-input" type="file" (change)="onFileSelected($event)" name="avatarFile"/>
+      </div>
+      <!-- <input type="image" src="../../assets/avatar.png" /> -->
         <span class="login100-form-title p-b-34"> Create Account </span>
 
         <div

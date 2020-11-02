@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import User  from './../models/User';
 import { ActivatedRoute, Router } from '@angular/router';
+
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -14,6 +16,7 @@ export class SignupComponent implements OnInit {
   user = new User();
   submitted = false;
   errorMessage = '';
+  avatar = '../../assets/avatar.png'
 
   constructor(
     private formBuilder: FormBuilder,
@@ -25,6 +28,7 @@ export class SignupComponent implements OnInit {
 
   ngOnInit() {
     this.signupForm = this.formBuilder.group({
+      avatarFile: [''],
       first_name: ['', Validators.required],
       last_name: ['', Validators.required],
       // validates date format yyyy-mm-dd
@@ -49,6 +53,29 @@ export class SignupComponent implements OnInit {
     return this.signupForm.controls;
   }
 
+  onFileSelected(event) {
+    var selectedFile = event.target.files[0];
+    var reader = new FileReader();
+
+
+
+    //var imgtag = document.getElementById("userAvatar");
+    //imgtag.title = selectedFile.name;
+
+    reader.onload = (event) => {
+      this.avatar = event.target.result as string;
+      this.signupForm.patchValue({
+        avatarFile: selectedFile
+      });
+
+      this.signupForm.get('avatarFile').updateValueAndValidity()
+
+
+    };
+
+    reader.readAsDataURL(selectedFile);
+  }
+
   onSubmit() {
     this.submitted = true;
 
@@ -56,13 +83,19 @@ export class SignupComponent implements OnInit {
       console.log(this.signupForm.value);
       return;
     }
+    console.log(this.signupForm.value);
 
-    console.log('Form ===> ', this.signupForm.value);
     this.user = new User(this.signupForm.value);
-    console.log('User ===> ', this.user);
     this.user.roles.push(this.route.snapshot.paramMap.get('role'));
+    //let userRole = this.route.snapshot.paramMap.get('role');
 
-    this.authService.register(this.user).subscribe(
+    let formData = new FormData()
+    formData.append('file', this.signupForm.get('avatarFile').value);
+    formData.append('user', JSON.stringify(this.user));
+    // console.log('Form ===> ', formData);
+    // console.log('User ===> ', this.user);
+
+    this.authService.register( formData).subscribe(
       (data) => {
         console.log(data);
         this.router.navigate(['/']);

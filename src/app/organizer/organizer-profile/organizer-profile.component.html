@@ -1,4 +1,4 @@
-<app-organizer-navbar></app-organizer-navbar>
+<app-organizer-navbar [avatar]="organizer.avatar"></app-organizer-navbar>
 <link rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css"
   integrity="sha256-NAxhqDvtY0l4xn+YVa6WjAcmd94NNfttjNsDmNatFVc=" crossorigin="anonymous" />
@@ -8,7 +8,7 @@
   <div class="row">
     <div class="col-lg-4 col-xl-4">
       <div class="card-box text-center">
-        <img [src]="'../../assets/photo.jpg'" class="rounded-circle avatar-xl img-thumbnail" alt="profile-image" />
+        <img [src]="organizer.avatar" class="rounded-circle avatar-xl img-thumbnail" alt="profile-image" />
 
         <h2 class="mb-0">
           {{ organizer.first_name + " " + organizer.last_name }}

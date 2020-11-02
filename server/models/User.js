@@ -12,7 +12,7 @@ const usersSchema = new mongoose.Schema(
     last_name: String,
     username: {type: String, unique: true},
     password: { type: String, select: false },
-    imageUrl: String,
+    avatar: String,
     email: {type: String, unique: true},
     birthday: Date,
     gender: String,
@@ -41,7 +41,7 @@ class User extends MongoUser {
       this.last_name = data.last_name;
       this.username = data.username;
       this.password = data.password;
-      this.imageUrl = data.imageUrl;
+      this.avatar = data.avatar;
       this.email = data.email;
       this.birthday = data.birthday;
       this.gender = data.gender;
@@ -49,6 +49,7 @@ class User extends MongoUser {
       this.location = data.location;
       this.roles = data.roles;
       this.qualifications = data.qualifications;
+      this.avatar = data.avatar;
     }
   }
 
@@ -76,7 +77,7 @@ class User extends MongoUser {
           last_name: this.last_name,
           username: this.username,
           password: this.password,
-          imageUrl: this.imageUrl,
+          avatar: this.avatar,
           email: this.email,
           birthday: this.birthday,
           gender: this.gender,

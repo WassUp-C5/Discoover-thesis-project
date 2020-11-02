@@ -12,17 +12,7 @@ export class OrganizerProfileComponent implements OnInit {
   currentUser: any;
   selectedGender = '';
   organizerId: string;
-  organizer = {
-    first_name: '',
-    username: '',
-    last_name: '',
-    gender: '',
-    location: '',
-    email: '',
-    password: '',
-    bio: '',
-    phone_number: '',
-  };
+  organizer:any;
   proposals = [];
   // tripP = [];
 
