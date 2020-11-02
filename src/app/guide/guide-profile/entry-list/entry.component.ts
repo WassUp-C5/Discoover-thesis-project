@@ -1,6 +1,4 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, Input } from '@angular/core';
-import { TokenStorageService } from 'src/app/services/token-storage.service';
 
 @Component({
   selector: 'app-entry',
@@ -21,8 +19,7 @@ export class EntryComponent implements OnInit {
   entrySelectedLevel: string = '';
 
   constructor(
-    private http: HttpClient,
-    private tokenStorage: TokenStorageService
+
   ) {}
 
   ngOnInit(): void {
