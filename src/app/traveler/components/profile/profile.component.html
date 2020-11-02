@@ -1,3 +1,4 @@
+<app-navbar></app-navbar>
 <div class="container profile-container">
   <div class="row">
     <div class="col-md-3">
@@ -13,6 +14,7 @@
           <h4 class="mb-0">
             {{
               this.profileOwner.first_name + " " + this.profileOwner.last_name
+                | titlecase
             }}
           </h4>
           <button
@@ -28,6 +30,7 @@
               <strong>Full name :</strong>
               <span class="ml-2">{{
                 this.profileOwner.first_name + " " + this.profileOwner.last_name
+                  | titlecase
               }}</span>
             </p>
 
@@ -55,16 +58,33 @@
       <mat-tab-group>
         <mat-tab label="About me">
           <mat-card class="tab-content mat-elevation-z2">
-            <h5>My Biography</h5>
             <p>
               {{ this.profileOwner.bio }}
             </p>
             <hr />
           </mat-card>
         </mat-tab>
-        <mat-tab label="Reservations">
-          <div class="tab-content">
-            <app-booked-trip></app-booked-trip>
+        <mat-tab label="My bookings">
+          <div class="container tab-content">
+            <div class="row">
+              <div
+                class="col-12"
+                *ngFor="let tripReservation of profileOwner.tripReservations"
+              >
+                <div *ngIf="profileOwner.tripReservations.length === 0">
+                  You don't have any booking! you can pick one from
+                  <a
+                    routerLink="['/searchTrip']"
+                    routerLinkActive="router-link-active"
+                  >
+                    here
+                  </a>
+                </div>
+                <app-booked-trip
+                  [tripReservation]="tripReservation"
+                ></app-booked-trip>
+              </div>
+            </div>
           </div>
         </mat-tab>
         <mat-tab
