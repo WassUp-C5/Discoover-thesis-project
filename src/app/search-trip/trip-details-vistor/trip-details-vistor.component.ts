@@ -18,6 +18,7 @@ export class TripDetailsVistorComponent implements OnInit {
   guideInfo: User;
   isLoggedIn = !!this.tokenStorage.getUser();
   currentUser = this.tokenStorage.getUser();
+  bookStatus = null;
   constructor(
     private http: HttpClient,
     private route: ActivatedRoute,
@@ -33,7 +34,12 @@ export class TripDetailsVistorComponent implements OnInit {
       this.http.get(`/api/trips/${this.tripId}`).subscribe((data: Trip[]) => {
         this.tripDetails = data;
         console.log('the data from DB is ====>', this.tripDetails);
-
+        this.bookStatus = this.tripDetails.travelers.includes(
+          this.currentUser.id
+        );
+        console.log('====================================');
+        console.log(this.bookStatus);
+        console.log('====================================');
         let id = this.tripDetails.organizerId;
         this.http
           .get(`/api/user/organizer/${id}`)
@@ -73,6 +79,7 @@ export class TripDetailsVistorComponent implements OnInit {
         .put(`/api/trips/add/triper/${tripID}`, { triperID })
         .subscribe((result) => {
           console.log('a new triper has been added===>', result);
+          this.bookStatus = true;
         });
     } else {
       this.router.navigate(['/signin']);
@@ -85,6 +92,7 @@ export class TripDetailsVistorComponent implements OnInit {
       .put(`/api/trips/rmTripper/${tripID}`, { triperID })
       .subscribe((result) => {
         console.log('The triper has been deleted===>', result);
+        this.bookStatus = false;
       });
   }
 }
