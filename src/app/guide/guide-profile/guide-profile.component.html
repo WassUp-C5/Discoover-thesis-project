@@ -21,11 +21,14 @@
             *ngIf="currentUser.id === guideId">
             Update Photo
           </button>
-          <button type="submit" (click)="hire()" class="btn btn-danger btn-signin"
+          <button
+            *ngIf="currentUser.id !== guideId && currentProposal.length === 0 && !currentUser.roles.includes('guide') && !currentUser.roles.includes('traveler')"
+            mat-raised-button color="warn" (click)="openDialog()">Hire</button>
+          <!-- <button type="submit" (click)="hire()" class="btn btn-danger btn-signin"
             *ngIf="currentUser.id !== guideId && currentProposal.length === 0 && !currentUser.roles.includes('guide') && !currentUser.roles.includes('traveler')">
             Hire Me
-          </button>
-          <button type="submit" (click)="unhire(guideId, currentUser.id)" class="btn btn-danger btn-signin"
+          </button> -->
+          <button type="submit" (click)="unhire(guideId, currentUser.id)" mat-raised-button color="warn"
             *ngIf="currentUser.id !== guideId && currentProposal.length && !currentUser.roles.includes('traveler') ">
             Unhire
           </button>
@@ -109,10 +112,13 @@
                   </div>
                   <div>date : {{ trip.res.date }}</div>
                   <div>Location : {{ trip.res.location }}</div>
-                  <div>price : {{ trip.res.price }}</div>
+                  <div>Pay : {{ trip.proposal.pay }}</div>
                   <div>Max travelers : {{ trip.res.maxTravelers }}</div>
                   <div>
                     <p>Trip description : <br />{{ trip.res.description }}</p>
+                  </div>
+                  <div>
+                    <p>Message from organizer : <br />{{ trip.proposal.message }}</p>
                   </div>
                   <button type="submit" *ngIf="
                       trip.proposal.accepted === false ||
