@@ -3,8 +3,6 @@ body,
 .main_div {
   height: 100%;
   min-height: 100%;
-}
-.main_div {
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -24,8 +22,9 @@ body,
 
 .landing-btn {
   position: absolute;
-  bottom: 200px;
-  left: 26%;
+  top: 70%;
+  left: 50%;
+  transform: translateX(-50%);
   background-color: red;
   border: none;
   color: white;

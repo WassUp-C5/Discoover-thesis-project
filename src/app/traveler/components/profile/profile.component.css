@@ -8,4 +8,5 @@
 
 .tab-content {
   margin: 20px;
+  width: fit-content;
 }

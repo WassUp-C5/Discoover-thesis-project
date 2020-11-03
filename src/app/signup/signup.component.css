@@ -16,7 +16,12 @@ html {
   font-family: Poppins-Regular, sans-serif;
   overflow: hidden;
 }
-
+.date-input {
+  font-family: "PT Sans", sans-serif;
+  font-size: 1.2rem;
+  display: block;
+  padding: 0.5rem 1rem;
+}
 /*---------------------------------------------*/
 a {
   font-family: Poppins-Regular;
@@ -37,6 +42,24 @@ a:focus {
 a:hover {
   text-decoration: none;
   color: #333333;
+}
+
+/***** Custom CSS ******/
+.image-upload {
+  margin: 0 auto;
+}
+.image-upload img {
+  width: 200px;
+  height: 200px;
+  margin-bottom: 10px;
+  border-radius: 50%;
+}
+.image-upload>input {
+  display: none;
+}
+.image-upload img:hover {
+  border: solid rgb(78, 148, 240) 10px;
+  cursor: pointer;
 }
 
 /*---------------------------------------------*/
@@ -232,7 +255,7 @@ iframe {
   display: -ms-flexbox;
   display: flex;
   flex-wrap: wrap;
-  padding: 303px 65px 40px 65px;
+  padding: 103px 65px 40px 65px;
 }
 
 .login100-form-title {
@@ -2548,9 +2571,7 @@ input.input100 {
 .p-b-238 {
   padding-bottom: 238px;
 }
-.p-b-239 {
-  padding-bottom: 239px;
-}
+
 .p-b-240 {
   padding-bottom: 240px;
 }

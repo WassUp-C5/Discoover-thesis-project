@@ -62,7 +62,7 @@ section {
 }
 
 .trip-item {
-  max-width: 300px;
+  max-width: 90%;
   margin: 10px;
 }
 
@@ -404,4 +404,21 @@ body {
     left: 0 !important;
     margin-bottom: 10px;
   }
+}
+
+p {
+  margin-left: 20%;
+  margin-top: 5%;
+}
+
+.info {
+  display: inline-flex;
+}
+
+svg {
+  margin-right: 5%;
+}
+
+button {
+  float:right;
 }

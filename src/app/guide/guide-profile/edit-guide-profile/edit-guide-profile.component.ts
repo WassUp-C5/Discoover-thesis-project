@@ -1,8 +1,8 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { TokenStorageService } from './../../../services/token-storage.service';
 import { ActivatedRoute } from '@angular/router';
-import { UserQualifications} from './../../../models/UserQualifications';
+import { UserQualifications } from './../../../models/UserQualifications';
 @Component({
   selector: 'app-edit-guide-profile',
   templateUrl: './edit-guide-profile.component.html',
@@ -11,6 +11,7 @@ import { UserQualifications} from './../../../models/UserQualifications';
 export class EditGuideProfileComponent implements OnInit {
   @Input() guide;
   @Input() getGuide;
+
 
   currentUser: any;
   isLoggedIn: boolean;
@@ -54,31 +55,39 @@ export class EditGuideProfileComponent implements OnInit {
       });
   }
 
-  addLanguage(){
-    this.userQualifications.type = "language";
+  addLanguage() {
+    this.userQualifications.type = 'language';
     this.http
-      .put(`/api/users/guides/${this.guideId}/qualifications/add`, this.userQualifications)
-      .subscribe(result => {
+      .put(
+        `/api/users/guides/${this.guideId}/qualifications/add`,
+        this.userQualifications
+      )
+      .subscribe((result) => {
         console.log(result);
         this.userQualifications = new UserQualifications();
+        console.log('after adding language', result);
         this.getGuide();
-      })
+      });
   }
 
   deleteUserQualification(entryId) {
     this.http
-      .delete(`/api/users/guides/${this.tokenStorage.getUser().id}/qualifications/${entryId}/delete`)
-      .subscribe(result => {
-        console.log(result);
+      .delete(
+        `/api/users/guides/${
+          this.tokenStorage.getUser().id
+        }/qualifications/${entryId}/delete`
+      )
+      .subscribe((result) => {
+        console.log('after delete language', result);
         this.getGuide();
-      })
+      });
   }
 
   changePassword() {
     console.log(this.currentPassword, this.newPassword);
     if (this.currentPassword && this.newPassword) {
       this.http
-        .put(`/api/user/${this.currentUser.id}/password/edit`, {
+        .put(`/api/users/${this.currentUser.id}/password/edit`, {
           currentPassword: this.currentPassword,
           newPassword: this.newPassword,
         })
