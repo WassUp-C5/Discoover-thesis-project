@@ -2,3 +2,26 @@
 .guide-profile {
   margin-top: 50px;;
 }
+
+.proposal-item {
+  max-width: 90%;
+  margin: 10px;
+}
+
+#textP {
+  margin-left: 20%;
+  margin-top: 5%;
+}
+
+.info {
+  display: inline-flex;
+}
+
+svg {
+  margin-right: 5%;
+}
+
+#guideButtons {
+  float:right;
+  margin-left: 2%;
+}
