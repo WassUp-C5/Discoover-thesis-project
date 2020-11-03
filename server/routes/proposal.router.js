@@ -5,6 +5,7 @@ const Trip = require("../models/Trips");
 proposalsRouter.post("/add", async (req, res) => {
   try {
     var proposal = req.body;
+    console.log('proposal is : ', proposal)
     await Proposal.find(proposal).then(result => {
       if (result.length === 0) {
         newProp = new Proposal(proposal)
