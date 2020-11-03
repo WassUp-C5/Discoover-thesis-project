@@ -20,7 +20,7 @@ export class TripDetailsComponent implements OnInit {
   ) {}
   currentUser: any = this.tokenStorage.getUser();
   trip: Trip;
-  guide = [];
+  guides = [];
   publishStatus = null;
 
   ngOnInit(): void {

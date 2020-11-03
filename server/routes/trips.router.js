@@ -55,7 +55,10 @@ tripsRouter.get("/:id", async (req, res) => {
         path: "reservations",
         populate: { path: "traveler" },
       })
-      .populate("organizerId");
+      .populate("organizerId")
+      .populate('travelers')
+      .populate('waitingList')
+      .populate('guides')
     console.log(trip);
     res.send(trip);
   } catch (error) {
@@ -174,24 +177,24 @@ tripsRouter.put("/edit/:id", (req, res) => {
   Trip.findById(id)
     .then((trip) => {
       console.log("trip ===>", trip);
-      if (trip.guide.includes(guideId)) {
+      if (trip.guides.includes(guideId)) {
         res.send({ message: "guide already added" });
       } else {
-        trip.guide.push(guideId);
+        trip.guides.push(guideId);
         trip.save();
         res.send({ message: "guide  added" });
       }
     })
     .catch((err) => console.log(err));
 });
-/**************Update Trip to remove the guide Id from guide ********************************* */
+/**************Update Trip to remove the guide Id from guides ********************************* */
 tripsRouter.put("/rmGuide/:id", (req, res) => {
   let tripId = req.params.id;
   let guideId = req.body.guideId;
   console.log("logging guide array and trip id ==>", tripId, guideId);
   Trip.findById(tripId)
     .then((trip) => {
-      trip.guide.pull(guideId);
+      trip.guides.pull(guideId);
       console.log("trip to delete the guide from array ===>", trip);
       trip.save();
       res.send({ message: "guide  deleted" });

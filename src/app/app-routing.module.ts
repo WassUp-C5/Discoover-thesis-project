@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { OrganizerProfileComponent } from './organizer/organizer-profile/organizer-profile.component';
 import { TripDetailsComponent } from './organizer/trip-details/trip-details.component';
-import { GuideListComponent } from './organizer/guide-list/guide-list.component';
+import { GuidesListComponent } from './organizer/guides-list/guides-list.component';
 import { TripDetailsVistorComponent } from './search-trip/trip-details-vistor/trip-details-vistor.component';
 
 import { GuideATripComponent } from './guide/guide-a-trip/guide-a-trip.component';
@@ -25,7 +25,7 @@ const routes: Routes = [
   { path: 'guide/:id/profile', component: GuideProfileComponent },
   {
     path: 'organizer/trip/details/guides/:tripId/:location',
-    component: GuideListComponent,
+    component: GuidesListComponent,
   },
   { path: 'guide/:guideId/profile/:tripId', component: GuideProfileComponent },
   { path: 'guideTrip', component: GuideATripComponent },

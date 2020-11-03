@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GuideListItemComponent } from './guide-list-item.component';
+import { GuideListItemComponent } from './guides-list-item.component';
 
 describe('GuideListItemComponent', () => {
   let component: GuideListItemComponent;

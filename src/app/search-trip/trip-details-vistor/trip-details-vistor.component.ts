@@ -60,11 +60,11 @@ export class TripDetailsVistorComponent implements OnInit {
             this.organizer = result;
             console.log('the result from DB is ===>', result);
           });
-        let guideId = this.tripDetails.guide[0];
+        let guideId = this.tripDetails.guides[0];
         console.log('id guide', guideId);
 
         this.http
-          .get(`/api/users/guide/${guideId}`)
+          .get(`/api/users/guides/${guideId}`)
           .subscribe((result: User) => {
             this.guideInfo = result;
             console.log('the guide name is ====>', this.guideInfo.first_name);

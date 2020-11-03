@@ -52,8 +52,8 @@ export class OrganizerProfileComponent implements OnInit {
         // this.proposals.forEach((proposal) => {
         //   let tripId = proposal.tripId;
         //   this.http.get(`/api/trips/${tripId}`).subscribe((result) => {
-        //     // let guideID = result.guide[0];
-        //     // this.http.get(`/api/users/guide/${}`)
+        //     // let guideID = result.guides[0];
+        //     // this.http.get(`/api/users/guides/${}`)
         //     console.log('tripiya wa7da ', result);
         //     this.tripP.push({ res, proposal });
         //   });

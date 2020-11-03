@@ -45,7 +45,7 @@ userRouter.get("/organizer/trips/:id", (req, res) => {
 
 
 /****************Get guide info********************* */
-userRouter.get("/guide/:id", (req, res) => {
+userRouter.get("/guides/:id", (req, res) => {
   console.log("guide id: ", req.params.id)
   User.findById(req.params.id)
     .populate("qualifications")
@@ -57,7 +57,7 @@ userRouter.get("/guide/:id", (req, res) => {
     });
 });
 /****************Update Guide Profile ******************** */
-userRouter.put("/guide/edit", (req, res) => {
+userRouter.put("/guides/edit", (req, res) => {
   let user = req.body;
   console.log("router section guide log ==>", user);
   User.updateOne({ username: user.username }, user)

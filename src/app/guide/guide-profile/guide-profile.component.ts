@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
 import Guide from 'src/app/models/Guide';
-import { GuideService } from '../services/guide.service';
+import { GuideService } from '../services/guides.service';
 import { DialogComponent } from '../dialog/dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -63,7 +63,7 @@ export class GuideProfileComponent implements OnInit {
       }
 
       this.http
-        .get(`/api/users/guide/${this.guideId}`)
+        .get(`/api/users/guides/${this.guideId}`)
         .subscribe((res: any) => {
           console.log('on init guide infos', res);
           this.guide = res;
@@ -75,7 +75,7 @@ export class GuideProfileComponent implements OnInit {
         });
       /*************Get all the proposal by guide ID******************* */
       this.http
-        .get(`/api/proposals/guide/${this.guideId}`)
+        .get(`/api/proposals/guides/${this.guideId}`)
         .subscribe((res: any) => {
           this.proposals = res;
           console.log('on init guide proposals', this.proposals);
@@ -194,7 +194,7 @@ export class GuideProfileComponent implements OnInit {
         console.log(response);
       });
     this.http
-      .put(`/api/proposals/guide/acceptance/${proposalId}`, {
+      .put(`/api/proposals/guides/acceptance/${proposalId}`, {
         accepted: true,
       })
       .subscribe((response) => {
@@ -204,7 +204,7 @@ export class GuideProfileComponent implements OnInit {
 
   decline(tripId, proposalId, guideId) {
     this.http
-      .put(`/api/proposals/guide/acceptance/${proposalId}`, {
+      .put(`/api/proposals/guides/acceptance/${proposalId}`, {
         accepted: false,
       })
       .subscribe((response) => {

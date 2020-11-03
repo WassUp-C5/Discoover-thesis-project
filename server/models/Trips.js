@@ -28,7 +28,10 @@ const tripsSchema = new mongoose.Schema(
       ref: 'User',
       unique: true
     }],
-    guide: [],
+    guides: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    }],
     published: { type: Boolean, default: false },
   },
   {

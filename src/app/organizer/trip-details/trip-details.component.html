@@ -25,14 +25,14 @@
       </a>
     </div>
   </div>
-  <div class="card-body" *ngIf="!!this.trip[0]">
+  <div class="card-body" *ngIf="!!this.trip">
       <div class="row" id="priceDiv">
         <div class="col col-md-12"></div>
       </div>
       <div class="row">
         <div class="col-md-6 col-sm-12">
           <h3 class="col-md-6" id="tripTitle">
-            {{ trip[0]?.title | titlecase }}
+            {{ trip?.title | titlecase }}
           </h3>
           <footer class="blockquote-footer">
             Organized By
@@ -48,47 +48,47 @@
           <div class="dateLoc">
             <p>
               <span class="material-icons"> location_on </span
-              >{{ trip[0]?.location | titlecase }}
+              >{{ trip?.location | titlecase }}
             </p>
             <p>
               <span class="material-icons">date_range</span>
-              {{ trip[0]?.date | date }}
+              {{ trip?.date | date }}
             </p>
           </div>
         </div>
         <div class="col-md-6 col-sm-12">
           <div class="btn-book-holder">
             <h1 id="priceTag">
-              <span class="badge badge-light">{{ trip[0]?.price | currency: "TND":"symbol" }}
+              <span class="badge badge-light">{{ trip?.price | currency: "TND":"symbol" }}
               </span>
-              <!-- <strong>{{ trip[0]?.price }} DT</strong> -->
+              <!-- <strong>{{ trip?.price }} DT</strong> -->
             </h1>
             <button type="button" class="btn btn-warning btn-lg book-btn" *ngIf="
                 isLoggedIn === false ||
-                !trip[0].waitingList.includes(currentUser.id) && !trip[0].travelers.includes(currentUser.id)
+                !trip.waitingList.includes(currentUser.id) && !trip.travelers.includes(currentUser.id)
               "
-              (click)="book(trip[0]?._id)"
+              (click)="book(trip?._id)"
             >
               <strong> Book now </strong>
             </button>
             <button
               type="button"
               class="btn btn-danger btn-lg book-btn"
-              *ngIf="trip[0].waitingList.includes(currentUser.id) || trip[0].travelers.includes(currentUser.id)"
-              (click)="cancelBooking(trip[0]?._id)"
+              *ngIf="trip.waitingList.includes(currentUser.id) || trip.travelers.includes(currentUser.id)"
+              (click)="cancelBooking(trip?._id)"
             >
               Cancel Booking
             </button>
 
           </div>
-          <div><small class="text-muted">{{ trip[0].travelers.length + "/" + trip[0].maxTravelers }} place remaining</small></div>
+          <div><small class="text-muted">{{ trip.travelers.length + "/" + trip.maxTravelers }} place remaining</small></div>
         </div>
       </div>
       <div class="row">
         <div class="col col-md-12">
           <hr />
           <h2>Description</h2>
-          <p>{{ trip[0]?.description }}</p>
+          <p>{{ trip?.description }}</p>
         </div>
       </div>
     </div>
@@ -108,24 +108,24 @@
         <div class="col-md-6">
           <div class="titleDiv">
             <h3 class="text-primary">
-              <strong> {{ trip[0].title | titlecase }} </strong>
+              <strong> {{ trip.title | titlecase }} </strong>
             </h3>
           </div>
 
           <div>
-            <p><strong>Date : </strong> &nbsp;{{ trip[0].date | date }}</p>
+            <p><strong>Date : </strong> &nbsp;{{ trip.date | date }}</p>
             <hr />
             <p>
               <strong>Location : </strong>&nbsp;{{
-                trip[0].location | titlecase
+                trip.location | titlecase
               }}
             </p>
             <hr />
-            <p><strong>Price : </strong>&nbsp;{{ trip[0].price }} DT</p>
+            <p><strong>Price : </strong>&nbsp;{{ trip.price }} DT</p>
             <hr />
             <p>
               <strong>Trip description : </strong>&nbsp;{{
-                trip[0].description
+                trip.description
               }}
             </p>
             <hr />
@@ -139,16 +139,16 @@
               Edit
             </button>
             <button
-              *ngIf="trip[0].guide.length === 0"
-              (click)="goToGuides(trip[0].location)"
+              *ngIf="trip.guides.length === 0"
+              (click)="goToGuides(trip.location)"
               type="button"
               class="btn btn-secondary col col-md-6 col-sm"
             >
               Add a Local Guide
             </button>
             <button
-              *ngIf="trip[0].guide[0]"
-              (click)="getGuideInfo(trip[0].guide[0], trip[0]._id)"
+              *ngIf="trip.guides[0]"
+              (click)="getGuideInfo(trip.guides[0], trip._id)"
               type="button"
               class="btn btn-success col col-md-6 col-sm"
             >
@@ -167,19 +167,19 @@
           <div id="pubBtn" class="text-right">
             <button
               *ngIf="
-                trip[0].guide.length === 1 &&
+                trip.guides.length === 1 &&
                 publishStatus === false &&
-                trip[0].guide.length !== 0
+                trip.guides.length !== 0
               "
-              (click)="publish(trip[0]._id)"
+              (click)="publish(trip._id)"
               type="button"
               class="btn btn-primary"
             >
               Make Public
             </button>
             <button
-              *ngIf="trip[0] && publishStatus === true"
-              (click)="unpublish(trip[0]._id)"
+              *ngIf="trip && publishStatus === true"
+              (click)="unpublish(trip._id)"
               type="button"
               class="btn btn-primary"
             >
