@@ -4,6 +4,8 @@ import { Component, OnInit } from '@angular/core';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
 import Guide from 'src/app/models/Guide';
 import { GuideService } from '../services/guide.service';
+import { DialogComponent } from '../dialog/dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 // import { User } from './../models/User';
 
@@ -14,6 +16,7 @@ import { GuideService } from '../services/guide.service';
 })
 export class GuideProfileComponent implements OnInit {
   constructor(
+    private dialog: MatDialog,
     private http: HttpClient,
     private tokenStorage: TokenStorageService,
     private activatedRoute: ActivatedRoute,
@@ -21,7 +24,7 @@ export class GuideProfileComponent implements OnInit {
     private guideService: GuideService
   ) {}
 
-  guide:Guide;
+  guide: Guide;
   proposals = [];
   trips = [];
   currentUser = this.tokenStorage.getUser();
@@ -59,15 +62,17 @@ export class GuideProfileComponent implements OnInit {
         this.guideId = param['guideId'];
       }
 
-      this.http.get(`/api/users/guide/${this.guideId}`).subscribe((res: any) => {
-        console.log('on init guide infos', res);
-        this.guide = res;
-        this.dataIsReady = true;
-        // this.guide.gender = 'Male';
-        console.log(this.guide);
-        // this.guide.qualifications = res.qualifications;
-        console.log('user qualification ==>', this.guide.qualifications);
-      });
+      this.http
+        .get(`/api/users/guide/${this.guideId}`)
+        .subscribe((res: any) => {
+          console.log('on init guide infos', res);
+          this.guide = res;
+          this.dataIsReady = true;
+          // this.guide.gender = 'Male';
+          console.log(this.guide);
+          // this.guide.qualifications = res.qualifications;
+          console.log('user qualification ==>', this.guide.qualifications);
+        });
       /*************Get all the proposal by guide ID******************* */
       this.http
         .get(`/api/proposals/guide/${this.guideId}`)
@@ -86,6 +91,16 @@ export class GuideProfileComponent implements OnInit {
           });
           console.log('this.trips ======>', this.trips);
         });
+    });
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(DialogComponent);
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.hire(result);
+      }
     });
   }
   /*********************to refresh page *********************** */
@@ -113,7 +128,7 @@ export class GuideProfileComponent implements OnInit {
   //   console.log('the lenguage level ===>', this.selectedLevel);
   // }
 
-  hire() {
+  hire(data) {
     this.activatedRoute.params.subscribe((params) => {
       let tripId = params['tripId'];
       let guideId = params['guideId'];
@@ -122,9 +137,11 @@ export class GuideProfileComponent implements OnInit {
         guideId: guideId,
         tripId: tripId,
         accepted: null,
+        message: data.message,
+        pay: data.pay * 1,
       };
       console.log('====================================');
-      console.log('Proposal to be added === ', params);
+      console.log('Proposal to be added === ', proposal);
       console.log('====================================');
       // console.log('trip id ====>', tripId);
       // console.log('guide id ====>', `/api/trips/${tripId}/edit`);

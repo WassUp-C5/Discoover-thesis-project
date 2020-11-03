@@ -12,8 +12,9 @@ export class OrganizerProfileComponent implements OnInit {
   currentUser: any;
   selectedGender = '';
   organizerId: string;
-  organizer:any;
+  organizer: any;
   proposals = [];
+
   // tripP = [];
 
   constructor(

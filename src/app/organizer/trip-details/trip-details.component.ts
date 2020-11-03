@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
 import Trip from 'src/app/models/Trip';
+import { TripsService } from 'src/app/services/trips.service';
 
 @Component({
   selector: 'app-trip-details',
@@ -14,26 +15,40 @@ export class TripDetailsComponent implements OnInit {
     private tokenStorage: TokenStorageService,
     private http: HttpClient,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private tripsService: TripsService
   ) {}
   currentUser: any = this.tokenStorage.getUser();
   trip: Trip;
+  guide = [];
   publishStatus = null;
 
   ngOnInit(): void {
+    // this.activatedRoute.params.subscribe((params) => {
+    //   let id = params['tripId'];
+    //   this.http.get('/api/trips/' + id).subscribe((res: any) => {
+    //     this.trip = res;
+    //     this.publishStatus = res.published;
+    //     console.log('====================================');
+    //     console.log('trip should be === ', this.publishStatus);
+    //     console.log('====================================');
+    //   });
+    // });
+
+    this.getTrip();
+  }
+
+  getTrip() {
     this.activatedRoute.params.subscribe((params) => {
       let id = params['tripId'];
-      this.http.get('/api/trips/' + id).subscribe((res: any) => {
-        this.trip.push(res);
-        this.publishStatus = res.published;
+      this.tripsService.getTripById(id).subscribe((trip: Trip) => {
+        this.trip = trip;
         console.log('====================================');
-        console.log('trip should be === ', this.publishStatus);
+        console.log('trip should be === ', this.trip.published);
         console.log('====================================');
       });
     });
   }
-
-
 
   goEdit() {
     this.activatedRoute.params.subscribe((params) => {
@@ -41,10 +56,18 @@ export class TripDetailsComponent implements OnInit {
       this.router.navigate(['/organizer/trip/edit/' + id]);
     });
   }
-  goToGuides() {
+  // goToGuides(location) {
+  //   console.log('location', location);
+  //   // this.activatedRoute.params.subscribe((params) => {
+  //   // });
+  //   this.router.navigate(['/organizer/trip/details/guides/' + location]);
+  // }
+  goToGuides(location) {
     this.activatedRoute.params.subscribe((params) => {
       let tripId = params['tripId'];
-      this.router.navigate(['/organizer/trip/details/guides/' + tripId]);
+      this.router.navigate([
+        '/organizer/trip/details/guides/' + tripId + '/' + location,
+      ]);
     });
   }
 
