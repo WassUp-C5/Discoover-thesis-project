@@ -9,22 +9,22 @@ const proposalRouter = require("./routes/proposal.router");
 const guidesRouter = require("./routes/guides.router");
 const travelersRouter = require("./routes/travelers.router");
 
-
 const app = express();
 const port = process.env.PORT || 5000;
 
+const { cloudinaryConfig } = require("./config/cloudinaryConfig");
+const { multerUploads } = require("./middlewares/multerUpload");
 
 app.use(cors());
 app.use(express.json());
 app.use(express.static(__dirname + "./../dist/DiscooverIn/"));
-app.use("/api/auth", authRouter);
-app.use("/api/user", userRouter);
+app.use("*", cloudinaryConfig);
+app.use("/api/auth", multerUploads, authRouter);
+app.use("/api/users", userRouter);
 app.use("/api/trips", tripsRouter);
 app.use("/api/users/guides", guidesRouter);
 app.use("/api/proposals", proposalRouter);
-app.use("/api/users/guides", guidesRouter);
 app.use("/api/users/travelers", travelersRouter);
-
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "/../dist/DiscooverIn/index.html"));

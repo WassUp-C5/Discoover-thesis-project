@@ -1,12 +1,17 @@
 const travelersRouter = require("express").Router();
 const User = require("../models/User");
 
+/**
+ * Get one traveler by id
+ */
 travelersRouter.get("/:id", async (req, res) => {
-  try{
-    let traveler = await User.findById(req.params.id);
+  try {
+    let traveler = await User.findById(req.params.id).populate(
+      { path:"tripReservations", populate: {path: 'trip', populate: {path: 'organizerId'}} }
+    )
+    console.log("traveler ====>", traveler);
     res.send(traveler);
-  }
-  catch(error){
+  } catch (error) {
     console.log(error);
     res.status(500).send(error);
   }
