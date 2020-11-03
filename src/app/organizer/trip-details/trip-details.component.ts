@@ -17,6 +17,7 @@ export class TripDetailsComponent implements OnInit {
   ) {}
   currentUser: any = this.tokenStorage.getUser();
   trip = [];
+  guide = [];
   publishStatus = null;
 
   ngOnInit(): void {
@@ -38,11 +39,11 @@ export class TripDetailsComponent implements OnInit {
       this.router.navigate(['/organizer/trip/edit/' + id]);
     });
   }
-  goToGuides() {
-    this.activatedRoute.params.subscribe((params) => {
-      let tripId = params['tripId'];
-      this.router.navigate(['/organizer/trip/details/guides/' + tripId]);
-    });
+  goToGuides(location) {
+    console.log('location', location);
+    // this.activatedRoute.params.subscribe((params) => {
+    // });
+    this.router.navigate(['/organizer/trip/details/guides/' + location]);
   }
 
   getGuideInfo(guideId, tripId) {
