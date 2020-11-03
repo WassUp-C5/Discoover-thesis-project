@@ -68,6 +68,11 @@ section {
   color: green;
 }
 .trip-item {
+  max-width: 300px;
+  margin: 10px;
+}
+
+.proposal-item {
   max-width: 90%;
   margin: 10px;
 }
@@ -435,3 +440,4 @@ svg {
 #deleteCancelBtn {
   float:right;
 }
+
