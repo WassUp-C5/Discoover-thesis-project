@@ -37,7 +37,7 @@
           <footer class="blockquote-footer">
             Organized By
             <cite title="Source Title"
-              ><a [routerLink]="['/organizer', this.organizer?.id, 'profile']"
+              ><a [routerLink]="['/organizer', this.trip.organizer?.id, 'profile']"
                 ><strong>{{
                   this.organizer?.first_name + " " + this.organizer?.last_name
                     | titlecase
@@ -67,7 +67,7 @@
                 isLoggedIn === false ||
                 !trip.waitingList.includes(currentUser.id) && !trip.travelers.includes(currentUser.id)
               "
-              (click)="book(trip?._id)"
+              (click)="book(trip?.id)"
             >
               <strong> Book now </strong>
             </button>
@@ -75,7 +75,7 @@
               type="button"
               class="btn btn-danger btn-lg book-btn"
               *ngIf="trip.waitingList.includes(currentUser.id) || trip.travelers.includes(currentUser.id)"
-              (click)="cancelBooking(trip?._id)"
+              (click)="cancelBooking(trip?.id)"
             >
               Cancel Booking
             </button>
@@ -148,7 +148,7 @@
             </button>
             <button
               *ngIf="trip.guides[0]"
-              (click)="getGuideInfo(trip.guides[0], trip._id)"
+              (click)="getGuideInfo(trip.guides[0], trip.id)"
               type="button"
               class="btn btn-success col col-md-6 col-sm"
             >
@@ -169,9 +169,9 @@
               *ngIf="
                 trip.guides.length === 1 &&
                 publishStatus === false &&
-                trip.guides.length !== 0
+                trip.guides.length
               "
-              (click)="publish(trip._id)"
+              (click)="publish(trip.id)"
               type="button"
               class="btn btn-primary"
             >
@@ -179,7 +179,7 @@
             </button>
             <button
               *ngIf="trip && publishStatus === true"
-              (click)="unpublish(trip._id)"
+              (click)="unpublish(trip.id)"
               type="button"
               class="btn btn-primary"
             >

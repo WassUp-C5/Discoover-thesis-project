@@ -58,7 +58,7 @@ tripsRouter.get("/:id", async (req, res) => {
       .populate("organizerId")
       .populate('travelers')
       .populate('waitingList')
-      .populate('guides')
+      .populate('guides');
     console.log(trip);
     res.send(trip);
   } catch (error) {

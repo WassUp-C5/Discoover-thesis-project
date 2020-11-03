@@ -19,6 +19,7 @@ export class TripDetailsComponent implements OnInit {
     private tripsService: TripsService
   ) {}
   currentUser: any = this.tokenStorage.getUser();
+
   trip: Trip;
   guides = [];
   publishStatus = null;
