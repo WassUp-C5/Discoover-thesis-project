@@ -85,21 +85,15 @@
               <hr />
               <h4><strong>My Skills</strong></h4>
               <h4><strong>My Languages</strong></h4>
-              <mat-list role="list">
-                <mat-list-item
+              <ul role="list">
+                <li
                   *ngFor="let qualification of guide.qualifications"
                   role="listitem"
                 >
-                  <ul>
-                    {{
-                      qualification.title
-                    }}:
-                    {{
-                      qualification.current_level
-                    }}
-                  </ul>
-                </mat-list-item>
-              </mat-list>
+                  {{ qualification.title }}:
+                  {{ qualification.current_level }}
+                </li>
+              </ul>
               <!-- <ul>
                 <li *ngFor="let qualification of guide.qualifications">
                   {{ qualification.language }}: {{ qualification.level }}
