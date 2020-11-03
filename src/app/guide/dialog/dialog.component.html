@@ -1,0 +1,24 @@
+<div class="modal-container">
+  <h2 mat-dialog-title>Send Proposal</h2>
+  <mat-dialog-content class="mat-typography">
+
+
+    <form>
+      <div class="form-group">
+        <label for="formGroupExampleInput">Message for the Guide :</label>
+        <textarea (change)="messageChange($event)" class="form-control" id="formGroupExampleInput"
+          placeholder="Example input"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="formGroupExampleInput2">Pay : </label>
+        <input (change)="payChange($event)" type="number" class="form-control" id="formGroupExampleInput2"
+          placeholder="Amount to be paid">
+      </div>
+    </form>
+
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button [mat-dialog-close]="getData()" cdkFocusInitial>Submit</button>
+  </mat-dialog-actions>
+</div>
