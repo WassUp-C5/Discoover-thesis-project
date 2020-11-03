@@ -24,7 +24,7 @@ const routes: Routes = [
   { path: 'organizer/trip/details/:tripId', component: TripDetailsComponent },
   { path: 'guide/:id/profile', component: GuideProfileComponent },
   {
-    path: 'organizer/trip/details/guides/:location',
+    path: 'organizer/trip/details/guides/:tripId/:location',
     component: GuideListComponent,
   },
   { path: 'guide/:guideId/profile/:tripId', component: GuideProfileComponent },

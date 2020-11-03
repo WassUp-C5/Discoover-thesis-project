@@ -14,8 +14,13 @@ export class GuideListItemComponent implements OnInit {
 
   getGuideInfo() {
     this.activatedRoute.params.subscribe((params) => {
-      let id = params['id'];
-
+      let id;
+      if (params['id']) {
+        id = params['id'];
+      }
+      if (params['tripId']) {
+        id = params['tripId'];
+      }
       this.router.navigate([`/guide/${this.guide._id}/profile/${id}`]);
     });
   }
