@@ -40,14 +40,22 @@ export class OrganizeATripComponent implements OnInit {
   get f() {
     return this.trip.controls;
   }
+
+
+  capitalize = function(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
   onSubmit() {
     this.submitted = true;
 
     if (this.trip.invalid) {
       return;
     }
+let newTitle = this.capitalize(this.trip.value.title)
+    this.trip.value.title = newTitle;
 
-    console.log(this.trip.value);
+
     // this.user.roles.push(this.route.snapshot.paramMap.get('role'));
     this.route.params.subscribe((params) => {
       let id = params['id'];
