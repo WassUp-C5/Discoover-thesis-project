@@ -173,7 +173,7 @@
           </mat-tab>
 
           <mat-tab label="MY PROPOSALS" *ngIf="currentUser.id === organizerId">
-            <div class="tab-pane show active" id="myProposals">
+            <!-- <div class="tab-pane show active" id="myProposals">
               <h5 class="mb-4 text-uppercase">
                 <i class="mdi mdi-briefcase mr-1"></i> My Proposals
               </h5>
@@ -249,7 +249,7 @@
 
             <div class="container">
               <div class="row">
-                <mat-card class="col-md-12 col-sm-12 trip-item bg-light card card-accent" *ngFor="let trip of proposals">
+                <mat-card class="col-md-12 col-sm-12 proposal-item bg-light card card-accent" *ngFor="let trip of proposals">
                   <mat-card-header>
                     <mat-card-title>{{ trip.tripId.title }}</mat-card-title>
                   </mat-card-header>
@@ -269,21 +269,21 @@
                         <rect width="5" height="2" x="2" y="1" rx=".5"/>
                         <rect width="8" height="2" x="4" y="5" rx=".5"/>
                         <path d="M6 9.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-6a.5.5 0 0 1-.5-.5v-1zm2 4a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-1z"/>
-                      </svg><p> Accepted</p></div>
+                      </svg><p id="textP"> Accepted</p></div>
                       <div class="info" *ngIf="trip.accepted == null">
                         <svg width="2.5em" height="2.5em" viewBox="0 0 16 16" class="bi bi-bar-chart-steps" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                           <path fill-rule="evenodd" d="M.5 0a.5.5 0 0 1 .5.5v15a.5.5 0 0 1-1 0V.5A.5.5 0 0 1 .5 0z"/>
                           <rect width="5" height="2" x="2" y="1" rx=".5"/>
                           <rect width="8" height="2" x="4" y="5" rx=".5"/>
                           <path d="M6 9.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-6a.5.5 0 0 1-.5-.5v-1zm2 4a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-1z"/>
-                        </svg><p> Pending </p>
+                        </svg><p id="textP"> Pending </p>
                       </div>
                       <div class="info"  *ngIf="trip.accepted == false"><svg width="2.5em" height="2.5em" viewBox="0 0 16 16" class="bi bi-bar-chart-steps" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M.5 0a.5.5 0 0 1 .5.5v15a.5.5 0 0 1-1 0V.5A.5.5 0 0 1 .5 0z"/>
                         <rect width="5" height="2" x="2" y="1" rx=".5"/>
                         <rect width="8" height="2" x="4" y="5" rx=".5"/>
                         <path d="M6 9.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-6a.5.5 0 0 1-.5-.5v-1zm2 4a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-1z"/>
-                      </svg> <p>Declined</p></div>
+                      </svg> <p id="textP">Declined</p></div>
                       <hr>
                       <div ><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-calendar2-check-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 3.5c0-.276.244-.5.545-.5h10.91c.3 0 .545.224.545.5v1c0 .276-.244.5-.546.5H2.545C2.245 5 2 4.776 2 4.5v-1zm8.854 5.354a.5.5 0 0 0-.708-.708L7.5 10.793 6.354 9.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
@@ -298,7 +298,7 @@
                         <path d="M13 4a2 2 0 0 0 2 2V4h-2zM3 4a2 2 0 0 1-2 2V4h2zm10 8a2 2 0 0 1 2-2v2h-2zM3 12a2 2 0 0 0-2-2v2h2zm7-4a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/>
                       </svg> {{ trip.tripId.price }}</div>
                       <hr>
-                      <button
+                      <button id="deleteCancelBtn"
                       type="submit"
                       (click)="
                         cancelProp(trip._id, trip.guideId._id, trip.tripId._id)
