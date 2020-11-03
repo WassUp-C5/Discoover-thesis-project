@@ -12,18 +12,9 @@ export class OrganizerProfileComponent implements OnInit {
   currentUser: any;
   selectedGender = '';
   organizerId: string;
-  organizer = {
-    first_name: '',
-    username: '',
-    last_name: '',
-    gender: '',
-    location: '',
-    email: '',
-    password: '',
-    bio: '',
-    phone_number: '',
-  };
+  organizer: any;
   proposals = [];
+
   // tripP = [];
 
   constructor(
@@ -41,13 +32,13 @@ export class OrganizerProfileComponent implements OnInit {
       this.organizerId = param['id'];
     });
     this.http
-      .get(`/api/user/organizer/${this.currentUser.id}`)
+      .get(`/api/users/organizer/${this.currentUser.id}`)
       .subscribe((res: any) => {
         this.organizer = res;
       });
     // Get all the organizer's trips // Works Fine
     this.http
-      .get(`/api/user/organizer/trips/${this.currentUser.id}`)
+      .get(`/api/users/organizer/trips/${this.currentUser.id}`)
       .subscribe((data: Trip[]) => {
         console.log('organizer trips to be shown in my trips ====> ', data);
         this.trips = data;
@@ -107,7 +98,7 @@ export class OrganizerProfileComponent implements OnInit {
   // Edit organizer profile
   onClick() {
     this.http
-      .put('/api/user/organizer/edit', this.organizer)
+      .put('/api/users/organizer/edit', this.organizer)
       .subscribe((res) => {
         console.log(res);
       });

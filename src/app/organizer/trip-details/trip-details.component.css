@@ -10,7 +10,9 @@ img {
   height: 250px;
   margin-bottom: 10%;
 }
-
+.text-primary {
+  color: red;
+}
 #main {
   margin-top: 3%;
   background-color: white;

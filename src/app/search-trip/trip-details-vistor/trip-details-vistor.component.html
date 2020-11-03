@@ -106,32 +106,38 @@
         <span class="sr-only"></span>
       </a>
     </div>
-    <div class="card-body">
+    <div class="card-body" *ngIf="!!this.tripDetails">
       <div class="row" id="priceDiv">
         <div class="col col-md-12"></div>
       </div>
       <div class="row">
-        <div class="col col-md-8">
+        <div class="col-md-6 col-sm-12">
           <h3 class="col-md-6" id="tripTitle">
             {{ tripDetails?.title | titlecase }}
           </h3>
           <footer class="blockquote-footer">
             Organized By
-            <cite title="Source Title"><a [routerLink]="['/organizer', this.organizer?._id, 'profile']"><strong>{{
+            <cite title="Source Title"
+              ><a [routerLink]="['/organizer', this.organizer?.id, 'profile']"
+                ><strong>{{
                   this.organizer?.first_name + " " + this.organizer?.last_name
-                }}</strong></a></cite>
+                    | titlecase
+                }}</strong></a
+              ></cite
+            >
           </footer>
           <div class="dateLoc">
+            <p>
+              <span class="material-icons"> location_on </span
+              >{{ tripDetails?.location | titlecase }}
+            </p>
             <p>
               <span class="material-icons">date_range</span>
               {{ tripDetails?.date | date }}
             </p>
-            <p>
-              <span class="material-icons"> location_on </span>{{ tripDetails?.location | titlecase }}
-            </p>
           </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-6 col-sm-12">
           <div class="btn-book-holder">
             <h1 id="priceTag">
               <span class="badge badge-light">{{ tripDetails?.price | currency: "TND":"symbol" }}
@@ -140,17 +146,23 @@
             </h1>
             <button type="button" class="btn btn-warning btn-lg book-btn" *ngIf="
                 isLoggedIn === false ||
-                bookStatus === false
-
-              " (click)="book(tripDetails?._id)">
+                !tripDetails.waitingList.includes(currentUser.id) && !tripDetails.travelers.includes(currentUser.id)
+              "
+              (click)="book(tripDetails?._id)"
+            >
               <strong> Book now </strong>
             </button>
-            <button type="button" class="btn btn-danger btn-lg book-btn" *ngIf="bookStatus === true"
-              (click)="cancelBooking(tripDetails?._id)">
+            <button
+              type="button"
+              class="btn btn-danger btn-lg book-btn"
+              *ngIf="tripDetails.waitingList.includes(currentUser.id) || tripDetails.travelers.includes(currentUser.id)"
+              (click)="cancelBooking(tripDetails?._id)"
+            >
               Cancel Booking
             </button>
+
           </div>
-          <div><small class="text-muted">5/20 place remaining</small></div>
+          <div><small class="text-muted">{{ tripDetails.travelers.length + "/" + tripDetails.maxTravelers }} place remaining</small></div>
         </div>
       </div>
       <div class="row">
@@ -161,6 +173,6 @@
         </div>
       </div>
     </div>
-    <google-map width="100%"></google-map>
+    <!-- <google-map width="100%"></google-map> -->
   </div>
 </div>

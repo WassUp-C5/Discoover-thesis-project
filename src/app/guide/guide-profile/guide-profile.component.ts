@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
+import Guide from 'src/app/models/Guide';
+import { GuideService } from '../services/guide.service';
 
 // import { User } from './../models/User';
 
@@ -15,21 +17,11 @@ export class GuideProfileComponent implements OnInit {
     private http: HttpClient,
     private tokenStorage: TokenStorageService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private guideService: GuideService
   ) {}
 
-  guide = {
-    username: '',
-    first_name: '',
-    last_name: '',
-    gender: '',
-    location: '',
-    email: '',
-    password: '',
-    bio: '',
-    phone_number: '',
-    qualifications: [],
-  };
+  guide:Guide;
   proposals = [];
   trips = [];
   currentUser = this.tokenStorage.getUser();
@@ -48,18 +40,17 @@ export class GuideProfileComponent implements OnInit {
         this.guideId = param['guideId'];
       }
 
-      let tripIdFromLink = param['tripId'];
       console.log('guideId: ', this.guideId);
 
       /* ****************Get current proposal with guideId and tripId********************** */
-      this.http
-        .get(`/api/proposals/current/${this.guideId}/${tripIdFromLink}`)
-        .subscribe((res: any) => {
-          this.currentProposal = res;
-          console.log('====================================');
-          console.log('this trip prop stat === ', res);
-          console.log('====================================');
-        });
+      if (param['tripId']) {
+        let tripIdFromLink = param['tripId'];
+        this.http
+          .get(`/api/proposals/current/${this.guideId}/${tripIdFromLink}`)
+          .subscribe((res: any) => {
+            this.currentProposal = res;
+          });
+      }
     });
     this.activatedRoute.params.subscribe((param) => {
       if (param['id']) {
@@ -68,7 +59,7 @@ export class GuideProfileComponent implements OnInit {
         this.guideId = param['guideId'];
       }
 
-      this.http.get(`/api/user/guide/${this.guideId}`).subscribe((res: any) => {
+      this.http.get(`/api/users/guide/${this.guideId}`).subscribe((res: any) => {
         console.log('on init guide infos', res);
         this.guide = res;
         this.dataIsReady = true;
@@ -100,7 +91,7 @@ export class GuideProfileComponent implements OnInit {
   /*********************to refresh page *********************** */
   getGuide() {
     this.dataIsReady = false;
-    this.http.get(`/api/user/guide/${this.guideId}`).subscribe((guide: any) => {
+    this.guideService.getGuide(this.guideId).subscribe((guide) => {
       this.guide = guide;
       this.dataIsReady = true;
       console.log('New guide ==>', this.guide);
