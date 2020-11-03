@@ -25,6 +25,73 @@
       </a>
     </div>
   </div>
+  <div class="card-body" *ngIf="!!this.tripDetails">
+      <div class="row" id="priceDiv">
+        <div class="col col-md-12"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-sm-12">
+          <h3 class="col-md-6" id="tripTitle">
+            {{ trip[0]?.title | titlecase }}
+          </h3>
+          <footer class="blockquote-footer">
+            Organized By
+            <cite title="Source Title"
+              ><a [routerLink]="['/organizer', this.organizer?.id, 'profile']"
+                ><strong>{{
+                  this.organizer?.first_name + " " + this.organizer?.last_name
+                    | titlecase
+                }}</strong></a
+              ></cite
+            >
+          </footer>
+          <div class="dateLoc">
+            <p>
+              <span class="material-icons"> location_on </span
+              >{{ trip[0]?.location | titlecase }}
+            </p>
+            <p>
+              <span class="material-icons">date_range</span>
+              {{ trip[0]?.date | date }}
+            </p>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+          <div class="btn-book-holder">
+            <h1 id="priceTag">
+              <span class="badge badge-light">{{ trip[0]?.price | currency: "TND":"symbol" }}
+              </span>
+              <!-- <strong>{{ trip[0]?.price }} DT</strong> -->
+            </h1>
+            <button type="button" class="btn btn-warning btn-lg book-btn" *ngIf="
+                isLoggedIn === false ||
+                !trip[0].waitingList.includes(currentUser.id) && !trip[0].travelers.includes(currentUser.id)
+              "
+              (click)="book(trip[0]?._id)"
+            >
+              <strong> Book now </strong>
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger btn-lg book-btn"
+              *ngIf="trip[0].waitingList.includes(currentUser.id) || trip[0].travelers.includes(currentUser.id)"
+              (click)="cancelBooking(trip[0]?._id)"
+            >
+              Cancel Booking
+            </button>
+
+          </div>
+          <div><small class="text-muted">{{ trip[0].travelers.length + "/" + trip[0].maxTravelers }} place remaining</small></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-md-12">
+          <hr />
+          <h2>Description</h2>
+          <p>{{ trip[0]?.description }}</p>
+        </div>
+      </div>
+    </div>
   <section id="principal-content">
     <div class="col-md-12" id="main">
       <div class="row">

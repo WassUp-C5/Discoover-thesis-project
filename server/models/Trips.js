@@ -8,7 +8,7 @@ const tripsSchema = new mongoose.Schema(
     date: Date,
     price: Number,
     description: String,
-    // activities: [],
+    activities: [],
     maxTravelers: Number,
     organizerId: {
       type: mongoose.Schema.Types.ObjectId,
