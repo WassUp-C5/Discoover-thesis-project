@@ -8,6 +8,10 @@ export class TripsService {
 
   constructor(private http: HttpClient) { }
 
+  getTripById(id:string){
+    return this.http.get(`/api/trips/${id}`);
+  }
+
   getReservationByTripIdAndUserId(tripId:string, userId:string){
     return this.http.get(`/api/trips/${tripId}/users/${userId}/reservations`);
   }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
+import Trip from 'src/app/models/Trip';
 
 @Component({
   selector: 'app-trip-details',
@@ -16,7 +17,7 @@ export class TripDetailsComponent implements OnInit {
     private router: Router
   ) {}
   currentUser: any = this.tokenStorage.getUser();
-  trip = [];
+  trip: Trip;
   publishStatus = null;
 
   ngOnInit(): void {
@@ -31,6 +32,8 @@ export class TripDetailsComponent implements OnInit {
       });
     });
   }
+
+
 
   goEdit() {
     this.activatedRoute.params.subscribe((params) => {
