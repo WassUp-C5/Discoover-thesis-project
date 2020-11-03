@@ -419,7 +419,7 @@ body {
   }
 }
 
-p {
+#textP {
   margin-left: 20%;
   margin-top: 5%;
 }
@@ -432,6 +432,6 @@ svg {
   margin-right: 5%;
 }
 
-button {
+#deleteCancelBtn {
   float:right;
 }
