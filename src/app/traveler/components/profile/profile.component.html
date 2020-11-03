@@ -1,11 +1,11 @@
-<app-navbar></app-navbar>
+<app-navbar [avatar]="this.profileOwner.avatar"></app-navbar>
 <div class="container profile-container">
   <div class="row">
     <div class="col-md-3">
       <mat-card mat-elevation-z2>
         <div class="text-center">
           <img
-            src="../../assets/photo.jpg"
+            [src]="this.profileOwner.avatar"
             class="rounded-circle avatar-xl img-thumbnail"
             id="profileImg"
             alt="profile-image"
