@@ -1,5 +1,6 @@
 <app-organizer-navbar [avatar]="organizer.avatar"></app-organizer-navbar>
-<link rel="stylesheet"
+<link
+  rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css"
   integrity="sha256-NAxhqDvtY0l4xn+YVa6WjAcmd94NNfttjNsDmNatFVc="
   crossorigin="anonymous"
@@ -14,7 +15,11 @@
   <div class="row">
     <div class="col-lg-4 col-xl-4">
       <div class="card-box text-center">
-        <img [src]="organizer.avatar" class="rounded-circle avatar-xl img-thumbnail" alt="profile-image" />
+        <img
+          [src]="organizer.avatar"
+          class="rounded-circle avatar-xl img-thumbnail"
+          alt="profile-image"
+        />
 
         <h2 class="mb-0">
           {{ organizer.first_name + " " + organizer.last_name }}
@@ -32,25 +37,27 @@
           <p class="text-muted font-13 mb-3">
             {{ organizer.bio }}
           </p>
-          <p class="text-muted mb-2 font-13">
+          <!-- <p class="text-muted mb-2 font-13">
             <strong>Full Name :</strong>
             <span class="ml-2">{{
               organizer.first_name + " " + organizer.last_name
             }}</span>
+          </p> -->
+
+          <p class="text-muted mb-2 font-13">
+            <mat-icon>call</mat-icon>
+            <strong
+              ><span class="ml-2">+216{{ organizer.phone_number }} </span>
+            </strong>
           </p>
 
           <p class="text-muted mb-2 font-13">
-            <strong>Mobile :</strong
-            ><span class="ml-2">+216{{ organizer.phone_number }} </span>
-          </p>
-
-          <p class="text-muted mb-2 font-13">
-            <strong>Email :</strong>
+            <strong><mat-icon> email</mat-icon></strong>
             <span class="ml-2">{{ organizer.email }}</span>
           </p>
 
           <p class="text-muted mb-1 font-13">
-            <strong>Location :</strong>
+            <strong><mat-icon>home</mat-icon></strong>
             <span class="ml-2">{{ organizer.location }}</span>
           </p>
         </div>
@@ -81,7 +88,7 @@
     <div class="col-lg-8 col-xl-8">
       <div class="card-box">
         <mat-tab-group>
-          <mat-tab label="About me">
+          <mat-tab label="ABOUT ME">
             <div class="tab-pane show active" id="about-me">
               <h5 class="mb-4 text-uppercase">
                 <i class="mdi mdi-briefcase mr-1"></i> My Biography
@@ -90,11 +97,11 @@
               <p class="text-muted mt-2">{{ organizer.bio }}</p>
             </div>
           </mat-tab>
-          <mat-tab label="My trips">
+          <mat-tab label="MY TRIPS" *ngIf="currentUser.id === organizerId">
             <div class="tab-pane" id="myTrips">
-              <h5 class="mb-4 text-uppercase">
+              <!-- <h5 class="mb-4 text-uppercase">
                 <i class="mdi mdi-briefcase mr-1"></i> My trips
-              </h5>
+              </h5> -->
 
               <!------ Include the above in your HEAD tag ---------->
 
@@ -102,12 +109,16 @@
               <button
                 (click)="addTrip()"
                 class="add-trip"
-                mat-flat-button
-                color="warn"
+                mat-fab
+                color="accent"
               >
-                Add Trip
+                <p id="newTrip">+</p>
+                <p></p>
               </button>
 
+              <p id="trip-list">
+                <strong> List of the trips you organized</strong>
+              </p>
               <div class="container">
                 <div class="row">
                   <mat-card
@@ -130,7 +141,7 @@
                       <button
                         mat-raised-button
                         (click)="getTrip(trip._id)"
-                        color="primary"
+                        color="warn"
                       >
                         Show more
                       </button>
@@ -160,7 +171,7 @@
               </div>
             </div>
           </mat-tab>
-          <mat-tab label="My proposals">
+          <mat-tab label="MY PROPOSALS" *ngIf="currentUser.id === organizerId">
             <div class="tab-pane show active" id="myProposals">
               <h5 class="mb-4 text-uppercase">
                 <i class="mdi mdi-briefcase mr-1"></i> My Proposals
@@ -210,7 +221,7 @@
               </ul>
             </div>
           </mat-tab>
-          <mat-tab label="Settings">
+          <mat-tab label="SETTINGS" *ngIf="currentUser.id === organizerId">
             <div class="tab-pane" id="settings">
               <form>
                 <h5 class="mb-3 text-uppercase bg-light p-2">

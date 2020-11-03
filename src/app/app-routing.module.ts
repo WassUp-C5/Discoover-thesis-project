@@ -23,7 +23,10 @@ const routes: Routes = [
   { path: 'organizer/trip/edit/:id', component: EditTripComponent },
   { path: 'organizer/trip/details/:tripId', component: TripDetailsComponent },
   { path: 'guide/:id/profile', component: GuideProfileComponent },
-  { path: 'organizer/trip/details/guides/:id', component: GuideListComponent },
+  {
+    path: 'organizer/trip/details/guides/:location',
+    component: GuideListComponent,
+  },
   { path: 'guide/:guideId/profile/:tripId', component: GuideProfileComponent },
   { path: 'guideTrip', component: GuideATripComponent },
   { path: 'signup', component: SignupComponent },
