@@ -141,7 +141,7 @@ export class GuideProfileComponent implements OnInit {
         pay: data.pay * 1,
       };
       console.log('====================================');
-      console.log('Proposal to be added === ', params);
+      console.log('Proposal to be added === ', proposal);
       console.log('====================================');
       // console.log('trip id ====>', tripId);
       // console.log('guide id ====>', `/api/trips/${tripId}/edit`);

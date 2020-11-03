@@ -1,100 +1,29 @@
 <app-visitor-navbar></app-visitor-navbar>
 
-<!--  -->
-<!-- <div class="container">
-  <section id="principal-content">
-    <div class="col-md-12" id="main">
-      <div class="row">
-        <div class="col-md-4 col-md-offset-1">
-          <figure>
-            <img
-              class="img-circle img-thumbnail"
-              src="https://placeimg.com/380/230/nature"
-            />
-            <div id="infoDiv">
-              <h3><strong>Organizer name</strong></h3>
-              <a [routerLink]="['/organizer', this.organizer?._id, 'profile']"
-                ><strong>{{
-                  this.organizer?.first_name + " " + this.organizer?.last_name
-                }}</strong></a
-              ><br />
-              <h3><strong>Guide name</strong></h3>
-              <a
-                *ngFor="let guideId of this.tripDetails?.guide"
-                [routerLink]="['/guide', guideId, 'profile']"
-                ><strong>{{
-                  guideInfo.first_name + " " + guideInfo.last_name
-                }}</strong></a
-              >
-              <a href="#" *ngIf="tripDetails?.guide?.length === 0">
-                No guide assigned </a
-              ><br />
-            </div>
-          </figure>
-        </div> -->
-<!-- 4 -->
-<!-- <div class="col-md-6">
-          <div class="titleDiv">
-            <h3 class="text-primary">
-              <strong> {{ tripDetails?.title | titlecase }} </strong>
-            </h3>
-          </div>
-
-          <div id="basicInfo">
-            <p><strong>Date : </strong> &nbsp;{{ tripDetails?.date | date }}</p>
-            <hr />
-            <p>
-              <strong>Location : </strong>&nbsp;{{
-                tripDetails?.location | titlecase
-              }}
-            </p>
-            <hr />
-            <p><strong>Price : </strong>&nbsp;{{ tripDetails?.price }} DT</p>
-            <hr />
-            <p>
-              <strong>Trip description : </strong>&nbsp;{{
-                tripDetails?.description
-              }}
-              {{ isLoggedIn }}
-            </p>
-            <hr />
-          </div>
-        </div>
-      </div>
-      <button
-        class="bookBtn"
-        *ngIf="
-          isLoggedIn === false ||
-          !tripDetails.travelers.includes(currentUser.id)
-        "
-        (click)="book(tripDetails?._id)"
-      >
-        Book
-      </button>
-      <button
-        class="bookBtn"
-        *ngIf="tripDetails.travelers.includes(currentUser.id)"
-        (click)="cancelBooking(tripDetails?._id)"
-      >
-        Cancel Booking
-      </button> -->
-<!-- /row -->
-<!-- </div>
-  </section>
-</div> -->
-
 <div class="container">
   <div class="card">
     <div id="image" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active" data-interval="10000">
-          <img src="https://placeimg.com/380/230/nature" class="d-block w-100" alt="..." />
+          <img
+            src="https://placeimg.com/380/230/nature"
+            class="d-block w-100"
+            alt="Trip Location Images"
+          />
         </div>
         <div class="carousel-item" data-interval="2000">
-          <img src="https://placeimg.com/380/230/nature" class="d-block w-100" alt="..." />
+          <img
+            src="https://placeimg.com/380/230/nature"
+            class="d-block w-100"
+            alt="Trip Location Images"
+          />
         </div>
         <div class="carousel-item">
-          <img src="https://placeimg.com/380/230/nature" class="d-block w-100" alt="..." />
+          <img
+            src="https://placeimg.com/380/230/nature"
+            class="d-block w-100"
+            alt="Trip Location Images"
+          />
         </div>
       </div>
       <a class="carousel-control-prev" href="#image" role="button" data-slide="prev">

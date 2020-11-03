@@ -23,7 +23,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     BrowserAnimationsModule,
     AngularMaterialModule,
     ProfileComponent,
-    BookedTripComponent
+    BookedTripComponent,
+    NavbarComponent
   ]
 })
 export class TravelerModule { }

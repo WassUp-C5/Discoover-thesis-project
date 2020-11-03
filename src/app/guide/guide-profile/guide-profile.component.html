@@ -1,4 +1,4 @@
-<app-guide-navbar *ngIf="currentUser.role === 'guide'"></app-guide-navbar>
+<app-guide-navbar [avatar]="this.guide.avatar" *ngIf="currentUser.roles[1] === 'guide'"></app-guide-navbar>
 <app-organizer-navbar *ngIf="currentUser.id !== guideId"></app-organizer-navbar>
 <!-- <link rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css"
@@ -11,17 +11,21 @@
     <div class="col-md-3">
       <mat-card>
         <div class="text-center">
-          <img src="../../assets/photo.jpg" class="rounded-circle avatar-xl img-thumbnail" id="profileImg"
+          <img [src]="this.guide.avatar" class="rounded-circle avatar-xl img-thumbnail" id="profileImg"
             alt="profile-image" />
 
           <h4 class="mb-0">
             {{ this.guide.first_name + " " + this.guide.last_name }}
           </h4>
-          <button type="button" class="btn btn-success btn-xs waves-effect mb-2 waves-light"
-            *ngIf="currentUser.id === guideId">
+          <button
+            type="button"
+            class="btn btn-success btn-xs waves-effect mb-2 waves-light"
+            *ngIf="currentUser.id === guideId"
+          >
             Update Photo
           </button>
           <button
+
             *ngIf="currentUser.id !== guideId && currentProposal.length === 0 && !currentUser.roles.includes('guide') && !currentUser.roles.includes('traveler')"
             mat-raised-button color="warn" (click)="openDialog()">Hire</button>
           <!-- <button type="submit" (click)="hire()" class="btn btn-danger btn-signin"
@@ -30,23 +34,14 @@
           </button> -->
           <button type="submit" (click)="unhire(guideId, currentUser.id)" mat-raised-button color="warn"
             *ngIf="currentUser.id !== guideId && currentProposal.length && !currentUser.roles.includes('traveler') ">
+
             Unhire
           </button>
 
           <div class="text-left mt-3">
-            <h4 class="font-13 text-uppercase">About Me :</h4>
-            <p class="text-muted font-13 mb-3">
-              {{ (guide.bio | slice: 0:100) + "..." }}
-            </p>
             <p class="text-muted mb-2 font-13">
-              <strong>Full name :</strong>
-              <span class="ml-2">{{
-                this.guide.first_name + " " + this.guide.last_name
-              }}</span>
-            </p>
-
-            <p class="text-muted mb-2 font-13">
-              <strong>Mobile :</strong><span class="ml-2">+216{{ guide.phone_number }}</span>
+              <strong>Mobile :</strong
+              ><span class="ml-2">+216{{ guide.phone_number }}</span>
             </p>
 
             <p class="text-muted mb-2 font-13">
@@ -67,16 +62,26 @@
         <mat-tab-group>
           <mat-tab label="About me">
             <div class="tab-pane show active" id="about-me">
-              <h5>My Biography</h5>
+              <h4><strong>My Biography</strong></h4>
               <p>
                 {{ guide.bio }}
               </p>
               <hr />
-              <h4>My Languages And Skills</h4>
-              <h5>My Languages</h5>
+              <h4><strong>My Skills</strong></h4>
+              <h4><strong>My Languages</strong></h4>
               <mat-list role="list">
-                <mat-list-item *ngFor="let qualification of guide.qualifications" role="listitem">
-                  {{ qualification.title }}: {{ qualification.current_level }}
+                <mat-list-item
+                  *ngFor="let qualification of guide.qualifications"
+                  role="listitem"
+                >
+                  <ul>
+                    {{
+                      qualification.title
+                    }}:
+                    {{
+                      qualification.current_level
+                    }}
+                  </ul>
                 </mat-list-item>
               </mat-list>
               <!-- <ul>
@@ -88,7 +93,10 @@
           </mat-tab>
           <mat-tab *ngIf="currentUser.id === guideId" label="Settings">
             <div class="tab-pane" id="settings">
-              <app-edit-guide-profile [getGuide]="getGuide" [guide]="guide"></app-edit-guide-profile>
+              <app-edit-guide-profile
+                [getGuide]="getGuide"
+                [guide]="guide"
+              ></app-edit-guide-profile>
             </div>
           </mat-tab>
           <mat-tab *ngIf="currentUser.id === guideId" label="Proposals">
@@ -96,10 +104,12 @@
               <h5>My PROPOSALS</h5>
 
               <ul *ngFor="let trip of trips">
-                <li *ngIf="
+                <li
+                  *ngIf="
                     trip.proposal.accepted === null ||
                     trip.proposal.accepted === true
-                  ">
+                  "
+                >
                   <h3 class="text-primary">
                     <span class="glyphicon glyphicon-arrow-right"></span>
                     {{ trip.res.title }}
@@ -117,22 +127,31 @@
                   <div>
                     <p>Trip description : <br />{{ trip.res.description }}</p>
                   </div>
+
                   <div>
                     <p>Message from organizer : <br />{{ trip.proposal.message }}</p>
                   </div>
                   <button type="submit" *ngIf="
+
                       trip.proposal.accepted === false ||
                       trip.proposal.accepted === null
-                    " (click)="accept(trip.res._id, trip.proposal._id)" class="btn btn-secondary btn-signin">
+                    "
+                    (click)="accept(trip.res._id, trip.proposal._id)"
+                    class="btn btn-secondary btn-signin"
+                  >
                     Accept
                   </button>
-                  <button type="submit" (click)="
+                  <button
+                    type="submit"
+                    (click)="
                       decline(
                         trip.res._id,
                         trip.proposal._id,
                         trip.proposal.guideId
                       )
-                    " class="btn btn-danger btn-signin">
+                    "
+                    class="btn btn-danger btn-signin"
+                  >
                     Decline
                   </button>
                 </li>
