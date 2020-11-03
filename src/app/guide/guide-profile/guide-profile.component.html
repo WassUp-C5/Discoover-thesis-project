@@ -1,4 +1,4 @@
-<app-guide-navbar *ngIf="currentUser.role === 'guide'"></app-guide-navbar>
+<app-guide-navbar [avatar]="this.guide.avatar" *ngIf="currentUser.roles[1] === 'guide'"></app-guide-navbar>
 <app-organizer-navbar *ngIf="currentUser.id !== guideId"></app-organizer-navbar>
 <!-- <link rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css"
@@ -11,12 +11,8 @@
     <div class="col-md-3">
       <mat-card>
         <div class="text-center">
-          <img
-            src="../../assets/photo.jpg"
-            class="rounded-circle avatar-xl img-thumbnail"
-            id="profileImg"
-            alt="profile-image"
-          />
+          <img [src]="this.guide.avatar" class="rounded-circle avatar-xl img-thumbnail" id="profileImg"
+            alt="profile-image" />
 
           <h4 class="mb-0">
             {{ this.guide.first_name + " " + this.guide.last_name }}
