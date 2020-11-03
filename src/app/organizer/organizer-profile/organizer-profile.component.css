@@ -62,7 +62,7 @@ section {
 }
 
 .trip-item {
-  max-width: 300px;
+  max-width: 90%;
   margin: 10px;
 }
 
@@ -406,11 +406,8 @@ body {
   }
 }
 
-a {
-  margin-left: 7%;
-}
 p {
-  margin-left: 10%;
+  margin-left: 20%;
   margin-top: 5%;
 }
 
@@ -420,4 +417,8 @@ p {
 
 svg {
   margin-right: 5%;
+}
+
+button {
+  float:right;
 }
