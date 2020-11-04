@@ -1,3 +1,32 @@
+<script src="../../assets/js/scripts.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+<!-- Third party plugin JS-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+<script
+  src="https://use.fontawesome.com/releases/v5.13.0/js/all.js"
+  crossorigin="anonymous"
+></script>
+<!-- Google fonts-->
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Architects Daughter"
+/>
+<link
+  href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+  rel="stylesheet"
+  type="text/css"
+/>
+<link
+  href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic"
+  rel="stylesheet"
+  type="text/css"
+/>
+<link
+  href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700"
+  rel="stylesheet"
+  type="text/css"
+/>
 <div id="page-top">
   <!-- Navigation-->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
@@ -21,7 +50,7 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav text-uppercase ml-auto">
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#services">Roles</a>
+            <a class="nav-link js-scroll-trigger" href="#services">Join</a>
           </li>
 
           <li class="nav-item">
@@ -39,13 +68,17 @@
   </nav>
   <!-- Masthead-->
   <header class="masthead">
-    <div class="container">
-      <div class="masthead-subheading">Welcome To DISCOOVER IN</div>
-      <div class="masthead-heading text-uppercase">
-        Discoover-in, is a company that offers local trips to ecotourism
-        enthusiasts designed in a fun and unique way. During the Trips our
-        customers will be guided by local guides who know all the hidden secrets
-        of that attraction which is originally their hometown.
+    <div class="welcome-text">
+      <div class="container">
+        <h1 style="font-family: 'Architects Daughter'; font-size: 5rem">
+          Welcome To DISCOOVER IN
+        </h1>
+
+        <div class="font-weight-normal">
+          <p style="font-family: 'Architects Daughter'; font-size: 2.75rem">
+            The platform for travel lovers !
+          </p>
+        </div>
       </div>
     </div>
   </header>
@@ -53,7 +86,7 @@
   <section class="page-section" id="services">
     <div class="container">
       <div class="text-center">
-        <h2 class="section-heading text-uppercase">Roles</h2>
+        <h2 class="section-heading text-uppercase">Join</h2>
       </div>
       <div class="row text-center">
         <div class="col-md-4">
@@ -70,7 +103,9 @@
             height="300"
             (click)="onClick('traveler')"
           />
-          <p class="text-muted">Description to pick a trip</p>
+          <p class="text-muted" style="font-weight: bold; font-size: 1rem">
+            Go on a journey to a place you choose
+          </p>
         </div>
 
         <div class="col-md-4">
@@ -87,7 +122,9 @@
             height="300"
             (click)="onClick('organizer')"
           />
-          <p class="text-muted">Organize Trip Description</p>
+          <p class="text-muted" style="font-weight: bold; font-size: 1rem">
+            Plan your favorite trip
+          </p>
         </div>
         <div class="col-md-4">
           <span class="fa-stack fa-4x">
@@ -103,7 +140,9 @@
             height="300"
             (click)="onClick('guide')"
           />
-          <p class="text-muted">Description to guide a trip</p>
+          <p class="text-muted" style="font-weight: bold; font-size: 1rem">
+            Become one of our guides
+          </p>
         </div>
       </div>
     </div>
@@ -127,47 +166,13 @@
           </div>
           <div class="timeline-panel">
             <div class="timeline-heading">
-              <h4>2009-2011</h4>
-              <h4 class="subheading">Our Humble Beginnings</h4>
-            </div>
-            <div class="timeline-body"></div>
-          </div>
-        </li>
-        <li class="timeline-inverted">
-          <div class="timeline-image">
-            <img
-              class="rounded-circle img-fluid"
-              src="assets/img/about/2.jpg"
-              alt=""
-            />
-          </div>
-          <div class="timeline-panel">
-            <div class="timeline-heading">
-              <h4>March 2011</h4>
-              <h4 class="subheading">An Agency is Born</h4>
-            </div>
-            <div class="timeline-body"></div>
-          </div>
-        </li>
-        <li>
-          <div class="timeline-image">
-            <img
-              class="rounded-circle img-fluid"
-              src="assets/img/about/3.jpg"
-              alt=""
-            />
-          </div>
-          <div class="timeline-panel">
-            <div class="timeline-heading">
-              <h4>December 2012</h4>
-              <h4 class="subheading">Transition to Full Service</h4>
+              <h4 class="subheading">Our social motivation</h4>
             </div>
             <div class="timeline-body">
-              <p class="text-muted">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt
-                ut voluptatum eius sapiente, totam reiciendis temporibus qui
-                quibusdam, recusandae sit vero unde, sed, incidunt et ea quo
-                dolore laudantium consectetur!
+              <p class="text-muted" style="font-size: 1rem">
+                Giving chance to local unemployed young people to step away from
+                jobless routine and seek future in traveling buissnes and be
+                part of building better solutions for local economy.
               </p>
             </div>
           </div>
@@ -182,28 +187,36 @@
           </div>
           <div class="timeline-panel">
             <div class="timeline-heading">
-              <h4>July 2014</h4>
-              <h4 class="subheading">Phase Two Expansion</h4>
+              <h4 class="subheading">Our objectives</h4>
             </div>
             <div class="timeline-body">
-              <p class="text-muted">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt
-                ut voluptatum eius sapiente, totam reiciendis temporibus qui
-                quibusdam, recusandae sit vero unde, sed, incidunt et ea quo
-                dolore laudantium consectetur!
+              <p class="text-muted" style="font-size: 1rem">
+                Helping youth to evolve and develop socially and individually to
+                reach full potential by providing a way to be productive and
+                have fun as well as descovering places.
               </p>
             </div>
           </div>
         </li>
-        <li class="timeline-inverted">
+        <li>
           <div class="timeline-image">
-            <h4>
-              Be Part
-              <br />
-              Of Our
-              <br />
-              Story!
-            </h4>
+            <img
+              class="rounded-circle img-fluid"
+              src="assets/img/about/3.jpg"
+              alt=""
+            />
+          </div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <h4 class="subheading">A platform is Born</h4>
+            </div>
+            <div class="timeline-body">
+              <p class="text-muted" style="font-size: 1rem">
+                Using available technologies and frameworks we started this
+                platform as dedication to our objectives and motivation to
+                accomplish our duty in being an effective player in our society.
+              </p>
+            </div>
           </div>
         </li>
       </ul>
@@ -214,35 +227,20 @@
     <div class="container">
       <div class="text-center">
         <h2 class="section-heading text-uppercase">Our Amazing Team</h2>
+        <h3 class="section-subheading text-muted">
+          The creators of this platform are
+        </h3>
       </div>
       <div class="row">
-        <div class="col-lg-4">
+        <div class="col-lg-3">
           <div class="team-member">
             <img
               class="mx-auto rounded-circle"
               src="assets/img/team/1.jpg"
               alt=""
             />
-            <h4>Kay Garland</h4>
-            <p class="text-muted">Lead Designer</p>
-            <a class="btn btn-dark btn-social mx-2" href="#!"
-              ><i class="fab fa-twitter"></i
-            ></a>
-            <a class="btn btn-dark btn-social mx-2" href="#!"
-              ><i class="fab fa-facebook-f"></i
-            ></a>
-            <a class="btn btn-dark btn-social mx-2" href="#!"
-              ><i class="fab fa-linkedin-in"></i
-            ></a>
-          </div>
-          <div class="team-member">
-            <img
-              class="mx-auto rounded-circle"
-              src="assets/img/team/1.jpg"
-              alt=""
-            />
-            <h4>Kay Garland</h4>
-            <p class="text-muted">Lead Designer</p>
+            <h4>Slim Kasraoui</h4>
+            <p class="text-muted">Developer</p>
             <a class="btn btn-dark btn-social mx-2" href="#!"
               ><i class="fab fa-twitter"></i
             ></a>
@@ -254,16 +252,15 @@
             ></a>
           </div>
         </div>
-
-        <div class="col-lg-4">
+        <div class="col-lg-3">
           <div class="team-member">
             <img
               class="mx-auto rounded-circle"
-              src="assets/img/team/2.jpg"
+              src="assets/img/team/2.png"
               alt=""
             />
-            <h4>Larry Parker</h4>
-            <p class="text-muted">Lead Marketer</p>
+            <h4>Saber Bejeoui</h4>
+            <p class="text-muted">Developer</p>
             <a class="btn btn-dark btn-social mx-2" href="#!"
               ><i class="fab fa-twitter"></i
             ></a>
@@ -275,21 +272,40 @@
             ></a>
           </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-3">
           <div class="team-member">
             <img
               class="mx-auto rounded-circle"
               src="assets/img/team/3.jpg"
               alt=""
             />
-            <h4>Diana Petersen</h4>
-            <p class="text-muted">Lead Developer</p>
+            <h4>Wassim Nahdi</h4>
+            <p class="text-muted">Developer</p>
             <a class="btn btn-dark btn-social mx-2" href="#!"
               ><i class="fab fa-twitter"></i
             ></a>
             <a class="btn btn-dark btn-social mx-2" href="#!"
               ><i class="fab fa-facebook-f"></i
             ></a>
+            <a class="btn btn-dark btn-social mx-2" href="#!"
+              ><i class="fab fa-linkedin-in"></i
+            ></a>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="team-member">
+            <img
+              class="mx-auto rounded-circle"
+              src="assets/img/team/4.jpg"
+              alt=""
+            />
+            <h4>Louati Med Amine</h4>
+            <p class="text-muted">Chef big boss product owner Developer</p>
+            <a class="btn btn-dark btn-social mx-2" href="#!"
+              ><i class="fab fa-twitter"></i
+            ></a>
+            <i class="fab fa-github"></i>
+
             <a class="btn btn-dark btn-social mx-2" href="#!"
               ><i class="fab fa-linkedin-in"></i
             ></a>
@@ -757,28 +773,3 @@
     </div>
   </div>
 </div>
-<script src="../../assets/js/scripts.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
-<!-- Third party plugin JS-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-<script
-  src="https://use.fontawesome.com/releases/v5.13.0/js/all.js"
-  crossorigin="anonymous"
-></script>
-<!-- Google fonts-->
-<link
-  href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
-  rel="stylesheet"
-  type="text/css"
-/>
-<link
-  href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic"
-  rel="stylesheet"
-  type="text/css"
-/>
-<link
-  href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700"
-  rel="stylesheet"
-  type="text/css"
-/>

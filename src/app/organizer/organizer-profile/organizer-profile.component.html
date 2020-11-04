@@ -171,11 +171,13 @@
               </div>
             </div>
           </mat-tab>
+
           <mat-tab label="MY PROPOSALS" *ngIf="currentUser.id === organizerId">
-            <div class="tab-pane show active" id="myProposals">
+            <!-- <div class="tab-pane show active" id="myProposals">
               <h5 class="mb-4 text-uppercase">
                 <i class="mdi mdi-briefcase mr-1"></i> My Proposals
               </h5>
+
 
               <ul *ngFor="let trip of proposals">
                 <li>
@@ -219,7 +221,97 @@
                   </button>
                 </li>
               </ul>
+              <div class="card" style="width: 18rem;"  *ngFor="let trip of proposals">
+                <div class="card-header">
+                  {{ trip.tripId.title }}
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">       <a
+                    x-no-tabbing
+                    (click)="getGuideInfo(trip.guideId._id, trip.tripId._id)"
+                    >{{
+                      trip.guideId.first_name + " " + trip.guideId.last_name
+                    }}</a
+                  ></li>
+                  <li class="list-group-item">                  <div *ngIf="trip.accepted === true">Status : Accepted</div>
+                    <div *ngIf="trip.accepted == null">
+                      Status : Waiting response
+                    </div>
+                    <div *ngIf="trip.accepted == false">Status : Declined</div></li>
+                  <li class="list-group-item">{{ trip.tripId.date }}</li>
+                  <li class="list-group-item">{{ trip.tripId.location }}</li>
+                  <li class="list-group-item">{{ trip.tripId.price }}</li>
+                  <li class="list-group-item">{{ trip.tripId.maxTravelers }}</li>
+                  <li class="list-group-item">{{ trip.tripId.description }}</li>
+                </ul>
+              </div>
+            </div> -->
+
+            <div class="container">
+              <div class="row">
+                <mat-card class="col-md-12 col-sm-12 proposal-item bg-light card card-accent" *ngFor="let trip of proposals">
+                  <mat-card-header>
+                    <mat-card-title>{{ trip.tripId.title }}</mat-card-title>
+                  </mat-card-header>
+                  <hr>
+                  <mat-card-content>
+                   <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-binoculars" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" d="M3 2.5A1.5 1.5 0 0 1 4.5 1h1A1.5 1.5 0 0 1 7 2.5V5h2V2.5A1.5 1.5 0 0 1 10.5 1h1A1.5 1.5 0 0 1 13 2.5v2.382a.5.5 0 0 0 .276.447l.895.447A1.5 1.5 0 0 1 15 7.118V14.5a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 14.5v-3a.5.5 0 0 1 .146-.354l.854-.853V9.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v.793l.854.853A.5.5 0 0 1 7 11.5v3A1.5 1.5 0 0 1 5.5 16h-3A1.5 1.5 0 0 1 1 14.5V7.118a1.5 1.5 0 0 1 .83-1.342l.894-.447A.5.5 0 0 0 3 4.882V2.5zM4.5 2a.5.5 0 0 0-.5.5V3h2v-.5a.5.5 0 0 0-.5-.5h-1zM6 4H4v.882a1.5 1.5 0 0 1-.83 1.342l-.894.447A.5.5 0 0 0 2 7.118V13h4v-1.293l-.854-.853A.5.5 0 0 1 5 10.5v-1A1.5 1.5 0 0 1 6.5 8h3A1.5 1.5 0 0 1 11 9.5v1a.5.5 0 0 1-.146.354l-.854.853V13h4V7.118a.5.5 0 0 0-.276-.447l-.895-.447A1.5 1.5 0 0 1 12 4.882V4h-2v1.5a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V4zm4-1h2v-.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5V3zm4 11h-4v.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5V14zm-8 0H2v.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5V14z"/>
+                    </svg><a
+                      x-no-tabbing
+                      (click)="getGuideInfo(trip.guideId._id, trip.tripId._id)"
+                      >{{
+                        trip.guideId.first_name + " " + trip.guideId.last_name
+                      }}</a>
+                      <hr>
+                      <div class="info" *ngIf="trip.accepted === true"><svg width="2.5em" height="2.5em" viewBox="0 0 16 16" class="bi bi-bar-chart-steps" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M.5 0a.5.5 0 0 1 .5.5v15a.5.5 0 0 1-1 0V.5A.5.5 0 0 1 .5 0z"/>
+                        <rect width="5" height="2" x="2" y="1" rx=".5"/>
+                        <rect width="8" height="2" x="4" y="5" rx=".5"/>
+                        <path d="M6 9.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-6a.5.5 0 0 1-.5-.5v-1zm2 4a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-1z"/>
+                      </svg><p id="textP"> Accepted</p></div>
+                      <div class="info" *ngIf="trip.accepted == null">
+                        <svg width="2.5em" height="2.5em" viewBox="0 0 16 16" class="bi bi-bar-chart-steps" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd" d="M.5 0a.5.5 0 0 1 .5.5v15a.5.5 0 0 1-1 0V.5A.5.5 0 0 1 .5 0z"/>
+                          <rect width="5" height="2" x="2" y="1" rx=".5"/>
+                          <rect width="8" height="2" x="4" y="5" rx=".5"/>
+                          <path d="M6 9.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-6a.5.5 0 0 1-.5-.5v-1zm2 4a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-1z"/>
+                        </svg><p id="textP"> Pending </p>
+                      </div>
+                      <div class="info"  *ngIf="trip.accepted == false"><svg width="2.5em" height="2.5em" viewBox="0 0 16 16" class="bi bi-bar-chart-steps" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M.5 0a.5.5 0 0 1 .5.5v15a.5.5 0 0 1-1 0V.5A.5.5 0 0 1 .5 0z"/>
+                        <rect width="5" height="2" x="2" y="1" rx=".5"/>
+                        <rect width="8" height="2" x="4" y="5" rx=".5"/>
+                        <path d="M6 9.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-6a.5.5 0 0 1-.5-.5v-1zm2 4a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-1z"/>
+                      </svg> <p id="textP">Declined</p></div>
+                      <hr>
+                      <div ><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-calendar2-check-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 3.5c0-.276.244-.5.545-.5h10.91c.3 0 .545.224.545.5v1c0 .276-.244.5-.546.5H2.545C2.245 5 2 4.776 2 4.5v-1zm8.854 5.354a.5.5 0 0 0-.708-.708L7.5 10.793 6.354 9.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
+                      </svg> {{ trip.tripId.date | date }}</div>
+                      <hr>
+                      <div ><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-map" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.502.502 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103zM10 1.91l-4-.8v12.98l4 .8V1.91zm1 12.98l4-.8V1.11l-4 .8v12.98zm-6-.8V1.11l-4 .8v12.98l4-.8z"/>
+                      </svg> {{ trip.tripId.location }}</div>
+                      <hr>
+                      <div ><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M15 4H1v8h14V4zM1 3a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H1z"/>
+                        <path d="M13 4a2 2 0 0 0 2 2V4h-2zM3 4a2 2 0 0 1-2 2V4h2zm10 8a2 2 0 0 1 2-2v2h-2zM3 12a2 2 0 0 0-2-2v2h2zm7-4a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/>
+                      </svg> {{ trip.tripId.price }}</div>
+                      <hr>
+                      <button id="deleteCancelBtn"
+                      type="submit"
+                      (click)="
+                        cancelProp(trip._id, trip.guideId._id, trip.tripId._id)
+                      "
+                      class="btn btn-danger btn-signin"
+                    >
+                      cancel Proposal
+                    </button>
+                  </mat-card-content>
+                </mat-card>
+              </div>
             </div>
+
           </mat-tab>
           <mat-tab label="SETTINGS" *ngIf="currentUser.id === organizerId">
             <div class="tab-pane" id="settings">

@@ -14,6 +14,8 @@ const proposalSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Trip"
     },
+    message: { type: String },
+    pay: { type: Number },
     accepted: { type: Boolean, default: null }
   },
   {

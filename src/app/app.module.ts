@@ -37,7 +37,7 @@ import { TripDetailsVistorComponent } from './search-trip/trip-details-vistor/tr
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { TravelerModule } from './traveler/traveler.module';
 import { LandComponent } from './land/land.component';
-
+import { DialogComponent } from './guide/dialog/dialog.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +64,7 @@ import { LandComponent } from './land/land.component';
     TripItemComponent,
     TripDetailsVistorComponent,
     LandComponent,
+    DialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -75,7 +76,7 @@ import { LandComponent } from './land/land.component';
     ReactiveFormsModule,
     TravelerModule,
     FlashMessagesModule.forRoot(),
-    GoogleMapsModule
+    GoogleMapsModule,
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent],

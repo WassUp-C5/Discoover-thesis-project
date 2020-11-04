@@ -10456,7 +10456,7 @@ p {
 }
 
 ::selection {
-  background: #fed136;
+  background: green;
   text-shadow: none;
 }
 
@@ -10541,8 +10541,8 @@ img::-moz-selection {
 
 @media (min-width: 992px) {
   #mainNav {
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
+    padding-top: 0rem;
+    padding-bottom: 0rem;
     border: none;
     background-color: #05a027;
     transition: padding-top 0.3s ease-in-out, padding-bottom 0.3s ease-in-out;
@@ -10552,7 +10552,7 @@ img::-moz-selection {
     transition: font-size 0.3s ease-in-out;
   }
   #mainNav .navbar-brand img {
-    height: 2rem;
+    height: 3rem;
     transition: height 0.3s ease-in-out;
   }
   #mainNav.navbar-shrink {
@@ -10574,12 +10574,17 @@ img::-moz-selection {
     margin-right: 0;
   }
 }
+.welcome-text {
+  width: 100%;
+  background-color: black;
+  opacity: 0.5;
+}
 header.masthead {
   padding-top: 10.5rem;
   padding-bottom: 6rem;
   text-align: center;
   color: #fff;
-  background-image: url("../../assets/img/bg-04.jpg");
+  background-image: url("../../assets/img/header-bg.jpg");
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-position: center center;
@@ -10774,7 +10779,6 @@ header.masthead .masthead-heading {
   color: white;
   border: 7px solid #e9ecef;
   border-radius: 100%;
-  background-color: #fed136;
 }
 .timeline > li .timeline-image h4 {
   font-size: 10px;
