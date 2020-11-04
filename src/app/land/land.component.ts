@@ -54,6 +54,7 @@ export class LandComponent implements OnInit {
       .then(
         (result: EmailJSResponseStatus) => {
           console.log(result.text);
+          window.location.reload();
         },
         (error) => {
           console.log(error.text);
