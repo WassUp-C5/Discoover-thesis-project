@@ -82,7 +82,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-9 dateLoc">
+      <div class="col-md-6 dateLoc">
         <p>
           <span class="material-icons"> location_on </span
           >{{ trip?.location | titlecase }}
@@ -100,7 +100,8 @@
           </h1>
         </div>
       </div>
-      <div class="col-md-3 text-center">
+      <div class="col-md-6 col-sm-12 text-center">
+        <!-- todo fix make public button to be responsive -->
         <button
           *ngIf="trip.guides.length && !trip.published"
           (click)="publish(trip._id)"

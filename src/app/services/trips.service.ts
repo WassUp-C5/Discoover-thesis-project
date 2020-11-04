@@ -16,7 +16,9 @@ export class TripsService {
     return this.http.get(`/api/trips/${tripId}/users/${userId}/reservations`);
   }
 
-  confirmTripReservation(reservation, status){
-    return this.http.put(`/api/trips/${reservation.trip_id}/reservations/${reservation.id}/${status}`,{travler8d: reservation.traveler_id})
+  confirmTripReservation(reservation){
+    console.log(reservation);
+
+    return this.http.put(`/api/trips/${reservation.trip_id}/reservations/${reservation.reservation_id}/confirm`,{travelerId: reservation.traveler_id})
   }
 }

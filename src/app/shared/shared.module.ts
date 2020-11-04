@@ -4,6 +4,7 @@ import { ConfirmReservationButtonComponent } from './components/confirm-reservat
 /* Angular material */
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from '../angular-material.module';
+import { FlashMessagesModule } from 'angular2-flash-messages';
 
 
 
@@ -13,7 +14,8 @@ import { AngularMaterialModule } from '../angular-material.module';
   imports: [
     CommonModule,
     BrowserAnimationsModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    FlashMessagesModule.forRoot(),
   ],
   exports: [
     ConfirmReservationButtonComponent,

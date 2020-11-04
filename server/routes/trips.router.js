@@ -3,7 +3,6 @@ const Trip = require("../models/Trips");
 const User = require("../models/User");
 const TripReservation = require("../models/TripReservation");
 
-
 /****************Add a Trip**************** WORKS FINE *************** */
 tripsRouter.post("/add", async (req, res) => {
   try {
@@ -136,16 +135,16 @@ tripsRouter.put(
   async (req, res) => {
     try {
       let trip = await Trip.findById(req.params.id);
-      let traveler = await User.findById(req.body.reservation.traveler_id);
+      let traveler = await User.findById(req.body.travelerId);
       if (!trip.travelers.includes(traveler._id)) {
         trip.travelers.push(traveler._id);
         trip.waitingList.pull(traveler._id);
         await trip.save();
-        await TripReservation.updateOne(
+        let tripReservation = await TripReservation.findOneAndUpdate(
           { _id: req.params.reservationId },
           { confirmed: true }
         );
-        res.send(trip);
+        res.send(tripReservation);
       } else {
         res
           .status(500)
@@ -157,6 +156,7 @@ tripsRouter.put(
     }
   }
 );
+
 
 /**
  * Cancel trip reservation, this function will do the next:
@@ -210,19 +210,17 @@ tripsRouter.put(
 );
 /****************Update trip to be published  **************  */
 tripsRouter.put("/publish/:id", async (req, res) => {
-  try{
+  try {
     console.log(req.body);
     let tripId = req.params.id;
-    let updatedTrip = await Trip.findOneAndUpdate({ _id: tripId }, req.body,{
-      new: true
+    let updatedTrip = await Trip.findOneAndUpdate({ _id: tripId }, req.body, {
+      new: true,
     });
-    console.log('====================================');
+    console.log("====================================");
     console.log(updatedTrip);
-    console.log('====================================');
+    console.log("====================================");
     res.send(updatedTrip);
-  }
-  catch(error)
-  {
+  } catch (error) {
     console.log(error);
     res.status(500).send("Somthing wrong happend!!");
   }
