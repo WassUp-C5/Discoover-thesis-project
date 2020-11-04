@@ -36,6 +36,7 @@ import { TripItemComponent } from './search-trip/trip-list/trip-item/trip-item.c
 import { TripDetailsVistorComponent } from './search-trip/trip-details-vistor/trip-details-vistor.component';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { TravelerModule } from './traveler/traveler.module';
+import { LandComponent } from './land/land.component';
 
 
 @NgModule({
@@ -62,6 +63,7 @@ import { TravelerModule } from './traveler/traveler.module';
     TripListComponent,
     TripItemComponent,
     TripDetailsVistorComponent,
+    LandComponent,
   ],
   imports: [
     BrowserModule,
