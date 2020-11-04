@@ -10,6 +10,7 @@ import User from 'src/app/models/User';
 })
 export class GuideListComponent implements OnInit {
   guidesList: User[];
+  p: number = 1;
   constructor(
     private http: HttpClient,
     private activatedRoute: ActivatedRoute

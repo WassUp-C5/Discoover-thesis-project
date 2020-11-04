@@ -33,6 +33,7 @@ export class GuideProfileComponent implements OnInit {
   guideId: string;
   currentProposal = [];
   dataIsReady: boolean = false;
+  p: number = 1;
 
   ngOnInit(): void {
     this.dataIsReady = false;
