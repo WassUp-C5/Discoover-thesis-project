@@ -1,4 +1,4 @@
-<app-organizer-navbar [avatar]="organizer.avatar"></app-organizer-navbar>
+<app-organizer-navbar [avatar]="organizer?.avatar"></app-organizer-navbar>
 <link
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css"
@@ -12,17 +12,18 @@
   crossorigin="anonymous"
 />
 <div class="container organizer-profile">
+  <app-confirm-reservation-button *ngIf="reservationStatus.params.confirmed === 'true'" [reservationStatus]="reservationStatus"></app-confirm-reservation-button>
   <div class="row">
     <div class="col-lg-4 col-xl-4">
       <div class="card-box text-center">
         <img
-          [src]="organizer.avatar"
+          [src]="organizer?.avatar"
           class="rounded-circle avatar-xl img-thumbnail"
           alt="profile-image"
         />
 
         <h2 class="mb-0">
-          {{ organizer.first_name + " " + organizer.last_name }}
+          {{ organizer?.first_name + " " + organizer?.last_name }}
         </h2>
 
         <button
@@ -35,30 +36,30 @@
         <div class="text-left mt-3">
           <h4 class="font-13 text-uppercase">About Me :</h4>
           <p class="text-muted font-13 mb-3">
-            {{ organizer.bio }}
+            {{ organizer?.bio }}
           </p>
           <!-- <p class="text-muted mb-2 font-13">
             <strong>Full Name :</strong>
             <span class="ml-2">{{
-              organizer.first_name + " " + organizer.last_name
+              organizer?.first_name + " " + organizer?.last_name
             }}</span>
           </p> -->
 
           <p class="text-muted mb-2 font-13">
             <mat-icon>call</mat-icon>
             <strong
-              ><span class="ml-2">+216{{ organizer.phone_number }} </span>
+              ><span class="ml-2">+216{{ organizer?.phone_number }} </span>
             </strong>
           </p>
 
           <p class="text-muted mb-2 font-13">
             <strong><mat-icon> email</mat-icon></strong>
-            <span class="ml-2">{{ organizer.email }}</span>
+            <span class="ml-2">{{ organizer?.email }}</span>
           </p>
 
           <p class="text-muted mb-1 font-13">
             <strong><mat-icon>home</mat-icon></strong>
-            <span class="ml-2">{{ organizer.location }}</span>
+            <span class="ml-2">{{ organizer?.location }}</span>
           </p>
         </div>
 
@@ -94,7 +95,7 @@
                 <i class="mdi mdi-briefcase mr-1"></i> My Biography
               </h5>
 
-              <p class="text-muted mt-2">{{ organizer.bio }}</p>
+              <p class="text-muted mt-2">{{ organizer?.bio }}</p>
             </div>
           </mat-tab>
           <mat-tab label="MY TRIPS" *ngIf="currentUser.id === organizerId">
@@ -328,7 +329,7 @@
                         type="email"
                         class="form-control"
                         id="username"
-                        placeholder="{{ organizer.username }}"
+                        placeholder="{{ organizer?.username }}"
                       />
                     </div>
                   </div>
@@ -366,8 +367,8 @@
                         id="sel1"
                         (change)="genderHandler($event)"
                       >
-                        <option [(ngModel)]="organizer.gender" name="gender">
-                          {{ organizer.gender }}
+                        <option [(ngModel)]="organizer?.gender" name="gender">
+                          {{ organizer?.gender }}
                         </option>
                         <option value="Female">Female</option>
                         <option value="Male">Male</option>

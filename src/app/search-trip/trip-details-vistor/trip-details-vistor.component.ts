@@ -55,7 +55,7 @@ export class TripDetailsVistorComponent implements OnInit {
 
         let id = this.tripDetails.organizerId._id;
         this.http
-          .get(`/api/users/organizer/${id}`)
+          .get(`/api/users/organizers/${id}`)
           .subscribe((result: User) => {
             this.organizer = result;
             console.log('the result from DB is ===>', result);

@@ -9,11 +9,11 @@ export default class Trip {
   maxTravelers: Number;
   date: String;
   description: String;
-  organizer:User | String;
-  reserevations:TripReservation | String;
-  waitingList:User[] | String[];
-  travelers:User[] | String[];
-  guides:User[] | String[];
+  organizer:User;
+  reservations:TripReservation;
+  waitingList:User[];
+  travelers:User[];
+  guides:User[];
   published:Boolean;
   createdAt:Date;
   updatedAt:Date;

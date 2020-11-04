@@ -1,194 +1,209 @@
 <app-organizer-navbar></app-organizer-navbar>
 
-<!--  -->
 <div class="container">
   <div class="card">
     <div id="image" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active" data-interval="10000">
-          <img src="https://placeimg.com/380/230/nature" class="d-block w-100" alt="..." />
+          <img
+            src="https://placeimg.com/380/230/nature"
+            class="d-block w-100"
+            alt="..."
+          />
         </div>
         <div class="carousel-item" data-interval="2000">
-          <img src="https://placeimg.com/380/230/nature" class="d-block w-100" alt="..." />
+          <img
+            src="https://placeimg.com/380/230/nature"
+            class="d-block w-100"
+            alt="..."
+          />
         </div>
         <div class="carousel-item">
-          <img src="https://placeimg.com/380/230/nature" class="d-block w-100" alt="..." />
+          <img
+            src="https://placeimg.com/380/230/nature"
+            class="d-block w-100"
+            alt="..."
+          />
         </div>
       </div>
-      <a class="carousel-control-prev" href="#image" role="button" data-slide="prev">
+      <a
+        class="carousel-control-prev"
+        href="#image"
+        role="button"
+        data-slide="prev"
+      >
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="sr-only"></span>
       </a>
-      <a class="carousel-control-next" href="#image" role="button" data-slide="next">
+      <a
+        class="carousel-control-next"
+        href="#image"
+        role="button"
+        data-slide="next"
+      >
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="sr-only"></span>
       </a>
     </div>
   </div>
   <div class="card-body" *ngIf="!!this.trip">
-      <div class="row" id="priceDiv">
-        <div class="col col-md-12"></div>
+    <div class="row">
+      <div class="col-md-9 col-sm-8">
+        <h3 id="tripTitle">
+          {{ trip.title | titlecase }}
+        </h3>
+        <footer class="blockquote-footer">
+          Organized By
+          <cite title="Source Title"
+            ><a
+              [routerLink]="['/organizer', this.trip.organizer?.id, 'profile']"
+              ><strong>{{
+                this.trip.organizer?.first_name +
+                  " " +
+                  this.trip.organizer?.last_name | titlecase
+              }}</strong></a
+            ></cite
+          >
+        </footer>
       </div>
-      <div class="row">
-        <div class="col-md-6 col-sm-12">
-          <h3 class="col-md-6" id="tripTitle">
-            {{ trip?.title | titlecase }}
-          </h3>
-          <footer class="blockquote-footer">
-            Organized By
-            <cite title="Source Title"
-              ><a [routerLink]="['/organizer', this.trip.organizer?.id, 'profile']"
-                ><strong>{{
-                  this.organizer?.first_name + " " + this.organizer?.last_name
-                    | titlecase
-                }}</strong></a
-              ></cite
-            >
-          </footer>
-          <div class="dateLoc">
-            <p>
-              <span class="material-icons"> location_on </span
-              >{{ trip?.location | titlecase }}
-            </p>
-            <p>
-              <span class="material-icons">date_range</span>
-              {{ trip?.date | date }}
-            </p>
+      <div class="col-md-3 col-sm-4">
+        <div class="flex-container">
+          <div class="button-container">
+            <button mat-fab color="primary" class="edit-btn" (click)="goEdit()">
+              <mat-icon>edit</mat-icon>
+            </button>
+          </div>
+          <div class="button-container">
+            <button mat-fab color="warn" (click)="cancel()">
+              <mat-icon>delete</mat-icon>
+            </button>
           </div>
         </div>
-        <div class="col-md-6 col-sm-12">
-          <div class="btn-book-holder">
-            <h1 id="priceTag">
-              <span class="badge badge-light">{{ trip?.price | currency: "TND":"symbol" }}
-              </span>
-              <!-- <strong>{{ trip?.price }} DT</strong> -->
-            </h1>
-            <button type="button" class="btn btn-warning btn-lg book-btn" *ngIf="
-                isLoggedIn === false ||
-                !trip.waitingList.includes(currentUser.id) && !trip.travelers.includes(currentUser.id)
-              "
-              (click)="book(trip?.id)"
-            >
-              <strong> Book now </strong>
-            </button>
-            <button
-              type="button"
-              class="btn btn-danger btn-lg book-btn"
-              *ngIf="trip.waitingList.includes(currentUser.id) || trip.travelers.includes(currentUser.id)"
-              (click)="cancelBooking(trip?.id)"
-            >
-              Cancel Booking
-            </button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 dateLoc">
+        <p>
+          <span class="material-icons"> location_on </span
+          >{{ trip?.location | titlecase }}
+        </p>
+        <p>
+          <span class="material-icons">date_range</span>
+          {{ trip?.date | date }}
+        </p>
+        <div class="btn-book-holder">
+          <h1 id="priceTag">
+            <span class="badge badge-light"
+              >{{ trip?.price | currency: "TND":"symbol" }}
+            </span>
+            <!-- <strong>{{ trip?.price }} DT</strong> -->
+          </h1>
+        </div>
+      </div>
+      <div class="col-md-6 text-right">
+        <button
+          *ngIf="trip.guides.length === 1 && publishStatus === false"
+          (click)="publish(trip.id)"
+          class="btn btn-primary"
+        >
+          Make Public
+        </button>
+        <button
+          *ngIf="trip && publishStatus === true"
+          (click)="unpublish(trip.id)"
+          type="button"
+          class="btn btn-primary"
+        >
+          Make Private
+        </button>
 
-          </div>
-          <div><small class="text-muted">{{ trip.travelers.length + "/" + trip.maxTravelers }} place remaining</small></div>
-        </div>
+        <button
+          *ngIf="trip.guides[0]"
+          (click)="getGuideInfo(trip.guides[0], trip.id)"
+          type="button"
+          class="btn btn-success col col-md-6 col-sm"
+        >
+          Show My Guide
+        </button>
       </div>
-      <div class="row">
-        <div class="col col-md-12">
-          <hr />
-          <h2>Description</h2>
-          <p>{{ trip?.description }}</p>
+    </div>
+
+    <div class="row">
+      <div class="col col-md-12">
+        <hr />
+        <h2>
+          <span class="material-icons align-middle"> description </span>
+          Description
+        </h2>
+        <p>{{ trip?.description }}</p>
+      </div>
+    </div>
+    <hr />
+    <div class="row">
+      <div class="col-md-12">
+        <a mat-fab (click)="goToGuides(trip.location)" class=""
+          ><span class="material-icons add-guide-btn"> add </span></a
+        >
+        Add a Local Guide
+
+      </div>
+    </div>
+    <hr />
+    <div class="row">
+      <div class="col-md-12">
+        <h2>
+          <span class="material-icons align-middle"> groups </span> Confirmed
+          travelers list:
+        </h2>
+        <div
+          class="alert alert-info"
+          role="alert"
+          *ngIf="trip.travelers.length === 0"
+        >
+          There are no confirmed travelers for now!!
+        </div>
+        <div class="travelers-list-container">
+          <div *ngFor="let reservation of trip.reservations" class="user-avatar">
+            <a (click)="goToTravelerProfile(reservation)" *ngIf="reservation.confirmed">
+              <img class="avatar-img" [src]="reservation.traveler.avatar" mat-button />
+            </a>
+          </div>
+          <div class="show-more align-middle">
+            <a>
+              <span class="material-icons align-middle"> more_horiz </span>
+            </a>
+          </div>
         </div>
       </div>
     </div>
-  <section id="principal-content">
-    <div class="col-md-12" id="main">
-      <div class="row">
-        <div class="col-md-4 col-md-offset-1">
-          <figure>
-            <img
-              class="img-circle img-thumbnail"
-              src="https://placeimg.com/380/230/nature"
-            />
-            <h3><strong>Organizer name</strong></h3>
-          </figure>
+    <hr />
+    <div class="row">
+      <div class="col-md-12">
+        <h2>
+          <span class="material-icons align-middle"> group_add </span> Waiting
+          list:
+        </h2>
+        <div
+          class="alert alert-info"
+          role="alert"
+          *ngIf="trip.waitingList.length === 0"
+        >
+          There are no reservations in the waiting list for now!!
         </div>
-        <!-- 4 -->
-        <div class="col-md-6">
-          <div class="titleDiv">
-            <h3 class="text-primary">
-              <strong> {{ trip.title | titlecase }} </strong>
-            </h3>
+        <div class="travelers-list-container">
+          <div *ngFor="let reservation of trip.reservations" class="user-avatar">
+            <a (click)="goToTravelerProfile(reservation)" *ngIf="reservation.confirmed">
+              <img class="avatar-img" [src]="reservation.avatar" mat-button />
+            </a>
           </div>
-
-          <div>
-            <p><strong>Date : </strong> &nbsp;{{ trip.date | date }}</p>
-            <hr />
-            <p>
-              <strong>Location : </strong>&nbsp;{{
-                trip.location | titlecase
-              }}
-            </p>
-            <hr />
-            <p><strong>Price : </strong>&nbsp;{{ trip.price }} DT</p>
-            <hr />
-            <p>
-              <strong>Trip description : </strong>&nbsp;{{
-                trip.description
-              }}
-            </p>
-            <hr />
-          </div>
-          <div class="row">
-            <button
-              type="button"
-              class="btn btn-info col col-md-2 col-sm"
-              (click)="goEdit()"
-            >
-              Edit
-            </button>
-            <button
-              *ngIf="trip.guides.length === 0"
-              (click)="goToGuides(trip.location)"
-              type="button"
-              class="btn btn-secondary col col-md-6 col-sm"
-            >
-              Add a Local Guide
-            </button>
-            <button
-              *ngIf="trip.guides[0]"
-              (click)="getGuideInfo(trip.guides[0], trip.id)"
-              type="button"
-              class="btn btn-success col col-md-6 col-sm"
-            >
-              Show My Guide
-            </button>
-            <button
-              type="button"
-              class="btn btn-danger col col-md-3 col-sm"
-              (click)="cancel()"
-            >
-              Cancel
-            </button>
-          </div>
-        </div>
-        <div class="col-md-2">
-          <div id="pubBtn" class="text-right">
-            <button
-              *ngIf="
-                trip.guides.length === 1 &&
-                publishStatus === false &&
-                trip.guides.length
-              "
-              (click)="publish(trip.id)"
-              type="button"
-              class="btn btn-primary"
-            >
-              Make Public
-            </button>
-            <button
-              *ngIf="trip && publishStatus === true"
-              (click)="unpublish(trip.id)"
-              type="button"
-              class="btn btn-primary"
-            >
-              Make Private
-            </button>
+          <div class="show-more align-middle">
+            <a>
+              <span class="material-icons align-middle"> more_horiz </span>
+            </a>
           </div>
         </div>
       </div>
-      <!-- /row -->
     </div>
-  </section>
+  </div>
+
 </div>

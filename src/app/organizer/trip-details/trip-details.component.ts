@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
 import Trip from 'src/app/models/Trip';
 import { TripsService } from 'src/app/services/trips.service';
+import Traveler from 'src/app/models/Traveler';
 
 @Component({
   selector: 'app-trip-details',
@@ -45,10 +46,17 @@ export class TripDetailsComponent implements OnInit {
       this.tripsService.getTripById(id).subscribe((trip: Trip) => {
         this.trip = trip;
         console.log('====================================');
-        console.log('trip should be === ', this.trip.published);
+        console.log('trip details ===>> ', this.trip);
         console.log('====================================');
       });
     });
+  }
+
+  goToTravelerProfile(reservation){
+    let role = reservation.traveler.roles[1];
+    let id = reservation.traveler._id;
+    this.router.navigate(['/products'], { queryParams: { order: 'popular' } });
+    this.router.navigate([`/${role}/${id}/profile`], { queryParams: {reservation_id: reservation._id,confirmed: reservation.confirmed}});
   }
 
   goEdit() {

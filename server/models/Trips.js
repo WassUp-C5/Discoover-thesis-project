@@ -10,7 +10,7 @@ const tripsSchema = new mongoose.Schema(
     description: String,
     activities: [],
     maxTravelers: Number,
-    organizerId: {
+    organizer: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User'
     },

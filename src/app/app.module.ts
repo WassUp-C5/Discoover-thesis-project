@@ -37,6 +37,7 @@ import { TripDetailsVistorComponent } from './search-trip/trip-details-vistor/tr
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { TravelerModule } from './traveler/traveler.module';
 import { DialogComponent } from './guide/dialog/dialog.component';
+import { SharedModule } from './shared/shared.module';
 
 
 @NgModule({
@@ -75,7 +76,8 @@ import { DialogComponent } from './guide/dialog/dialog.component';
     ReactiveFormsModule,
     TravelerModule,
     FlashMessagesModule.forRoot(),
-    GoogleMapsModule
+    GoogleMapsModule,
+    SharedModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent],
