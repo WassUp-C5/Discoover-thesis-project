@@ -4,7 +4,7 @@ export default class User {
   last_name: string;
   username: string;
   password: string;
-  avatar: string;
+  avatar: string = '../../assets/avatar.png';
   email: string;
   birthday: Date;
   bio: string;

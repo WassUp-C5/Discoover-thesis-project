@@ -72,6 +72,11 @@ section {
   margin: 10px;
 }
 
+.proposal-item {
+  max-width: 90%;
+  margin: 10px;
+}
+
 .card-img {
   position: relative;
   overflow: hidden;
@@ -418,3 +423,21 @@ body {
     margin-bottom: 10px;
   }
 }
+
+#textP {
+  margin-left: 20%;
+  margin-top: 5%;
+}
+
+.info {
+  display: inline-flex;
+}
+
+svg {
+  margin-right: 5%;
+}
+
+#deleteCancelBtn {
+  float:right;
+}
+

@@ -55,6 +55,7 @@ export class EditTripComponent implements OnInit {
       this.http
         .put('api/trips/' + id + '/edit', this.newTrip)
         .subscribe((res: any) => {
+
           // this.toEdit.push(res);
           // console.log(this.toEdit);
           this.router.navigate([`/organizer/${id}/profile`]);
