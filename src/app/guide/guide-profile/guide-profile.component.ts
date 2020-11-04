@@ -52,7 +52,7 @@ export class GuideProfileComponent implements OnInit {
           .get(`/api/proposals/current/${this.guideId}/${tripIdFromLink}`)
           .subscribe((res: any) => {
             this.currentProposal = res;
-            console.log('============>', this.currentProposal)
+            console.log('============>', this.currentProposal);
           });
       }
     });
