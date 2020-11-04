@@ -15,12 +15,26 @@
   font-size: 30px;
 }
 
+.make-public-btn {
+  padding: 10px;
+  width: 100%;
+  font-size: 1.5rem;
+  margin-top: 10px;
+}
+.published {
+  background-color: red;
+}
+
+.unpublished {
+  background-color: green;
+}
+
 div footer {
   font-size: 15px;
   margin-left: 3%;
 }
 
-.travelers-list-container {
+.users-list-container {
   display: flex;
   justify-content: flex-start;
 }

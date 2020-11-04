@@ -12,7 +12,7 @@
   crossorigin="anonymous"
 />
 <div class="container organizer-profile">
-  <app-confirm-reservation-button *ngIf="reservationStatus.params.confirmed === 'true'" [reservationStatus]="reservationStatus"></app-confirm-reservation-button>
+  <app-confirm-reservation-button [reservationStatus]="reservationStatus.params"></app-confirm-reservation-button>
   <div class="row">
     <div class="col-lg-4 col-xl-4">
       <div class="card-box text-center">

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { TripsService } from 'src/app/services/trips.service';
 
 @Component({
   selector: 'app-confirm-reservation-button',
@@ -9,13 +10,19 @@ export class ConfirmReservationButtonComponent implements OnInit {
 
   @Input() reservationStatus;
 
-  constructor() { }
+  constructor(private tripsService: TripsService) { }
 
   ngOnInit(): void {
   }
 
-  onClick(){
+  // trip id
+  // traveler id
+  // reservation id
 
+  onClick(status){
+    this.tripsService.confirmTripReservation(this.reservationStatus, status).subscribe(result => {
+
+    })
   }
 
 }

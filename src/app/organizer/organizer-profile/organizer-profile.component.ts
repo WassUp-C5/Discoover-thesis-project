@@ -27,7 +27,6 @@ export class OrganizerProfileComponent implements OnInit {
   trips: Trip[];
 
   ngOnInit(): void {
-
     this.showReservationConfirmButton();
 
     this.currentUser = this.token.getUser();
@@ -67,12 +66,11 @@ export class OrganizerProfileComponent implements OnInit {
     // Work is here nowwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww show guide name in proposal
   }
 
-  showReservationConfirmButton(){
-    this.route.queryParamMap
-  .subscribe((params) => {
-    this.reservationStatus = { ...params.keys, ...params };
-  }
-);
+  showReservationConfirmButton() {
+    this.route.queryParamMap.subscribe((params) => {
+      this.reservationStatus = { ...params };
+      console.log(this.reservationStatus);
+    });
   }
 
   // Redirect to create trip

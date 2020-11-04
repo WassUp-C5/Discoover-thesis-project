@@ -82,7 +82,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-6 dateLoc">
+      <div class="col-md-9 dateLoc">
         <p>
           <span class="material-icons"> location_on </span
           >{{ trip?.location | titlecase }}
@@ -100,31 +100,32 @@
           </h1>
         </div>
       </div>
-      <div class="col-md-6 text-right">
+      <div class="col-md-3 text-center">
         <button
-          *ngIf="trip.guides.length === 1 && publishStatus === false"
-          (click)="publish(trip.id)"
-          class="btn btn-primary"
+          *ngIf="trip.guides.length && !trip.published"
+          (click)="publish(trip._id)"
+          class="make-public-btn unpublished align-middle"
+          mat-raised-button color="primary"
         >
-          Make Public
+          Make public
         </button>
         <button
-          *ngIf="trip && publishStatus === true"
-          (click)="unpublish(trip.id)"
-          type="button"
-          class="btn btn-primary"
+          *ngIf="trip.published"
+          (click)="unpublish(trip._id)"
+          class="make-public-btn published align-middle"
+          mat-raised-button color="primary"
         >
-          Make Private
+          Make private
         </button>
 
-        <button
+        <!-- <button
           *ngIf="trip.guides[0]"
-          (click)="getGuideInfo(trip.guides[0], trip.id)"
+          (click)="getGuideInfo(trip.guides[0], trip._id)"
           type="button"
           class="btn btn-success col col-md-6 col-sm"
         >
           Show My Guide
-        </button>
+        </button> -->
       </div>
     </div>
 
@@ -141,11 +142,25 @@
     <hr />
     <div class="row">
       <div class="col-md-12">
-        <a mat-fab (click)="goToGuides(trip.location)" class=""
-          ><span class="material-icons add-guide-btn"> add </span></a
-        >
-        Add a Local Guide
-
+        <h2>
+          <span class="material-icons align-middle"> groups </span>
+          Guides list:
+        </h2>
+        <div class="users-list-container">
+          <div *ngFor="let guide of trip.guides" class="user-avatar">
+            <a (click)="getGuideInfo(guide._id, trip._id)">
+              <img class="avatar-img" [src]="guide.avatar" mat-button />
+            </a>
+          </div>
+          <div class="user-avatar">
+            <a
+              mat-fab
+              (click)="goToGuides(trip.location)"
+              class="users-list-container"
+              ><span class="material-icons add-guide-btn"> add </span>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
     <hr />
@@ -162,10 +177,20 @@
         >
           There are no confirmed travelers for now!!
         </div>
-        <div class="travelers-list-container">
-          <div *ngFor="let reservation of trip.reservations" class="user-avatar">
-            <a (click)="goToTravelerProfile(reservation)" *ngIf="reservation.confirmed">
-              <img class="avatar-img" [src]="reservation.traveler.avatar" mat-button />
+        <div class="users-list-container">
+          <div
+            *ngFor="let reservation of trip.reservations"
+            class="user-avatar"
+          >
+            <a
+              (click)="goToTravelerProfile(reservation)"
+              *ngIf="reservation.confirmed"
+            >
+              <img
+                class="avatar-img"
+                [src]="reservation.traveler.avatar"
+                mat-button
+              />
             </a>
           </div>
           <div class="show-more align-middle">
@@ -190,10 +215,16 @@
         >
           There are no reservations in the waiting list for now!!
         </div>
-        <div class="travelers-list-container">
-          <div *ngFor="let reservation of trip.reservations" class="user-avatar">
-            <a (click)="goToTravelerProfile(reservation)" *ngIf="reservation.confirmed">
-              <img class="avatar-img" [src]="reservation.avatar" mat-button />
+        <div class="users-list-container">
+          <div
+            *ngFor="let reservation of trip.reservations"
+            class="user-avatar"
+          >
+            <a
+              (click)="goToTravelerProfile(reservation)"
+              *ngIf="!reservation.confirmed"
+            >
+              <img class="avatar-img" [src]="reservation.traveler.avatar" mat-button />
             </a>
           </div>
           <div class="show-more align-middle">
@@ -205,5 +236,4 @@
       </div>
     </div>
   </div>
-
 </div>

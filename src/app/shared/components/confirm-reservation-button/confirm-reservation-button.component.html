@@ -1,3 +1,20 @@
 <div class="row align-center">
-  <button mat-raised-button color="primary"  (click)="onClick()">Confirm reservation</button>
+  <button
+    mat-raised-button
+    color="primary"
+    class="btn-confirm btn-green"
+    (click)="onClick('confirm')"
+    *ngIf="reservationStatus.confirmed === 'false'"
+  >
+    Confirm reservation
+  </button>
+  <button
+    mat-raised-button
+    color="warn"
+    class="btn-confirm"
+    (click)="onClick('cancel')"
+    *ngIf="reservationStatus.confirmed === 'true'"
+  >
+    Cancel reservation
+  </button>
 </div>

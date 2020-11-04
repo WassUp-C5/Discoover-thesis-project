@@ -52,11 +52,20 @@ export class TripDetailsComponent implements OnInit {
     });
   }
 
-  goToTravelerProfile(reservation){
+  goToTravelerProfile(reservation) {
     let role = reservation.traveler.roles[1];
-    let id = reservation.traveler._id;
-    this.router.navigate(['/products'], { queryParams: { order: 'popular' } });
-    this.router.navigate([`/${role}/${id}/profile`], { queryParams: {reservation_id: reservation._id,confirmed: reservation.confirmed}});
+    let traveler_id = reservation.traveler._id;
+    let trip_id = this.trip._id;
+    console.log(this.trip._id);
+
+    this.router.navigate([`/${role}/${traveler_id}/profile`], {
+      queryParams: {
+        reservation_id: reservation._id,
+        confirmed: reservation.confirmed,
+        trip_id: trip_id,
+        traveler_id: traveler_id,
+      },
+    });
   }
 
   goEdit() {
@@ -81,11 +90,7 @@ export class TripDetailsComponent implements OnInit {
   }
 
   getGuideInfo(guideId, tripId) {
-    this.activatedRoute.params.subscribe((params) => {
-      let id = params['id'];
-
-      this.router.navigate([`/guide/${guideId}/profile/${tripId}`]);
-    });
+    this.router.navigate([`/guide/${guideId}/profile/${tripId}`]);
   }
 
   publish(tripId) {
@@ -93,9 +98,9 @@ export class TripDetailsComponent implements OnInit {
       .put(`/api/trips/publish/${tripId}`, {
         published: true,
       })
-      .subscribe((response) => {
+      .subscribe((response: Trip) => {
         console.log(response);
-        this.publishStatus = true;
+        this.trip.published = response.published;
       });
   }
 
@@ -104,9 +109,9 @@ export class TripDetailsComponent implements OnInit {
       .put(`/api/trips/publish/${tripId}`, {
         published: false,
       })
-      .subscribe((response) => {
+      .subscribe((response: Trip) => {
         console.log(response);
-        this.publishStatus = false;
+        this.trip.published = response.published;
       });
   }
 
