@@ -8,8 +8,20 @@
   <div class="card-desc">
     <h3>{{ trip.title }}</h3>
     <p>
-      {{ trip.description }}
+      <mat-icon> location_on </mat-icon>
+      {{ trip.location }}
     </p>
-    <a class="btn-card" [routerLink]="['/trips', trip._id, 'details']">Show more</a>
+    <p>
+      <mat-icon>today</mat-icon>
+      {{ trip.date.split("T")[0] }}
+    </p>
+    <p>
+      <span class="material-icons"> departure_board </span>
+
+      {{ trip.maxTravelers - trip.travelers.length }} remaining places
+    </p>
+    <a class="btn-card" [routerLink]="['/trips', trip._id, 'details']"
+      >Show more</a
+    >
   </div>
 </div>
