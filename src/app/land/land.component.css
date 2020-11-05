@@ -10967,3 +10967,10 @@ hr.divider {
   border-width: 0.2rem;
   border-color: #cac8c8;
 }
+
+#techProf {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
