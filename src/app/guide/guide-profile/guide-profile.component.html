@@ -1,5 +1,5 @@
 <app-guide-navbar [avatar]="this.guide.avatar" *ngIf="currentUser.roles[1] === 'guide'"></app-guide-navbar>
-<app-organizer-navbar *ngIf="currentUser.id !== guideId"></app-organizer-navbar>
+<app-organizer-navbar [avatar]="this.guide.avatar" *ngIf="currentUser.id !== guideId"></app-organizer-navbar>
 <!-- <link rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css"
   integrity="sha256-NAxhqDvtY0l4xn+YVa6WjAcmd94NNfttjNsDmNatFVc=" crossorigin="anonymous" />
@@ -7,6 +7,7 @@
   integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" /> -->
 <mat-progress-bar mode="indeterminate" *ngIf="!dataIsReady"></mat-progress-bar>
 <div class="container guide-profile">
+  <app-confirm-reservation-button [reservationStatus]="reservationStatus.params"></app-confirm-reservation-button>
   <div class="row">
     <div class="col-md-3">
       <mat-card>

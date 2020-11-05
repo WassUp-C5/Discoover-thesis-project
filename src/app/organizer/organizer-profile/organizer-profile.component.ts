@@ -14,6 +14,7 @@ export class OrganizerProfileComponent implements OnInit {
   organizerId: string;
   organizer: any;
   proposals = [];
+  reservationStatus: any;
 
   // tripP = [];
 
@@ -27,19 +28,21 @@ export class OrganizerProfileComponent implements OnInit {
   p: number = 1;
 
   ngOnInit(): void {
+    this.showReservationConfirmButton();
+
     this.currentUser = this.token.getUser();
     // Get organizer infos from DB
     this.route.params.subscribe((param) => {
       this.organizerId = param['id'];
     });
     this.http
-      .get(`/api/users/organizer/${this.organizerId}`)
+      .get(`/api/users/organizers/${this.organizerId}`)
       .subscribe((res: any) => {
         this.organizer = res;
       });
     // Get all the organizer's trips // Works Fine
     this.http
-      .get(`/api/users/organizer/trips/${this.currentUser.id}`)
+      .get(`/api/users/organizers/${this.currentUser.id}/trips`)
       .subscribe((data: Trip[]) => {
         console.log('organizer trips to be shown in my trips ====> ', data);
         this.trips = data;
@@ -53,8 +56,8 @@ export class OrganizerProfileComponent implements OnInit {
         // this.proposals.forEach((proposal) => {
         //   let tripId = proposal.tripId;
         //   this.http.get(`/api/trips/${tripId}`).subscribe((result) => {
-        //     // let guideID = result.guide[0];
-        //     // this.http.get(`/api/users/guide/${}`)
+        //     // let guideID = result.guides[0];
+        //     // this.http.get(`/api/users/guides/${}`)
         //     console.log('tripiya wa7da ', result);
         //     this.tripP.push({ res, proposal });
         //   });
@@ -62,6 +65,13 @@ export class OrganizerProfileComponent implements OnInit {
         // console.log('this.trips ======>', this.tripP);
       });
     // Work is here nowwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww show guide name in proposal
+  }
+
+  showReservationConfirmButton() {
+    this.route.queryParamMap.subscribe((params) => {
+      this.reservationStatus = { ...params };
+      console.log(this.reservationStatus);
+    });
   }
 
   // Redirect to create trip

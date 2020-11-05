@@ -30,8 +30,8 @@ import { OrganizerProfileComponent } from './organizer/organizer-profile/organiz
 import { EditTripComponent } from './organizer/edit-trip-component/edit-trip.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
-import { GuideListComponent } from './organizer/guide-list/guide-list.component';
-import { GuideListItemComponent } from './organizer/guide-list/guide-list-item/guide-list-item.component';
+import { GuidesListComponent } from './organizer/guides-list/guides-list.component';
+import { GuidesListItemComponent } from './organizer/guides-list/guides-list-item/guides-list-item.component';
 import { TripListComponent } from './search-trip/trip-list/trip-list.component';
 import { TripItemComponent } from './search-trip/trip-list/trip-item/trip-item.component';
 import { TripDetailsVistorComponent } from './search-trip/trip-details-vistor/trip-details-vistor.component';
@@ -39,6 +39,7 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
 import { TravelerModule } from './traveler/traveler.module';
 import { LandComponent } from './land/land.component';
 import { DialogComponent } from './guide/dialog/dialog.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -59,8 +60,8 @@ import { DialogComponent } from './guide/dialog/dialog.component';
     OrganizerNavbarComponent,
     OrganizerNavbarComponent,
     EditTripComponent,
-    GuideListComponent,
-    GuideListItemComponent,
+    GuidesListComponent,
+    GuidesListItemComponent,
     TripListComponent,
     TripItemComponent,
     TripDetailsVistorComponent,
@@ -72,6 +73,7 @@ import { DialogComponent } from './guide/dialog/dialog.component';
     NgxPaginationModule,
     HttpClientModule,
     AppRoutingModule,
+    SharedModule,
     BrowserAnimationsModule,
     AngularMaterialModule,
     FormsModule,

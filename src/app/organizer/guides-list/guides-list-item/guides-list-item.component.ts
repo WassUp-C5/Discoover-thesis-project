@@ -2,11 +2,11 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-guide-list-item',
-  templateUrl: './guide-list-item.component.html',
-  styleUrls: ['./guide-list-item.component.css'],
+  selector: 'app-guides-list-item',
+  templateUrl: './guides-list-item.component.html',
+  styleUrls: ['./guides-list-item.component.css'],
 })
-export class GuideListItemComponent implements OnInit {
+export class GuidesListItemComponent implements OnInit {
   @Input() guide;
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
 

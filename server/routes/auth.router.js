@@ -37,6 +37,17 @@ authRouter.post("/signup", async (req, res) => {
                 })
               )
     }
+    else {
+      var userData = JSON.parse(req.body.user);
+      userData.avatar = '../../assets/avatar.png';
+      var user = new User(userData);
+      await user.saveUser();
+      return res
+              .status(200)
+              .json({
+                messge: 'Your account has been created successfully',
+              })
+    }
 
 
 

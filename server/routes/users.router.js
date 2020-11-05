@@ -5,7 +5,7 @@ const bcrypt = require("bcryptjs");
 
 
 /*******************Get the organizer info*********************************** */
-userRouter.get("/organizer/:id", (req, res) => {
+userRouter.get("/organizers/:id", (req, res) => {
   console.log('====================================');
   console.log('req.params line 9 : ', req.params);
   console.log('====================================');
@@ -33,10 +33,13 @@ userRouter.put("/organizer/edit", (req, res) => {
 
 /*************Get all the organizer's Trips********* Works Fine *********** */
 
-userRouter.get("/organizer/trips/:id", (req, res) => {
+userRouter.get("/organizers/:id/trips", (req, res) => {
   let id = req.params.id;
+  var ObjectId = require('mongoose').Types.ObjectId;
+  var query = { organizer: new ObjectId(id) };
+
   console.log("user ID ======>", id);
-  Trip.find({ organizerId: id }, function (err, trips) {
+  Trip.find(query, function (err, trips) {
     if (err) throw err;
     console.log("organizer trips to be shown  ===> ", trips);
     res.send(trips);
@@ -45,7 +48,7 @@ userRouter.get("/organizer/trips/:id", (req, res) => {
 
 
 /****************Get guide info********************* */
-userRouter.get("/guide/:id", (req, res) => {
+userRouter.get("/guides/:id", (req, res) => {
   console.log("guide id: ", req.params.id)
   User.findById(req.params.id)
     .populate("qualifications")
@@ -57,7 +60,7 @@ userRouter.get("/guide/:id", (req, res) => {
     });
 });
 /****************Update Guide Profile ******************** */
-userRouter.put("/guide/edit", (req, res) => {
+userRouter.put("/guides/edit", (req, res) => {
   let user = req.body;
   console.log("router section guide log ==>", user);
   User.updateOne({ username: user.username }, user)

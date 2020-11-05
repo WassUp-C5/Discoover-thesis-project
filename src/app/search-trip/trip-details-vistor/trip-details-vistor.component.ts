@@ -53,14 +53,14 @@ export class TripDetailsVistorComponent implements OnInit {
         this.tripDetails = data;
         console.log('the data from DB is ====>', this.tripDetails);
 
-        let id = this.tripDetails.organizerId._id;
+        let id = this.tripDetails.organizer._id;
         this.http
-          .get(`/api/users/organizer/${id}`)
+          .get(`/api/users/organizers/${id}`)
           .subscribe((result: User) => {
             this.organizer = result;
             console.log('the result from DB is ===>', result);
           });
-        let guideId = this.tripDetails.guide[0];
+        let guideId = this.tripDetails.guides[0];
         console.log('id guide', guideId);
             if(guideId) {
               this.http
