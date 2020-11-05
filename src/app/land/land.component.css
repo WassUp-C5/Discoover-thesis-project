@@ -2644,23 +2644,6 @@ fieldset:disabled a.btn {
   pointer-events: none;
 }
 
-.btn-primary {
-  color: #fff;
-  background-color: #fed136;
-  border-color: #fed136;
-}
-.btn-primary:hover {
-  color: #fff;
-  background-color: #fec810;
-  border-color: #fec503;
-}
-.btn-primary:focus,
-.btn-primary.focus {
-  color: #fff;
-  background-color: #fec810;
-  border-color: #fec503;
-  box-shadow: 0 0 0 0.2rem rgba(254, 216, 84, 0.5);
-}
 .btn-primary.disabled,
 .btn-primary:disabled {
   color: #fff;
@@ -10613,7 +10596,7 @@ header.masthead .masthead-heading {
 @media (min-width: 768px) {
   header.masthead {
     padding-top: 17rem;
-    padding-bottom: 12.5rem;
+    padding-bottom: 4.5rem;
   }
   header.masthead .masthead-subheading {
     font-size: 2.25rem;
