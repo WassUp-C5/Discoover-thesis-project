@@ -93,7 +93,8 @@
             </div>
           </mat-tab>
           <mat-tab *ngIf="currentUser.id === guideId" label="Proposals">
-            <div id="propAlert" class="alert alert-info" role="alert" *ngIf="trips.length === 0"> You have no trips for
+            <div id="propAlert" class="alert alert-info" role="alert" *ngIf="trips.length === 0"> You have no proposals
+              for
               now.</div>
             <div class="tab-pane" id="proposals">
               <div class="row" *ngFor="let trip of trips ">
