@@ -70,6 +70,7 @@ import { SharedModule } from './shared/shared.module';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
+    SharedModule,
     BrowserAnimationsModule,
     AngularMaterialModule,
     FormsModule,
@@ -77,7 +78,7 @@ import { SharedModule } from './shared/shared.module';
     TravelerModule,
     FlashMessagesModule.forRoot(),
     GoogleMapsModule,
-    SharedModule
+
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent],

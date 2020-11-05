@@ -33,8 +33,10 @@ export class GuideProfileComponent implements OnInit {
   guideId: string;
   currentProposal = [];
   dataIsReady: boolean = false;
+  reservationStatus: any;
 
   ngOnInit(): void {
+    this.showReservationConfirmButton();
     this.dataIsReady = false;
     this.activatedRoute.params.subscribe((param) => {
       if (param['id']) {
@@ -94,6 +96,12 @@ export class GuideProfileComponent implements OnInit {
     });
   }
 
+  showReservationConfirmButton() {
+    this.activatedRoute.queryParamMap.subscribe((params) => {
+      this.reservationStatus = { ...params };
+      console.log(this.reservationStatus);
+    });
+  }
   openDialog() {
     const dialogRef = this.dialog.open(DialogComponent);
 

@@ -7,6 +7,7 @@
   integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" /> -->
 <mat-progress-bar mode="indeterminate" *ngIf="!dataIsReady"></mat-progress-bar>
 <div class="container guide-profile">
+  <app-confirm-reservation-button [reservationStatus]="reservationStatus.params"></app-confirm-reservation-button>
   <div class="row">
     <div class="col-md-3">
       <mat-card>
