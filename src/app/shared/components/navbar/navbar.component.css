@@ -2,6 +2,14 @@
   height: 100%;
 }
 
+.spacer {
+  flex: 1 1 auto;
+}
+.nav {
+  background: #cf0008;
+}
+
+
 .sidenav {
   width: 200px;
 }
@@ -14,4 +22,28 @@
   position: sticky;
   top: 0;
   z-index: 1;
+}
+
+
+.avatar-img {
+  width: 40px;
+  border-radius: 50%;
+}
+.avatar-img:hover {
+  cursor: pointer;
+}
+
+span {
+  color: white;
+  margin-right: 10px;
+}
+
+mat-toolbar a {
+  display: inline-block;
+  text-decoration: none;
+  margin: 0 10px;
+  color: white;
+}
+.toolbar-nav {
+  margin: 0 10px;
 }
