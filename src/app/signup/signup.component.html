@@ -6,6 +6,14 @@
         [formGroup]="signupForm"
         (ngSubmit)="onSubmit()"
       >
+      <div class="image-upload">
+        <label for="file-input">
+          <img [src]="avatar" id="userAvatar"/>
+        </label>
+
+        <input id="file-input" type="file" (change)="onFileSelected($event)" name="avatarFile"/>
+      </div>
+      <!-- <input type="image" src="../../assets/avatar.png" /> -->
         <span class="login100-form-title p-b-34"> Create Account </span>
 
         <div
@@ -95,9 +103,9 @@
           data-validate="Type email"
         >
           <input
+            class="date-input"
             type="date"
             formControlName="birthday"
-            class="form-control"
             [ngClass]="{ 'is-invalid': submitted && f.birthday.errors }"
           />
           <div *ngIf="submitted && f.birthday.errors" class="invalid-feedback">
@@ -149,7 +157,7 @@
             <div *ngIf="f.confirmPassword.errors.required">
               Confirm Password is required
             </div>
-            <div *ngIf="f.confirmPassword.errors.mustMatch">
+            <div *ngIf="f.confirmPassword !== f.password">
               Passwords must match
             </div>
           </div>
@@ -201,14 +209,9 @@
           <button class="login100-form-btn">Sign Up</button>
         </div>
 
-        <div class="w-full text-center p-t-27 p-b-239">
-          <span class="txt1"> Forgot your </span>
-
-          <a href="#" class="txt2"> password? </a>
-        </div>
-
         <div class="w-full text-center">
-          <a href="#" class="txt3"> Sign In </a>
+          <p>You already have an account?</p>
+          <a [routerLink]="['/signin']" class="txt3"> Sign in </a>
         </div>
       </form>
 

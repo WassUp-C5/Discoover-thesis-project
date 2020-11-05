@@ -50,11 +50,31 @@ section {
 /* .details-card {
   background: #ecf0f1;
 } */
-
+.organizer-profile {
+  margin-top: 50px;
+}
 .card-content {
   background: #ffffff;
   border: 4px;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  margin-right: 30px;
+  margin-bottom: 20px;
+}
+#trip-list {
+  top: 12%;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 100%;
+  font: 20px Arial, sans-serif;
+  color: green;
+}
+.trip-item {
+  max-width: 300px;
+  margin: 10px;
+}
+
+.proposal-item {
+  max-width: 90%;
+  margin: 10px;
 }
 
 .card-img {
@@ -104,7 +124,14 @@ section {
   margin-bottom: 5px;
   padding: 0;
 }
-
+#newTrip {
+  font-size: 300%;
+}
+.add-trip {
+  margin-top: 1%;
+  background-color: green;
+  left: 80%;
+}
 .card-desc p {
   color: #747373;
   font-size: 14px;
@@ -165,7 +192,7 @@ body {
   border-radius: 0.25rem;
 }
 .avatar-xl {
-  height: 20rem;
+  height: 10rem;
   /* width: 6rem; */
 }
 .rounded-circle {
@@ -396,3 +423,21 @@ body {
     margin-bottom: 10px;
   }
 }
+
+#textP {
+  margin-left: 20%;
+  margin-top: 5%;
+}
+
+.info {
+  display: inline-flex;
+}
+
+svg {
+  margin-right: 5%;
+}
+
+#deleteCancelBtn {
+  float:right;
+}
+

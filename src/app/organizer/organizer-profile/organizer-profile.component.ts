@@ -11,20 +11,12 @@ import { Trip } from '../../../../server/models/Trips';
 export class OrganizerProfileComponent implements OnInit {
   currentUser: any;
   selectedGender = '';
-  organizer = {
-    first_name: '',
-    username: '',
-    last_name: '',
-    gender: '',
-    location: '',
-    email: '',
-    password: '',
-    bio: '',
-    phone_number: '',
-  };
-  proposals = [];
-  tripP = [];
   organizerId: string;
+  organizer: any;
+  proposals = [];
+  reservationStatus: any;
+
+  // tripP = [];
 
   constructor(
     private http: HttpClient,
@@ -33,22 +25,24 @@ export class OrganizerProfileComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
   trips: Trip[];
+  p: number = 1;
 
   ngOnInit(): void {
+    this.showReservationConfirmButton();
+
     this.currentUser = this.token.getUser();
     // Get organizer infos from DB
     this.route.params.subscribe((param) => {
       this.organizerId = param['id'];
     });
     this.http
-      .get(`/api/user/organizer/${this.organizerId}`)
+      .get(`/api/users/organizers/${this.organizerId}`)
       .subscribe((res: any) => {
-        console.log(res);
         this.organizer = res;
       });
     // Get all the organizer's trips // Works Fine
     this.http
-      .get(`/api/user/organizer/trips/${this.currentUser.id}`)
+      .get(`/api/users/organizers/${this.currentUser.id}/trips`)
       .subscribe((data: Trip[]) => {
         console.log('organizer trips to be shown in my trips ====> ', data);
         this.trips = data;
@@ -58,16 +52,26 @@ export class OrganizerProfileComponent implements OnInit {
       .get(`/api/proposals/organizer/${this.currentUser.id}`)
       .subscribe((res: any) => {
         this.proposals = res;
-        console.log('on init organizer proposals', this.proposals);
-        this.proposals.forEach((proposal) => {
-          let tripId = proposal.tripId;
-          this.http.get(`/api/trips/${tripId}`).subscribe((res) => {
-            console.log('tripiya wa7da ', res);
-            this.tripP.push({ res, proposal });
-          });
-        });
-        console.log('this.trips ======>', this.tripP);
+        console.log('on init organizer proposals', res);
+        // this.proposals.forEach((proposal) => {
+        //   let tripId = proposal.tripId;
+        //   this.http.get(`/api/trips/${tripId}`).subscribe((result) => {
+        //     // let guideID = result.guides[0];
+        //     // this.http.get(`/api/users/guides/${}`)
+        //     console.log('tripiya wa7da ', result);
+        //     this.tripP.push({ res, proposal });
+        //   });
+        // });
+        // console.log('this.trips ======>', this.tripP);
       });
+    // Work is here nowwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww show guide name in proposal
+  }
+
+  showReservationConfirmButton() {
+    this.route.queryParamMap.subscribe((params) => {
+      this.reservationStatus = { ...params };
+      console.log(this.reservationStatus);
+    });
   }
 
   // Redirect to create trip
@@ -80,6 +84,9 @@ export class OrganizerProfileComponent implements OnInit {
 
   // Redirect to trip details
   getTrip(tripId) {
+    console.log('====================================');
+    console.log('tripId from show more ===> ', tripId);
+    console.log('====================================');
     this.router.navigate(['/organizer/trip/details/' + tripId]);
   }
 
@@ -95,10 +102,14 @@ export class OrganizerProfileComponent implements OnInit {
     console.log(this.organizer.gender);
   }
 
+  getGuideInfo(guideId, tripId) {
+    this.router.navigate([`/guide/${guideId}/profile/${tripId}`]);
+  }
+
   // Edit organizer profile
   onClick() {
     this.http
-      .put('/api/user/organizer/edit', this.organizer)
+      .put('/api/users/organizer/edit', this.organizer)
       .subscribe((res) => {
         console.log(res);
       });

@@ -1,46 +1,106 @@
 <app-organizer-navbar></app-organizer-navbar>
-<h1>Edit a trip</h1>
-<form class="text-center border border-light p-5">
-  <p class="h4 mb-4">organize a trip</p>
+<div class="container">
+  <form id="contact" #editTripForm="ngForm" (ngSubmit)="onSubmit()">
+    <h1>Edit a trip</h1>
+    <!-- Title -->
+    <fieldset>
+      <label>Title</label>
+      <input
+        placeholder="Title"
+        type="text"
+        tabindex="1"
+        value="{{ newTrip.title }}"
+        #title="ngModel"
+        [(ngModel)]="newTrip.title"
+        name="title"
+      />
+    </fieldset>
+    <!-- location -->
 
-  <!-- Title -->
+    <fieldset>
+      <label>Location</label>
+      <select
+        name="location"
+        id="cars"
+        class="form-control mb-4"
+        value="{{ newTrip.location }}"
+        #location="ngModel"
+        [(ngModel)]="newTrip.location"
+      >
+        <option value="Ghar El melah">Ghar El melah</option>
+        <option value="Rafraf">Rafraf</option>
+        <option value="Rimel">Rimel</option>
+      </select>
+    </fieldset>
 
-  <label>Title</label>
-  <input type="text" id="defaultContactFormName" class="form-control mb-4" value={{toEdit[0].title}} name="title"
-    [(ngModel)]="toEdit[0].title" />
+    <!-- Price -->
+    <fieldset>
+      <label>Price</label>
+      <input
+        placeholder="Price"
+        type="tel"
+        tabindex="3"
+        value="{{ newTrip.price }}"
+        #price="ngModel"
+        [(ngModel)]="newTrip.price"
+        name="price"
+      />
+    </fieldset>
 
-  <!-- Location -->
-  <label>location</label>
-  <select name="location" value={{toEdit[0].location}} id="cars" [(ngModel)]="toEdit[0].location"
-    class="form-control mb-4">
-    <option value="Ghar El melah">Ghar El melah</option>
-    <option value="Rafraf">Rafraf</option>
-    <option value="Rimel">Rimel</option>
+    <!-- Date -->
+    <fieldset>
+      <label>Date</label>
+      <input
+        placeholder="date"
+        type="date"
+        tabindex="4"
+        class="form-control"
+        value="{{ newTrip.date }}"
+        #date="ngModel"
+        [(ngModel)]="newTrip.date"
+        name="date"
+      />
+    </fieldset>
+    <!-- Max Travelers -->
 
-  </select>
+    <fieldset>
+      <label>Max Travelers</label>
+      <input
+        placeholder="Max Travelers"
+        type="text"
+        tabindex="4"
+        class="form-control"
+        value="{{ newTrip.maxTravelers }}"
+        #maxTravelers="ngModel"
+        [(ngModel)]="newTrip.maxTravelers"
+        name="maxTravelers"
+      />
+    </fieldset>
+    <!-- Description -->
+    <fieldset>
+      <label>Description</label>
+      <textarea
+        placeholder="Type your description here...."
+        tabindex="5"
+        name="description"
+        class="form-control"
+        value="{{ newTrip.description }}"
+        #description="ngModel"
+        [(ngModel)]="newTrip.description"
+      ></textarea>
+    </fieldset>
 
-
-  <label>Price</label>
-  <input type="text" name="price" id="defaultContactFormEmail" class="form-control mb-4" value={{toEdit[0].price}}
-    [(ngModel)]="toEdit[0].price" />
-
-
-  <!-- Date of trips -->
-  <label>Date of trips</label>
-  <input type="date" name="date" class="form-control" value={{toEdit[0].date}} [(ngModel)]="toEdit[0].date" />
-
-  <!-- Description -->
-  <label>Description</label>
-  <div class="form-group">
-    <textarea class="form-control rounded-0" name="description" id="exampleFormControlTextarea2" rows="3"
-      value={{toEdit[0].description}} [(ngModel)]="toEdit[0].description"></textarea>
-  </div>
-
-  <label>Max Travelers</label>
-  <input type="location" id="defaultContactFormEmail" name="maxTravelers" class="form-control mb-4"
-    value={{toEdit[0].maxTravelers}} [(ngModel)]="toEdit[0].maxTravelers" />
-
-
-  <!-- Send button -->
-  <button (click)="onSubmit()" class="btn btn-info btn-block">Send</button>
-</form>
+    <!-- Send button -->
+    <!-- <button (click)="onSubmit()" class="btn btn-info btn-block">Send</button> -->
+    <fieldset>
+      <button
+        name="submit"
+        type="submit"
+        id="contact-submit"
+        data-submit="...Sending"
+      >
+        Submit
+      </button>
+    </fieldset>
+  </form>
+</div>

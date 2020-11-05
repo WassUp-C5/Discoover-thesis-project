@@ -1,0 +1,101 @@
+<app-navbar [avatar]="this.profileOwner?.avatar"></app-navbar>
+<div class="container profile-container">
+  <!-- todo fix error: component is not known element -->
+  <!-- <app-confirm-reservation-button [reservationStatus]="reservationStatus.params"></app-confirm-reservation-button> -->
+  <div class="row">
+    <div class="col-md-3">
+      <mat-card mat-elevation-z2>
+        <div class="text-center">
+          <img
+            [src]="this.profileOwner.avatar"
+            class="rounded-circle avatar-xl img-thumbnail"
+            id="profileImg"
+            alt="profile-image"
+          />
+
+          <h4 class="mb-0">
+            {{
+              this.profileOwner.first_name + " " + this.profileOwner.last_name
+                | titlecase
+            }}
+          </h4>
+          <button
+            type="button"
+            class="btn btn-success btn-xs waves-effect mb-2 waves-light"
+            *ngIf="currentUser.id === this.profileOwner.id"
+          >
+            Update Photo
+          </button>
+
+          <div class="text-left mt-3">
+            <p class="text-muted mb-2 font-13">
+              <strong>Full name :</strong>
+              <span class="ml-2">{{
+                this.profileOwner.first_name + " " + this.profileOwner.last_name
+                  | titlecase
+              }}</span>
+            </p>
+
+            <p class="text-muted mb-2 font-13">
+              <strong>Mobile :</strong
+              ><span class="ml-2"
+                >+216{{ this.profileOwner.phone_number }}</span
+              >
+            </p>
+
+            <p class="text-muted mb-2 font-13">
+              <strong>Email :</strong>
+              <span class="ml-2">{{ this.profileOwner.email }}</span>
+            </p>
+
+            <p class="text-muted mb-1 font-13">
+              <strong>Location :</strong>
+              <span class="ml-2">{{ this.profileOwner.location }}</span>
+            </p>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+    <div class="col-md-9">
+      <mat-tab-group>
+        <mat-tab label="About me">
+          <mat-card class="tab-content mat-elevation-z2">
+            <p>
+              {{ this.profileOwner.bio }}
+            </p>
+            <hr />
+          </mat-card>
+        </mat-tab>
+        <mat-tab label="My bookings" *ngIf="this.profileOwner.id === this.currentUser.id">
+          <div class="container tab-content">
+            <div class="row">
+              <div
+                class="col-12"
+                *ngFor="let tripReservation of profileOwner.tripReservations"
+              >
+                <div *ngIf="profileOwner.tripReservations.length === 0">
+                  You don't have any booking! you can pick one from
+                  <a
+                    routerLink="['/searchTrip']"
+                    routerLinkActive="router-link-active"
+                  >
+                    here
+                  </a>
+                </div>
+                <app-booked-trip
+                  [tripReservation]="tripReservation"
+                ></app-booked-trip>
+              </div>
+            </div>
+          </div>
+        </mat-tab>
+        <mat-tab
+          *ngIf="this.currentUser.id === this.profileOwner.id"
+          label="Settings"
+        >
+          <mat-card class="tab-content">Edit profile not done yet</mat-card>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</div>

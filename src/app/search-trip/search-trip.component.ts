@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Trip } from '../../../server/models/Trips.js';
@@ -7,6 +7,7 @@ import { Trip } from '../../../server/models/Trips.js';
   selector: 'app-search-trip',
   templateUrl: './search-trip.component.html',
   styleUrls: ['./search-trip.component.css'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class SearchTripComponent implements OnInit {
   trips: Trip[];
@@ -43,7 +44,6 @@ export class SearchTripComponent implements OnInit {
         });
     }
   }
-
   searchLocationHandler(event: any) {
     this.searchLocation = event.target.value;
     if (this.searchLocation === '' && this.pickedDate === undefined) {

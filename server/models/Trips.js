@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const db = require('./../../db/config.js');
 
 const tripsSchema = new mongoose.Schema(
   {
@@ -7,12 +8,31 @@ const tripsSchema = new mongoose.Schema(
     date: Date,
     price: Number,
     description: String,
-    // activities: [],
-    maxTravelers: String,
-    organizerId: String,
-    // travelers: []
-    guide: [],
-    published: {type: Boolean, default: false}
+    activities: [],
+    maxTravelers: Number,
+    organizer: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    },
+    reservations: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'TripReservation'
+    }],
+    waitingList: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      unique: true
+    }],
+    travelers: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      unique: true
+    }],
+    guides: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    }],
+    published: { type: Boolean, default: false },
   },
   {
     timestamps: true,

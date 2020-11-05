@@ -1,7 +1,8 @@
 <div class="container">
   <div class="row">
-      <div class="col-lg-4 col-sm-6" *ngFor="let trip of trips">
-        <app-trip-item [trip]="trip"></app-trip-item>
-      </div>
+    <div class="col-lg-4 col-sm-6" *ngFor="let trip of trips | paginate: { itemsPerPage: 9, currentPage: p }">
+      <app-trip-item [trip]="trip"></app-trip-item>
+    </div>
   </div>
+  <pagination-controls class="align-middle" *ngIf="trips.length > 9" (pageChange)="p = $event"></pagination-controls>
 </div>

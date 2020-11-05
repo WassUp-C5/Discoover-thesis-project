@@ -1,0 +1,14 @@
+<div *ngIf="tripReservation">
+  <mat-card class="trip-item mat-elevation-z2">
+    <mat-card-title> {{ tripReservation.trip.title }} </mat-card-title>
+    <mat-card-subtitle> Organized by <a href="#">{{ (tripReservation.trip.organizer.first_name + " " + tripReservation.trip.organizer.last_name) | titlecase }}</a> </mat-card-subtitle>
+    <img mat-card-image src="https://placeimg.com/380/230/nature" />
+    <mat-card-content>
+      <p>{{ tripReservation.trip.description }}</p>
+      <p>{{ tripReservation.trip.date | date }}</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <a mat-raised-button routerLink="" target="_blank">More info</a>
+    </mat-card-actions>
+  </mat-card>
+</div>
