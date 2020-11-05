@@ -2624,7 +2624,7 @@ textarea.form-control.is-invalid {
   }
 }
 .btn:hover {
-  color: #212529;
+  color: hsl(0, 0%, 77%);
   text-decoration: none;
 }
 .btn:focus,
@@ -10517,10 +10517,10 @@ img::-moz-selection {
 
 #mainNav .navbar-nav .nav-item .nav-link.active,
 #mainNav .navbar-nav .nav-item .nav-link:hover {
-  color: hsl(120, 1%, 30%);
+  color: hsl(0, 0%, 77%);
 }
 #btn-navbar {
-  background-color: hsl(120, 1%, 30%);
+  background-color: hsl(0, 0%, 77%);
 }
 
 @media (min-width: 992px) {
