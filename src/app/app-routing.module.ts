@@ -14,9 +14,9 @@ import { SearchTripComponent } from './search-trip/search-trip.component';
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
 import { ProfileComponent } from './traveler/components/profile/profile.component';
-
+import { LandComponent } from './land/land.component';
 const routes: Routes = [
-  { path: '', component: LandingPageComponent },
+  { path: '', component: LandComponent },
   { path: 'searchTrip', component: SearchTripComponent },
   { path: 'organizer/:id/profile', component: OrganizerProfileComponent },
   { path: 'organizer/:id/trip/add', component: OrganizeATripComponent },

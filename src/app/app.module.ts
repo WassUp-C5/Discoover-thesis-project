@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
@@ -36,8 +37,8 @@ import { TripItemComponent } from './search-trip/trip-list/trip-item/trip-item.c
 import { TripDetailsVistorComponent } from './search-trip/trip-details-vistor/trip-details-vistor.component';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { TravelerModule } from './traveler/traveler.module';
+import { LandComponent } from './land/land.component';
 import { DialogComponent } from './guide/dialog/dialog.component';
-
 
 @NgModule({
   declarations: [
@@ -63,10 +64,12 @@ import { DialogComponent } from './guide/dialog/dialog.component';
     TripListComponent,
     TripItemComponent,
     TripDetailsVistorComponent,
+    LandComponent,
     DialogComponent,
   ],
   imports: [
     BrowserModule,
+    NgxPaginationModule,
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -75,7 +78,7 @@ import { DialogComponent } from './guide/dialog/dialog.component';
     ReactiveFormsModule,
     TravelerModule,
     FlashMessagesModule.forRoot(),
-    GoogleMapsModule
+    GoogleMapsModule,
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent],
