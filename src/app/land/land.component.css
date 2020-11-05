@@ -2624,7 +2624,7 @@ textarea.form-control.is-invalid {
   }
 }
 .btn:hover {
-  color: #212529;
+  color: hsl(0, 0%, 77%);
   text-decoration: none;
 }
 .btn:focus,
@@ -2644,23 +2644,6 @@ fieldset:disabled a.btn {
   pointer-events: none;
 }
 
-.btn-primary {
-  color: #fff;
-  background-color: #fed136;
-  border-color: #fed136;
-}
-.btn-primary:hover {
-  color: #fff;
-  background-color: #fec810;
-  border-color: #fec503;
-}
-.btn-primary:focus,
-.btn-primary.focus {
-  color: #fff;
-  background-color: #fec810;
-  border-color: #fec503;
-  box-shadow: 0 0 0 0.2rem rgba(254, 216, 84, 0.5);
-}
 .btn-primary.disabled,
 .btn-primary:disabled {
   color: #fff;
@@ -10534,10 +10517,10 @@ img::-moz-selection {
 
 #mainNav .navbar-nav .nav-item .nav-link.active,
 #mainNav .navbar-nav .nav-item .nav-link:hover {
-  color: hsl(120, 1%, 30%);
+  color: hsl(0, 0%, 77%);
 }
 #btn-navbar {
-  background-color: hsl(120, 1%, 30%);
+  background-color: hsl(0, 0%, 77%);
 }
 
 @media (min-width: 992px) {
@@ -10613,7 +10596,7 @@ header.masthead .masthead-heading {
 @media (min-width: 768px) {
   header.masthead {
     padding-top: 17rem;
-    padding-bottom: 12.5rem;
+    padding-bottom: 4.5rem;
   }
   header.masthead .masthead-subheading {
     font-size: 2.25rem;
@@ -10983,4 +10966,11 @@ hr.divider {
   max-width: 5rem;
   border-width: 0.2rem;
   border-color: #cac8c8;
+}
+
+#techProf {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
