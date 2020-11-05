@@ -75,7 +75,7 @@
             </h1>
             <button type="button" class="btn btn-warning btn-lg book-btn" *ngIf="
                 isLoggedIn === false ||
-                !tripDetails.waitingList.includes(currentUser.id) && !tripDetails.travelers.includes(currentUser.id)
+                (!tripDetails.waitingList.includes(currentUser.id) && !tripDetails.travelers.includes(currentUser.id) && !currentUser.roles.includes('guide'))
               "
               (click)="book(tripDetails?._id)"
             >

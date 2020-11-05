@@ -24,6 +24,7 @@ export class OrganizerProfileComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
   trips: Trip[];
+  p: number = 1;
 
   ngOnInit(): void {
     this.currentUser = this.token.getUser();
@@ -32,7 +33,7 @@ export class OrganizerProfileComponent implements OnInit {
       this.organizerId = param['id'];
     });
     this.http
-      .get(`/api/users/organizer/${this.currentUser.id}`)
+      .get(`/api/users/organizer/${this.organizerId}`)
       .subscribe((res: any) => {
         this.organizer = res;
       });

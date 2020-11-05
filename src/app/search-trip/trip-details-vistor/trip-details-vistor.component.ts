@@ -62,13 +62,14 @@ export class TripDetailsVistorComponent implements OnInit {
           });
         let guideId = this.tripDetails.guide[0];
         console.log('id guide', guideId);
-
-        this.http
-          .get(`/api/users/guide/${guideId}`)
-          .subscribe((result: User) => {
-            this.guideInfo = result;
-            console.log('the guide name is ====>', this.guideInfo.first_name);
-          });
+            if(guideId) {
+              this.http
+              .get(`/api/users/guide/${guideId}`)
+              .subscribe((result: User) => {
+                this.guideInfo = result;
+                console.log('the guide name is ====>', this.guideInfo.first_name);
+              });
+            }
       });
     });
   }
