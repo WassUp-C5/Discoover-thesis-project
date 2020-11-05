@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 /* Angular material */
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AngularMaterialModule } from './../angular-material.module';
+import { AngularMaterialModule } from './../shared/angular-material.module';
 
 import { ProfileComponent } from './components/profile/profile.component';
 import { BookedTripComponent } from './components/booked-trip/booked-trip.component';
