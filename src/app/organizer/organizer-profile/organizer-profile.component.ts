@@ -98,8 +98,11 @@ export class OrganizerProfileComponent implements OnInit {
 
   // Edit organizer profile
   onClick() {
+    let user = this.organizer;
+    delete user['_id'];
+    console.log('this is the updated user ==>', user);
     this.http
-      .put('/api/users/organizer/edit', this.organizer)
+      .put('/api/users/organizer/' + this.currentUser.id + '/edit', user)
       .subscribe((res) => {
         console.log(res);
       });

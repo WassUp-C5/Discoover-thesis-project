@@ -1,11 +1,13 @@
-
 .guide-profile {
-  margin-top: 50px;;
+  margin-top: 50px;
 }
 
 .proposal-item {
   max-width: 90%;
   margin: 10px;
+}
+#propAlert {
+  margin-top: 25px;
 }
 
 #textP {
@@ -22,7 +24,6 @@ svg {
 }
 
 #guideButtons {
-  float:right;
+  float: right;
   margin-left: 2%;
 }
-
