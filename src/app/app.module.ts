@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
@@ -68,6 +69,7 @@ import { DialogComponent } from './guide/dialog/dialog.component';
   ],
   imports: [
     BrowserModule,
+    NgxPaginationModule,
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,

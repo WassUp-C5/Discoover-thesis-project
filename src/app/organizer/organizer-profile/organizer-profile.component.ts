@@ -24,6 +24,7 @@ export class OrganizerProfileComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
   trips: Trip[];
+  p: number = 1;
 
   ngOnInit(): void {
     this.currentUser = this.token.getUser();
