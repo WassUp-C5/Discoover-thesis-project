@@ -68,3 +68,9 @@ mat-toolbar a {
 .toolbar-nav {
   margin: 0 10px;
 }
+
+mat-nav-list > a:hover {
+  color: hsl(0, 0%, 77%)
+}
+
+
