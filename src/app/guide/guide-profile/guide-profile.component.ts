@@ -6,6 +6,7 @@ import Guide from 'src/app/models/Guide';
 import { GuideService } from '../services/guides.service';
 import { DialogComponent } from '../dialog/dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { UsersService } from 'src/app/services/users.service';
 
 // import { User } from './../models/User';
 
@@ -21,7 +22,8 @@ export class GuideProfileComponent implements OnInit {
     private tokenStorage: TokenStorageService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private guideService: GuideService
+    private guideService: GuideService,
+    private usersService: UsersService
   ) {}
 
   guide: Guide;
@@ -34,6 +36,7 @@ export class GuideProfileComponent implements OnInit {
   currentProposal = [];
   dataIsReady: boolean = false;
   reservationStatus: any;
+  avatarFile: File = null;
 
   ngOnInit(): void {
     this.showReservationConfirmButton();
@@ -98,20 +101,20 @@ export class GuideProfileComponent implements OnInit {
   }
 
   onFileSelected(event) {
-    var selectedFile = event.target.files[0];
+    this.avatarFile = event.target.files[0];
     var reader = new FileReader();
-
-
-
-    //var imgtag = document.getElementById("userAvatar");
-    //imgtag.title = selectedFile.name;
-
     reader.onload = (event) => {
       this.guide.avatar = event.target.result as string;
     };
 
-    reader.readAsDataURL(selectedFile);
-  }
+    reader.readAsDataURL(this.avatarFile);
+
+     this.usersService
+       .setUserAvatar(this.guide.id, this.avatarFile)
+       .subscribe((result) => {
+         console.log(result);
+       });
+   }
 
   showReservationConfirmButton() {
     this.activatedRoute.queryParamMap.subscribe((params) => {

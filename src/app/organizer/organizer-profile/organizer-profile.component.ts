@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { TokenStorageService } from './../../services/token-storage.service';
 import { Trip } from '../../../../server/models/Trips';
 import Organizer from 'src/app/models/Organizer';
+import { UsersService } from 'src/app/services/users.service';
 @Component({
   selector: 'app-organizer-profile',
   templateUrl: './organizer-profile.component.html',
@@ -16,17 +17,19 @@ export class OrganizerProfileComponent implements OnInit {
   organizer: Organizer = new Organizer();
   proposals = [];
   reservationStatus: any;
-
+  avatarFile: File = null;
+  trips: Trip[];
+  p: number = 1;
   // tripP = [];
 
   constructor(
     private http: HttpClient,
     private token: TokenStorageService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private usersService: UsersService
   ) {}
-  trips: Trip[];
-  p: number = 1;
+
 
   ngOnInit(): void {
     this.showReservationConfirmButton();
@@ -107,5 +110,20 @@ export class OrganizerProfileComponent implements OnInit {
     this.router.navigate([`/guide/${guideId}/profile/${tripId}`]);
   }
 
+  onFileSelected(event) {
+    this.avatarFile = event.target.files[0];
+    var reader = new FileReader();
+    reader.onload = (event) => {
+      this.organizer.avatar = event.target.result as string;
+    };
+
+    reader.readAsDataURL(this.avatarFile);
+
+     this.usersService
+       .setUserAvatar(this.organizer.id, this.avatarFile)
+       .subscribe((result) => {
+         console.log(result);
+       });
+   }
 
 }

@@ -2,22 +2,30 @@
   <div class="row">
     <div class="col-md-4">
       <mat-card class="text-center">
-        <img
-          [src]="organizer?.avatar"
-          class="rounded-circle avatar-xl img-thumbnail"
-          alt="profile-image"
-        />
+        <div class="image-upload">
+          <label for="file-input">
+            <img
+              [src]="this.organizer.avatar"
+              class="rounded-circle avatar-xl img-thumbnail"
+              id="profileImg"
+              alt="profile-image"
+            />
+          </label>
+
+          <input
+            id="file-input"
+            type="file"
+            (change)="onFileSelected($event)"
+            name="avatarFile"
+            *ngIf="currentUser.id === this.organizer.id"
+          />
+        </div>
+
 
         <h2 class="mb-0">
-          {{ organizer?.first_name + " " + organizer?.last_name }}
+          {{ (organizer?.first_name + " " + organizer?.last_name) | titlecase }}
         </h2>
 
-        <button
-          type="button"
-          class="btn btn-success btn-xs waves-effect mb-2 waves-light"
-        >
-          Update Photo
-        </button>
 
         <div class="text-left mt-3">
           <h4 class="font-13 text-uppercase">About Me :</h4>

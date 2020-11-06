@@ -58,7 +58,7 @@ export class TripDetailsComponent implements OnInit {
     let trip_id = this.trip._id;
     console.log(this.trip._id);
 
-    this.router.navigate([`/${role}/${traveler_id}/profile`], {
+    this.router.navigate([`/${role}s/${traveler_id}/profile`], {
       queryParams: {
         reservation_id: reservation._id,
         confirmed: reservation.confirmed,

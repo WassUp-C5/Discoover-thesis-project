@@ -101,4 +101,9 @@ export class NavbarComponent implements OnInit {
     this.router.navigate([`/organizers/${this.user.id}/proposals`]);
     drawer.close();
   }
+
+  showMybookings(drawer){
+    this.router.navigate([`/organizers/${this.user.id}/bookings`]);
+    drawer.close();
+  }
 }
