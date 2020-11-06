@@ -12,6 +12,7 @@ export class TripsService {
   }
 
   getAlltripsByOrganizerId(id) {
+    console.log('user id from service ',id);
     return this.http.get(`/api/users/organizers/${id}/trips`);
   }
 

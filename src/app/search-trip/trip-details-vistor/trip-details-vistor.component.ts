@@ -15,13 +15,15 @@ import { UrlService } from 'src/app/services/url.service';
 export class TripDetailsVistorComponent implements OnInit {
   tripId: string;
   organizer: User;
-  isGuide: Boolean;
+  isGuide: Boolean = false;
+  isInwaitingList: Boolean = false;
   tripDetails: any;
   organizerName: String;
   guideInfo: User;
   isLoggedIn = !!this.tokenStorage.getUser();
   currentUser = this.tokenStorage.getUser();
   currentConnectedUserData;
+  isConfirmed: boolean = false;
   constructor(
     private http: HttpClient,
     private route: ActivatedRoute,
@@ -55,12 +57,7 @@ export class TripDetailsVistorComponent implements OnInit {
         this.tripDetails = data;
         console.log('the data from DB is ====>', this.tripDetails);
 
-        for(let i = 0; i < this.tripDetails.guides.length; i++){
-          console.log(this.tripDetails.guides[i]._id)
-          if(this.currentUser.id === this.tripDetails.guides[i]._id){
-            this.isGuide = true;
-          }
-        }
+        this.checkButtons(this.tripDetails)
 
         let id = this.tripDetails.organizer._id;
         this.http
@@ -90,6 +87,38 @@ export class TripDetailsVistorComponent implements OnInit {
       this.router.navigate(['/signin']);
     }
   }
+  checkButtons(trip){
+    for(let i = 0; i < trip.guides.length; i++){
+      console.log(trip.guides[i]._id)
+      console.log(this.currentUser.id === trip.guides[i]._id);
+      if(this.currentUser.id === trip.guides[i]._id){
+        this.isGuide = true;
+        console.log('====================================');
+        console.log('is guide: ', this.isGuide)
+        console.log('====================================');
+
+      }
+    }
+
+    for(let j = 0; j < trip.waitingList.length; j++){
+      console.log(trip.waitingList[j]._id)
+      console.log(this.currentUser.id === trip.waitingList[j]._id);
+      if(this.currentUser.id === trip.waitingList[j]._id){
+        this.isInwaitingList = true;
+        console.log('====================================');
+        console.log('isInwaitingList: ', this.isInwaitingList)
+        console.log('====================================');
+      }
+    }
+    for(let k = 0; k < trip.travelers.length; k++){
+      if(this.currentUser.id === trip.tarvelers[k]._id){
+        this.isConfirmed = true;
+        console.log('====================================');
+        console.log('isConfirmed: ', this.isConfirmed)
+        console.log('====================================');
+      }
+    }
+  }
 
   /***********Boook a trip ********************* */
   book(tripID) {
@@ -103,6 +132,9 @@ export class TripDetailsVistorComponent implements OnInit {
         .subscribe((result) => {
           console.log('a new triper has been added===>', result);
           this.tripDetails = result;
+          //this.checkButtons(this.tripDetails);
+          this.isInwaitingList = true;
+
         });
     } else {
       this.urlService.setPreviousUrl(this.router.url)
@@ -119,6 +151,9 @@ export class TripDetailsVistorComponent implements OnInit {
       .subscribe((result) => {
         console.log('The triper has been deleted===>', result);
         this.tripDetails = result;
+        // this.checkButtons(this.tripDetails);
+        this.isInwaitingList = false;
+        this.isConfirmed = false;
       });
   }
 }

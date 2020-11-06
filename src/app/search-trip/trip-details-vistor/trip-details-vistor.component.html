@@ -1,4 +1,3 @@
-
 <div class="container">
   <div class="card">
     <div id="image" class="carousel slide" data-ride="carousel">
@@ -88,9 +87,7 @@
               class="btn btn-warning btn-lg book-btn"
               *ngIf="
                 isLoggedIn === false ||
-                (!tripDetails.waitingList.includes(currentUser.id) &&
-                  !tripDetails.travelers.includes(currentUser.id) &&
-                  !currentUser.roles.includes('guide'))
+                (!isGuide && !isInwaitingList && !isConfirmed)
               "
               (click)="book(tripDetails?._id)"
             >
@@ -99,10 +96,7 @@
             <button
               type="button"
               class="btn btn-danger btn-lg book-btn"
-              *ngIf="
-                tripDetails.waitingList.includes(currentUser.id) ||
-                tripDetails.travelers.includes(currentUser.id)
-              "
+              *ngIf="isLoggedIn === true && (isConfirmed || isInwaitingList)"
               (click)="cancelBooking(tripDetails?._id)"
             >
               Cancel Booking
@@ -126,7 +120,7 @@
         <div class="col col-md-12 trip-desc">
           <hr />
           <h2>Description</h2>
-          <p >{{ tripDetails?.description }}</p>
+          <p>{{ tripDetails?.description }}</p>
         </div>
       </div>
     </div>

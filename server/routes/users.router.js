@@ -86,8 +86,8 @@ usersRouter.get("/organizers/:id/trips", (req, res) => {
   var ObjectId = require("mongoose").Types.ObjectId;
   var query = { organizer: new ObjectId(id) };
 
-  console.log("user ID ======>", id);
-  Trip.find(query, function (err, trips) {
+  console.log("Organizer ID ======>", id);
+  Trip.find({_id: id}, function (err, trips) {
     if (err) throw err;
     console.log("organizer trips to be shown  ===> ", trips);
     res.send(trips);

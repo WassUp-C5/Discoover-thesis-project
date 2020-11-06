@@ -12,7 +12,7 @@ tripsRouter.post("/add", async (req, res) => {
     trip.date = trip.date.toISOString().split("T")[0];
 
     console.log("====================================");
-    console.log("new trip value is : ==>", trip.value);
+    console.log("new trip value is : ==>", trip);
     console.log("====================================");
     await trip.save().then((result) => {
       User.findById(trip.organizerId).then((user) => {

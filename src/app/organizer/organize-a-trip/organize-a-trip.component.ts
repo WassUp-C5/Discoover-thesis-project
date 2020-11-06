@@ -41,10 +41,9 @@ export class OrganizeATripComponent implements OnInit {
     return this.trip.controls;
   }
 
-
-  capitalize = function(str) {
+  capitalize = function (str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
-}
+  };
 
   onSubmit() {
     this.submitted = true;
@@ -52,9 +51,8 @@ export class OrganizeATripComponent implements OnInit {
     if (this.trip.invalid) {
       return;
     }
-let newTitle = this.capitalize(this.trip.value.title)
+    let newTitle = this.capitalize(this.trip.value.title);
     this.trip.value.title = newTitle;
-
 
     // this.user.roles.push(this.route.snapshot.paramMap.get('role'));
     this.route.params.subscribe((params) => {
@@ -69,7 +67,7 @@ let newTitle = this.capitalize(this.trip.value.title)
           console.log('====================================');
           console.log('result after saving trip is ==> ', result);
           console.log('====================================');
-          this.router.navigate([`/organizer/${id}/profile`]);
+          this.router.navigate([`/organizers/${id}/profile`]);
         });
     });
   }

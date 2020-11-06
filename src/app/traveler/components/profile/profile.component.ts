@@ -16,6 +16,7 @@ export class ProfileComponent implements OnInit {
   currentUser: any = this.tokenStorage.getUser();
   bookedTrips: any[];
   avatarFile: File = null;
+  reservationStatus: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -28,6 +29,13 @@ export class ProfileComponent implements OnInit {
       if (param['id']) {
         this.getTravelerData(param['id']);
       }
+    });
+  }
+
+  showReservationConfirmButton() {
+    this.route.queryParamMap.subscribe((params) => {
+      this.reservationStatus = { ...params };
+      console.log(this.reservationStatus);
     });
   }
 
