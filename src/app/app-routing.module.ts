@@ -18,7 +18,9 @@ import { LandComponent } from './land/land.component';
 import { EditProfileComponent } from './organizer/edit-profile/edit-profile.component';
 import { ProposalsListComponent } from './organizer/proposals-list/proposals-list.component';
 import { TripsListComponent } from './organizer/trips-list/trips-list.component';
-import { EditGuideProfileComponent } from './guide/guide-profile/edit-guide-profile/edit-guide-profile.component';
+import { EditGuideProfileComponent } from './guide/edit-guide-profile/edit-guide-profile.component';
+import { GuidePropsalasListComponent } from './guide/guide-propsalas-list/guide-propsalas-list.component';
+import { MyBookingsListComponent } from './traveler/components/my-bookings-list/my-bookings-list.component';
 
 
 const routes: Routes = [
@@ -34,6 +36,8 @@ const routes: Routes = [
   { path: 'organizer/trip/details/:tripId', component: TripDetailsComponent },
   { path: 'guides/:id/profile', component: GuideProfileComponent },
   { path: 'guides/:id/profile/settings', component: EditGuideProfileComponent},
+  { path: 'guides/:id/proposals', component: GuidePropsalasListComponent },
+  { path: 'users/:id/bookings', component: MyBookingsListComponent},
   {
     path: 'organizer/trip/details/guides/:tripId/:location',
     component: GuidesListComponent,

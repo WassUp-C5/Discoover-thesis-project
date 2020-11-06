@@ -16,6 +16,7 @@ export class ProfileComponent implements OnInit {
   currentUser: any = this.tokenStorage.getUser();
   bookedTrips: any[];
   avatarFile: File = null;
+  reservationStatus: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -31,6 +32,13 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  showReservationConfirmButton() {
+    this.route.queryParamMap.subscribe((params) => {
+      this.reservationStatus = { ...params };
+      console.log(this.reservationStatus);
+    });
+  }
+
   getTravelerData(id) {
     this.usersService.getTraveler(id).subscribe((user) => {
       console.log(user);
@@ -40,13 +48,30 @@ export class ProfileComponent implements OnInit {
   }
 
   onFileSelected(event) {
-   this.avatarFile = event.target.files[0];
+    this.avatarFile = event.target.files[0];
+    var reader = new FileReader();
+    reader.onload = (event) => {
+      this.profileOwner.avatar = event.target.result as string;
+    };
+
+    reader.readAsDataURL(this.avatarFile);
+
+     this.usersService
+       .setUserAvatar(this.profileOwner.id, this.avatarFile)
+       .subscribe((result) => {
+         console.log(result);
+       });
+   }
 
 
-    this.usersService
-      .setUserAvatar(this.profileOwner.id, this.avatarFile)
-      .subscribe((result) => {
-        console.log(result);
-      });
-  }
+  // onFileSelected(event) {
+  //  this.avatarFile = event.target.files[0];
+
+
+  //   this.usersService
+  //     .setUserAvatar(this.profileOwner.id, this.avatarFile)
+  //     .subscribe((result) => {
+  //       console.log(result);
+  //     });
+  // }
 }

@@ -6,7 +6,7 @@ import Guide from 'src/app/models/Guide';
 @Injectable({
   providedIn: 'root'
 })
-export class GuideService {
+export class GuidesService {
 
   constructor(private http: HttpClient) { }
 
