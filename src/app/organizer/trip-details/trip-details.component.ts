@@ -71,7 +71,7 @@ export class TripDetailsComponent implements OnInit {
   goEdit() {
     this.activatedRoute.params.subscribe((params) => {
       let id = params['tripId'];
-      this.router.navigate(['/organizer/trip/edit/' + id]);
+      this.router.navigate([`/organizers/${this.currentUser.id}/trips/${id}/edit/`]);
     });
   }
   // goToGuides(location) {

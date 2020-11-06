@@ -157,7 +157,7 @@
           <i class="material-icons">language</i> Languages
         </h5>
         <app-entry
-          *ngFor="let qualification of guide.qualifications"
+          *ngFor="let qualification of this.guide?.qualifications"
           [qualification]="qualification"
           [deleteUserQualification]="deleteUserQualification"
         >
