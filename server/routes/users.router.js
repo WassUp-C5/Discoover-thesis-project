@@ -4,7 +4,7 @@ const Trip = require("../models/Trips");
 const bcrypt = require("bcryptjs");
 const { dataUri } = require("./../middlewares/multerUpload");
 const { uploader } = require("./../config/cloudinaryConfig");
-const TripReservation  = require("./../models/TripReservation")
+const TripReservation = require("./../models/TripReservation")
 
 /*******************Get the organizer by idq*********************************** */
 usersRouter.get("/organizers/:id", (req, res) => {
@@ -30,11 +30,11 @@ usersRouter.get("/organizers/:id", (req, res) => {
 usersRouter.get(`/:id/reservations`, async (req, res) => {
   try {
     let user = await User.findById(req.params.id);
-    let reservations = await TripReservation.find({_id: { $in: user.tripReservations} }).populate('traveler')
-    .populate({path: 'trip', populate: {path: 'organizer'}});
+    let reservations = await TripReservation.find({ _id: { $in: user.tripReservations } }).populate('traveler')
+      .populate({ path: 'trip', populate: { path: 'organizer' } });
     res.send(reservations);
   }
-  catch(error) {
+  catch (error) {
     console.log(error)
     res.status(500).send('Something wrong happend!!')
   }
@@ -49,7 +49,7 @@ usersRouter.put("/:id/edit/avatar", async (req, res) => {
     return uploader
       .upload(file)
       .then(async (result) => {
-        await User.updateOne({_id: req.params.id}, {avatar: result.url});
+        await User.updateOne({ _id: req.params.id }, { avatar: result.url });
         return res.status(200).json({
           messge: "Your file has been saved successfully",
         });
@@ -85,9 +85,10 @@ usersRouter.get("/organizers/:id/trips", (req, res) => {
   let id = req.params.id;
   var ObjectId = require("mongoose").Types.ObjectId;
   var query = { organizer: new ObjectId(id) };
+  console.log('this is the query ===', query)
 
   console.log("Organizer ID ======>", id);
-  Trip.find({_id: id}, function (err, trips) {
+  Trip.find(query, function (err, trips) {
     if (err) throw err;
     console.log("organizer trips to be shown  ===> ", trips);
     res.send(trips);

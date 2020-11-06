@@ -6,10 +6,9 @@ import { TokenStorageService } from 'src/app/services/token-storage.service';
 @Component({
   selector: 'app-proposals-list',
   templateUrl: './proposals-list.component.html',
-  styleUrls: ['./proposals-list.component.css']
+  styleUrls: ['./proposals-list.component.css'],
 })
 export class ProposalsListComponent implements OnInit {
-
   proposals: [];
   session = this.tokenStorage;
   p: number = 1;
@@ -18,15 +17,13 @@ export class ProposalsListComponent implements OnInit {
     private http: HttpClient,
     private tokenStorage: TokenStorageService,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit(): void {
-
     this.getProposals();
-
   }
 
-  getProposals(){
+  getProposals() {
     // Get all the proposals by organizer ID
     this.http
       .get(`/api/proposals/organizer/${this.session.getUser().id}`)
@@ -48,13 +45,13 @@ export class ProposalsListComponent implements OnInit {
 
   // Cancel a proposition
   cancelProp(id) {
-    this.http
-      .delete(`/api/proposals/delete/one/${id}`)
-      .subscribe((res) => console.log(res));
+    this.http.delete(`/api/proposals/delete/one/${id}`).subscribe((res) => {
+      this.getProposals();
+      console.log(res);
+    });
   }
 
   getGuideInfo(guideId, tripId) {
     this.router.navigate([`/guide/${guideId}/profile/${tripId}`]);
   }
-
 }
