@@ -34,9 +34,7 @@
 .sidenav .mat-toolbar {
   background: inherit;
 }
-.mat-meu {
-  z-index: 999999;
-}
+
 
 .mat-toolbar.mat-primary {
   position: sticky;
