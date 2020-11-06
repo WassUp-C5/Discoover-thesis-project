@@ -15,6 +15,7 @@ export class ProfileComponent implements OnInit {
   profileOwner: Traveler = new Traveler();
   currentUser: any = this.tokenStorage.getUser();
   bookedTrips: any[];
+  avatarFile: File = null;
 
   constructor(
     private route: ActivatedRoute,
@@ -33,8 +34,19 @@ export class ProfileComponent implements OnInit {
   getTravelerData(id) {
     this.usersService.getTraveler(id).subscribe((user) => {
       console.log(user);
-      this.profileOwner = user;
-      console.log(this.profileOwner);
+      this.profileOwner = new Traveler(user);
+      console.log(this.profileOwner.id);
     });
+  }
+
+  onFileSelected(event) {
+   this.avatarFile = event.target.files[0];
+
+
+    this.usersService
+      .setUserAvatar(this.profileOwner.id, this.avatarFile)
+      .subscribe((result) => {
+        console.log(result);
+      });
   }
 }

@@ -178,12 +178,10 @@ sup {
 }
 
 a {
-  color: #fed136;
   text-decoration: none;
   background-color: transparent;
 }
 a:hover {
-  color: #e6b301;
   text-decoration: underline;
 }
 
@@ -2602,7 +2600,6 @@ textarea.form-control.is-invalid {
 .btn {
   display: inline-block;
   font-weight: 400;
-  color: #212529;
   text-align: center;
   vertical-align: middle;
   -webkit-user-select: none;
@@ -2612,19 +2609,20 @@ textarea.form-control.is-invalid {
   background-color: transparent;
   border: 1px solid transparent;
   padding: 0.375rem 0.75rem;
-  font-size: 1rem;
+  font-size: 2rem;
   line-height: 1.5;
   border-radius: 0.25rem;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
     border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
+
 @media (prefers-reduced-motion: reduce) {
   .btn {
     transition: none;
   }
 }
 .btn:hover {
-  color: #212529;
+  color: hsl(0, 0%, 77%);
   text-decoration: none;
 }
 .btn:focus,
@@ -2644,23 +2642,6 @@ fieldset:disabled a.btn {
   pointer-events: none;
 }
 
-.btn-primary {
-  color: #fff;
-  background-color: #fed136;
-  border-color: #fed136;
-}
-.btn-primary:hover {
-  color: #fff;
-  background-color: #fec810;
-  border-color: #fec503;
-}
-.btn-primary:focus,
-.btn-primary.focus {
-  color: #fff;
-  background-color: #fec810;
-  border-color: #fec503;
-  box-shadow: 0 0 0 0.2rem rgba(254, 216, 84, 0.5);
-}
 .btn-primary.disabled,
 .btn-primary:disabled {
   color: #fff;
@@ -10451,12 +10432,12 @@ p {
   }
 }
 ::-moz-selection {
-  background: #fed136;
+  background: none;
   text-shadow: none;
 }
 
 ::selection {
-  background: green;
+  background: whitesmoke;
   text-shadow: none;
 }
 
@@ -10494,7 +10475,8 @@ img::-moz-selection {
 #mainNav {
   padding-top: 1rem;
   padding-bottom: 1rem;
-  background-color: #05a027;
+  background-color: #cf0008;
+  box-shadow: 5px 3px 10px 1px #888888;
 }
 #mainNav .navbar-toggler {
   padding: 0.75rem;
@@ -10533,10 +10515,10 @@ img::-moz-selection {
 
 #mainNav .navbar-nav .nav-item .nav-link.active,
 #mainNav .navbar-nav .nav-item .nav-link:hover {
-  color: hsl(118, 94%, 38%);
+  color: hsl(0, 0%, 77%);
 }
 #btn-navbar {
-  background-color: hsl(118, 94%, 38%);
+  background-color: hsl(0, 0%, 77%);
 }
 
 @media (min-width: 992px) {
@@ -10544,7 +10526,7 @@ img::-moz-selection {
     padding-top: 0rem;
     padding-bottom: 0rem;
     border: none;
-    background-color: #05a027;
+    background-color: #cf0008;
     transition: padding-top 0.3s ease-in-out, padding-bottom 0.3s ease-in-out;
   }
   #mainNav .navbar-brand {
@@ -10612,7 +10594,7 @@ header.masthead .masthead-heading {
 @media (min-width: 768px) {
   header.masthead {
     padding-top: 17rem;
-    padding-bottom: 12.5rem;
+    padding-bottom: 4.5rem;
   }
   header.masthead .masthead-subheading {
     font-size: 2.25rem;
@@ -10780,6 +10762,7 @@ header.masthead .masthead-heading {
   border: 7px solid #e9ecef;
   border-radius: 100%;
 }
+
 .timeline > li .timeline-image h4 {
   font-size: 10px;
   line-height: 14px;
@@ -10970,4 +10953,23 @@ section#contact form#contactForm :-ms-input-placeholder {
   font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji",
     "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+hr.divider {
+  max-width: 5rem;
+  border-width: 0.2rem;
+  border-color: #cf0008;
+}
+
+#contactUsHR {
+  max-width: 5rem;
+  border-width: 0.2rem;
+  border-color: #cac8c8;
+}
+
+#techProf {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

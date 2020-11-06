@@ -21,10 +21,10 @@ userRouter.get("/organizer/:id", (req, res) => {
 
 
 /****************Update Organizer Profile ******************** */
-userRouter.put("/organizer/edit", (req, res) => {
+userRouter.put("/organizer/:id/edit", (req, res) => {
   let user = req.body;
   console.log("router section organizer log ==>", user);
-  User.updateOne({ username: user.username }, user)
+  User.updateOne({ _id: req.params.id }, user)
     .then((result) => {
       res.send(result);
     })

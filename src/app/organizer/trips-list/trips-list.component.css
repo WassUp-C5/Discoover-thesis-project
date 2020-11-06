@@ -1,0 +1,15 @@
+.container {
+  margin: 50px;
+}
+
+#newTrip {
+  font-size: 300%;
+}
+.add-trip {
+  background-color: green;
+}
+
+.header {
+  display: flex;
+  justify-content: space-around;
+}

@@ -2,21 +2,26 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 /* Angular material */
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AngularMaterialModule } from './../angular-material.module';
+import { AngularMaterialModule } from './../shared/angular-material.module';
 
 import { ProfileComponent } from './components/profile/profile.component';
 import { BookedTripComponent } from './components/booked-trip/booked-trip.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
-
-
-
+import { SharedModule } from '../shared/shared.module';
+import { EditTravelerProfileComponent } from './components/edit-traveler-profile/edit-traveler-profile.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [ProfileComponent, BookedTripComponent, NavbarComponent],
+  declarations: [
+    ProfileComponent,
+    BookedTripComponent,
+    EditTravelerProfileComponent,
+  ],
   imports: [
     CommonModule,
+    FormsModule,
     BrowserAnimationsModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    SharedModule,
   ],
   exports: [
     CommonModule,
@@ -24,7 +29,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     AngularMaterialModule,
     ProfileComponent,
     BookedTripComponent,
-    NavbarComponent
-  ]
+    EditTravelerProfileComponent,
+  ],
 })
-export class TravelerModule { }
+export class TravelerModule {}

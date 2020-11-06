@@ -1,0 +1,108 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    fixedInViewport="false"
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    *ngIf="this.isLoggedIn"
+  >
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item (click)="goToProfile(drawer)">
+        <mat-icon>home</mat-icon>
+        <span class="side-menu-item">My profile</span>
+      </a>
+      <a mat-list-item (click)="showPublicTrips(drawer)">
+        <mat-icon> shopping_cart </mat-icon>
+        <span class="side-menu-item">Book a trip</span>
+      </a>
+      <a mat-list-item (click)="showMybookings(drawer) ">
+        <mat-icon class="mat-18">settings</mat-icon>
+        <span class="side-menu-item">My bookings</span>
+      </a>
+      <a
+        mat-list-item
+        (click)="showMyTrips(drawer)"
+        *ngIf="this.session.getUser().roles[1] === 'organizer'"
+      >
+        <mat-icon>card_travel</mat-icon>
+        <span class="side-menu-item"> My trips </span>
+      </a>
+      <a
+        mat-list-item
+        (click)="showPropsals(drawer)"
+        *ngIf="this.session.getUser().roles[1] === 'organizer'"
+      >
+        <mat-icon class="mat-18">assignment_ind</mat-icon>
+        <span class="side-menu-item"> Proposals </span>
+      </a>
+      <a mat-list-item (click)="showSettings(drawer)">
+        <mat-icon class="mat-18">settings</mat-icon>
+        <span class="side-menu-item">Settigns</span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary" class="nav">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="toggleSidenav()"
+        *ngIf="isLoggedIn"
+      >
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <a href="/">
+        <img src="../../assets/Discoover red logo.PNG" class="logo" />
+      </a>
+      <span class="spacer"></span>
+      <mat-nav-list class="toolbar-nav" *ngIf="this.route === ''">
+        <a href="/#services">JOIN US</a>
+        <a href="/#about">ABOUT</a>
+        <a href="/#team">TEAM</a>
+        <a href="/#contact">CONTACT US</a>
+        <a href="/signin" *ngIf="!isLoggedIn">SIGN IN</a>
+        <a href="/signup" *ngIf="!isLoggedIn">SIGN UP</a>
+      </mat-nav-list>
+      <button
+        type="button"
+        aria-label="sign out"
+        mat-icon-button
+        class="signout-btn"
+        (click)="signOut()"
+        *ngIf="isLoggedIn"
+      >
+        <mat-icon aria-label="Side nav toggle icon">exit_to_app</mat-icon>
+        SIGN OUT
+      </button>
+      <!-- <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu"> -->
+      <!-- <img
+        class="avatar-img"
+        [src]="user?.avatar"
+        mat-button
+        [matMenuTriggerFor]="beforeMenu"
+
+      /> -->
+      <!-- </button> -->
+      <!-- <button mat-button [matMenuTriggerFor]="beforeMenu">Before</button> -->
+      <!-- <mat-menu #beforeMenu="matMenu" xPosition="before">
+        <button
+          (click)="goToProfile()"
+          routerLink="/organizer/:id/profile"
+          mat-menu-item
+        >
+          My profile
+        </button> -->
+      <!-- <button routerLink="/organizer/trips" mat-menu-item>My trips</button> -->
+      <!-- <button routerLink="/organizer/trip/add" mat-menu-item>
+          Add a trip
+        </button> -->
+      <!-- <button mat-menu-item (click)="signOut()">Sign out</button>
+      </mat-menu> -->
+    </mat-toolbar>
+
+    <!-- Add Content Here -->
+    <ng-content></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>
