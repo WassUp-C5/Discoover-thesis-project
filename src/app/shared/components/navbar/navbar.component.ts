@@ -99,13 +99,15 @@ export class NavbarComponent implements OnInit {
     drawer.close();
   }
 
-  showPropsals(drawer) {
-    this.router.navigate([`/organizers/${this.user.id}/proposals`]);
+  showPropsals(drawer, userRole) {
+    this.router.navigate([`/${userRole}s/${this.user.id}/proposals`]);
     drawer.close();
   }
 
-  showMybookings(drawer) {
-    this.router.navigate([`/organizers/${this.user.id}/bookings`]);
+
+  showMybookings(drawer){
+    this.router.navigate([`/users/${this.user.id}/bookings`]);
+
     drawer.close();
   }
   GoToSignIn() {

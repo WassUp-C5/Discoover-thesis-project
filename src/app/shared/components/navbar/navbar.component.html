@@ -16,7 +16,8 @@
         <mat-icon> shopping_cart </mat-icon>
         <span class="side-menu-item">Book a trip</span>
       </a>
-      <a mat-list-item (click)="showMybookings(drawer)">
+
+      <a mat-list-item (click)="showMybookings(drawer, this.session.getUser().roles[1] ) ">
         <mat-icon class="mat-18">settings</mat-icon>
         <span class="side-menu-item">My bookings</span>
       </a>
@@ -30,8 +31,8 @@
       </a>
       <a
         mat-list-item
-        (click)="showPropsals(drawer)"
-        *ngIf="this.session.getUser().roles[1] === 'organizer'"
+        (click)="showPropsals(drawer, this.session.getUser().roles[1])"
+        *ngIf="this.session.getUser().roles[1] === 'organizer' ||  this.session.getUser().roles[1] === 'guide' "
       >
         <mat-icon class="mat-18">assignment_ind</mat-icon>
         <span class="side-menu-item"> Proposals </span>

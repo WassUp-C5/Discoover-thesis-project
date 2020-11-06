@@ -28,7 +28,9 @@ export default class User {
       this.phone_number = values.phone_number;
       this.bio = values.bio;
       this.avatar = values.avatar;
-      // this.roles = values.roles;
+      if (values.roles) {
+        this.roles = values.roles;
+      }
     }
   }
 }

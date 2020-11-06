@@ -12,11 +12,16 @@ export class TripsService {
   }
 
   getAlltripsByOrganizerId(id) {
+    console.log('user id from service ',id);
     return this.http.get(`/api/users/organizers/${id}/trips`);
   }
 
   getReservationByTripIdAndUserId(tripId: string, userId: string) {
     return this.http.get(`/api/trips/${tripId}/users/${userId}/reservations`);
+  }
+
+  getUserTripReservations(userId){
+    return this.http.get(`/api/users/${userId}/reservations`);
   }
 
   confirmTripReservation(reservation) {

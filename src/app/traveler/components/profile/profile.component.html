@@ -1,11 +1,21 @@
 <!-- <app-navbar [avatar]="this.profileOwner.avatar"></app-navbar> -->
 <div class="container profile-container">
+  <app-confirm-reservation-button
+    [reservationStatus]="reservationStatus.params"
+  ></app-confirm-reservation-button>
   <div class="row">
     <div class="col-md-3">
       <mat-card mat-elevation-z2>
         <div class="text-center">
-          <img [src]="this.profileOwner.avatar" class="rounded-circle avatar-xl img-thumbnail" id="profileImg"
-            alt="profile-image" />
+          <div class="image-upload">
+            <label for="file-input">
+              <img [src]="this.profileOwner?.avatar" class="rounded-circle avatar-xl img-thumbnail" id="profileImg"
+                alt="profile-image" />
+            </label>
+
+            <input id="file-input" type="file" (change)="onFileSelected($event)" name="avatarFile"
+              *ngIf="currentUser.id === this.profileOwner?.id" />
+          </div>
 
           <h4 class="mb-0">
             {{
@@ -13,10 +23,7 @@
                 | titlecase
             }}
           </h4>
-          <button type="button" class="btn btn-success btn-xs waves-effect mb-2 waves-light"
-            *ngIf="currentUser.id === this.profileOwner.id">
-            Update Photo
-          </button>
+
 
           <div class="text-left mt-3">
             <p class="text-muted mb-2 font-13">
