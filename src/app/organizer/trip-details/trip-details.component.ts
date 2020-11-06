@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
+import Trip from 'src/app/models/Trip';
+import { TripsService } from 'src/app/services/trips.service';
+import Traveler from 'src/app/models/Traveler';
 
 @Component({
   selector: 'app-trip-details',
@@ -13,23 +16,55 @@ export class TripDetailsComponent implements OnInit {
     private tokenStorage: TokenStorageService,
     private http: HttpClient,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private tripsService: TripsService
   ) {}
   currentUser: any = this.tokenStorage.getUser();
-  trip = [];
-  guide = [];
+
+  trip: Trip;
+  guides = [];
   publishStatus = null;
 
   ngOnInit(): void {
+    // this.activatedRoute.params.subscribe((params) => {
+    //   let id = params['tripId'];
+    //   this.http.get('/api/trips/' + id).subscribe((res: any) => {
+    //     this.trip = res;
+    //     this.publishStatus = res.published;
+    //     console.log('====================================');
+    //     console.log('trip should be === ', this.publishStatus);
+    //     console.log('====================================');
+    //   });
+    // });
+
+    this.getTrip();
+  }
+
+  getTrip() {
     this.activatedRoute.params.subscribe((params) => {
       let id = params['tripId'];
-      this.http.get('/api/trips/' + id).subscribe((res: any) => {
-        this.trip.push(res);
-        this.publishStatus = res.published;
+      this.tripsService.getTripById(id).subscribe((trip: Trip) => {
+        this.trip = trip;
         console.log('====================================');
-        console.log('trip should be === ', this.publishStatus);
+        console.log('trip details ===>> ', this.trip);
         console.log('====================================');
       });
+    });
+  }
+
+  goToTravelerProfile(reservation) {
+    let role = reservation.traveler.roles[1];
+    let traveler_id = reservation.traveler._id;
+    let trip_id = this.trip._id;
+    console.log(this.trip._id);
+
+    this.router.navigate([`/${role}s/${traveler_id}/profile`], {
+      queryParams: {
+        reservation_id: reservation._id,
+        confirmed: reservation.confirmed,
+        trip_id: trip_id,
+        traveler_id: traveler_id,
+      },
     });
   }
 
@@ -55,11 +90,7 @@ export class TripDetailsComponent implements OnInit {
   }
 
   getGuideInfo(guideId, tripId) {
-    this.activatedRoute.params.subscribe((params) => {
-      let id = params['id'];
-
-      this.router.navigate([`/guide/${guideId}/profile/${tripId}`]);
-    });
+    this.router.navigate([`/guide/${guideId}/profile/${tripId}`]);
   }
 
   publish(tripId) {
@@ -67,9 +98,9 @@ export class TripDetailsComponent implements OnInit {
       .put(`/api/trips/publish/${tripId}`, {
         published: true,
       })
-      .subscribe((response) => {
+      .subscribe((response: Trip) => {
         console.log(response);
-        this.publishStatus = true;
+        this.trip.published = response.published;
       });
   }
 
@@ -78,9 +109,9 @@ export class TripDetailsComponent implements OnInit {
       .put(`/api/trips/publish/${tripId}`, {
         published: false,
       })
-      .subscribe((response) => {
+      .subscribe((response: Trip) => {
         console.log(response);
-        this.publishStatus = false;
+        this.trip.published = response.published;
       });
   }
 

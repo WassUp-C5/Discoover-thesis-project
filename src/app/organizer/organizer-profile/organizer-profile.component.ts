@@ -3,6 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { TokenStorageService } from './../../services/token-storage.service';
 import { Trip } from '../../../../server/models/Trips';
+import Organizer from 'src/app/models/Organizer';
+import { UsersService } from 'src/app/services/users.service';
 @Component({
   selector: 'app-organizer-profile',
   templateUrl: './organizer-profile.component.html',
@@ -12,34 +14,39 @@ export class OrganizerProfileComponent implements OnInit {
   currentUser: any;
   selectedGender = '';
   organizerId: string;
-  organizer: any;
+  organizer: Organizer = new Organizer();
   proposals = [];
-
+  reservationStatus: any;
+  avatarFile: File = null;
+  trips: Trip[];
+  p: number = 1;
   // tripP = [];
 
   constructor(
     private http: HttpClient,
     private token: TokenStorageService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private usersService: UsersService
   ) {}
-  trips: Trip[];
-  p: number = 1;
+
 
   ngOnInit(): void {
+    this.showReservationConfirmButton();
+
     this.currentUser = this.token.getUser();
     // Get organizer infos from DB
     this.route.params.subscribe((param) => {
       this.organizerId = param['id'];
     });
     this.http
-      .get(`/api/users/organizer/${this.organizerId}`)
-      .subscribe((res: any) => {
-        this.organizer = res;
+      .get(`/api/users/organizers/${this.organizerId}`)
+      .subscribe((res) => {
+        this.organizer = new Organizer(res);
       });
     // Get all the organizer's trips // Works Fine
     this.http
-      .get(`/api/users/organizer/trips/${this.currentUser.id}`)
+      .get(`/api/users/organizers/${this.currentUser.id}/trips`)
       .subscribe((data: Trip[]) => {
         console.log('organizer trips to be shown in my trips ====> ', data);
         this.trips = data;
@@ -53,8 +60,8 @@ export class OrganizerProfileComponent implements OnInit {
         // this.proposals.forEach((proposal) => {
         //   let tripId = proposal.tripId;
         //   this.http.get(`/api/trips/${tripId}`).subscribe((result) => {
-        //     // let guideID = result.guide[0];
-        //     // this.http.get(`/api/users/guide/${}`)
+        //     // let guideID = result.guides[0];
+        //     // this.http.get(`/api/users/guides/${}`)
         //     console.log('tripiya wa7da ', result);
         //     this.tripP.push({ res, proposal });
         //   });
@@ -62,6 +69,13 @@ export class OrganizerProfileComponent implements OnInit {
         // console.log('this.trips ======>', this.tripP);
       });
     // Work is here nowwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww show guide name in proposal
+  }
+
+  showReservationConfirmButton() {
+    this.route.queryParamMap.subscribe((params) => {
+      this.reservationStatus = { ...params };
+      console.log(this.reservationStatus);
+    });
   }
 
   // Redirect to create trip
@@ -96,13 +110,20 @@ export class OrganizerProfileComponent implements OnInit {
     this.router.navigate([`/guide/${guideId}/profile/${tripId}`]);
   }
 
-  // Edit organizer profile
-  onClick() {
-    this.http
-      .put('/api/users/organizer/edit', this.organizer)
-      .subscribe((res) => {
-        console.log(res);
-      });
-    window.location.reload();
-  }
+  onFileSelected(event) {
+    this.avatarFile = event.target.files[0];
+    var reader = new FileReader();
+    reader.onload = (event) => {
+      this.organizer.avatar = event.target.result as string;
+    };
+
+    reader.readAsDataURL(this.avatarFile);
+
+     this.usersService
+       .setUserAvatar(this.organizer.id, this.avatarFile)
+       .subscribe((result) => {
+         console.log(result);
+       });
+   }
+
 }

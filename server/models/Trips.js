@@ -8,9 +8,9 @@ const tripsSchema = new mongoose.Schema(
     date: Date,
     price: Number,
     description: String,
-    // activities: [],
+    activities: [],
     maxTravelers: Number,
-    organizerId: {
+    organizer: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User'
     },
@@ -28,7 +28,10 @@ const tripsSchema = new mongoose.Schema(
       ref: 'User',
       unique: true
     }],
-    guide: [],
+    guides: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    }],
     published: { type: Boolean, default: false },
   },
   {

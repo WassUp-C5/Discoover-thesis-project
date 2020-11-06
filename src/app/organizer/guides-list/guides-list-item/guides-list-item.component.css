@@ -80,8 +80,14 @@ p {
   box-shadow: 0 2px 2px 0 rgba(0,188,212,.14), 0 3px 1px -2px rgba(0,188,212,.2), 0 1px 5px 0 rgba(0,188,212,.12);
 }
 
-.btn.btn-round {
-  border-radius: 30px;
+.more-info-btn {
+    border: 0px;
+    border-radius: 5px;
+    padding: 10px;
+    width: 200px;
+    background-color: green;
+    color: #fff;
+    font-size: 1.2rem;
 }
 
 footer p a{

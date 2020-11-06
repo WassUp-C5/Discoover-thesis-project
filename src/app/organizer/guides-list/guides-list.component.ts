@@ -4,11 +4,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import User from 'src/app/models/User';
 
 @Component({
-  selector: 'app-guide-list',
-  templateUrl: './guide-list.component.html',
-  styleUrls: ['./guide-list.component.css'],
+  selector: 'app-guides-list',
+  templateUrl: './guides-list.component.html',
+  styleUrls: ['./guides-list.component.css'],
 })
-export class GuideListComponent implements OnInit {
+export class GuidesListComponent implements OnInit {
   guidesList: User[];
   p: number = 1;
   constructor(
