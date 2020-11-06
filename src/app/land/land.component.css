@@ -10974,3 +10974,10 @@ hr.divider {
   justify-content: center;
   align-items: center;
 }
+
+#imagePick {
+  border-radius: 50%;
+}
+ #imagePick:hover {
+  transform: scale(1.1)
+ }
