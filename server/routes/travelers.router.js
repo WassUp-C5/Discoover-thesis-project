@@ -7,7 +7,7 @@ const User = require("../models/User");
 travelersRouter.get("/:id", async (req, res) => {
   try {
     let traveler = await User.findById(req.params.id).populate(
-      { path:"tripReservations", populate: {path: 'trip', populate: {path: 'organizerId'}} }
+      { path:"tripReservations", populate: {path: 'trip', populate: {path: 'organizer'}} }
     )
     console.log("traveler ====>", traveler);
     res.send(traveler);
