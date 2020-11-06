@@ -12,6 +12,7 @@
     <p class="card-description">
       {{ (guide.bio |  slice:0:100) + "..." }}
     </p>
-    <a (click)="getGuideInfo()" class="btn btn-danger btn-round">More Info</a>
+    <a mat-raised-button (click)="getGuideInfo()" class="more-info-btn">View profile</a>
+    <!-- <a (click)="getGuideInfo()" class="btn btn-danger btn-round">More Info</a> -->
   </div>
 </div>

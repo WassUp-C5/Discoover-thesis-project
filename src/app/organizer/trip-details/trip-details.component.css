@@ -1,4 +1,83 @@
-h3 {
+.container {
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.card {
+  box-shadow: 0px 3px 30px 1px #888888;
+}
+
+.card-body {
+  box-shadow: 0px -1px 13px 5px rgba(97, 102, 100, 1);
+}
+
+#tripTitle {
+  font-size: 30px;
+}
+
+
+.make-public-btn {
+  padding: 10px;
+  width: 100%;
+  font-size: 1.5rem;
+  margin-top: 10px;
+}
+.published {
+  background-color: red;
+}
+
+.unpublished {
+  background-color: green;
+}
+
+div footer {
+  font-size: 15px;
+  margin-left: 3%;
+}
+
+.users-list-container {
+  display: flex;
+  justify-content: flex-start;
+}
+.add-guide-btn {
+  font-size: 3rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.show-more {
+  height: 50px;
+
+}
+
+.avatar-img {
+  width: 50px;
+  border-radius: 50%;
+  margin: 0 5px;
+}
+.avatar-img:hover {
+  cursor: pointer;
+  border: 2px solid rgb(67, 134, 76);
+}
+
+.edit-btn {
+  background-color: #1abc9c;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  width: 120px;
+}
+
+/* h3 {
   margin-left: 30%;
 }
 
@@ -33,4 +112,4 @@ img {
 .btn {
   margin-right: 5px;
   margin-top: 1%;
-}
+} */

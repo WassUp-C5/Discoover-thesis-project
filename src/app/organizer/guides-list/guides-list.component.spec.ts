@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GuideListItemComponent } from './guide-list-item.component';
+import { GuideListComponent } from './guides-list.component';
 
-describe('GuideListItemComponent', () => {
-  let component: GuideListItemComponent;
-  let fixture: ComponentFixture<GuideListItemComponent>;
+describe('GuideListComponent', () => {
+  let component: GuideListComponent;
+  let fixture: ComponentFixture<GuideListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GuideListItemComponent ]
+      declarations: [ GuideListComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GuideListItemComponent);
+    fixture = TestBed.createComponent(GuideListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
