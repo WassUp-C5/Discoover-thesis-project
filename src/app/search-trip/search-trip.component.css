@@ -16,10 +16,6 @@ body {
   border-radius: 10px !important
 }
 
-a:hover {
-  background-color: #ccc !important
-}
-
 .btn-outlined:active {
   color: #FFF;
   border-color: #fff !important
