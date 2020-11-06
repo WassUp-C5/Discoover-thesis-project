@@ -4,21 +4,12 @@
       <mat-card class="text-center">
         <div class="image-upload">
           <label for="file-input">
-            <img
-              [src]="this.organizer.avatar"
-              class="rounded-circle avatar-xl img-thumbnail"
-              id="profileImg"
-              alt="profile-image"
-            />
+            <img [src]="this.organizer.avatar" class="rounded-circle avatar-xl img-thumbnail" id="profileImg"
+              alt="profile-image" />
           </label>
 
-          <input
-            id="file-input"
-            type="file"
-            (change)="onFileSelected($event)"
-            name="avatarFile"
-            *ngIf="currentUser.id === this.organizer.id"
-          />
+          <input id="file-input" type="file" (change)="onFileSelected($event)" name="avatarFile"
+            *ngIf="currentUser.id === this.organizer.id" />
         </div>
 
 
@@ -41,18 +32,21 @@
 
           <p class="text-muted mb-2 font-13">
             <mat-icon>call</mat-icon>
-            <strong
-              ><span class="ml-2">+216{{ organizer?.phone_number }} </span>
+            <strong><span class="ml-2">+216{{ organizer?.phone_number }} </span>
             </strong>
           </p>
 
           <p class="text-muted mb-2 font-13">
-            <strong><mat-icon> email</mat-icon></strong>
+            <strong>
+              <mat-icon> email</mat-icon>
+            </strong>
             <span class="ml-2">{{ organizer?.email }}</span>
           </p>
 
           <p class="text-muted mb-1 font-13">
-            <strong><mat-icon>home</mat-icon></strong>
+            <strong>
+              <mat-icon>home</mat-icon>
+            </strong>
             <span class="ml-2">{{ organizer?.location }}</span>
           </p>
         </div>
