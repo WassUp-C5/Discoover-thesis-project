@@ -178,12 +178,10 @@ sup {
 }
 
 a {
-  color: green;
   text-decoration: none;
   background-color: transparent;
 }
 a:hover {
-  color: #e6b301;
   text-decoration: underline;
 }
 
