@@ -10,12 +10,12 @@ export default class User {
   bio: string;
   gender: string;
   location: string;
-  phone_number:string;
-  roles:string[] = ["user"];
-  constructor()
-  constructor(values)
-  constructor(values?){
-    if(values){
+  phone_number: string;
+  roles: string[] = ['user'];
+  constructor();
+  constructor(values);
+  constructor(values?) {
+    if (values) {
       this.id = values._id;
       this.location = values.location;
       this.first_name = values.first_name;
@@ -28,8 +28,7 @@ export default class User {
       this.phone_number = values.phone_number;
       this.bio = values.bio;
       this.avatar = values.avatar;
-      this.roles = values.roles;
+      // this.roles = values.roles;
     }
   }
-
 }
