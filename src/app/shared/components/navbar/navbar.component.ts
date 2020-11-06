@@ -7,6 +7,7 @@ import { UsersService } from 'src/app/services/users.service';
 import User from 'src/app/models/User';
 import { Router, NavigationEnd } from '@angular/router';
 import { Location } from '@angular/common';
+import { UrlService } from 'src/app/services/url.service';
 
 @Component({
   selector: 'app-navbar',
@@ -38,7 +39,8 @@ export class NavbarComponent implements OnInit {
     private tokenStorage: TokenStorageService,
     private usersService: UsersService,
     private router: Router,
-    private location: Location
+    private location: Location,
+    private urlService: UrlService
   ) {
     router.events.subscribe((event) => {
       this.route = location.path();
@@ -102,8 +104,12 @@ export class NavbarComponent implements OnInit {
     drawer.close();
   }
 
-  showMybookings(drawer){
+  showMybookings(drawer) {
     this.router.navigate([`/organizers/${this.user.id}/bookings`]);
     drawer.close();
+  }
+  GoToSignIn() {
+    this.urlService.setPreviousUrl(this.router.url);
+    this.router.navigate(['/signin']);
   }
 }

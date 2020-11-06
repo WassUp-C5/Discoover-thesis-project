@@ -32,18 +32,17 @@ export class TripDetailsVistorComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if(this.isLoggedIn){
-    this.usersService
-      .getCurrentConnectedUser(this.currentUser.id, this.currentUser.roles[1])
-      .subscribe((user) => {
-        this.currentConnectedUserData = user;
-      });
-    }
-    else {
+    if (this.isLoggedIn) {
+      this.usersService
+        .getCurrentConnectedUser(this.currentUser.id, this.currentUser.roles[1])
+        .subscribe((user) => {
+          this.currentConnectedUserData = user;
+        });
+    } else {
       this.currentUser = {
         id: null,
-        roles: []
-      }
+        roles: [],
+      };
     }
     this.route.params.subscribe((param) => {
       this.tripId = param['id'];
@@ -62,14 +61,14 @@ export class TripDetailsVistorComponent implements OnInit {
           });
         let guideId = this.tripDetails.guides[0];
         console.log('id guide', guideId);
-            if(guideId) {
-              this.http
-              .get(`/api/users/guide/${guideId}`)
-              .subscribe((result: User) => {
-                this.guideInfo = result;
-                console.log('the guide name is ====>', this.guideInfo.first_name);
-              });
-            }
+        if (guideId) {
+          this.http
+            .get(`/api/users/guides/${guideId}`)
+            .subscribe((result: User) => {
+              this.guideInfo = result;
+              console.log('the guide name is ====>', this.guideInfo.first_name);
+            });
+        }
       });
     });
   }
@@ -96,7 +95,7 @@ export class TripDetailsVistorComponent implements OnInit {
           this.tripDetails = result;
         });
     } else {
-      this.urlService.setPreviousUrl(this.router.url)
+      this.urlService.setPreviousUrl(this.router.url);
       this.router.navigate(['/signin']);
     }
   }
