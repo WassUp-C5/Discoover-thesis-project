@@ -1,12 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 /* Angular material */
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AngularMaterialModule } from './angular-material.module';
+import { AngularMaterialModule } from './shared/angular-material.module';
 
 import { VisitorNavbarComponent } from './landing-page/visitor-navbar/visitor-navbar.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
@@ -29,15 +30,20 @@ import { OrganizerProfileComponent } from './organizer/organizer-profile/organiz
 import { EditTripComponent } from './organizer/edit-trip-component/edit-trip.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
-import { GuideListComponent } from './organizer/guide-list/guide-list.component';
-import { GuideListItemComponent } from './organizer/guide-list/guide-list-item/guide-list-item.component';
+import { GuidesListComponent } from './organizer/guides-list/guides-list.component';
+import { GuidesListItemComponent } from './organizer/guides-list/guides-list-item/guides-list-item.component';
 import { TripListComponent } from './search-trip/trip-list/trip-list.component';
 import { TripItemComponent } from './search-trip/trip-list/trip-item/trip-item.component';
 import { TripDetailsVistorComponent } from './search-trip/trip-details-vistor/trip-details-vistor.component';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { TravelerModule } from './traveler/traveler.module';
+import { LandComponent } from './land/land.component';
 import { DialogComponent } from './guide/dialog/dialog.component';
-
+import { SharedModule } from './shared/shared.module';
+import { EditProfileComponent } from './organizer/edit-profile/edit-profile.component';
+import { ProposalsListComponent } from './organizer/proposals-list/proposals-list.component';
+import { TripsListComponent } from './organizer/trips-list/trips-list.component';
+import { MyBookingsListComponent } from './traveler/components/my-bookings-list/my-bookings-list.component';
 
 @NgModule({
   declarations: [
@@ -58,24 +64,31 @@ import { DialogComponent } from './guide/dialog/dialog.component';
     OrganizerNavbarComponent,
     OrganizerNavbarComponent,
     EditTripComponent,
-    GuideListComponent,
-    GuideListItemComponent,
+    GuidesListComponent,
+    GuidesListItemComponent,
     TripListComponent,
     TripItemComponent,
     TripDetailsVistorComponent,
+    LandComponent,
     DialogComponent,
+    EditProfileComponent,
+    ProposalsListComponent,
+    TripsListComponent,
+    MyBookingsListComponent,
   ],
   imports: [
     BrowserModule,
+    NgxPaginationModule,
     HttpClientModule,
     AppRoutingModule,
+    SharedModule,
     BrowserAnimationsModule,
     AngularMaterialModule,
     FormsModule,
     ReactiveFormsModule,
     TravelerModule,
     FlashMessagesModule.forRoot(),
-    GoogleMapsModule
+    GoogleMapsModule,
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent],

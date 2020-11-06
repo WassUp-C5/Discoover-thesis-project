@@ -1,0 +1,453 @@
+<script src="../../assets/js/scripts.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+<!-- Third party plugin JS-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+<script
+  src="https://use.fontawesome.com/releases/v5.13.0/js/all.js"
+  crossorigin="anonymous"
+></script>
+<!-- Google fonts-->
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Architects Daughter"
+/>
+<link
+  href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+  rel="stylesheet"
+  type="text/css"
+/>
+<link
+  href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic"
+  rel="stylesheet"
+  type="text/css"
+/>
+<link
+  href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700"
+  rel="stylesheet"
+  type="text/css"
+/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div id="page-top">
+  <!-- Navigation-->
+  <!-- <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top"
+        ><img src="../../assets/logo White.png" alt="DiscooverIn"
+      /></a>
+      <button
+        id="btn-navbar"
+        class="navbar-toggler navbar-toggler-right"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarResponsive"
+        aria-controls="navbarResponsive"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="material-icons"> menu </span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav text-uppercase ml-auto">
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#services">Join Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#team">Team</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#contact">Contact Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/signin">Sign In</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/signup">Sign Up</a>
+          </li>
+
+        </ul>
+        <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item>Item 1</button>
+  <button mat-menu-item>Item 2</button>
+</mat-menu>
+      </div>
+    </div>
+  </nav> -->
+  <!-- Masthead-->
+  <header class="masthead">
+    <div class="welcome-text">
+      <div class="container">
+        <h1 style="font-family: 'Architects Daughter'; font-size: 5rem; padding-top: 1rem;">
+          Welcome To DISCOOVER IN
+        </h1>
+        <div class="font-weight-normal">
+          <p style="font-family: 'Architects Daughter'; font-size: 2.75rem; padding-bottom: 1rem;">
+            The platform for travel lovers !
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <a href="#services"><button type="button" class="btn btn-primary btn-lg" style="width: 250px; background-color: #cf0008; border-color: none; position: center; margin-top: 50px;">Discoover</button></a>
+    </div>
+  </header>
+  <!-- Services-->
+  <section class="page-section" id="services">
+    <div class="container">
+      <div class="text-center" style="margin-bottom: 1rem;">
+        <h2 class="section-heading text-uppercase">Join Us</h2>
+        <hr class="divider my-4" />
+      </div>
+      <div class="row text-center">
+        <div class="col-md-4">
+          <h4 class="my-3">Pick a trip</h4>
+          <img
+            class="image-trip"
+            src="assets/img/trip/triper.jpg"
+            width="300"
+            height="300"
+            (click)="onClick('traveler')"
+          />
+          <p class="text-muted" style="font-weight: bold; font-size: 1rem">
+            Go on a journey to a place you choose
+          </p>
+        </div>
+
+        <div class="col-md-4">
+          <h4 class="my-3">Organize Trip</h4>
+          <img
+            class="image-trip"
+            src="assets/img/trip/visiter.jpg"
+            width="300"
+            height="300"
+            (click)="onClick('organizer')"
+          />
+          <p class="text-muted" style="font-weight: bold; font-size: 1rem">
+            Plan your favorite trip
+          </p>
+        </div>
+        <div class="col-md-4">
+          <h4 class="my-3">Guide trip</h4>
+          <img
+            class="image-trip"
+            src="assets/img/trip/guide.jpg"
+            width="300"
+            height="300"
+            (click)="onClick('guide')"
+          />
+          <p class="text-muted" style="font-weight: bold; font-size: 1rem">
+            Become one of our guides
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Portfolio Grid-->
+
+  <!-- About-->
+  <section class="page-section" id="about">
+    <div class="container">
+      <div class="text-center" style="margin-bottom: 3rem;">
+        <h2 class="section-heading text-uppercase">About</h2>
+        <hr class="divider my-4" />
+      </div>
+      <ul class="timeline">
+        <li>
+          <div class="timeline-image">
+            <img
+              class="rounded-circle img-fluid"
+              src="assets/img/about/1.jpg"
+              alt=""
+            />
+          </div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <h4 class="subheading">Our social motivation</h4>
+            </div>
+            <div class="timeline-body">
+              <p class="text-muted" style="font-size: 1rem">
+                Giving chance to local unemployed young people to step away from
+                jobless routine and seek future in traveling buissnes and be
+                part of building better solutions for local economy.
+              </p>
+            </div>
+          </div>
+        </li>
+        <li class="timeline-inverted">
+          <div class="timeline-image">
+            <img
+              class="rounded-circle img-fluid"
+              src="assets/img/about/4.jpg"
+              alt=""
+            />
+          </div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <h4 class="subheading">Our objectives</h4>
+            </div>
+            <div class="timeline-body">
+              <p class="text-muted" style="font-size: 1rem">
+                Helping youth to evolve and develop socially and individually to
+                reach full potential by providing a way to be productive and
+                have fun as well as descovering places.
+              </p>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="timeline-image">
+            <img
+              class="rounded-circle img-fluid"
+              src="assets/img/about/3.jpg"
+              alt=""
+            />
+          </div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <h4 class="subheading">A platform is Born</h4>
+            </div>
+            <div class="timeline-body">
+              <p class="text-muted" style="font-size: 1rem">
+                Using available technologies and frameworks we started this
+                platform as dedication to our objectives and motivation to
+                accomplish our duty in being an effective player in our society.
+              </p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+  <!-- Team-->
+  <section class="page-section bg-light" id="team">
+    <div class="container">
+      <div class="text-center">
+        <h2 class="section-heading text-uppercase">Our Amazing Team</h2>
+        <hr class="divider my-4" />
+      </div>
+      <br />
+      <br />
+      <div class="row">
+        <div class="col-lg-3">
+          <div class="team-member">
+            <img
+              class="mx-auto rounded-circle"
+              src="assets/img/team/1.jpg"
+              alt=""
+            />
+            <h4>Slim Kasraoui</h4>
+            <p class="text-muted">Full-Stack Developer</p>
+            <a class="btn btn-social-icon btn-github">
+              <span class="fa fa-github"></span>
+            </a>
+            <a class="btn btn-social-icon btn-linkedin">
+              <span href="#" class="fa fa-linkedin"></span>
+            </a>
+            <a class="btn btn-social-icon btn-email">
+              <span>&#9993;</span>
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="team-member">
+            <img
+              class="mx-auto rounded-circle"
+              src="assets/img/team/2.png"
+              alt=""
+            />
+            <h4>Saber Bejeoui</h4>
+            <p class="text-muted">Full-Stack Developer</p>
+            <a class="btn btn-social-icon btn-github">
+              <span class="fa fa-github"></span>
+            </a>
+            <a class="btn btn-social-icon btn-linkedin">
+              <span href="#" class="fa fa-linkedin"></span>
+            </a>
+            <a class="btn btn-social-icon btn-email">
+              <span>&#9993;</span>
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="team-member">
+            <img
+              class="mx-auto rounded-circle"
+              src="assets/img/team/3.jpg"
+              alt=""
+            />
+            <h4>Wassim Nahdi</h4>
+            <p class="text-muted">Full-Stack Developer</p>
+            <a class="btn btn-social-icon btn-github">
+              <span class="fa fa-github"></span>
+            </a>
+            <a class="btn btn-social-icon btn-linkedin">
+              <span href="#" class="fa fa-linkedin"></span>
+            </a>
+            <a class="btn btn-social-icon btn-email">
+              <span>&#9993;</span>
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="team-member">
+            <img
+              class="mx-auto rounded-circle"
+              src="assets/img/team/4.jpg"
+              alt=""
+            />
+            <h4>Louati Med Amine</h4>
+            <p class="text-muted">Full-Stack Developer</p>
+            <a class="btn btn-social-icon btn-github">
+              <span class="fa fa-github"></span>
+            </a>
+            <a class="btn btn-social-icon btn-linkedin">
+              <span href="#" class="fa fa-linkedin"></span>
+            </a>
+            <a class="btn btn-social-icon"  style="font-size: 2rem;">
+              <span href="#">&#9993;</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-8 mx-auto text-center">
+          <p class="large text-muted">
+            We are looking forward for your feedbacks in order for us to improve our platform
+            and deliver a better experience for our users. Please don't hesitate to let us know your feedback.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Clients-->
+  <!-- <div class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3 col-sm-6 my-3">
+          <a href="#!"
+            ><img
+              class="img-fluid d-block mx-auto"
+              src="assets/img/logos/envato.jpg"
+              alt=""
+          /></a>
+        </div>
+        <div class="col-md-3 col-sm-6 my-3">
+          <a href="#!"
+            ><img
+              class="img-fluid d-block mx-auto"
+              src="assets/img/logos/designmodo.jpg"
+              alt=""
+          /></a>
+        </div>
+        <div class="col-md-3 col-sm-6 my-3">
+          <a href="#!"
+            ><img
+              class="img-fluid d-block mx-auto"
+              src="../../assets/img/logos/themeforest.jpg"
+              alt=""
+          /></a>
+        </div>
+        <div class="col-md-3 col-sm-6 my-3">
+          <a href="#!"
+            ><img
+              class="img-fluid d-block mx-auto"
+              src="assets/img/logos/creative-market.jpg"
+              alt=""
+          /></a>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <!-- Contact-->
+  <section class="page-section" id="contact">
+    <div class="container">
+      <div class="text-center" style="margin-bottom: 3rem;">
+        <h2 class="section-heading text-uppercase">Contact Us</h2>
+        <hr class="divider my-4" id="contactUsHR"/>
+      </div>
+      <form
+        id="contactForm"
+        name="sentMessage"
+        novalidate="novalidate"
+        (submit)="sendEmail($event)"
+      >
+        <div class="row align-items-stretch mb-5">
+          <div class="col-md-6">
+            <div class="form-group">
+              <input
+                class="form-control"
+                id="name"
+                type="text"
+                name="username"
+                placeholder="Your Name *"
+                required="required"
+                data-validation-required-message="Please enter your name."
+              />
+              <p class="help-block text-danger"></p>
+            </div>
+            <div class="form-group">
+              <input
+                class="form-control"
+                id="email"
+                type="email"
+                name="email"
+                placeholder="Your Email *"
+                required="required"
+                data-validation-required-message="Please enter your email address."
+              />
+              <p class="help-block text-danger"></p>
+            </div>
+            <div class="form-group mb-md-0">
+              <input
+                class="form-control"
+                id="phone"
+                type="tel"
+                name="phone"
+                placeholder="Your Phone *"
+                required="required"
+                data-validation-required-message="Please enter your phone number."
+              />
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group form-group-textarea mb-md-0">
+              <textarea
+                class="form-control"
+                id="message"
+                name="message"
+                placeholder="Your Message *"
+                required="required"
+                data-validation-required-message="Please enter a message."
+              ></textarea>
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+        </div>
+        <div class="text-center">
+          <div id="success"></div>
+          <button
+            class="btn btn-secondary btn-xl text-uppercase"
+            id="sendMessageButton"
+            type="submit"
+            style="font-size: 1.5rem"
+          >
+            Send Message
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
+  <!-- Footer-->
+  <footer class="footer py-4">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-12 d-flex justify-content-center">Copyright © DiscooverIn 2020</div>
+      </div>
+    </div>
+  </footer>
+</div>

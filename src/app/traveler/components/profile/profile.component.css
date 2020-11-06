@@ -10,3 +10,20 @@
   margin: 20px;
   width: fit-content;
 }
+
+.image-upload {
+  margin: 0 auto;
+}
+.image-upload img {
+  width: 200px;
+  height: 200px;
+  margin-bottom: 10px;
+  border-radius: 50%;
+}
+.image-upload>input {
+  display: none;
+}
+.image-upload img:hover {
+  border: solid rgb(78, 148, 240) 10px;
+  cursor: pointer;
+}

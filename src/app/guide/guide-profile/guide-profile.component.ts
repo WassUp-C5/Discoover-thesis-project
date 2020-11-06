@@ -3,9 +3,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
 import Guide from 'src/app/models/Guide';
-import { GuideService } from '../services/guide.service';
+import { GuideService } from '../services/guides.service';
 import { DialogComponent } from '../dialog/dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { UsersService } from 'src/app/services/users.service';
 
 // import { User } from './../models/User';
 
@@ -21,7 +22,8 @@ export class GuideProfileComponent implements OnInit {
     private tokenStorage: TokenStorageService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private guideService: GuideService
+    private guideService: GuideService,
+    private usersService: UsersService
   ) {}
 
   guide: Guide;
@@ -33,8 +35,11 @@ export class GuideProfileComponent implements OnInit {
   guideId: string;
   currentProposal = [];
   dataIsReady: boolean = false;
+  reservationStatus: any;
+  avatarFile: File = null;
 
   ngOnInit(): void {
+    this.showReservationConfirmButton();
     this.dataIsReady = false;
     this.activatedRoute.params.subscribe((param) => {
       if (param['id']) {
@@ -52,6 +57,7 @@ export class GuideProfileComponent implements OnInit {
           .get(`/api/proposals/current/${this.guideId}/${tripIdFromLink}`)
           .subscribe((res: any) => {
             this.currentProposal = res;
+            console.log('============>', this.currentProposal);
           });
       }
     });
@@ -63,7 +69,7 @@ export class GuideProfileComponent implements OnInit {
       }
 
       this.http
-        .get(`/api/users/guide/${this.guideId}`)
+        .get(`/api/users/guides/${this.guideId}`)
         .subscribe((res: any) => {
           console.log('on init guide infos', res);
           this.guide = res;
@@ -75,7 +81,7 @@ export class GuideProfileComponent implements OnInit {
         });
       /*************Get all the proposal by guide ID******************* */
       this.http
-        .get(`/api/proposals/guide/${this.guideId}`)
+        .get(`/api/proposals/guides/${this.guideId}`)
         .subscribe((res: any) => {
           this.proposals = res;
           console.log('on init guide proposals', this.proposals);
@@ -94,6 +100,28 @@ export class GuideProfileComponent implements OnInit {
     });
   }
 
+  onFileSelected(event) {
+    this.avatarFile = event.target.files[0];
+    var reader = new FileReader();
+    reader.onload = (event) => {
+      this.guide.avatar = event.target.result as string;
+    };
+
+    reader.readAsDataURL(this.avatarFile);
+
+     this.usersService
+       .setUserAvatar(this.guide.id, this.avatarFile)
+       .subscribe((result) => {
+         console.log(result);
+       });
+   }
+
+  showReservationConfirmButton() {
+    this.activatedRoute.queryParamMap.subscribe((params) => {
+      this.reservationStatus = { ...params };
+      console.log(this.reservationStatus);
+    });
+  }
   openDialog() {
     const dialogRef = this.dialog.open(DialogComponent);
 
@@ -141,7 +169,7 @@ export class GuideProfileComponent implements OnInit {
         pay: data.pay * 1,
       };
       console.log('====================================');
-      console.log('Proposal to be added === ', params);
+      console.log('Proposal to be added === ', proposal);
       console.log('====================================');
       // console.log('trip id ====>', tripId);
       // console.log('guide id ====>', `/api/trips/${tripId}/edit`);
@@ -194,7 +222,7 @@ export class GuideProfileComponent implements OnInit {
         console.log(response);
       });
     this.http
-      .put(`/api/proposals/guide/acceptance/${proposalId}`, {
+      .put(`/api/proposals/guides/acceptance/${proposalId}`, {
         accepted: true,
       })
       .subscribe((response) => {
@@ -204,7 +232,7 @@ export class GuideProfileComponent implements OnInit {
 
   decline(tripId, proposalId, guideId) {
     this.http
-      .put(`/api/proposals/guide/acceptance/${proposalId}`, {
+      .put(`/api/proposals/guides/acceptance/${proposalId}`, {
         accepted: false,
       })
       .subscribe((response) => {

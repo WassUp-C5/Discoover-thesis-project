@@ -5,6 +5,7 @@ const Trip = require("../models/Trips");
 proposalsRouter.post("/add", async (req, res) => {
   try {
     var proposal = req.body;
+    console.log('proposal is : ', proposal)
     await Proposal.find(proposal).then(result => {
       if (result.length === 0) {
         newProp = new Proposal(proposal)
@@ -32,7 +33,7 @@ proposalsRouter.get("/organizer/:organizerId", async (req, res) => {
   }
 });
 /*****************Get proposals of specific guide with his ID********** Works Fine ******************* */
-proposalsRouter.get("/guide/:guideId", async (req, res) => {
+proposalsRouter.get("/guides/:guideId", async (req, res) => {
   console.log("req.params should be  guideId something === > ", req.params);
   try {
     await Proposal.find(req.params).then((result) => {
@@ -58,7 +59,7 @@ proposalsRouter.get("/current/:guideId/:tripId", async (req, res) => {
   }
 });
 /*******************************Edit proposal with accepted state************************************* */
-proposalsRouter.put("/guide/acceptance/:id", async (req, res) => {
+proposalsRouter.put("/guides/acceptance/:id", async (req, res) => {
   let id = req.params.id;
   Proposal.findById(id)
     .then((proposal) => {
