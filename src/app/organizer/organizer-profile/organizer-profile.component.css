@@ -438,6 +438,9 @@ svg {
 }
 
 #deleteCancelBtn {
-  float:right;
+  float: right;
 }
 
+#propAlert {
+  margin-top: 25px;
+}

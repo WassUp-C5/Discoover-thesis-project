@@ -1,4 +1,5 @@
-<app-organizer-navbar [avatar]="organizer.avatar"></app-organizer-navbar>
+<app-organizer-navbar *ngIf="currentUser.id === organizerId" [avatar]="organizer.avatar"></app-organizer-navbar>
+<app-guide-navbar *ngIf="currentUser.roles[1] === 'guide'"></app-guide-navbar>
 <link rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css"
   integrity="sha256-NAxhqDvtY0l4xn+YVa6WjAcmd94NNfttjNsDmNatFVc=" crossorigin="anonymous" />
@@ -14,7 +15,8 @@
           {{ organizer.first_name + " " + organizer.last_name }}
         </h2>
 
-        <button type="button" class="btn btn-success btn-xs waves-effect mb-2 waves-light">
+        <button *ngIf="currentUser.id === organizerId" type="button"
+          class="btn btn-success btn-xs waves-effect mb-2 waves-light">
           Update Photo
         </button>
 
@@ -99,8 +101,11 @@
                 <p id="newTrip">+</p>
                 <p></p>
               </button>
+              <div id="propAlert" class="alert alert-info" role="alert" *ngIf="trips.length === 0">
+                What?! You still haven't organized a Trip? <br> Click on the green button to get started !
+              </div>
 
-              <p id="trip-list">
+              <p id="trip-list" *ngIf="trips.length > 0">
                 <strong> List of the trips you organized</strong>
               </p>
               <div class="container">
@@ -224,7 +229,9 @@
                 </ul>
               </div>
             </div> -->
-
+            <div id="propAlert" class="alert alert-info" role="alert" *ngIf="proposals.length === 0">
+              Everytime you hire one of our awesome local guides, a trip proposal will be shown here :)
+            </div>
             <div class="container">
               <div class="row">
                 <mat-card class="col-md-12 col-sm-12 proposal-item bg-light card card-accent"
