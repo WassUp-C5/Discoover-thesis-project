@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(express.static(__dirname + "./../dist/DiscooverIn/"));
 app.use("*", cloudinaryConfig);
 app.use("/api/auth", multerUploads, authRouter);
-app.use("/api/users", usersRouter);
+app.use("/api/users", multerUploads, usersRouter);
 app.use("/api/trips", tripsRouter);
 app.use("/api/users/guides", guidesRouter);
 app.use("/api/proposals", proposalRouter);

@@ -40,6 +40,9 @@ import { TravelerModule } from './traveler/traveler.module';
 import { LandComponent } from './land/land.component';
 import { DialogComponent } from './guide/dialog/dialog.component';
 import { SharedModule } from './shared/shared.module';
+import { EditProfileComponent } from './organizer/edit-profile/edit-profile.component';
+import { ProposalsListComponent } from './organizer/proposals-list/proposals-list.component';
+import { TripsListComponent } from './organizer/trips-list/trips-list.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +70,9 @@ import { SharedModule } from './shared/shared.module';
     TripDetailsVistorComponent,
     LandComponent,
     DialogComponent,
+    EditProfileComponent,
+    ProposalsListComponent,
+    TripsListComponent,
   ],
   imports: [
     BrowserModule,

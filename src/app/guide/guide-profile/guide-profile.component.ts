@@ -97,6 +97,22 @@ export class GuideProfileComponent implements OnInit {
     });
   }
 
+  onFileSelected(event) {
+    var selectedFile = event.target.files[0];
+    var reader = new FileReader();
+
+
+
+    //var imgtag = document.getElementById("userAvatar");
+    //imgtag.title = selectedFile.name;
+
+    reader.onload = (event) => {
+      this.guide.avatar = event.target.result as string;
+    };
+
+    reader.readAsDataURL(selectedFile);
+  }
+
   showReservationConfirmButton() {
     this.activatedRoute.queryParamMap.subscribe((params) => {
       this.reservationStatus = { ...params };

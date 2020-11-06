@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { TokenStorageService } from './../../services/token-storage.service';
 import { Trip } from '../../../../server/models/Trips';
+import Organizer from 'src/app/models/Organizer';
 @Component({
   selector: 'app-organizer-profile',
   templateUrl: './organizer-profile.component.html',
@@ -12,7 +13,7 @@ export class OrganizerProfileComponent implements OnInit {
   currentUser: any;
   selectedGender = '';
   organizerId: string;
-  organizer: any;
+  organizer: Organizer = new Organizer();
   proposals = [];
   reservationStatus: any;
 
@@ -37,8 +38,8 @@ export class OrganizerProfileComponent implements OnInit {
     });
     this.http
       .get(`/api/users/organizers/${this.organizerId}`)
-      .subscribe((res: any) => {
-        this.organizer = res;
+      .subscribe((res) => {
+        this.organizer = new Organizer(res);
       });
     // Get all the organizer's trips // Works Fine
     this.http
@@ -106,13 +107,5 @@ export class OrganizerProfileComponent implements OnInit {
     this.router.navigate([`/guide/${guideId}/profile/${tripId}`]);
   }
 
-  // Edit organizer profile
-  onClick() {
-    this.http
-      .put('/api/users/organizer/edit', this.organizer)
-      .subscribe((res) => {
-        console.log(res);
-      });
-    window.location.reload();
-  }
+
 }
