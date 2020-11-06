@@ -63,7 +63,14 @@
         <a href="/#about">ABOUT</a>
         <a href="/#team">TEAM</a>
         <a href="/#contact">CONTACT US</a>
-        <a (click)="GoToSignIn()" *ngIf="!isLoggedIn">SIGN IN</a>
+        <button
+          (click)="GoToSignIn()"
+          *ngIf="!isLoggedIn"
+          mat-raised-button
+          color="primary"
+        >
+          SIGN IN
+        </button>
       </mat-nav-list>
       <button
         type="button"
