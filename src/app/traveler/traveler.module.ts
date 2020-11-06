@@ -13,7 +13,7 @@ import { EditTravelerProfileComponent } from './components/edit-traveler-profile
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [ProfileComponent,MyBookingsListComponent, EditTravelerProfileComponent],
+  declarations: [ProfileComponent,MyBookingsListComponent,BookedTripComponent, EditTravelerProfileComponent],
   imports: [
     CommonModule,
     FormsModule,

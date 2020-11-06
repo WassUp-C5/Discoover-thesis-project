@@ -15,6 +15,7 @@ import { UrlService } from 'src/app/services/url.service';
 export class TripDetailsVistorComponent implements OnInit {
   tripId: string;
   organizer: User;
+  isGuide: Boolean;
   tripDetails: any;
   organizerName: String;
   guideInfo: User;
@@ -37,6 +38,7 @@ export class TripDetailsVistorComponent implements OnInit {
       .getCurrentConnectedUser(this.currentUser.id, this.currentUser.roles[1])
       .subscribe((user) => {
         this.currentConnectedUserData = user;
+        console.log('Connected user',this.currentConnectedUserData)
       });
     }
     else {
@@ -53,6 +55,13 @@ export class TripDetailsVistorComponent implements OnInit {
         this.tripDetails = data;
         console.log('the data from DB is ====>', this.tripDetails);
 
+        for(let i = 0; i < this.tripDetails.guides.length; i++){
+          console.log(this.tripDetails.guides[i]._id)
+          if(this.currentUser.id === this.tripDetails.guides[i]._id){
+            this.isGuide = true;
+          }
+        }
+
         let id = this.tripDetails.organizer._id;
         this.http
           .get(`/api/users/organizers/${id}`)
@@ -60,11 +69,11 @@ export class TripDetailsVistorComponent implements OnInit {
             this.organizer = result;
             console.log('the result from DB is ===>', result);
           });
-        let guideId = this.tripDetails.guides[0];
+        let guideId = this.tripDetails.guides[0]._id;
         console.log('id guide', guideId);
             if(guideId) {
               this.http
-              .get(`/api/users/guide/${guideId}`)
+              .get(`/api/users/guides/${guideId}`)
               .subscribe((result: User) => {
                 this.guideInfo = result;
                 console.log('the guide name is ====>', this.guideInfo.first_name);

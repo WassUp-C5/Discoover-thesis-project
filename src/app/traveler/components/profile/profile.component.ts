@@ -40,13 +40,30 @@ export class ProfileComponent implements OnInit {
   }
 
   onFileSelected(event) {
-   this.avatarFile = event.target.files[0];
+    this.avatarFile = event.target.files[0];
+    var reader = new FileReader();
+    reader.onload = (event) => {
+      this.profileOwner.avatar = event.target.result as string;
+    };
+
+    reader.readAsDataURL(this.avatarFile);
+
+     this.usersService
+       .setUserAvatar(this.profileOwner.id, this.avatarFile)
+       .subscribe((result) => {
+         console.log(result);
+       });
+   }
 
 
-    this.usersService
-      .setUserAvatar(this.profileOwner.id, this.avatarFile)
-      .subscribe((result) => {
-        console.log(result);
-      });
-  }
+  // onFileSelected(event) {
+  //  this.avatarFile = event.target.files[0];
+
+
+  //   this.usersService
+  //     .setUserAvatar(this.profileOwner.id, this.avatarFile)
+  //     .subscribe((result) => {
+  //       console.log(result);
+  //     });
+  // }
 }

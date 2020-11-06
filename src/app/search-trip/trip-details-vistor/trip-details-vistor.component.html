@@ -107,6 +107,10 @@
             >
               Cancel Booking
             </button>
+            <div *ngIf="isGuide" class="alert alert-primary" role="alert">
+              You will be guiding this trip!!
+            </div>
+            <!-- <p *ngIf="isGuide"> You will be guiding this trip!!</p> -->
           </div>
           <div>
             <small class="text-muted"
@@ -119,10 +123,10 @@
         </div>
       </div>
       <div class="row">
-        <div class="col col-md-12">
+        <div class="col col-md-12 trip-desc">
           <hr />
           <h2>Description</h2>
-          <p>{{ tripDetails?.description }}</p>
+          <p >{{ tripDetails?.description }}</p>
         </div>
       </div>
     </div>
