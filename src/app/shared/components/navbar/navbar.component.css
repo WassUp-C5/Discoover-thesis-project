@@ -61,7 +61,9 @@ mat-toolbar a {
 .toolbar-nav {
   margin: 0 10px;
 }
-.signout-btn {
 
+mat-nav-list > a:hover {
+  color: hsl(0, 0%, 77%)
 }
+
 
