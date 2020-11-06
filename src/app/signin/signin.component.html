@@ -7,6 +7,8 @@
           {{ errorMessage }}
         </div> -->
         <flash-messages></flash-messages>
+        <br/>
+        <br/>
         <div
           class="wrap-input100 rs1-wrap-input100 validate-input m-b-20"
           data-validate="Type email"
@@ -44,11 +46,11 @@
             >
               <span class="sr-only">Loading...</span>
             </div>
-            {{ !checking ? "Sign In" : null }}
+            <p style="font-size: 1.25rem; color: white">{{ !checking ? "Sign In" : null }} </p>
           </button>
         </div>
         <div></div>
-        <div class="w-full text-center">
+        <div class="w-full text-center" style="margin-top: 1.5rem;">
           <p>You don't have an account?</p>
           <a [routerLink]="['/signup']" class="txt3"> Sign up </a>
         </div>
