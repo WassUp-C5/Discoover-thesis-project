@@ -2,6 +2,11 @@
   margin: 50px;
 }
 
+mat-card {
+  max-width: 400px;
+  margin: 0 20px;
+}
+/*
 #newTrip {
   font-size: 300%;
 }
@@ -12,4 +17,4 @@
 .header {
   display: flex;
   justify-content: space-around;
-}
+} */

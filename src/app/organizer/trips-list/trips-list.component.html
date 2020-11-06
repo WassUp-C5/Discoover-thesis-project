@@ -1,22 +1,27 @@
 <div class="container">
-  <div class="row justify-content-md-center">
+  <div class="row" *ngIf="!trips.length">
     <div class="col-12">
-      <div class="alert alert-info" role="alert" *ngIf="!trips.length">
+      <div class="alert alert-info" role="alert" >
+        There are no booked trips for now!!
       </div>
     </div>
-    <div class="col-12 header">
+  </div>
+  <div class="row">
+    <div class="col-6 header text-center">
       <h2 id="trip-list align-middle">
         <strong> List of the trips you organized</strong>
       </h2>
-
+    </div>
+    <div class="col-6">
       <button (click)="addTrip()" class="add-trip" mat-fab color="accent">
         <p id="newTrip">+</p>
         <p></p>
       </button>
     </div>
-
+  </div>
+  <div class="row">
     <mat-card
-      class="col-md-6 col-sm-12 trip-item"
+      class="col-md-6 col-sm-12"
       *ngFor="let trip of trips | paginate: { itemsPerPage: 4, currentPage: p }"
     >
       <mat-card-header>
@@ -37,12 +42,11 @@
         </button>
       </mat-card-content>
     </mat-card>
-
-    <pagination-controls
-      class="align-middle"
-      *ngIf="trips?.length > 4"
-      (pageChange)="p = $event"
-    >
-    </pagination-controls>
   </div>
+  <pagination-controls
+    class="align-middle"
+    *ngIf="trips?.length > 4"
+    (pageChange)="p = $event"
+  >
+  </pagination-controls>
 </div>
