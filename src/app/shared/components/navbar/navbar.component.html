@@ -16,6 +16,7 @@
         <mat-icon> shopping_cart </mat-icon>
         <span class="side-menu-item">Book a trip</span>
       </a>
+
       <a mat-list-item (click)="showMybookings(drawer, this.session.getUser().roles[1] ) ">
         <mat-icon class="mat-18">settings</mat-icon>
         <span class="side-menu-item">My bookings</span>
@@ -62,8 +63,14 @@
         <a href="/#about">ABOUT</a>
         <a href="/#team">TEAM</a>
         <a href="/#contact">CONTACT US</a>
-        <a href="/signin" *ngIf="!isLoggedIn">SIGN IN</a>
-        <a href="/signup" *ngIf="!isLoggedIn">SIGN UP</a>
+        <button
+          (click)="GoToSignIn()"
+          *ngIf="!isLoggedIn"
+          mat-raised-button
+          color="primary"
+        >
+          SIGN IN
+        </button>
       </mat-nav-list>
       <button
         type="button"

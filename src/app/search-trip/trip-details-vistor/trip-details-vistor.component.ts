@@ -46,8 +46,8 @@ export class TripDetailsVistorComponent implements OnInit {
     else {
       this.currentUser = {
         id: null,
-        roles: []
-      }
+        roles: [],
+      };
     }
     this.route.params.subscribe((param) => {
       this.tripId = param['id'];
@@ -68,6 +68,7 @@ export class TripDetailsVistorComponent implements OnInit {
           });
         let guideId = this.tripDetails.guides[0]._id;
         console.log('id guide', guideId);
+
             if(guideId) {
               this.http
               .get(`/api/users/guides/${guideId}`)
@@ -76,6 +77,7 @@ export class TripDetailsVistorComponent implements OnInit {
                 console.log('the guide name is ====>', this.guideInfo.first_name);
               });
             }
+
       });
     });
   }
@@ -137,7 +139,7 @@ export class TripDetailsVistorComponent implements OnInit {
 
         });
     } else {
-      this.urlService.setPreviousUrl(this.router.url)
+      this.urlService.setPreviousUrl(this.router.url);
       this.router.navigate(['/signin']);
     }
   }

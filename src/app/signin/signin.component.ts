@@ -63,17 +63,18 @@ export class SigninComponent implements OnInit {
         console.log('prev url: ', this.previousUrl);
         if (this.previousUrl === '/') {
           this.router.navigate([
-            `/${this.roles[1]}/${this.tokenStorage.getUser().id}/profile`,
+            `/${this.roles[1]}s/${this.tokenStorage.getUser().id}/profile`,
           ]);
         } else {
           this.router.navigateByUrl(this.previousUrl);
         }
       },
       (err) => {
-
-        this._flashMessagesService.show(err.error.message, { cssClass: 'alert-danger', timeout: 3000 });
+        this._flashMessagesService.show(err.error.message, {
+          cssClass: 'alert-danger',
+          timeout: 3000,
+        });
         this.checking = false;
-
       }
     );
   }
