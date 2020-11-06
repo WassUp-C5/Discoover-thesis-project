@@ -17,10 +17,10 @@ import { GuideATripComponent } from './guide/guide-a-trip/guide-a-trip.component
 import { GuideProfileComponent } from './guide/guide-profile/guide-profile.component';
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
-import { EntryComponent } from './guide/guide-profile/entry-list/entry.component';
+import { EntryComponent } from './guide/edit-guide-profile/entry-list/entry.component';
 import { OrganizerNavbarComponent } from './organizer/organizer-navbar/organizer-navbar.component';
 import { TripDetailsComponent } from './organizer/trip-details/trip-details.component';
-import { EditGuideProfileComponent } from './guide/guide-profile/edit-guide-profile/edit-guide-profile.component';
+import { EditGuideProfileComponent } from './guide/edit-guide-profile/edit-guide-profile.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
@@ -43,7 +43,7 @@ import { SharedModule } from './shared/shared.module';
 import { EditProfileComponent } from './organizer/edit-profile/edit-profile.component';
 import { ProposalsListComponent } from './organizer/proposals-list/proposals-list.component';
 import { TripsListComponent } from './organizer/trips-list/trips-list.component';
-import { MyBookingsListComponent } from './traveler/components/my-bookings-list/my-bookings-list.component';
+import { GuidePropsalasListComponent } from './guide/guide-propsalas-list/guide-propsalas-list.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +74,7 @@ import { MyBookingsListComponent } from './traveler/components/my-bookings-list/
     EditProfileComponent,
     ProposalsListComponent,
     TripsListComponent,
-    MyBookingsListComponent,
+    GuidePropsalasListComponent,
   ],
   imports: [
     BrowserModule,

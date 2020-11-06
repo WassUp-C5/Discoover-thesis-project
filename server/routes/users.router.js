@@ -4,6 +4,7 @@ const Trip = require("../models/Trips");
 const bcrypt = require("bcryptjs");
 const { dataUri } = require("./../middlewares/multerUpload");
 const { uploader } = require("./../config/cloudinaryConfig");
+const TripReservation  = require("./../models/TripReservation")
 
 /*******************Get the organizer by idq*********************************** */
 usersRouter.get("/organizers/:id", (req, res) => {
@@ -22,6 +23,22 @@ usersRouter.get("/organizers/:id", (req, res) => {
     })
     .catch((err) => console.log(err));
 });
+
+/**
+ * Get user reservations
+ */
+usersRouter.get(`/:id/reservations`, async (req, res) => {
+  try {
+    let user = await User.findById(req.params.id);
+    let reservations = await TripReservation.find({_id: { $in: user.tripReservations} }).populate('traveler')
+    .populate({path: 'trip', populate: {path: 'organizer'}});
+    res.send(reservations);
+  }
+  catch(error) {
+    console.log(error)
+    res.status(500).send('Something wrong happend!!')
+  }
+})
 
 /**
  * Update user photo

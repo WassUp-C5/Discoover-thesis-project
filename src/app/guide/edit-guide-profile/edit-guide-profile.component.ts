@@ -1,18 +1,18 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit, Output } from '@angular/core';
-import { TokenStorageService } from './../../../services/token-storage.service';
+import { TokenStorageService } from '../../services/token-storage.service';
 import { ActivatedRoute } from '@angular/router';
-import { UserQualifications } from './../../../models/UserQualifications';
+import { UserQualifications } from '../../models/UserQualifications';
+import Guide from 'src/app/models/Guide';
+import { GuidesService } from './../services/guides.service';
 @Component({
   selector: 'app-edit-guide-profile',
   templateUrl: './edit-guide-profile.component.html',
   styleUrls: ['./edit-guide-profile.component.css'],
 })
 export class EditGuideProfileComponent implements OnInit {
-  @Input() guide;
-  @Input() getGuide;
 
-
+  guide = new Guide();
   currentUser: any;
   isLoggedIn: boolean;
   guideId: string;
@@ -28,7 +28,8 @@ export class EditGuideProfileComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private tokenStorage: TokenStorageService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private guidesService: GuidesService
   ) {}
 
   ngOnInit(): void {
@@ -40,9 +41,20 @@ export class EditGuideProfileComponent implements OnInit {
     }
 
     this.route.params.subscribe((params) => {
-      this.guideId = params['id']; // (+) converts string 'id' to a number
-
+      this.guideId = params['id'];
+      this.getGuideData(this.guideId);
       // In a real app: dispatch action to load the details here.
+    });
+
+  }
+
+  /*********************to refresh page *********************** */
+  getGuideData(id) {
+
+    this.guidesService.getGuide(id).subscribe((guide) => {
+      this.guide = new Guide(guide);
+
+      console.log('New guide ==>', this.guide);
     });
   }
 
@@ -66,7 +78,7 @@ export class EditGuideProfileComponent implements OnInit {
         console.log(result);
         this.userQualifications = new UserQualifications();
         console.log('after adding language', result);
-        this.getGuide();
+        // this.getGuide();
       });
   }
 
@@ -79,7 +91,7 @@ export class EditGuideProfileComponent implements OnInit {
       )
       .subscribe((result) => {
         console.log('after delete language', result);
-        this.getGuide();
+        // this.getGuide();
       });
   }
 

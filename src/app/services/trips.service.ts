@@ -19,6 +19,10 @@ export class TripsService {
     return this.http.get(`/api/trips/${tripId}/users/${userId}/reservations`);
   }
 
+  getUserTripReservations(userId){
+    return this.http.get(`/api/users/${userId}/reservations`);
+  }
+
   confirmTripReservation(reservation) {
     console.log(reservation);
 
