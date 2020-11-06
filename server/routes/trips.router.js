@@ -7,7 +7,7 @@ const TripReservation = require("../models/TripReservation");
 tripsRouter.post("/add", async (req, res) => {
   try {
     var trip = new Trip(req.body.trip);
-    trip.organizerId = req.body.organizerId;
+    trip.organizer = req.body.organizer;
     console.log(trip.date.toISOString().split("T")[0]);
     trip.date = trip.date.toISOString().split("T")[0];
 
@@ -15,7 +15,7 @@ tripsRouter.post("/add", async (req, res) => {
     console.log("new trip value is : ==>", trip);
     console.log("====================================");
     await trip.save().then((result) => {
-      User.findById(trip.organizerId).then((user) => {
+      User.findById(trip.organizer).then((user) => {
         user.trips.push(trip._id.toString());
         user.save().then((result) => {
           console.log("trip saved successfully");
