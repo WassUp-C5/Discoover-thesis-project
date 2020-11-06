@@ -21,12 +21,12 @@ const tripsSchema = new mongoose.Schema(
     waitingList: [{
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
-      unique: true
+
     }],
     travelers: [{
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
-      unique: true
+
     }],
     guides: [{
       type: mongoose.Schema.Types.ObjectId,
