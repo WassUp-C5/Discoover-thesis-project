@@ -24,6 +24,7 @@ export class TripDetailsVistorComponent implements OnInit {
   currentUser = this.tokenStorage.getUser();
   currentConnectedUserData;
   isConfirmed: boolean = false;
+  isBooked: boolean;
   constructor(
     private http: HttpClient,
     private route: ActivatedRoute,
@@ -56,6 +57,12 @@ export class TripDetailsVistorComponent implements OnInit {
       this.http.get(`/api/trips/${this.tripId}`).subscribe((data: any) => {
         this.tripDetails = data;
         console.log('the data from DB is ====>', this.tripDetails);
+
+        for(var i = 0; i < this.tripDetails.reservations.length; i++){
+          if(this.currentUser.id === this.tripDetails.reservations[i].traveler._id){
+            this.isBooked = true;
+          }
+        }
 
         this.checkButtons(this.tripDetails)
 
@@ -90,6 +97,7 @@ export class TripDetailsVistorComponent implements OnInit {
     }
   }
   checkButtons(trip){
+
     for(let i = 0; i < trip.guides.length; i++){
       console.log(trip.guides[i]._id)
       console.log(this.currentUser.id === trip.guides[i]._id);
@@ -135,7 +143,7 @@ export class TripDetailsVistorComponent implements OnInit {
           console.log('a new triper has been added===>', result);
           this.tripDetails = result;
           //this.checkButtons(this.tripDetails);
-          this.isInwaitingList = true;
+          this.isBooked = true;
 
         });
     } else {
@@ -154,8 +162,7 @@ export class TripDetailsVistorComponent implements OnInit {
         console.log('The triper has been deleted===>', result);
         this.tripDetails = result;
         // this.checkButtons(this.tripDetails);
-        this.isInwaitingList = false;
-        this.isConfirmed = false;
+        this.isBooked = false;
       });
   }
 }

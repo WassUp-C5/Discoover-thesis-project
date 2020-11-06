@@ -24,8 +24,8 @@ export class EditTripComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
-      let id = params['id'];
-      this.http.get('api/trips/' + id).subscribe((res: Trip) => {
+      let id = params['tripId'];
+      this.http.get('/api/trips/' + id).subscribe((res: Trip) => {
         console.log('result', res);
 
         // this.toEdit.push(res);
@@ -47,18 +47,19 @@ export class EditTripComponent implements OnInit {
 
     console.log('this trip update', this.newTrip);
     this.route.params.subscribe((params) => {
-      let id = params['id'];
+      let tripId = params['tripId'];
+      let userId = params['id'];
       console.log('====================================');
-      console.log('org Id after submitting edit === ', id);
+      console.log('org Id after submitting edit === ', tripId);
       console.log('====================================');
 
       this.http
-        .put('api/trips/' + id + '/edit', this.newTrip)
+        .put('api/trips/' + tripId + '/edit', this.newTrip)
         .subscribe((res: any) => {
 
           // this.toEdit.push(res);
           // console.log(this.toEdit);
-          this.router.navigate([`/organizer/${id}/profile`]);
+          this.router.navigate([`/organizers/${userId}/profile`]);
         });
     });
   }
