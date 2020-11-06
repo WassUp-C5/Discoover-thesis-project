@@ -9,12 +9,14 @@ import { BookedTripComponent } from './components/booked-trip/booked-trip.compon
 import { SharedModule } from '../shared/shared.module';
 import { MyBookingsListComponent } from './components/my-bookings-list/my-bookings-list.component';
 import { AppRoutingModule } from './../app-routing.module';
-
+import { EditTravelerProfileComponent } from './components/edit-traveler-profile/edit-traveler-profile.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [ProfileComponent,MyBookingsListComponent, BookedTripComponent],
+  declarations: [ProfileComponent,MyBookingsListComponent, EditTravelerProfileComponent],
   imports: [
     CommonModule,
+    FormsModule,
     BrowserAnimationsModule,
     AngularMaterialModule,
     AppRoutingModule,
@@ -27,6 +29,7 @@ import { AppRoutingModule } from './../app-routing.module';
     ProfileComponent,
     MyBookingsListComponent,
     BookedTripComponent,
-  ]
+    EditTravelerProfileComponent,
+  ],
 })
-export class TravelerModule { }
+export class TravelerModule {}

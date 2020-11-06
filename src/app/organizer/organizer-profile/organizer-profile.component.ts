@@ -30,7 +30,6 @@ export class OrganizerProfileComponent implements OnInit {
     private usersService: UsersService
   ) {}
 
-
   ngOnInit(): void {
     this.showReservationConfirmButton();
 
@@ -119,11 +118,10 @@ export class OrganizerProfileComponent implements OnInit {
 
     reader.readAsDataURL(this.avatarFile);
 
-     this.usersService
-       .setUserAvatar(this.organizer.id, this.avatarFile)
-       .subscribe((result) => {
-         console.log(result);
-       });
-   }
-
+    this.usersService
+      .setUserAvatar(this.organizer.id, this.avatarFile)
+      .subscribe((result) => {
+        console.log(result);
+      });
+  }
 }

@@ -25,11 +25,21 @@
           />
         </div>
       </div>
-      <a class="carousel-control-prev" href="#image" role="button" data-slide="prev">
+      <a
+        class="carousel-control-prev"
+        href="#image"
+        role="button"
+        data-slide="prev"
+      >
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="sr-only"></span>
       </a>
-      <a class="carousel-control-next" href="#image" role="button" data-slide="next">
+      <a
+        class="carousel-control-next"
+        href="#image"
+        role="button"
+        data-slide="next"
+      >
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="sr-only"></span>
       </a>
@@ -68,13 +78,19 @@
         <div class="col-lg-6 col-md-12 col-sm-12">
           <div class="btn-book-holder">
             <h1 id="priceTag">
-              <span class="badge badge-light">{{ tripDetails?.price | currency: "TND":"symbol" }}
+              <span class="badge badge-light"
+                >{{ tripDetails?.price | currency: "TND":"symbol" }}
               </span>
               <!-- <strong>{{ tripDetails?.price }} DT</strong> -->
             </h1>
-            <button type="button" class="btn btn-warning btn-lg book-btn" *ngIf="
+            <button
+              type="button"
+              class="btn btn-warning btn-lg book-btn"
+              *ngIf="
                 isLoggedIn === false ||
-                (!tripDetails.waitingList.includes(currentUser.id) && !tripDetails.travelers.includes(currentUser.id) && !currentUser.roles.includes('guide'))
+                (!tripDetails.waitingList.includes(currentUser.id) &&
+                  !tripDetails.travelers.includes(currentUser.id) &&
+                  !currentUser.roles.includes('guide'))
               "
               (click)="book(tripDetails?._id)"
             >
@@ -83,14 +99,23 @@
             <button
               type="button"
               class="btn btn-danger btn-lg book-btn"
-              *ngIf="tripDetails.waitingList.includes(currentUser.id) || tripDetails.travelers.includes(currentUser.id)"
+              *ngIf="
+                tripDetails.waitingList.includes(currentUser.id) ||
+                tripDetails.travelers.includes(currentUser.id)
+              "
               (click)="cancelBooking(tripDetails?._id)"
             >
               Cancel Booking
             </button>
-
           </div>
-          <div><small class="text-muted">{{ tripDetails.travelers.length + "/" + tripDetails.maxTravelers }} place remaining</small></div>
+          <div>
+            <small class="text-muted"
+              >{{
+                tripDetails.travelers.length + "/" + tripDetails.maxTravelers
+              }}
+              place remaining</small
+            >
+          </div>
         </div>
       </div>
       <div class="row">
