@@ -21,6 +21,7 @@ import { TripsListComponent } from './organizer/trips-list/trips-list.component'
 import { EditGuideProfileComponent } from './guide/edit-guide-profile/edit-guide-profile.component';
 import { GuidePropsalasListComponent } from './guide/guide-propsalas-list/guide-propsalas-list.component';
 import { MyBookingsListComponent } from './traveler/components/my-bookings-list/my-bookings-list.component';
+import { EditTravelerProfileComponent } from './traveler/components/edit-traveler-profile/edit-traveler-profile.component';
 
 
 const routes: Routes = [
@@ -49,6 +50,7 @@ const routes: Routes = [
   { path: 'signin', component: SigninComponent },
   { path: 'trips/:id/details', component: TripDetailsVistorComponent },
   { path: 'travelers/:id/profile', component: ProfileComponent },
+  { path: 'travelers/:id/profile/settings', component: EditTravelerProfileComponent },
 ];
 
 @NgModule({
