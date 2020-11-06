@@ -178,12 +178,10 @@ sup {
 }
 
 a {
-  color: #fed136;
   text-decoration: none;
   background-color: transparent;
 }
 a:hover {
-  color: #e6b301;
   text-decoration: underline;
 }
 
@@ -2620,6 +2618,7 @@ textarea.form-control.is-invalid {
 
 @media (prefers-reduced-motion: reduce) {
   .btn {
+
     transition: none;
   }
 }
@@ -10477,7 +10476,7 @@ img::-moz-selection {
 #mainNav {
   padding-top: 1rem;
   padding-bottom: 1rem;
-  background-color:  #cf0008;
+  background-color: #cf0008;
   box-shadow: 5px 3px 10px 1px #888888;
 }
 #mainNav .navbar-toggler {
@@ -10511,10 +10510,17 @@ img::-moz-selection {
   color: #fff;
   letter-spacing: 0.0625em;
 }
-.image-trip {
-  border-radius: 8px;
-}
 
+@media (max-width: 992px) {
+  .image-trip {
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+  }
+  .image-trip:hover {
+    transform: scale(1.1)
+   }
+}
 #mainNav .navbar-nav .nav-item .nav-link.active,
 #mainNav .navbar-nav .nav-item .nav-link:hover {
   color: hsl(0, 0%, 77%);
@@ -10764,6 +10770,7 @@ header.masthead .masthead-heading {
   border: 7px solid #e9ecef;
   border-radius: 100%;
 }
+
 .timeline > li .timeline-image h4 {
   font-size: 10px;
   line-height: 14px;
@@ -10975,9 +10982,4 @@ hr.divider {
   align-items: center;
 }
 
-#imagePick {
-  border-radius: 50%;
-}
- #imagePick:hover {
-  transform: scale(1.1)
- }
+
