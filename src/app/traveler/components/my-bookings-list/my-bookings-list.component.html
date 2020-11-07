@@ -1,3 +1,20 @@
 <div class="container guide-profile">
-    <div class="row justify-content-md-center">
-      <mat-card class=" col-md-8 col-sm-12 ">
+  <div class="row">
+    <div class="col-md-8 col-sm-12">
+      <div
+        *ngIf="tripReservations.length === 0"
+        class="alert alert-info"
+        role="alert"
+      >
+        <mat-icon class="align-middle">info</mat-icon>
+        <span>There are no booked trips!!</span>
+      </div>
+    </div>
+    <div
+      class="col-md-4 col-sm-12"
+      *ngFor="let tripReservation of tripReservations"
+    >
+      <app-booked-trip [tripReservation]="tripReservation"></app-booked-trip>
+    </div>
+  </div>
+</div>

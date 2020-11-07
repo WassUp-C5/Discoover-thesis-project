@@ -1,8 +1,9 @@
 import User from './User';
+import { UserQualifications } from './UserQualifications';
 
 export default class Guide extends User {
 
-  qualifications:[];
+  qualifications:UserQualifications[];
 
   constructor();
   constructor(data);
@@ -10,6 +11,6 @@ export default class Guide extends User {
 
   constructor(data?){
     super(data)
-    this.qualifications = data.qualifications
+    this.qualifications = data.qualifications;
   }
 }

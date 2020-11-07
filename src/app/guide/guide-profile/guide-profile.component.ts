@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
 import Guide from 'src/app/models/Guide';
-import { GuideService } from '../services/guides.service';
+import { GuidesService } from '../services/guides.service';
 import { DialogComponent } from '../dialog/dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { UsersService } from 'src/app/services/users.service';
@@ -22,7 +22,7 @@ export class GuideProfileComponent implements OnInit {
     private tokenStorage: TokenStorageService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private guideService: GuideService,
+    private guidesService: GuidesService,
     private usersService: UsersService
   ) {}
 
@@ -134,8 +134,8 @@ export class GuideProfileComponent implements OnInit {
   /*********************to refresh page *********************** */
   getGuide() {
     this.dataIsReady = false;
-    this.guideService.getGuide(this.guideId).subscribe((guide) => {
-      this.guide = guide;
+    this.guidesService.getGuide(this.guideId).subscribe((guide) => {
+      this.guide = new Guide(guide);
       this.dataIsReady = true;
       console.log('New guide ==>', this.guide);
     });

@@ -5,7 +5,6 @@ import { HttpClient } from '@angular/common/http';
 import User from './../models/User';
 import { ActivatedRoute, Router } from '@angular/router';
 
-
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -16,7 +15,7 @@ export class SignupComponent implements OnInit {
   user = new User();
   submitted = false;
   errorMessage = '';
-  avatar = '../../assets/avatar.png'
+  avatar = '../../assets/avatar.png';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -60,20 +59,16 @@ export class SignupComponent implements OnInit {
     var selectedFile = event.target.files[0];
     var reader = new FileReader();
 
-
-
     //var imgtag = document.getElementById("userAvatar");
     //imgtag.title = selectedFile.name;
 
     reader.onload = (event) => {
       this.avatar = event.target.result as string;
       this.signupForm.patchValue({
-        avatarFile: selectedFile
+        avatarFile: selectedFile,
       });
 
-      this.signupForm.get('avatarFile').updateValueAndValidity()
-
-
+      this.signupForm.get('avatarFile').updateValueAndValidity();
     };
 
     reader.readAsDataURL(selectedFile);
@@ -90,15 +85,17 @@ export class SignupComponent implements OnInit {
 
     this.user = new User(this.signupForm.value);
     this.user.roles.push(this.route.snapshot.paramMap.get('role'));
+    console.log('user Roles ', this.user.roles);
+
     //let userRole = this.route.snapshot.paramMap.get('role');
 
-    let formData = new FormData()
+    let formData = new FormData();
     formData.append('file', this.signupForm.get('avatarFile').value);
     formData.append('user', JSON.stringify(this.user));
     // console.log('Form ===> ', formData);
     // console.log('User ===> ', this.user);
 
-    this.authService.register( formData).subscribe(
+    this.authService.register(formData).subscribe(
       (data) => {
         console.log(data);
         this.router.navigate(['/']);
