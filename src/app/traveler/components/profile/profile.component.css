@@ -27,3 +27,7 @@
   border: solid rgb(78, 148, 240) 10px;
   cursor: pointer;
 }
+.bio-text {
+  font-size: 1.5rem;
+}
+

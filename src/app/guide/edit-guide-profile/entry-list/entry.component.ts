@@ -1,4 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { TokenStorageService } from 'src/app/services/token-storage.service';
+import { UsersService } from 'src/app/services/users.service';
+
 
 @Component({
   selector: 'app-entry',
@@ -12,14 +15,15 @@ export class EntryComponent implements OnInit {
   // languageAdded: string ="";
   // selectedLevelAdded: string = "";
   @Input() qualification;
-  @Input() deleteUserQualification;
   // @Input() type;
 
   entryLanguage: string = '';
   entrySelectedLevel: string = '';
+  currentUser = this.tokenStorage.getUser()
 
   constructor(
-
+    private tokenStorage: TokenStorageService,
+    private usersService: UsersService
   ) {}
 
   ngOnInit(): void {
@@ -27,7 +31,11 @@ export class EntryComponent implements OnInit {
   }
 
   deleteEntry(entryId){
-    this.deleteUserQualification(entryId)
+    this.usersService.deleteUserQualification(this.currentUser.id, entryId)
+    .subscribe((result) => {
+      console.log('after delete language', result);
+      // this.getGuide();
+    });
   }
 
 

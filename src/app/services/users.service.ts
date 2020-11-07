@@ -31,4 +31,17 @@ export class UsersService {
     formData.append('file', avatarFile, avatarFile.name);
     return this.http.put(`/api/users/${id}/edit/avatar`, formData);
   }
+
+  addQualification(guideId, data) {
+    return this.http.put(
+      `/api/users/guides/${guideId}/qualifications/add`,
+      data
+    );
+  }
+
+  deleteUserQualification(guideId, entryId) {
+    return this.http.delete(
+      `/api/users/guides/${guideId}/qualifications/${entryId}/delete`
+    );
+  }
 }
