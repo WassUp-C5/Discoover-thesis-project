@@ -63,7 +63,7 @@ section {
   margin-bottom: 10px;
   border-radius: 50%;
 }
-.image-upload>input {
+.image-upload > input {
   display: none;
 }
 .image-upload img:hover {
