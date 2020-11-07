@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import User from './../models/User';
 import { ActivatedRoute, Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
