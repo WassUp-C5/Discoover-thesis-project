@@ -6,15 +6,17 @@ mat-card {
   max-width: 400px;
   margin: 0 20px;
 }
-/*
+
 #newTrip {
   font-size: 300%;
 }
 .add-trip {
   background-color: green;
+  margin: 0 auto;
 }
 
 .header {
   display: flex;
   justify-content: space-around;
-} */
+  margin: 20px auto;
+}
