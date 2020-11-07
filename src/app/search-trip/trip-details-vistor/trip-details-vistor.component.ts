@@ -146,7 +146,7 @@ export class TripDetailsVistorComponent implements OnInit {
         });
     } else {
       this.urlService.setPreviousUrl(this.router.url);
-      this.router.navigate(['/signup'], { queryParams: { role: 'traveler' } });
+      this.router.navigate(['/signup/traveler']);
     }
   }
   /*****************Cancel Booking********************** */
