@@ -27,7 +27,7 @@ export class TripsListComponent implements OnInit {
     this.currentUser = this.token.getUser();
     console.log('current user ====>', this.currentUser.id);
 
-    this.router.navigate([`/organizer/${this.currentUser.id}/trip/add`]);
+    this.router.navigate([`/organizers/${this.currentUser.id}/trip/add`]);
   }
 
   // Get all the organizer's trips // Works Fine
@@ -43,6 +43,6 @@ export class TripsListComponent implements OnInit {
     console.log('====================================');
     console.log('tripId from show more ===> ', tripId);
     console.log('====================================');
-    this.router.navigate(['/organizer/trip/details/' + tripId]);
+    this.router.navigate(['/organizers/trip/details/' + tripId]);
   }
 }

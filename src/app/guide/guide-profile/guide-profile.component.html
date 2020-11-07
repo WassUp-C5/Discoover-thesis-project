@@ -4,39 +4,61 @@
       <mat-card class="text-center">
         <div class="image-upload">
           <label for="file-input">
-            <img [src]="this.guide?.avatar" class="rounded-circle avatar-xl img-thumbnail" id="profileImg"
-              alt="profile-image" />
+            <img
+              [src]="this.guide?.avatar"
+              class="rounded-circle avatar-xl img-thumbnail"
+              id="profileImg"
+              alt="profile-image"
+            />
           </label>
 
-          <input id="file-input" type="file" (change)="onFileSelected($event)" name="avatarFile"
-            *ngIf="currentUser.id === this.guide?.id" />
+          <input
+            id="file-input"
+            type="file"
+            (change)="onFileSelected($event)"
+            name="avatarFile"
+            *ngIf="currentUser.id === this.guide?.id"
+          />
         </div>
         <h2 class="mb-0">
           {{ guide?.first_name + " " + guide?.last_name | titlecase }}
         </h2>
-        <button *ngIf="
+        <button
+          *ngIf="
             currentUser.id !== guideId &&
             currentProposal.length === 0 &&
             !currentUser.roles.includes('guide') &&
             !currentUser.roles.includes('traveler')
-          " mat-raised-button color="warn" (click)="openDialog()">
+          "
+          mat-raised-button
+          color="warn"
+          (click)="openDialog()"
+        >
           Hire
         </button>
         <!-- <button type="submit" (click)="hire()" class="btn btn-danger btn-signin"
             *ngIf="currentUser.id !== guideId && currentProposal.length === 0 && !currentUser.roles.includes('guide') && !currentUser.roles.includes('traveler')">
             Hire Me
           </button> -->
-        <button type="submit" (click)="unhire(guideId, currentUser.id)" mat-raised-button color="warn" *ngIf="
+        <button
+          type="submit"
+          (click)="unhire(guideId, currentUser.id)"
+          mat-raised-button
+          color="warn"
+          *ngIf="
             currentUser.id !== guideId &&
             currentProposal.length &&
             !currentUser.roles.includes('traveler')
-          ">
+          "
+        >
           Unhire
         </button>
         <div class="text-left mt-3">
           <p class="text-muted mb-2 font-13">
             <mat-icon>call</mat-icon>
-            <span class="ml-2"><strong>+216{{ guide?.phone_number }}</strong></span>
+            <span class="ml-2"
+              ><strong>+216{{ guide?.phone_number }}</strong></span
+            >
           </p>
 
           <p class="text-muted mb-2 font-13">
@@ -64,15 +86,61 @@
             {{ guide?.bio }}
           </p>
           <hr />
-          <h4><strong>My Skills</strong></h4>
-          <h4><strong>My Languages</strong></h4>
+          <h4><strong>My skills</strong></h4>
+          <mat-list role="list">
+            <div *ngFor="let qualification of guide?.qualifications">
+              <mat-list-item
+                role="listitem"
+                *ngIf="qualification.type === 'skills'"
+              >
+                <div>
+                  {{ qualification.title }}:
+                  {{ qualification.current_level }}
+                </div>
+              </mat-list-item>
+            </div>
+          </mat-list>
+          <h4><strong>My languages</strong></h4>
 
-          <ul role="list">
-            <li *ngFor="let qualification of guide?.qualifications" role="listitem">
+          <mat-list role="list">
+            <div *ngFor="let qualification of guide?.qualifications">
+              <mat-list-item
+                role="listitem"
+                *ngIf="qualification.type === 'language'"
+              >
+                <div>
+                  {{ qualification.title }}:
+                  {{ qualification.current_level }}
+                </div>
+              </mat-list-item>
+            </div>
+          </mat-list>
+
+          <h4><strong>My experience</strong></h4>
+
+          <mat-list role="list">
+            <div *ngFor="let qualification of guide?.qualifications">
+              <mat-list-item
+                role="listitem"
+                *ngIf="qualification.type === 'experience'"
+              >
+                <div>
+                  {{ qualification.title }}:
+                  {{ qualification.current_level }}
+                </div>
+              </mat-list-item>
+            </div>
+          </mat-list>
+
+          <!-- <ul role="list">
+            <li
+              *ngFor="let qualification of guide?.qualifications"
+              role="listitem"
+            >
               {{ qualification.title }}:
               {{ qualification.current_level }}
             </li>
-          </ul>
+          </ul> -->
 
           <!-- <ul>
             <li *ngFor="let qualification of guide.qualifications">

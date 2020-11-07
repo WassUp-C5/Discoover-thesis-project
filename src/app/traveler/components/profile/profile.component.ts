@@ -17,6 +17,7 @@ export class ProfileComponent implements OnInit {
   bookedTrips: any[];
   avatarFile: File = null;
   reservationStatus: any;
+  dataIsReady: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -25,6 +26,8 @@ export class ProfileComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.showReservationConfirmButton();
+    this.dataIsReady = false;
     this.route.params.subscribe((param) => {
       if (param['id']) {
         this.getTravelerData(param['id']);
@@ -43,6 +46,7 @@ export class ProfileComponent implements OnInit {
     this.usersService.getTraveler(id).subscribe((user) => {
       console.log(user);
       this.profileOwner = new Traveler(user);
+      this.dataIsReady = true;
       console.log(this.profileOwner.id);
     });
   }

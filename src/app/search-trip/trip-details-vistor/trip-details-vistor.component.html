@@ -86,8 +86,7 @@
               type="button"
               class="btn btn-warning btn-lg book-btn"
               *ngIf="
-                isLoggedIn === false ||
-                (!isGuide && !isInwaitingList && !isConfirmed)
+                isLoggedIn === false || !isBooked
               "
               (click)="book(tripDetails?._id)"
             >
@@ -96,7 +95,7 @@
             <button
               type="button"
               class="btn btn-danger btn-lg book-btn"
-              *ngIf="isLoggedIn === true && (isConfirmed || isInwaitingList)"
+              *ngIf="isLoggedIn === true && isBooked"
               (click)="cancelBooking(tripDetails?._id)"
             >
               Cancel Booking
