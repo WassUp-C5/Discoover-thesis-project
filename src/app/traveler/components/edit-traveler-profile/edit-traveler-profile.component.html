@@ -1,69 +1,116 @@
-<mat-card class="tab-content">
-  <form>
-    <h5 class="mb-3 text-uppercase bg-light p-2">
-      <i class="mdi mdi-account-circle mr-1"></i> Personal Info
-    </h5>
+<div class="container">
+  <flash-messages></flash-messages>
+  <div class="row justify-content-md-center">
+    <div class="col-md-8 col-sm-12">
+      <mat-card class="tab-content">
+        <form>
+          <h5 class="mb-3 text-uppercase bg-light p-2">
+            <i class="mdi mdi-account-circle mr-1"></i> Personal Info
+          </h5>
 
-    <div class="row">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="firstname">First Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="firstname"
+                  [(ngModel)]="traveler.first_name"
+                  name="first"
+                />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="lastname">Last Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="lastname"
+                  [(ngModel)]="traveler.last_name"
+                  name="last"
+                />
+              </div>
+            </div>
+          </div>
 
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="firstname">First Name</label>
-          <input type="text" class="form-control" id="firstname" [(ngModel)]="traveler.first_name" name="first" />
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="lastname">Last Name</label>
-          <input type="text" class="form-control" id="lastname" [(ngModel)]="traveler.last_name" name="last" />
-        </div>
-      </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="useremail">Email Address</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="useremail"
+                  placeholder="{{ traveler.email }}"
+                  [(ngModel)]="traveler.email"
+                  name="email"
+                />
+                <span class="form-text text-muted"
+                  ><small
+                    >If you want to change email please
+                    <a href="javascript: void(0);">click</a> here.</small
+                  ></span
+                >
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="lastname">Phone number</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="phone"
+                  placeholder="{{ traveler.phone_number }}"
+                  [(ngModel)]="traveler.phone_number"
+                  name="phone"
+                />
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="location">Location</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="location"
+                  placeholder="{{ traveler.location }}"
+                  [(ngModel)]="traveler.location"
+                  name="location"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12">
+              <div class="form-group">
+                <label for="userbio">Bio</label>
+                <textarea
+                  class="form-control"
+                  id="userbio"
+                  rows="4"
+                  placeholder="Write something..."
+                  [(ngModel)]="traveler.bio"
+                  name="bio"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+
+          <div class="text-right">
+            <button
+              (click)="onClick()"
+              type="submit"
+              class="btn btn-success waves-effect waves-light mt-2"
+            >
+              <i class="mdi mdi-content-save"></i> Save
+            </button>
+          </div>
+        </form>
+      </mat-card>
     </div>
-
-
-    <div class="row">
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="useremail">Email Address</label>
-          <input type="email" class="form-control" id="useremail" placeholder="{{ traveler.email }}"
-            [(ngModel)]="traveler.email" name="email" />
-          <span class="form-text text-muted"><small>If you want to change email please
-              <a href="javascript: void(0);">click</a> here.</small></span>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="lastname">Phone number</label>
-          <input type="text" class="form-control" id="phone" placeholder="{{ traveler.phone_number }}"
-            [(ngModel)]="traveler.phone_number" name="phone" />
-        </div>
-      </div>
-
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="location">Location</label>
-          <input type="text" class="form-control" id="location" placeholder="{{ traveler.location }}"
-            [(ngModel)]="traveler.location" name="location" />
-        </div>
-      </div>
-
-    </div>
-
-
-    <div class="row">
-      <div class="col-12">
-        <div class="form-group">
-          <label for="userbio">Bio</label>
-          <textarea class="form-control" id="userbio" rows="4" placeholder="Write something..."
-            [(ngModel)]="traveler.bio" name="bio"></textarea>
-        </div>
-      </div>
-    </div>
-
-    <div class="text-right">
-      <button (click)="onClick()" type="submit" class="btn btn-success waves-effect waves-light mt-2">
-        <i class="mdi mdi-content-save"></i> Save
-      </button>
-    </div>
-  </form>
-</mat-card>
+  </div>
+</div>

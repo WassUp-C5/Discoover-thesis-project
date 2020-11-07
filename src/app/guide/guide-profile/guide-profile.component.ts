@@ -109,12 +109,12 @@ export class GuideProfileComponent implements OnInit {
 
     reader.readAsDataURL(this.avatarFile);
 
-     this.usersService
-       .setUserAvatar(this.guide.id, this.avatarFile)
-       .subscribe((result) => {
-         console.log(result);
-       });
-   }
+    this.usersService
+      .setUserAvatar(this.guide.id, this.avatarFile)
+      .subscribe((result) => {
+        console.log(result);
+      });
+  }
 
   showReservationConfirmButton() {
     this.activatedRoute.queryParamMap.subscribe((params) => {
@@ -123,6 +123,7 @@ export class GuideProfileComponent implements OnInit {
     });
   }
   openDialog() {
+    console.log('dialog opened');
     const dialogRef = this.dialog.open(DialogComponent);
 
     dialogRef.afterClosed().subscribe((result) => {

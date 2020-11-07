@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
 import { UsersService } from 'src/app/services/users.service';
 import Traveler from 'src/app/models/Traveler';
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-edit-traveler-profile',
@@ -12,7 +13,8 @@ export class EditTravelerProfileComponent implements OnInit {
   traveler = new Traveler();
   constructor(
     private usersService: UsersService,
-    private tokenStorage: TokenStorageService
+    private tokenStorage: TokenStorageService,
+    private _flashMessagesService: FlashMessagesService
   ) {}
 
   ngOnInit(): void {
@@ -31,8 +33,11 @@ export class EditTravelerProfileComponent implements OnInit {
 
   // Edit traveler profile
   onClick() {
-    this.usersService.setOrganizerData(this.traveler).subscribe((res) => {
-      console.log(res);
+    this.usersService.setOrganizerData(this.tokenStorage.getUser().id, this.traveler).subscribe((res) => {
+      this._flashMessagesService.show('Data saved successfully', {
+        cssClass: 'alert-success',
+        timeout: 3000,
+      });
     });
     window.location.reload();
   }
