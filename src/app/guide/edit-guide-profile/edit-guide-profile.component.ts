@@ -78,7 +78,7 @@ export class EditGuideProfileComponent implements OnInit {
         console.log(result);
         this.userQualifications = new UserQualifications();
         console.log('after adding language', result);
-        // this.getGuide();
+        this.getGuideData(this.guideId);
       });
   }
 

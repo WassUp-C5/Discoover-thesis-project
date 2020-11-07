@@ -6,6 +6,13 @@
   z-index: 999;
 }
 
+body {
+  background-color: rgb(143, 140, 140) !important;
+}
+mat-sidenav-content {
+  background-color: rgb(228, 225, 225) !important;
+}
+
 .spacer {
   flex: 1 1 auto;
 }
