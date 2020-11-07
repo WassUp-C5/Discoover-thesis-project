@@ -36,15 +36,14 @@ export class TripDetailsVistorComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if(this.isLoggedIn){
-    this.usersService
-      .getCurrentConnectedUser(this.currentUser.id, this.currentUser.roles[1])
-      .subscribe((user) => {
-        this.currentConnectedUserData = user;
-        console.log('Connected user',this.currentConnectedUserData)
-      });
-    }
-    else {
+    if (this.isLoggedIn) {
+      this.usersService
+        .getCurrentConnectedUser(this.currentUser.id, this.currentUser.roles[1])
+        .subscribe((user) => {
+          this.currentConnectedUserData = user;
+          console.log('Connected user', this.currentConnectedUserData);
+        });
+    } else {
       this.currentUser = {
         id: null,
         roles: [],
@@ -58,13 +57,16 @@ export class TripDetailsVistorComponent implements OnInit {
         this.tripDetails = data;
         console.log('the data from DB is ====>', this.tripDetails);
 
-        for(var i = 0; i < this.tripDetails.reservations.length; i++){
-          if(this.currentUser.id === this.tripDetails.reservations[i].traveler._id){
+        for (var i = 0; i < this.tripDetails.reservations.length; i++) {
+          if (
+            this.currentUser.id ===
+            this.tripDetails.reservations[i].traveler._id
+          ) {
             this.isBooked = true;
           }
         }
 
-        this.checkButtons(this.tripDetails)
+        this.checkButtons(this.tripDetails);
 
         let id = this.tripDetails.organizer._id;
         this.http
@@ -76,15 +78,14 @@ export class TripDetailsVistorComponent implements OnInit {
         let guideId = this.tripDetails.guides[0]._id;
         console.log('id guide', guideId);
 
-            if(guideId) {
-              this.http
-              .get(`/api/users/guides/${guideId}`)
-              .subscribe((result: User) => {
-                this.guideInfo = result;
-                console.log('the guide name is ====>', this.guideInfo.first_name);
-              });
-            }
-
+        if (guideId) {
+          this.http
+            .get(`/api/users/guides/${guideId}`)
+            .subscribe((result: User) => {
+              this.guideInfo = result;
+              console.log('the guide name is ====>', this.guideInfo.first_name);
+            });
+        }
       });
     });
   }
@@ -96,35 +97,33 @@ export class TripDetailsVistorComponent implements OnInit {
       this.router.navigate(['/signin']);
     }
   }
-  checkButtons(trip){
-
-    for(let i = 0; i < trip.guides.length; i++){
-      console.log(trip.guides[i]._id)
+  checkButtons(trip) {
+    for (let i = 0; i < trip.guides.length; i++) {
+      console.log(trip.guides[i]._id);
       console.log(this.currentUser.id === trip.guides[i]._id);
-      if(this.currentUser.id === trip.guides[i]._id){
+      if (this.currentUser.id === trip.guides[i]._id) {
         this.isGuide = true;
         console.log('====================================');
-        console.log('is guide: ', this.isGuide)
+        console.log('is guide: ', this.isGuide);
         console.log('====================================');
-
       }
     }
 
-    for(let j = 0; j < trip.waitingList.length; j++){
-      console.log(trip.waitingList[j]._id)
+    for (let j = 0; j < trip.waitingList.length; j++) {
+      console.log(trip.waitingList[j]._id);
       console.log(this.currentUser.id === trip.waitingList[j]._id);
-      if(this.currentUser.id === trip.waitingList[j]._id){
+      if (this.currentUser.id === trip.waitingList[j]._id) {
         this.isInwaitingList = true;
         console.log('====================================');
-        console.log('isInwaitingList: ', this.isInwaitingList)
+        console.log('isInwaitingList: ', this.isInwaitingList);
         console.log('====================================');
       }
     }
-    for(let k = 0; k < trip.travelers.length; k++){
-      if(this.currentUser.id === trip.travelers[k]._id){
+    for (let k = 0; k < trip.travelers.length; k++) {
+      if (this.currentUser.id === trip.travelers[k]._id) {
         this.isConfirmed = true;
         console.log('====================================');
-        console.log('isConfirmed: ', this.isConfirmed)
+        console.log('isConfirmed: ', this.isConfirmed);
         console.log('====================================');
       }
     }
@@ -144,11 +143,10 @@ export class TripDetailsVistorComponent implements OnInit {
           this.tripDetails = result;
           //this.checkButtons(this.tripDetails);
           this.isBooked = true;
-
         });
     } else {
       this.urlService.setPreviousUrl(this.router.url);
-      this.router.navigate(['/signin']);
+      this.router.navigate(['/signup/traveler']);
     }
   }
   /*****************Cancel Booking********************** */

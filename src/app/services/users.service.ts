@@ -22,8 +22,8 @@ export class UsersService {
     return this.http.get(`/api/users/${role}s/${id}`);
   }
 
-  setOrganizerData(data) {
-    return this.http.put(`/api/users/organizer//edit`, data);
+  setOrganizerData(userId, data) {
+    return this.http.put(`/api/users/${userId}/edit`, data);
   }
 
   setUserAvatar(id, avatarFile: File) {
