@@ -68,11 +68,11 @@ usersRouter.put("/:id/edit/avatar", async (req, res) => {
   }
 });
 
-/****************Update Organizer Profile ******************** */
-usersRouter.put("/organizer/edit", (req, res) => {
+/****************Update user Profile ******************** */
+usersRouter.put("/:id/edit", (req, res) => {
   let user = req.body;
   console.log("router section organizer log ==>", user);
-  User.updateOne({ username: user.username }, user)
+  User.findOneAndUpdate({ _id: req.params.id }, user, { new : true})
     .then((result) => {
       res.send(result);
     })
@@ -149,5 +149,14 @@ usersRouter.put("/:id/password/edit", async (req, res) => {
     res.status(500).send({ message: "An error occured please try again!!" });
   }
 });
+
+/**
+ * Update user data by id
+ */
+// usersRouter.put('/:id/edit', async (req, res) => {
+//   try {
+
+//   }
+// });
 
 module.exports = usersRouter;

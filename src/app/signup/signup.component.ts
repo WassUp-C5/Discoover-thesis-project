@@ -26,6 +26,17 @@ export class SignupComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+
+    // this.route.queryParams
+    //   .filter(params => params.order)
+    //   .subscribe(params => {
+    //     console.log(params); // { order: "popular" }
+
+    //     this.order = params.order;
+    //     console.log(this.order); // popular
+    //   }
+    // );
+
     let date = new Date();
     this.signupForm = this.formBuilder.group({
       avatarFile: [''],
