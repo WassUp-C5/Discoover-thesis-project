@@ -11,6 +11,7 @@ import { MyBookingsListComponent } from './components/my-bookings-list/my-bookin
 import { AppRoutingModule } from './../app-routing.module';
 import { EditTravelerProfileComponent } from './components/edit-traveler-profile/edit-traveler-profile.component';
 import { FormsModule } from '@angular/forms';
+import { FlashMessagesModule } from 'angular2-flash-messages';
 
 @NgModule({
   declarations: [ProfileComponent,MyBookingsListComponent,BookedTripComponent, EditTravelerProfileComponent],
@@ -19,6 +20,7 @@ import { FormsModule } from '@angular/forms';
     FormsModule,
     BrowserAnimationsModule,
     AngularMaterialModule,
+    FlashMessagesModule.forRoot(),
     AppRoutingModule,
     SharedModule,
   ],

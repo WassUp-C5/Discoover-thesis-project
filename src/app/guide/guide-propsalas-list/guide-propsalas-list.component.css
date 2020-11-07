@@ -1,3 +1,17 @@
 .container {
   margin-top: 50px;
 }
+
+#infoDiv{
+  font-size: 1rem;
+}
+
+.proposal-item {
+  max-width: 90%;
+  margin: 10px;
+}
+
+.alert-info {
+  font-size: 1.3rem;
+}
+
