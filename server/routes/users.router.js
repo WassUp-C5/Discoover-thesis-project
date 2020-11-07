@@ -140,7 +140,7 @@ usersRouter.put("/:id/password/edit", async (req, res) => {
           .json({ message: "Please verify your password!!" });
       }
 
-      user.password = req.body.newPassword;
+      user.password = bcrypt.hashSync(req.body.newPassword, 10);
       user.save();
       res.send({ message: "Success: your password has been changed!!" });
     });

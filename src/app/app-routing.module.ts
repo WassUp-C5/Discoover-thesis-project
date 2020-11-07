@@ -21,6 +21,7 @@ import { TripsListComponent } from './organizer/trips-list/trips-list.component'
 import { EditGuideProfileComponent } from './guide/edit-guide-profile/edit-guide-profile.component';
 import { GuidePropsalasListComponent } from './guide/guide-propsalas-list/guide-propsalas-list.component';
 import { MyBookingsListComponent } from './traveler/components/my-bookings-list/my-bookings-list.component';
+import { EditTravelerProfileComponent } from './traveler/components/edit-traveler-profile/edit-traveler-profile.component';
 
 
 const routes: Routes = [
@@ -31,9 +32,9 @@ const routes: Routes = [
   { path: 'organizers/:id/trips', component: TripsListComponent},
   { path: 'organizers/:id/profile/settings', component: EditProfileComponent},
   { path: 'organizers/:id/proposals', component: ProposalsListComponent},
-  { path: 'organizer/:id/trip/add', component: OrganizeATripComponent },
-  { path: 'organizer/:id/trips/:tripId/edit', component: EditTripComponent },
-  { path: 'organizer/trip/details/:tripId', component: TripDetailsComponent },
+  { path: 'organizers/:id/trip/add', component: OrganizeATripComponent },
+  { path: 'organizers/:id/trips/:tripId/edit', component: EditTripComponent },
+  { path: 'organizers/trip/details/:tripId', component: TripDetailsComponent },
   { path: 'guides/:id/profile', component: GuideProfileComponent },
   { path: 'guides/:id/profile/settings', component: EditGuideProfileComponent},
   { path: 'guides/:id/proposals', component: GuidePropsalasListComponent },
@@ -49,6 +50,7 @@ const routes: Routes = [
   { path: 'signin', component: SigninComponent },
   { path: 'trips/:id/details', component: TripDetailsVistorComponent },
   { path: 'travelers/:id/profile', component: ProfileComponent },
+  { path: 'travelers/:id/profile/settings', component: EditTravelerProfileComponent },
 ];
 
 @NgModule({

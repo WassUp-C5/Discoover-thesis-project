@@ -193,6 +193,8 @@
               )
             "
             class="btn btn-danger btn-signin"
+
+
           >
             Decline
           </button>
@@ -201,8 +203,7 @@
             id="guideButtons"
             type="button"
             *ngIf="
-              trip.proposal.accepted === false ||
-              trip.proposal.accepted === null
+              !trip.proposal.accepted
             "
             (click)="accept(trip.res._id, trip.proposal._id)"
           >
