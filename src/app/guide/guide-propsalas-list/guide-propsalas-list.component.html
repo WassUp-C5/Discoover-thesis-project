@@ -1,5 +1,15 @@
 <div class="container">
     <div class="row">
+      <div class="col-md-8 col-sm-12">
+        <div
+          *ngIf="proposals?.length === 0"
+          class="alert alert-info"
+          role="alert"
+        >
+          <mat-icon class="align-middle">info</mat-icon>
+          <span>There are no proposed trips!!</span>
+        </div>
+      </div>
       <div *ngFor="let trip of trips"
       class="col-md-3 col-sm-12 proposal-item bg-light">
       <mat-card
