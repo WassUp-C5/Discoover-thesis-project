@@ -43,7 +43,6 @@ export class EditGuideProfileComponent implements OnInit {
     this.route.params.subscribe((params) => {
       this.guideId = params['id'];
       this.getGuideData(this.guideId);
-      // In a real app: dispatch action to load the details here.
     });
 
   }
@@ -67,8 +66,8 @@ export class EditGuideProfileComponent implements OnInit {
       });
   }
 
-  addLanguage() {
-    this.userQualifications.type = 'language';
+  addQualification(type) {
+    this.userQualifications.type = type;
     this.http
       .put(
         `/api/users/guides/${this.guideId}/qualifications/add`,
@@ -77,23 +76,23 @@ export class EditGuideProfileComponent implements OnInit {
       .subscribe((result) => {
         console.log(result);
         this.userQualifications = new UserQualifications();
-        console.log('after adding language', result);
+        console.log('after adding qualification', result);
         this.getGuideData(this.guideId);
       });
   }
 
-  deleteUserQualification(entryId) {
-    this.http
-      .delete(
-        `/api/users/guides/${
-          this.tokenStorage.getUser().id
-        }/qualifications/${entryId}/delete`
-      )
-      .subscribe((result) => {
-        console.log('after delete language', result);
-        // this.getGuide();
-      });
-  }
+  // deleteUserQualification(entryId) {
+  //   this.http
+  //     .delete(
+  //       `/api/users/guides/${
+  //         this.tokenStorage.getUser().id
+  //       }/qualifications/${entryId}/delete`
+  //     )
+  //     .subscribe((result) => {
+  //       console.log('after delete language', result);
+  //       // this.getGuide();
+  //     });
+  // }
 
   changePassword() {
     console.log(this.currentPassword, this.newPassword);

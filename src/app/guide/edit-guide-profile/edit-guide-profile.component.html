@@ -1,6 +1,6 @@
 <div class="container guide-profile">
   <div class="row justify-content-md-center">
-    <mat-card class="col-md-8 col-sm-12" >
+    <mat-card class="col-md-8 col-sm-12">
       <form>
         <h5 class="mb-3 text-uppercase bg-light p-2">
           <span class="material-icons">person</span> Personal Info
@@ -151,17 +151,65 @@
       </form>
       <br />
       <br />
+      <!-- Skills -->
+      <div>
+        <h5 class="mb-3 text-uppercase bg-light p-2">
+          <i class="material-icons">language</i> Skills
+        </h5>
+        <div *ngFor="let qualification of this.guide?.qualifications">
+          <app-entry
+            *ngIf="qualification.type === 'skills'"
+            [qualification]="qualification"
+            [deleteUserQualification]="deleteUserQualification"
+          >
+          </app-entry>
+        </div>
+        <div class="row">
+          <div class="col-md-5">
+            <div class="form-group">
+              <input
+                let
+                type="text"
+                class="form-control"
+                placeholder="I speak ..."
+                [(ngModel)]="userQualifications.title"
+                name="language"
+              />
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div class="form-group">
+              <select
+                class="form-control"
+                name="qualifications"
+                [(ngModel)]="userQualifications.current_level"
+              >
+                <option value="beginner">Beginner</option>
+                <option value="average">Average</option>
+                <option value="advanced">Advanced</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <button class="btn btn-success" (click)="addQualification('skills')">
+              <span class="material-icons"> add_circle_outline </span>
+            </button>
+          </div>
+        </div>
+      </div>
       <!-- Start of guide qualifications: languages, skills and experiences. -->
       <div>
         <h5 class="mb-3 text-uppercase bg-light p-2">
           <i class="material-icons">language</i> Languages
         </h5>
-        <!-- <app-entry
-          *ngFor="let qualification of this.guide?.qualifications"
-          [qualification]="qualification"
-          [deleteUserQualification]="deleteUserQualification"
-        >
-        </app-entry> -->
+        <div *ngFor="let qualification of this.guide?.qualifications">
+          <app-entry
+            *ngIf="qualification.type === 'language'"
+            [qualification]="qualification"
+            [deleteUserQualification]="deleteUserQualification"
+          >
+          </app-entry>
+        </div>
         <div class="row">
           <div class="col-md-5">
             <div class="form-group">
@@ -190,7 +238,55 @@
             </div>
           </div>
           <div class="col-md-2">
-            <button class="btn btn-success" (click)="addLanguage()">
+            <button class="btn btn-success" (click)="addQualification('language')">
+              <span class="material-icons"> add_circle_outline </span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Experience -->
+      <div>
+        <h5 class="mb-3 text-uppercase bg-light p-2">
+          <i class="material-icons">Experience</i> Experience
+        </h5>
+        <div *ngFor="let qualification of this.guide?.qualifications">
+          <app-entry
+            *ngIf="qualification.type === 'experience'"
+            [qualification]="qualification"
+            [deleteUserQualification]="deleteUserQualification"
+          >
+          </app-entry>
+        </div>
+
+        <div class="row">
+          <div class="col-md-5">
+            <div class="form-group">
+              <input
+                let
+                type="text"
+                class="form-control"
+                placeholder="Add experience"
+                [(ngModel)]="userQualifications.title"
+                name="language"
+              />
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div class="form-group">
+              <select
+                class="form-control"
+                name="qualifications"
+                [(ngModel)]="userQualifications.current_level"
+              >
+                <option value="beginner">Beginner</option>
+                <option value="average">Average</option>
+                <option value="advanced">Advanced</option>
+                <option value="native">Native</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <button class="btn btn-success" (click)="addQualification('experience')">
               <span class="material-icons"> add_circle_outline </span>
             </button>
           </div>

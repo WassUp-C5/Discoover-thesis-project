@@ -121,7 +121,7 @@ export class TripDetailsVistorComponent implements OnInit {
       }
     }
     for(let k = 0; k < trip.travelers.length; k++){
-      if(this.currentUser.id === trip.tarvelers[k]._id){
+      if(this.currentUser.id === trip.travelers[k]._id){
         this.isConfirmed = true;
         console.log('====================================');
         console.log('isConfirmed: ', this.isConfirmed)
