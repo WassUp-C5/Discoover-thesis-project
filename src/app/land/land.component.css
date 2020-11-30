@@ -1,8 +1,10 @@
 @charset "UTF-8";
 
 @import url("../../styles/landing-page-template.css");
+@import url("../../styles/fade-in.css");
 
 .header-title {
+  animation: fadeIn ease .8s;
   font-family: "Architects Daughter";
   font-size: 4rem;
   padding-top: 1rem;
@@ -22,6 +24,7 @@
 }
 
 .header-btn {
+  animation: fadeIn ease 1s;
   margin-top: 2rem;
   padding: 1em 1.5em;
   border: solid 1px #cf0008;
@@ -36,6 +39,7 @@
 }
 
 .header-text {
+  animation: fadeIn ease .9s;
   font-size: 2.75rem;
   padding-bottom: 1rem;
 }
@@ -45,15 +49,18 @@
 }
 
 .joinus-text {
+  animation: fadeIn ease .8s;
   margin-top: 0.8rem;
   font-size: 1rem;
 }
 
 .joinus-title {
+  animation: fadeIn ease .8s;
   margin-bottom: 1.5rem !important;
 }
 
 .image-trip {
+  animation: fadeIn ease 0.5s;
   border-radius: 50%;
   width: 200px;
   height: 200px;
@@ -65,3 +72,7 @@
   transform: scale(1.1);
   transition: .2s ease;
 }
+
+/** For Animations:
+      https://css-tricks.com/aos-css-driven-scroll-animation-library/
+**/
