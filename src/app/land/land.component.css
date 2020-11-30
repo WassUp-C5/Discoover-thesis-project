@@ -2,6 +2,12 @@
 
 @import url("../../styles/landing-page-template.css");
 
+.header-title {
+  font-family: 'Architects Daughter';
+  font-size: 4rem;
+  padding-top: 1rem;
+}
+
 #contactUsHR {
   max-width: 5rem;
   border-width: 0.2rem;
@@ -16,10 +22,24 @@
 }
 
 
-.buttonDiscoover{
+.header-btn{
   margin-top: 2rem;
-  width: 200px;
-  background-color: #cf0008;
-  color: white;
+  padding: 1em 1.5em;
+  border: solid 1px #cf0008;
+  color: #cf0008;
+  font-weight: 500;
+  background-color: transparent;
 }
+
+.header-btn:hover {
+  background-color: #cf0008;
+  color: #fff;
+}
+
+.header-text {
+  font-size: 2.75rem;
+  padding-bottom: 1rem;
+}
+
+
 
