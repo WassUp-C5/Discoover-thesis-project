@@ -1,36 +1,4 @@
-<script src="../../assets/js/scripts.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
-<!-- Third party plugin JS-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-<script
-  src="https://use.fontawesome.com/releases/v5.13.0/js/all.js"
-  crossorigin="anonymous"
-></script>
-<!-- Google fonts-->
-<link
-  rel="stylesheet"
-  href="https://fonts.googleapis.com/css?family=Architects Daughter"
-/>
-<link
-  href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
-  rel="stylesheet"
-  type="text/css"
-/>
-<link
-  href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic"
-  rel="stylesheet"
-  type="text/css"
-/>
-<link
-  href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700"
-  rel="stylesheet"
-  type="text/css"
-/>
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-/>
+
 <div id="page-top">
   <!-- Navigation-->
   <!-- <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
@@ -83,30 +51,18 @@
   <header class="masthead">
     <div class="welcome-text">
       <div class="container">
-        <h1
-          style="
-            font-family: 'Architects Daughter';
-            font-size: 5rem;
-            padding-top: 1rem;
-          "
-        >
+        <h1 class="header-title fade-in">
           Welcome To DISCOOVER IN
         </h1>
         <div class="font-weight-normal">
-          <p
-            style="
-              font-family: 'Architects Daughter';
-              font-size: 2.75rem;
-              padding-bottom: 1rem;
-            "
-          >
-            The platform for travel lovers !
+          <p class="header-text fade-in">
+            The Travelelers' Platform!
           </p>
         </div>
       </div>
     </div>
     <a href="#services"
-      ><button type="button" class="btn btn-lg buttonDiscoover">
+      ><button type="button" class="btn btn-lg header-btn fade-in">
         Getting Started
       </button></a
     >
@@ -115,53 +71,31 @@
   <section class="page-section" id="services">
     <div class="container">
       <div class="text-center" style="margin-bottom: 1rem">
-        <h2 class="section-heading text-uppercase">Join Us</h2>
+        <h2 class="section-heading text-uppercase fade-in">Join Us</h2>
         <hr class="divider my-4" />
       </div>
       <div class="row text-center">
         <div class="col-md-4">
-          <h4 class="my-3">Pick a trip</h4>
-          <img
-            class="image-trip"
-            src="assets/img/trip/triper.jpg"
-            width="300"
-            height="300"
-            (click)="onClick('traveler')"
+          <h4 class="my-3 joinus-title fade-in">Pick a trip</h4>
+          <img class="image-trip" src="assets/img/trip/triper.jpg" (click)="onClick('traveler')"
           />
-          <br />
-          <br />
-          <p class="text-muted" style="font-weight: bold; font-size: 1rem">
+          <p class="text-muted joinus-text fade-in">
             Go on a journey to a place you choose
           </p>
         </div>
 
         <div class="col-md-4">
-          <h4 class="my-3">Organize a Trip</h4>
-          <img
-            class="image-trip"
-            src="assets/img/trip/pexels-element-digital-1051075.jpg"
-            width="300"
-            height="300"
-            (click)="onClick('organizer')"
+          <h4 class="my-3 joinus-title fade-in">Organize a Trip</h4>
+          <img class="image-trip" src="assets/img/trip/pexels-element-digital-1051075.jpg" (click)="onClick('organizer')"
           />
-          <br />
-          <br />
-          <p class="text-muted" style="font-weight: bold; font-size: 1rem">
+          <p class="text-muted joinus-text">
             Plan your favorite trip
           </p>
         </div>
         <div class="col-md-4">
-          <h4 class="my-3">Guide a trip</h4>
-          <img
-            class="image-trip"
-            src="assets/img/trip/guide.jpg"
-            width="300"
-            height="300"
-            (click)="onClick('guide')"
-          />
-          <br />
-          <br />
-          <p class="text-muted" style="font-weight: bold; font-size: 1rem">
+          <h4 class="my-3 joinus-title fade-in">Guide a trip</h4>
+          <img class="image-trip" src="assets/img/trip/guide.jpg" (click)="onClick('guide')"/>
+          <p class="text-muted joinus-text fade-in">
             Become one of our guides
           </p>
         </div>
@@ -191,7 +125,7 @@
               <h4 class="subheading">Our social motivation</h4>
             </div>
             <div class="timeline-body">
-              <p class="text-muted" style="font-size: 1rem">
+              <p class="text-muted about-text">
                 Giving chance to local unemployed young people to step away from
                 jobless routine and seek future in traveling buissnes and be
                 part of building better solutions for local economy.
@@ -209,10 +143,10 @@
           </div>
           <div class="timeline-panel">
             <div class="timeline-heading">
-              <h4 class="subheading">Our objectives</h4>
+              <h4 class="subheading">Our Vision</h4>
             </div>
             <div class="timeline-body">
-              <p class="text-muted" style="font-size: 1rem">
+              <p class="text-muted about-text">
                 Helping youth to evolve and develop socially and individually to
                 reach full potential by providing a way to be productive and
                 have fun as well as descovering places.
@@ -233,7 +167,7 @@
               <h4 class="subheading">A platform is Born</h4>
             </div>
             <div class="timeline-body">
-              <p class="text-muted" style="font-size: 1rem">
+              <p class="text-muted about-text">
                 Using available technologies and frameworks we started this
                 platform as dedication to our objectives and motivation to
                 accomplish our duty in being an effective player in our society.

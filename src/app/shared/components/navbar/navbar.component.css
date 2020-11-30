@@ -78,4 +78,26 @@ mat-nav-list > a:hover {
   color: hsl(0, 0%, 77%)
 }
 
+.signin-button {
+  border: 1px solid #fff;
+  background-color: transparent;
+  color: #fff;
+  margin-bottom: 5px;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 0 10px;
+  border-radius: 3px;
+  margin-left: 10px;
+}
 
+.signin-button:hover {
+  border: 1px solid #fff;
+  background-color: #fff;
+  color: #cf0008;
+}
+
+.navbar-item {
+  font-size: 15px;
+  font-weight: 500 !important;
+  margin-right: 2em !important;
+}

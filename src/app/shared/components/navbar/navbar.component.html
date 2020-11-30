@@ -59,15 +59,14 @@
       </a>
       <span class="spacer"></span>
       <mat-nav-list class="toolbar-nav" *ngIf="this.route === ''">
-        <a href="/#services">JOIN US</a>
-        <a href="/#about">ABOUT</a>
-        <a href="/#team">TEAM</a>
-        <a href="/#contact">CONTACT US</a>
+        <a class="navbar-item" href="/#services">JOIN US</a>
+        <a class="navbar-item" href="/#about">ABOUT</a>
+        <a class="navbar-item" href="/#team">TEAM</a>
+        <a class="navbar-item" href="/#contact">CONTACT US</a>
         <button
           (click)="GoToSignIn()"
           *ngIf="!isLoggedIn"
-          mat-raised-button
-          color="primary"
+          class="signin-button"
         >
           SIGN IN
         </button>
