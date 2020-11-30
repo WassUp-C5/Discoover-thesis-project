@@ -3,7 +3,7 @@
 @import url("../../styles/landing-page-template.css");
 
 .header-title {
-  font-family: 'Architects Daughter';
+  font-family: "Architects Daughter";
   font-size: 4rem;
   padding-top: 1rem;
 }
@@ -21,8 +21,7 @@
   align-items: center;
 }
 
-
-.header-btn{
+.header-btn {
   margin-top: 2rem;
   padding: 1em 1.5em;
   border: solid 1px #cf0008;
@@ -41,5 +40,11 @@
   padding-bottom: 1rem;
 }
 
+.about-text {
+  font-size: 1rem;
+}
 
-
+.joinus-text {
+  margin-top: 1rem;
+  font-size: 1rem
+}
