@@ -10510,14 +10510,6 @@ img::-moz-selection {
   color: #fff;
   letter-spacing: 0.0625em;
 }
-.image-trip {
-  border-radius: 50%;
-  width: 200px;
-  height: 200px;
-}
-.image-trip:hover {
-  transform: scale(1.1)
- }
 
 @media (min-width: 992px) {
   .image-trip {
